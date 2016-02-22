@@ -38,7 +38,7 @@ app.on('ready', () => {
     mainWindow.openDevTools()
   }
 
-  if (process.platform === 'darwin') {
+  /*if (process.platform === 'darwin') {
     template = [{
       label: 'Electron',
       submenu: [{
@@ -236,5 +236,6 @@ app.on('ready', () => {
     }]
     menu = Menu.buildFromTemplate(template)
     mainWindow.setMenu(menu)
-  }
+  }*/
+  mainWindow.setMenu(null)
 })
