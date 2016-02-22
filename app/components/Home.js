@@ -5,9 +5,7 @@ export default class Home extends Component {
   render () {
     return (
       <div>
-        <div>
-          <h2>Home</h2>
-        </div>
+        {'mjml-desktop'}
       </div>
     )
   }

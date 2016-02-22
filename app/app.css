@@ -4,10 +4,20 @@
   box-sizing: border-box;
   font: inherit;
   color: inherit;
+  cursor: inherit;
 }
 
 body {
   position: relative;
   height: 100vh;
   overflow-y: hidden;
+
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-user-select: none;
+  cursor: default;
+
+  background: #222;
+  font-family: monospace;
+  color: #aaa;
 }
