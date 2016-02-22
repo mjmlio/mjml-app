@@ -1,0 +1,6 @@
+{
+  "extends": ["zavatta", "zavatta-react"],
+  "rules": {
+    "camelcase": 0
+  }
+}

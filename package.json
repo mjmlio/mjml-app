@@ -1,0 +1,77 @@
+{
+  "private": true,
+  "name": "mjml-desktop",
+  "version": "0.1.0",
+  "description": "The only framework that makes responsive-email easy",
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint app test *.js",
+    "hot-server": "node server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --progress --profile --colors",
+    "start": "cross-env NODE_ENV=production electron ./",
+    "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./",
+    "package": "cross-env NODE_ENV=production node package.js",
+    "package-all": "npm run package -- --all"
+  },
+  "bin": {
+    "electron": "./node_modules/.bin/electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meriadec/mjml-desktop"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meriadec/mjml-desktop/issues"
+  },
+  "homepage": "https://github.com/meriadec/mjml-desktop",
+  "devDependencies": {
+    "asar": "^0.9.0",
+    "babel-core": "^6.3.26",
+    "babel-eslint": "^5.0.0",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-webpack-loaders": "^0.2.1",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.0.1",
+    "babel-preset-stage-0": "^6.3.13",
+    "cross-env": "^1.0.7",
+    "css-loader": "^0.23.1",
+    "del": "^2.0.1",
+    "electron-packager": "^5.2.0",
+    "electron-prebuilt": "^0.36.2",
+    "electron-rebuild": "^1.0.0",
+    "eslint": "^1.3.1",
+    "eslint-config-zavatta": "^2.0.3",
+    "eslint-config-zavatta-react": "^1.2.1",
+    "eslint-plugin-react": "^3.13.1",
+    "express": "^4.13.3",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "jsdom": "^7.2.2",
+    "json-loader": "^0.5.4",
+    "minimist": "^1.2.0",
+    "node-libs-browser": ">= 0.4.0 <=0.6.0",
+    "redux-devtools": "^3.0.1",
+    "redux-devtools-dock-monitor": "^1.0.1",
+    "redux-devtools-log-monitor": "^1.0.1",
+    "redux-logger": "^2.3.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.1",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.4.1",
+    "webpack-target-electron-renderer": "^0.3.0"
+  },
+  "dependencies": {
+    "electron-debug": "^0.5.1",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-redux": "^4.0.5",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^3.0.0",
+    "redux": "^3.2.1",
+    "redux-promise": "^0.5.0",
+    "redux-thunk": "^1.0.2"
+  }
+}
