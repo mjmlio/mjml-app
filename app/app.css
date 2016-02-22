@@ -5,6 +5,8 @@
   font: inherit;
   color: inherit;
   cursor: inherit;
+  outline: none;
+  border: none;
 }
 
 body {
