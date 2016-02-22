@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "electron-debug": "^0.5.1",
+    "mjml": "^1.2.1",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.5",
