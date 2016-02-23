@@ -5,6 +5,7 @@
   "description": "The only framework that makes responsive-email easy",
   "main": "main.js",
   "scripts": {
+    "dev": "npm run hot-server & npm run start-hot & wait",
     "lint": "eslint app test *.js",
     "hot-server": "node server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --progress --profile --colors",
