@@ -4,6 +4,10 @@
   flex-grow: 1 !important;
 }
 
+#preview {
+  flex-grow: 1;
+}
+
 .Editor {
   height: 100vh;
   display: flex;
@@ -18,5 +22,8 @@
 }
 
 .Editor-preview {
+  width: 650px;
+  display: flex;
+  flex-direction: column;
   overflow: auto;
 }

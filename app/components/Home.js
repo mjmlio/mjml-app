@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AceEditor from 'react-ace'
-//import mjml from 'mjml'
+import mjml2html from 'mjml/lib/mjml2html'
 
 import 'brace/mode/xml'
 import 'brace/theme/solarized_dark'
@@ -9,8 +9,25 @@ import '../styles/Editor.css'
 
 export default class Home extends Component {
 
+  static aceProps = {
+    $blockScrolling: true
+  }
+
   state = {
-    content: '<mj-body></mj-body>'
+    content: ''
+  }
+
+  componentDidUpdate () {
+    let html
+    try {
+      html = mjml2html(this.state.content)
+    } catch (e) {
+      html = this._oldHtml || ''
+    }
+    const doc = this._iframe.contentDocument
+    const documentElement = doc.documentElement
+    documentElement.innerHTML = html
+    this._oldHtml = html
   }
 
   handleChange = (content) => {
@@ -27,14 +44,15 @@ export default class Home extends Component {
             <AceEditor
               mode='xml'
               theme='solarized_dark'
+              height={window.innerHeight}
               value={content}
               tabSize={2}
               onChange={this.handleChange}
               name='editor'
-              editorProps={{ $blockScrolling: true }}/>
+              editorProps={Home.aceProps}/>
           </div>
-          <div className='Editor-panel Editor-preview'>
-            {content}
+          <div className='Editor-preview'>
+            <iframe id='preview' ref={(el) => this._iframe = el} />
           </div>
         </div>
       </div>
