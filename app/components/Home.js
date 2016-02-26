@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import AceEditor from 'react-ace'
 //import mjml from 'mjml'
+
+import 'brace/mode/xml'
+import 'brace/theme/solarized_dark'
 
 import '../styles/Editor.css'
 
 export default class Home extends Component {
 
   state = {
-    content: ''
+    content: '<mj-body></mj-body>'
   }
 
-  handleChange = (e) => {
-    this.setState({ content: e.target.value })
+  handleChange = (content) => {
+    this.setState({ content })
   }
 
   render () {
@@ -20,9 +24,16 @@ export default class Home extends Component {
       <div>
         <div className='Editor'>
           <div className='Editor-panel'>
-            <textarea value={content} onChange={this.handleChange} />
+            <AceEditor
+              mode='xml'
+              theme='solarized_dark'
+              value={content}
+              tabSize={2}
+              onChange={this.handleChange}
+              name='editor'
+              editorProps={{ $blockScrolling: true }}/>
           </div>
-          <div className='Editor-panel'>
+          <div className='Editor-panel Editor-preview'>
             {content}
           </div>
         </div>

@@ -1,3 +1,9 @@
+#editor {
+  font-size: 18px;
+  width: 100% !important;
+  flex-grow: 1 !important;
+}
+
 .Editor {
   height: 100vh;
   display: flex;
@@ -9,11 +15,8 @@
   flex-basis: 50%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
-  .Editor-panel textarea {
-    flex-grow: 1;
-    display: block;
-    background: rgba(255, 255, 255, 0.1);
-  }
+.Editor-preview {
+  overflow: auto;
+}
