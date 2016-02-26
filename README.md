@@ -3,8 +3,7 @@
 ### dev
 
 ```
-$ npm run hot-server
-$ npm run start-hot
+$ npm run dev
 ```
 
 ### build
