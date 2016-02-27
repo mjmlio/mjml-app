@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
-import AceEditor from 'react-ace'
 import mjml2html from 'mjml/lib/mjml2html'
 
-import 'brace/mode/xml'
-import 'brace/theme/solarized_dark'
-
+import Editor from './Editor'
 import defaultContent from '../assets/defaultContent'
 
-import '../styles/Editor.scss'
+import '../styles/EditorPage.scss'
 
 class EditorPage extends Component {
-
-  static aceProps = {
-    $blockScrolling: true
-  }
 
   state = {
     content: defaultContent
@@ -21,6 +14,8 @@ class EditorPage extends Component {
 
   componentDidUpdate () {
     let html
+    console.log(`did update`)
+    console.log(this.state.content)
     try {
       html = mjml2html(this.state.content)
     } catch (e) {
@@ -40,21 +35,11 @@ class EditorPage extends Component {
     const { content } = this.state
 
     return (
-      <div className='Editor'>
-        <div className='Editor-panel'>
-          <div className='Editor-wrapper'>
-            <AceEditor
-              mode='xml'
-              theme='solarized_dark'
-              height='100%'
-              value={content}
-              tabSize={2}
-              onChange={this.handleChange}
-              name='editor'
-              editorProps={EditorPage.aceProps}/>
-          </div>
+      <div className='EditorPage'>
+        <div className='EditorPage-panel'>
+          <Editor value={content} onChange={this.handleChange} />
         </div>
-        <div className='Editor-preview'>
+        <div className='EditorPage-preview'>
           <iframe id='preview' ref={(el) => this._iframe = el} />
         </div>
       </div>

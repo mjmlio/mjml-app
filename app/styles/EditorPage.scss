@@ -1,0 +1,25 @@
+.EditorPage {
+  display: flex;
+  flex-grow: 1;
+}
+
+.EditorPage-panel {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.EditorPage-preview {
+  width: 650px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+#preview {
+  flex-grow: 1;
+}
