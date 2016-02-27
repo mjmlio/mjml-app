@@ -5,7 +5,7 @@ import AceEditor from 'react-ace'
 import 'brace/mode/xml'
 import 'brace/theme/solarized_dark'
 
-import '../styles/Editor.css'
+import '../styles/Editor.scss'
 
 class Editor extends Component {
 
