@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import mjml2html from 'mjml/lib/mjml2html'
 
 import Editor from './Editor'
-import { updateTemplate } from '../actions/template'
+import { updateTemplate, saveTemplate } from '../actions/template'
 
 import '../styles/EditorPage.scss'
 
@@ -19,6 +19,7 @@ class EditorPage extends Component {
 
   handleChange = (mjml) => {
     this.props.dispatch(updateTemplate(template => template.set('mjml', mjml)))
+    this.props.dispatch(saveTemplate())
   }
 
   renderIframe () {

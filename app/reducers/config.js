@@ -5,7 +5,7 @@ import { Map } from 'immutable'
 
 const initialState = Map({
 
-  projectDirectory: path.join(os.homedir(), 'mjml')
+  projectDirectory: path.join(os.homedir(), 'mjml-projects')
 
 })
 

@@ -11,26 +11,26 @@ const promisify = fn =>
       fn(...args.concat((err, ...data) =>
         err ? reject(err) : resolve(...data))))
 
-/*
- * Check the existence of a file
- */
-const exists = promisify((file, cb) => fs.access(file, fs.R_OK | fs.W_OK, cb))
-
 const home = process.env.HOME || process.env.USERPROFILE
-  ,   mjml = path.join(home, 'MJML')
 
 /*
  * Returs a list of MJML templates
  */
-export const readTemplates = () => promisify(fs.readdir)(mjml)
+export const readTemplates = (mjml) => promisify(fs.readdir)(mjml)
 
 /*
  * Returns the MJML config
  */
-export const readConfig = () => require(path.join(mjml, '.mjml.json'))
+export const readConfig = (mjml) => require(path.join(mjml, '.mjml.json'))
 
 /*
  * Save an MJML template
+ * template: json {
+ *  mjml,
+ *  name
+ * }
  */
-export const save = (content, name, location = mjml) =>
-  promisify(fs.writeFile)(path.join(location, name), content)
+export const save = (template, location) => {
+  console.log(location)
+  return promisify(fs.writeFile)(path.join(location, `${template.get('name')}.json`), JSON.stringify(template.toJS(), null, 2))
+}
