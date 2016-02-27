@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+
 import { readTemplates as fsReadTemplates } from '../helpers/file-system'
 
 const receiveTemplates = createAction('RECEIVE_TEMPLATES', templates => templates)
