@@ -1,6 +1,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import { fromJS } from 'immutable'
 
 /*
  * Turns a callback style to a Promise style one
@@ -16,12 +17,17 @@ const home = process.env.HOME || process.env.USERPROFILE
 /*
  * Returs a list of MJML templates
  */
-export const readTemplates = (mjml) => promisify(fs.readdir)(mjml)
+export const readTemplates = (location) =>
+  promisify(fs.readdir)(location)
+    .then(filenames =>
+      Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(location, filename), 'utf8'))))
+    .then(fileContents => fileContents.map(JSON.parse))
+    .then(fromJS)
 
 /*
  * Returns the MJML config
  */
-export const readConfig = (mjml) => require(path.join(mjml, '.mjml.json'))
+export const readConfig = (location) => require(path.join(location, '.mjml.json'))
 
 const checkOrCreate = (location) =>
   promisify((location, cb) => fs.access(location, fs.R_OK | fs.W_OK, cb))(location)

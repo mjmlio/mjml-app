@@ -7,10 +7,13 @@ import { Map } from 'immutable'
 import routes from './routes'
 import configureStore from './store/configureStore'
 import { setTemplate } from './actions/template'
+import { readTemplates } from './actions/templates'
 
 import './styles/main.scss'
 
 const store = configureStore()
+
+store.dispatch(readTemplates())
 
 store.dispatch(setTemplate(Map({
   name: 'dummy template',
