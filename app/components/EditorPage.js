@@ -14,8 +14,6 @@ class EditorPage extends Component {
 
   componentDidUpdate () {
     let html
-    console.log(`did update`)
-    console.log(this.state.content)
     try {
       html = mjml2html(this.state.content)
     } catch (e) {
