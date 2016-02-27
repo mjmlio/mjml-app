@@ -10,9 +10,11 @@ class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='App'>
         <NavBar />
-        {this.props.children}
+        <div className='App-content'>
+          {this.props.children}
+        </div>
         {
           (() => {
             if (process.env.NODE_ENV !== 'production') {
