@@ -9,16 +9,16 @@ import '../styles/Editor.scss'
 
 class Editor extends Component {
 
-  static aceProps = {
-    $blockScrolling: true
-  }
-
   constructor (props) {
     super(props)
 
     this.state = {
       content: props.value
     }
+  }
+
+  static aceProps = {
+    $blockScrolling: true
   }
 
   saveContent = debounce((content) => {
