@@ -9,7 +9,7 @@ import defaultContent from '../assets/defaultContent'
 
 import '../styles/Editor.scss'
 
-export default class Home extends Component {
+class EditorPage extends Component {
 
   static aceProps = {
     $blockScrolling: true
@@ -51,7 +51,7 @@ export default class Home extends Component {
               tabSize={2}
               onChange={this.handleChange}
               name='editor'
-              editorProps={Home.aceProps}/>
+              editorProps={EditorPage.aceProps}/>
           </div>
         </div>
         <div className='Editor-preview'>
@@ -62,3 +62,5 @@ export default class Home extends Component {
   }
 
 }
+
+export default EditorPage

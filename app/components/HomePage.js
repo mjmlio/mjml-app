@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import '../styles/Home.scss'
 
-class Home extends Component {
+class HomePage extends Component {
 
   render () {
     return (
@@ -16,4 +16,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default HomePage
