@@ -1,0 +1,30 @@
+.NavBar {
+  display: flex;
+  height: 60px;
+  align-items: stretch;
+}
+
+.NavBar-links {
+  display: flex;
+  align-items: stretch;
+
+  &.right {
+    margin-left: auto;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    &:hover {
+      color: rgba(0, 0, 0, 0.7);
+    }
+    &.active {
+      background: #f46d4c;
+      color: white;
+    }
+  }
+}

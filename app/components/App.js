@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 
-export default class App extends Component {
+import NavBar from './NavBar'
+
+class App extends Component {
 
   static propTypes = {
     children: PropTypes.element.isRequired
@@ -9,6 +11,7 @@ export default class App extends Component {
   render () {
     return (
       <div>
+        <NavBar />
         {this.props.children}
         {
           (() => {
@@ -22,3 +25,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App
