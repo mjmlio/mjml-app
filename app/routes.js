@@ -8,6 +8,6 @@ import EditorPage from './components/Editor'
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={HomePage} />
-    <Route path='editor' compoennt={EditorPage} />
+    <Route path='editor' component={EditorPage} />
   </Route>
 )

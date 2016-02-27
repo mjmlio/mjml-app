@@ -19,6 +19,9 @@ body {
   -webkit-user-select: none;
   cursor: default;
 
-  font-family: monospace;
-  color: #aaa;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a, button {
+  cursor: pointer;
 }
