@@ -10,4 +10,7 @@ const initialState = Map({
 })
 
 export default handleActions({
+
+  SET_CONFIG: (state, { payload: config }) => config
+
 }, initialState)
