@@ -1,5 +1,6 @@
 
 import fs from 'fs'
+import _ from 'lodash'
 import path from 'path'
 import { fromJS } from 'immutable'
 
@@ -20,6 +21,7 @@ export const readTemplates = (location) =>
     .then(filenames =>
       Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(location, filename), 'utf8'))))
     .then(fileContents => fileContents.map(JSON.parse))
+    .then(templates => _.orderBy(templates, 'creationDate', 'desc'))
     .then(fromJS)
 
 /*

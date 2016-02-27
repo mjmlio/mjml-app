@@ -20,7 +20,8 @@ export const createNewTemplate = () => dispatch => {
   const newTemplate = Map({
     id: shortid.generate(),
     name: 'no name',
-    mjml: defaultContent
+    mjml: defaultContent,
+    creationDate: new Date()
   })
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())
