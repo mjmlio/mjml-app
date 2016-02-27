@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AceEditor from 'react-ace'
-//import mjml from 'mjml'
 
 import 'brace/mode/xml'
 import 'brace/theme/solarized_dark'
