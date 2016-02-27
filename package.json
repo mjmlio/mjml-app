@@ -8,10 +8,10 @@
     "dev": "npm run hot-server & npm run start-hot & wait",
     "lint": "eslint app test *.js",
     "hot-server": "node server.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/production.config.js --progress --profile --colors",
     "start": "cross-env NODE_ENV=production electron ./",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./",
-    "package": "cross-env NODE_ENV=production node package.js",
+    "package": "cross-env NODE_ENV=production node build.js",
     "package-all": "npm run package -- --all"
   },
   "bin": {

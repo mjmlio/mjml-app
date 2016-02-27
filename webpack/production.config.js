@@ -4,7 +4,7 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const electronRenderer = require('webpack-target-electron-renderer')
-const baseConfig = require('./webpack.config.base')
+const baseConfig = require('./base.config')
 
 const config = Object.create(baseConfig)
 
