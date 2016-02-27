@@ -17,8 +17,9 @@ const promisify = fn =>
  * Returs a list of MJML templates
  */
 export const readTemplates = (location) =>
-  promisify(fs.readdir)(location)
-    .then(filenames =>
+  checkOrCreate(location)
+    .then(() => promisify(fs.readdir)(location))
+    .then((filenames = []) =>
       Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(location, filename), 'utf8'))))
     .then(fileContents => fileContents.map(JSON.parse))
     .then(templates => _.orderBy(templates, 'creationDate', 'desc'))
