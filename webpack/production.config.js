@@ -2,8 +2,10 @@
 'use strict'
 
 const webpack = require('webpack')
+const precss = require('precss')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const electronRenderer = require('webpack-target-electron-renderer')
+
 const baseConfig = require('./base.config')
 
 const config = Object.create(baseConfig)
@@ -17,10 +19,14 @@ config.output.publicPath = '../dist/'
 config.module.loaders.push({
   test: /\.scss$/,
   loader: ExtractTextPlugin.extract(
-    'style-loader',
-    'css-loader'
+    'style',
+    'css!postcss'
   )
 })
+
+config.postcss = wp => [
+  precss
+]
 
 config.plugins.push(
   new webpack.optimize.OccurenceOrderPlugin(),
