@@ -46,6 +46,12 @@ class FileSelector extends Component {
 
           {templates.map(this.renderTemplate)}
 
+          <div className='template'>
+            <div className='link'>
+              <i className='ion-ios-browsers-outline template-icon' />
+            </div>
+          </div>
+
         </div>
       </div>
     )
