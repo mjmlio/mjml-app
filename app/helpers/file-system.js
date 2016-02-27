@@ -27,7 +27,8 @@ export const readTemplates = (location) =>
 /*
  * Returns the MJML config
  */
-export const readConfig = (location) => require(path.join(location, '.mjml.json'))
+export const localConfig = () =>
+  fromJS(localstorage.getItem('appconfig'))
 
 const checkOrCreate = (location) =>
   promisify((location, cb) => fs.access(location, fs.R_OK | fs.W_OK, cb))(location)
