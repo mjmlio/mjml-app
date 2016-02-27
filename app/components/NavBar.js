@@ -14,8 +14,6 @@ class NavBar extends Component {
         </div>
         <div className='NavBar-links right'>
           <Link to='/'>{'Docs'}</Link>
-        </div>
-        <div className='NavBar-links right'>
           <Link to='settings'>{'Settings'}</Link>
         </div>
       </div>
