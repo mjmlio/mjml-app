@@ -5,6 +5,6 @@ const state = List()
 
 export default handleActions({
 
-  RECEIVE_TEMPLATES: (state, { payload: templates }) => state.concat(templates)
+  RECEIVE_TEMPLATES: (state, { payload: templates }) => templates
 
 }, state)

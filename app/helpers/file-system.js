@@ -12,8 +12,6 @@ const promisify = fn =>
       fn(...args.concat((err, ...data) =>
         err ? reject(err) : resolve(...data))))
 
-const home = process.env.HOME || process.env.USERPROFILE
-
 /*
  * Returs a list of MJML templates
  */
@@ -42,5 +40,5 @@ const checkOrCreate = (location) =>
  */
 export const save = (template, location) =>
   checkOrCreate(location)
-    .then(() => promisify(fs.writeFile)(path.join(location, `${template.get('name')}.json`), JSON.stringify(template.toJS(), null, 2)))
-  
+    .then(() => promisify(fs.writeFile)(path.join(location, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
+
