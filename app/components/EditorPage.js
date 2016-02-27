@@ -38,9 +38,11 @@ class EditorPage extends Component {
   renderIframe () {
     const { template } = this.props
     if (!template) { return }
+    const mjml = template.get('mjml')
+    if (mjml === this._oldMjml) { return }
     let html
     try {
-      html = mjml2html(template.get('mjml'))
+      html = mjml2html(mjml)
     } catch (e) {
       html = this._oldHtml || ''
     }
@@ -49,6 +51,7 @@ class EditorPage extends Component {
     const documentElement = doc.documentElement
     documentElement.innerHTML = html
     this._oldHtml = html
+    this._oldMjml = mjml
   }
 
   renderEmpty () {
