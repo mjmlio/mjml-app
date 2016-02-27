@@ -2,6 +2,7 @@ import { createAction } from 'redux-actions'
 import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
+import mjml2html from 'mjml/lib/mjml2html'
 
 import { save } from '../helpers/file-system'
 import defaultContent from '../assets/defaultContent'
@@ -13,7 +14,11 @@ export const saveTemplate = () => (dispatch, getState) => {
   const state = getState()
   const { template, config } = state
 
-  save(template, config.get('projectDirectory'))
+  const html = mjml2html(template.get('mjml'))
+  save(
+    template.set('html', html),
+    config.get('projectDirectory')
+  )
 }
 
 export const createNewTemplate = () => dispatch => {
@@ -21,6 +26,7 @@ export const createNewTemplate = () => dispatch => {
     id: shortid.generate(),
     name: 'no name',
     mjml: defaultContent,
+    html: mjml2html(defaultContent),
     creationDate: new Date()
   })
   dispatch(setTemplate(newTemplate))

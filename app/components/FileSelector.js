@@ -5,6 +5,7 @@ import { Link } from 'react-router'
 import '../styles/Home.scss'
 
 import { createNewTemplate, loadTemplate } from '../actions/template'
+import Thumbnail from './Thumbnail'
 
 @connect(
   state => ({
@@ -24,8 +25,8 @@ class FileSelector extends Component {
   renderTemplate = (template) => {
     return (
       <div className='template' key={template.get('id')} onClick={this.loadTemplate.bind(this, template)}>
-        <Link to='editor' className='link'>
-          <img width='150px' src='https://mjml.io/assets/img/index/welcome-email.png' />
+        <Link to='editor'>
+          <Thumbnail template={template} />
         </Link>
       </div>
     )
