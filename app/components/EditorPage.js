@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import { connect } from 'react-redux'
 import mjml2html from 'mjml/lib/mjml2html'
 
@@ -14,12 +15,20 @@ import '../styles/EditorPage.scss'
 )
 class EditorPage extends Component {
 
+  state = {
+    showPreview: true
+  }
+
   componentDidMount () { this.renderIframe() }
   componentDidUpdate () { this.renderIframe() }
 
   handleChange = (mjml) => {
     this.props.dispatch(updateTemplate(template => template.set('mjml', mjml)))
     this.props.dispatch(saveTemplate())
+  }
+
+  togglePreview = () => {
+    this.setState({ showPreview: !this.state.showPreview })
   }
 
   renderIframe () {
@@ -47,6 +56,7 @@ class EditorPage extends Component {
 
   render () {
     const { template } = this.props
+    const { showPreview } = this.state
 
     if (!template) { return this.renderEmpty() }
 
@@ -54,11 +64,21 @@ class EditorPage extends Component {
 
     return (
       <div className='EditorPage'>
-        <div className='EditorPage-panel'>
-          <Editor value={mjml} onChange={this.handleChange} />
+        <div className='EditorPage-bar'>
+          <div className='EditorPage-bar-side'>
+            <label>
+              <input type='checkbox' checked={showPreview} onChange={this.togglePreview} />
+              {' Preview'}
+            </label>
+          </div>
         </div>
-        <div className='EditorPage-preview'>
-          <iframe id='preview' ref={(el) => this._iframe = el} />
+        <div className='EditorPage-view'>
+          <div className='EditorPage-panel'>
+            <Editor value={mjml} onChange={this.handleChange} />
+          </div>
+          <div className={cx('EditorPage-preview', { show: showPreview })}>
+            <iframe id='preview' ref={(el) => this._iframe = el} />
+          </div>
         </div>
       </div>
     )

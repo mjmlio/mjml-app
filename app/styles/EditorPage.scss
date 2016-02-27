@@ -1,6 +1,30 @@
 .EditorPage {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  background: #333;
+}
+
+.EditorPage-bar {
+  flex-shrink: 0;
+  background: #ccc;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
+
+  .EditorPage-bar-side {
+    margin-left: auto;
+  }
+}
+
+.EditorPage-view {
+  flex-grow: 1;
+  display: flex;
 }
 
 .EditorPage-panel {
@@ -13,11 +37,18 @@
 }
 
 .EditorPage-preview {
-  width: 650px;
+  width: 0;
+  opacity: 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   overflow: auto;
+
+  &.show {
+    transition: 250ms linear opacity;
+    width: 650px;
+    opacity: 1;
+  }
 }
 
 #preview {

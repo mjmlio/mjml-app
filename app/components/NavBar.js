@@ -10,7 +10,6 @@ class NavBar extends Component {
       <div className='NavBar'>
         <div className='NavBar-links'>
           <Link to='/'>{'Home'}</Link>
-          <Link activeClassName='active' to='editor'>{'Editor'}</Link>
         </div>
         <div className='NavBar-links right'>
           <Link to='/'>{'Docs'}</Link>
