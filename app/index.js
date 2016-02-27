@@ -14,8 +14,7 @@ const store = configureStore()
 
 store.dispatch(setTemplate(Map({
   name: 'dummy template',
-  mjml: '<mj-body></mj-body>',
-  lastSave: new Date()
+  mjml: '<mj-body></mj-body>'
 })))
 
 render(

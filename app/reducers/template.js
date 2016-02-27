@@ -6,7 +6,6 @@ template is an Immutable Map and will look like:
 
   name       string    the name
   mjml       string    the mjml content
-  lastSave   date      the last save date
 
 */
 
