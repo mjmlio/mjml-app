@@ -40,22 +40,22 @@ export default class Home extends Component {
     const { content } = this.state
 
     return (
-      <div>
-        <div className='Editor'>
-          <div className='Editor-panel'>
+      <div className='Editor'>
+        <div className='Editor-panel'>
+          <div className='Editor-wrapper'>
             <AceEditor
               mode='xml'
               theme='solarized_dark'
-              height={window.innerHeight}
+              height='100%'
               value={content}
               tabSize={2}
               onChange={this.handleChange}
               name='editor'
               editorProps={Home.aceProps}/>
           </div>
-          <div className='Editor-preview'>
-            <iframe id='preview' ref={(el) => this._iframe = el} />
-          </div>
+        </div>
+        <div className='Editor-preview'>
+          <iframe id='preview' ref={(el) => this._iframe = el} />
         </div>
       </div>
     )
