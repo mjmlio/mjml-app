@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AceEditor from 'react-ace'
 import { debounce } from 'lodash'
 
+import 'brace/ext/searchbox'
 import 'brace/mode/xml'
 import 'brace/theme/ambiance'
 import 'brace/theme/chaos'
