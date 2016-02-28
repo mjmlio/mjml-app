@@ -6,8 +6,9 @@
   overflow: hidden;
 
   iframe {
-    transform: scale(0.5);
+    transform: scale(0.23);
     transform-origin: top left;
+    width: 600px;
     height: 2147483647px;
   }
 }
