@@ -16,18 +16,22 @@ export const saveTemplate = () => (dispatch, getState) => {
 
   const html = mjml2html(template.get('mjml'))
   save(
-    template.set('html', html),
+    template
+      .set('html', html)
+      .set('modificationDate', new Date()),
     config.get('projectDirectory')
   )
 }
 
 export const createNewTemplate = () => dispatch => {
+  const now = new Date()
   const newTemplate = Map({
     id: shortid.generate(),
     name: 'no name',
     mjml: defaultContent,
     html: mjml2html(defaultContent),
-    creationDate: new Date()
+    creationDate: now,
+    modificationDate: now
   })
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())

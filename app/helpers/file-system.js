@@ -22,7 +22,7 @@ export const readTemplates = (location) =>
     .then((filenames = []) =>
       Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(location, filename), 'utf8'))))
     .then(fileContents => fileContents.map(JSON.parse))
-    .then(templates => _.orderBy(templates, 'creationDate', 'desc'))
+    .then(templates => _.orderBy(templates, 'modificationDate', 'desc'))
     .then(fromJS)
 
 /*
