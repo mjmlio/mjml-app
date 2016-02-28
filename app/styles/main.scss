@@ -31,7 +31,14 @@ a, button {
 
   .App-content {
     flex-grow: 1;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
   }
+}
+
+.z {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
