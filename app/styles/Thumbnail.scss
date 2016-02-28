@@ -4,4 +4,10 @@
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
   overflow: hidden;
+
+  iframe {
+    transform: scale(0.5);
+    transform-origin: top left;
+    height: 2147483647px;
+  }
 }
