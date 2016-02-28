@@ -6,7 +6,8 @@ import mjml2html from 'mjml/lib/mjml2html'
 
 import {
   readTemplates as fsReadTemplates,
-  save
+  save,
+  deleteTemplate as fsDeleteTemplate
 } from '../helpers/file-system'
 
 import defaultContent from '../assets/defaultContent'
@@ -92,4 +93,16 @@ export const createNewTemplate = () => dispatch => {
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())
   dispatch(push('editor'))
+}
+
+/**
+ * Delete a template
+ */
+const templateDeleted = createAction('TEMPLATE_DELETED')
+export const deleteTemplate = template => (dispatch, getState) => {
+  const state = getState()
+  const { config } = state
+  const id = template.get('id')
+  dispatch(templateDeleted(id))
+  fsDeleteTemplate(id, config.get('projectDirectory'))
 }

@@ -30,6 +30,10 @@ export default handleActions({
 
   // Push a new template
   TEMPLATE_CREATED: (state, { payload: template }) =>
-    state.set('list', state.get('list').unshift(template))
+    state.set('list', state.get('list').unshift(template)),
+
+  // Delete a template from list
+  TEMPLATE_DELETED: (state, { payload: id }) =>
+    state.set('list', state.get('list').delete(state.get('list').findIndex(t => t.get('id') === id)))
 
 }, state)

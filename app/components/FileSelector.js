@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import '../styles/Home.scss'
 
-import { createNewTemplate, loadTemplate } from '../actions/templates'
+import { createNewTemplate, loadTemplate, deleteTemplate } from '../actions/templates'
 import Thumbnail from './Thumbnail'
 
 @connect(
@@ -17,6 +17,11 @@ class FileSelector extends Component {
     this.props.dispatch(createNewTemplate())
   }
 
+  deleteTemplate = (template, e) => {
+    e.stopPropagation()
+    this.props.dispatch(deleteTemplate(template))
+  }
+
   loadTemplate = template => {
     this.props.dispatch(loadTemplate(template))
   }
@@ -24,6 +29,9 @@ class FileSelector extends Component {
   renderTemplate = (template) => {
     return (
       <div className='template' key={template.get('id')} onClick={this.loadTemplate.bind(this, template)}>
+        <div className='template-delete' onClick={this.deleteTemplate.bind(this, template)}>
+          <i className='ion-close-circled' />
+        </div>
         <div className='template-wrapper'>
           <Thumbnail template={template} />
         </div>

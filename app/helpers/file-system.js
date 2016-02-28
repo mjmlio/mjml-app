@@ -46,3 +46,8 @@ export const save = (template, location) =>
   checkOrCreate(location)
     .then(() => promisify(fs.writeFile)(path.join(location, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
 
+/**
+ * Delete a template
+ */
+export const deleteTemplate = (id, location) =>
+  promisify(fs.unlink)(path.join(location, `${id}.json`))
