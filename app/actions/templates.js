@@ -77,6 +77,7 @@ export const saveTemplate = () => (dispatch, getState) => {
 /**
  * Create a new template
  */
+const templateCreated = createAction('TEMPLATE_CREATED')
 export const createNewTemplate = () => dispatch => {
   const now = new Date()
   const newTemplate = Map({
@@ -87,6 +88,7 @@ export const createNewTemplate = () => dispatch => {
     creationDate: now,
     modificationDate: now
   })
+  dispatch(templateCreated(newTemplate))
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())
   dispatch(push('editor'))

@@ -26,6 +26,10 @@ export default handleActions({
   },
 
   // Reset the template to null
-  RESET_TEMPLATE: state => state.set('current', null)
+  RESET_TEMPLATE: state => state.set('current', null),
+
+  // Push a new template
+  TEMPLATE_CREATED: (state, { payload: template }) =>
+    state.set('list', state.get('list').unshift(template))
 
 }, state)
