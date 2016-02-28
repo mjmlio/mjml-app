@@ -15,10 +15,8 @@ class HomePage extends Component {
 
   render () {
     return (
-      <div className='container-home'>
-        <header>
-          <img width='200px' src='assets/images/logo.png' alt='mjml' />
-        </header>
+      <div className='HomePage'>
+        <h2>{'Latest templates'}</h2>
         <FileSelector />
       </div>
     )

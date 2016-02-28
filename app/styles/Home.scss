@@ -1,41 +1,39 @@
-
 $template-height: 200px;
 $template-width: 150px;
 
-.container-home {
+.HomePage {
+  flex-grow: 1;
+  padding: 0 1rem;
+  background: linear-gradient(180deg,#f46d4c,#e4505d);
 
-  header {
-    background: linear-gradient(180deg,#f46d4c,#e4505d);
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  h2 {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 1.5rem;
+    line-height: 3em;
   }
+
 }
 
 .templates {
-  width: 100%;
-  margin: 0 auto;
-  left: 0px;
-  right: 0px;
-  position: relative;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .template {
   position: relative;
-  border: 1px solid #f0f0f0;
+  border: 3px solid transparent;
   width: $template-width;
-  margin: 10px;
   height: $template-height;
-  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 100ms linear border-color;
 
-  transition: box-shadow 0.2s ease-in-out;
   &:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
-    transition: box-shadow 0.2s ease-in-out;
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  > .template-wrapper {
+    position: absolute;
+    top: 3px; left: 3px; right: 3px; bottom: 3px;
   }
 }
 
@@ -44,12 +42,4 @@ $template-width: 150px;
   color: #d4d4d4;
   height: $template-height;
   line-height: $template-height;
-}
-
-.file-selector {
-  position: absolute;
-  bottom: 50px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
 }

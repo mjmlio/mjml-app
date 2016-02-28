@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 
 import '../styles/Home.scss'
 
@@ -25,9 +24,9 @@ class FileSelector extends Component {
   renderTemplate = (template) => {
     return (
       <div className='template' key={template.get('id')} onClick={this.loadTemplate.bind(this, template)}>
-        <Link to='editor'>
+        <div className='template-wrapper'>
           <Thumbnail template={template} />
-        </Link>
+        </div>
       </div>
     )
   }
@@ -38,21 +37,7 @@ class FileSelector extends Component {
     return (
       <div className='file-selector'>
         <div className='templates'>
-
-          <div className='template' onClick={this.createNew}>
-            <div className='link'>
-              <i className='ion-plus-circled template-icon' />
-            </div>
-          </div>
-
           {templates.map(this.renderTemplate)}
-
-          <div className='template'>
-            <div className='link'>
-              <i className='ion-ios-browsers-outline template-icon' />
-            </div>
-          </div>
-
         </div>
       </div>
     )
