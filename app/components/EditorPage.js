@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import { connect } from 'react-redux'
-import mjml2html from 'mjml/lib/mjml2html'
 
 import Editor from './Editor'
-import { updateTemplate, saveTemplate } from '../actions/template'
+import { updateTemplate, saveTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
 import aceThemes from '../assets/aceThemes'
 
@@ -12,7 +11,9 @@ import '../styles/EditorPage.scss'
 
 @connect(
   state => ({
-    template: state.template,
+    template: state.templates.getIn(['list', state.templates.get('list').findIndex(
+      template => template.get('id') === state.templates.get('current')
+    )]),
     config: state.config
   })
 )
@@ -38,20 +39,12 @@ class EditorPage extends Component {
   renderIframe () {
     const { template } = this.props
     if (!template) { return }
-    const mjml = template.get('mjml')
-    if (mjml === this._oldMjml) { return }
-    let html
-    try {
-      html = mjml2html(mjml)
-    } catch (e) {
-      html = this._oldHtml || ''
-    }
+    const html = template.get('html')
     if (html === this._oldHtml) { return }
     const doc = this._iframe.contentDocument
     const documentElement = doc.documentElement
     documentElement.innerHTML = html
     this._oldHtml = html
-    this._oldMjml = mjml
   }
 
   renderEmpty () {

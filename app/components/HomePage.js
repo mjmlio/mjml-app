@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import FileSelector from './FileSelector'
-import { readTemplates } from '../actions/templates'
-import { createNewTemplate } from '../actions/template'
+import { createNewTemplate } from '../actions/templates'
 import Button from './Button'
 
 import '../styles/Home.scss'
 
 @connect()
 class HomePage extends Component {
-
-  componentWillMount () {
-    this.props.dispatch(readTemplates())
-  }
 
   createNew = () => {
     this.props.dispatch(createNewTemplate())

@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 
 import '../styles/Home.scss'
 
-import { createNewTemplate, loadTemplate } from '../actions/template'
+import { createNewTemplate, loadTemplate } from '../actions/templates'
 import Thumbnail from './Thumbnail'
 
 @connect(
   state => ({
-    templates: state.templates.slice(0, 4)
+    templates: state.templates.get('list').slice(0, 4)
   })
 )
 class FileSelector extends Component {
