@@ -1,4 +1,4 @@
-# mjml-desktop
+# mjml-app
 
 ### dev
 
