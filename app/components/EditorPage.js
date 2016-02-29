@@ -7,6 +7,7 @@ import { updateTemplate, saveTemplate, exportTemplate } from '../actions/templat
 import { updateConfig } from '../actions'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
+import { Link } from 'react-router'
 
 import '../styles/EditorPage.scss'
 
@@ -76,25 +77,26 @@ class EditorPage extends Component {
       <div className='EditorPage'>
         <div className='EditorPage-bar'>
 
-          <select onChange={this.setTheme} value={editorTheme}>
+          <Link to='/'>
+            <img src="assets/images/logo_white.svg" alt="mjml" width='20px' className='img-home' />
+          </Link>
+
+          <Button  onClick={this.save} className='button-save'>
+            <i className='ion-code-download save-as' />
+          </Button>
+
+          <select onChange={this.setTheme} value={editorTheme} className='select-theme'>
             {aceThemes.map(theme =>
               <option key={theme[0]} value={theme[0]}>
                 {theme[1]}
               </option>)}
           </select>
 
-          <Button className='primary' onClick={this.save}>
-            <i className='ion-android-add-circle' />
-            {' Save as'}
+          <Button className='EditorPage-bar-side button-preview' onClick={this.togglePreview}>
+              <i className='ion-android-image preview' />
           </Button>
-
-          <div className='EditorPage-bar-side'>
-            <label>
-              <input type='checkbox' checked={editorShowPreview} onChange={this.togglePreview} />
-              {' Preview'}
-            </label>
-          </div>
         </div>
+
         <div className='EditorPage-view'>
           <div className='EditorPage-panel'>
             <Editor

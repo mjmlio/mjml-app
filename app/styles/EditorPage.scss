@@ -7,13 +7,12 @@
 
 .EditorPage-bar {
   flex-shrink: 0;
-  background: #ccc;
+  background: #424242;
   border-top: 1px solid rgba(0,0,0,0.1);
   border-bottom: 1px solid rgba(0,0,0,0.1);
-  height: 50px;
+  height: 30px;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
   font-size: 14px;
   color: rgba(0,0,0,0.6);
 
@@ -54,4 +53,36 @@
 
 #preview {
   flex-grow: 1;
+}
+
+.img-home {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-left: 1rem;
+}
+
+.preview {
+  color: white;
+  font-size: 25px;
+  padding: 0;
+}
+
+.button-preview {
+  padding: 0;
+}
+
+.button-save {
+  padding: 20px;
+}
+
+.select-theme {
+  background-color: #424242;
+  color: white;
+}
+
+.save-as {
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
 }
