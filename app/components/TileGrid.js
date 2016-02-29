@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ScrollArea from 'react-scrollbar'
 
 import Thumbnail from './Thumbnail'
 import { loadTemplate } from '../actions/templates'
@@ -34,7 +35,11 @@ class TileGrid extends Component {
 
     return (
       <div className='TileGrid'>
-        {templates.map(this.renderTemplate)}
+        <ScrollArea className='TileGrid-abs'>
+          <div className='TileGrid-wrapper'>
+            {templates.map(this.renderTemplate)}
+          </div>
+        </ScrollArea>
       </div>
     )
   }

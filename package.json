@@ -81,6 +81,7 @@
     "react-redux": "^4.0.5",
     "react-router": "^2.0.0",
     "react-router-redux": "^3.0.0",
+    "react-scrollbar": "^0.3.2",
     "redux": "^3.2.1",
     "redux-actions": "^0.9.1",
     "redux-thunk": "^1.0.2",
