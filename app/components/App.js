@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import NavBar from './NavBar'
+import Frame from './Frame'
 
 class App extends Component {
 
@@ -11,7 +11,7 @@ class App extends Component {
   render () {
     return (
       <div className='App'>
-        <NavBar />
+        <Frame />
         <div className='App-content'>
           {this.props.children}
         </div>
