@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Thumbnail from './Thumbnail'
+import { loadTemplate } from '../actions/templates'
 
 import '../styles/TileGrid.scss'
 

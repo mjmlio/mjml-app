@@ -6,9 +6,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const crashReporter = electron.crashReporter
 const Menu = electron.Menu
-/*
 const shell = electron.shell
-*/
 let menu
 let template
 let mainWindow = null

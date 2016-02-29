@@ -1,12 +1,7 @@
-$template-height: 200px;
-$template-width: 150px;
-
 .HomePage {
   background-color: #3b3b3b;
-  height: 100vh;
-  width: 100vw;
-  padding-top: 50px;
-  padding-left: 100px;
+  padding: 50px 100px;
 
+  flex-grow: 1;
   display: flex;
 }

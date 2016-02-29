@@ -117,10 +117,10 @@ export const deleteTemplate = template => (dispatch, getState) => {
  */
 export const open = () => dispatch => {
   dialog.showOpenDialog((filenames) => {
-    if (!filenames) return
+    if (!filenames) { return }
     readFile(filenames[0])
       .then(content => dispatch(createNewTemplate(content)))
-  })  
+  })
 }
 
 /*
@@ -128,9 +128,7 @@ export const open = () => dispatch => {
  */
 export const exportTemplate = template => (dispatch) => {
   dialog.showSaveDialog((filename) => {
-    if (!filename) return
+    if (!filename) { return }
     writeFile(filename, template.get('mjml'))
   })
 }
-
-

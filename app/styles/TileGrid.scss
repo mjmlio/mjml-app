@@ -1,13 +1,29 @@
+@import './vars.scss';
 
 .TileGrid {
   margin-left: 50px;
-  height: 70vh;
-  width: 600px;
-
+  position: relative;
+  flex-grow: 1;
   display: flex;
   flex-wrap: wrap;
-}
+  overflow-y: auto;
 
-.templates {
+  .template {
+    position: relative;
+    width: 150px;
+    height: 200px;
+    margin: 0 1em 1em 0;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
 
+    &:hover {
+      border-color: $blue;
+    }
+
+    .template-wrapper {
+      position: absolute;
+      top: 3px; left: 3px; right: 3px; bottom: 3px;
+    }
+  }
 }
