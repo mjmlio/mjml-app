@@ -4,7 +4,6 @@ import { handleActions } from 'redux-actions'
 import { Map } from 'immutable'
 
 const initialState = Map({
-  projectDirectory: path.join(os.homedir(), 'mjml-projects'),
   editorTheme: 'solarized_dark',
   editorShowPreview: true
 })

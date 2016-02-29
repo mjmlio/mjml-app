@@ -3,6 +3,9 @@ import fs from 'fs'
 import _ from 'lodash'
 import path from 'path'
 import { fromJS } from 'immutable'
+import { remote } from 'electron'
+
+export const projectFolder = path.join(remote.app.getAppPath(), 'mjml-projects')
 
 /*
  * Turns a callback style to a Promise style one
@@ -16,11 +19,11 @@ const promisify = fn =>
 /*
  * Returs a list of MJML templates
  */
-export const readTemplates = (location) =>
-  checkOrCreate(location)
-    .then(() => promisify(fs.readdir)(location))
+export const readTemplates = () =>
+  checkOrCreate(projectFolder)
+    .then(() => promisify(fs.readdir)(projectFolder))
     .then((filenames = []) =>
-      Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(location, filename), 'utf8'))))
+      Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(projectFolder, filename), 'utf8'))))
     .then(fileContents => fileContents.map(JSON.parse))
     .then(templates => _.orderBy(templates, 'modificationDate', 'desc'))
     .then(fromJS)
@@ -31,9 +34,9 @@ export const readTemplates = (location) =>
 export const localConfig = () =>
   fromJS(localStorage.getItem('appconfig'))
 
-const checkOrCreate = (location) =>
-  promisify((location, cb) => fs.access(location, fs.R_OK | fs.W_OK, cb))(location)
-    .catch(() => promisify(fs.mkdir)(location))
+const checkOrCreate = () =>
+  promisify((projectFolder, cb) => fs.access(projectFolder, fs.R_OK | fs.W_OK, cb))(projectFolder)
+    .catch(() => promisify(fs.mkdir)(projectFolder))
 
 /*
  * Save an MJML template
@@ -42,12 +45,12 @@ const checkOrCreate = (location) =>
  *  name
  * }
  */
-export const save = (template, location) =>
-  checkOrCreate(location)
-    .then(() => promisify(fs.writeFile)(path.join(location, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
+export const save = (template) =>
+  checkOrCreate()
+    .then(() => promisify(fs.writeFile)(path.join(projectFolder, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
 
 /**
  * Delete a template
  */
-export const deleteTemplate = (id, location) =>
-  promisify(fs.unlink)(path.join(location, `${id}.json`))
+export const deleteTemplate = (id) =>
+  promisify(fs.unlink)(path.join(projectFolder, `${id}.json`))
