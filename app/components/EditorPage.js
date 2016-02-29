@@ -3,9 +3,10 @@ import cx from 'classnames'
 import { connect } from 'react-redux'
 
 import Editor from './Editor'
-import { updateTemplate, saveTemplate } from '../actions/templates'
+import { updateTemplate, saveTemplate, exportTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
 import aceThemes from '../assets/aceThemes'
+import Button from './Button'
 
 import '../styles/EditorPage.scss'
 
@@ -55,6 +56,12 @@ class EditorPage extends Component {
     )
   }
 
+  save = () => {
+    const { template } = this.props
+    if (!template) { return }
+    this.props.dispatch(exportTemplate(template))
+  }
+
   render () {
     const { template, config } = this.props
 
@@ -75,6 +82,11 @@ class EditorPage extends Component {
                 {theme[1]}
               </option>)}
           </select>
+
+          <Button className='primary' onClick={this.save}>
+            <i className='ion-android-add-circle' />
+            {' Save as'}
+          </Button>
 
           <div className='EditorPage-bar-side'>
             <label>

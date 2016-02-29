@@ -3,10 +3,15 @@ import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
 import mjml2html from 'mjml/lib/mjml2html'
+import { remote } from 'electron'
+
+const dialog = remote.require('dialog')
 
 import {
   readTemplates as fsReadTemplates,
   save,
+  readFile,
+  writeFile,
   deleteTemplate as fsDeleteTemplate
 } from '../helpers/file-system'
 
@@ -79,13 +84,13 @@ export const saveTemplate = () => (dispatch, getState) => {
  * Create a new template
  */
 const templateCreated = createAction('TEMPLATE_CREATED')
-export const createNewTemplate = () => dispatch => {
+export const createNewTemplate = (mjml = defaultContent) => dispatch => {
   const now = new Date()
   const newTemplate = Map({
     id: shortid.generate(),
     name: 'no name',
-    mjml: defaultContent,
-    html: mjml2html(defaultContent),
+    mjml: mjml,
+    html: mjml2html(mjml),
     creationDate: now,
     modificationDate: now
   })
@@ -104,5 +109,28 @@ export const deleteTemplate = template => (dispatch, getState) => {
   const { config } = state
   const id = template.get('id')
   dispatch(templateDeleted(id))
-  fsDeleteTemplate(id, config.get('projectDirectory'))
+  fsDeleteTemplate(id)
 }
+
+/**
+ * Show the Open dialog window and load an MJML file
+ */
+export const open = () => dispatch => {
+  dialog.showOpenDialog((filenames) => {
+    if (!filenames) return
+    readFile(filenames[0])
+      .then(content => dispatch(createNewTemplate(content)))
+  })  
+}
+
+/*
+ * Show the save dialog window to export the template as an MJML file
+ */
+export const exportTemplate = template => (dispatch) => {
+  dialog.showSaveDialog((filename) => {
+    if (!filename) return
+    writeFile(filename, template.get('mjml'))
+  })
+}
+
+

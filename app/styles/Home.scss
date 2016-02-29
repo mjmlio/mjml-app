@@ -2,51 +2,11 @@ $template-height: 200px;
 $template-width: 150px;
 
 .HomePage {
-  flex-grow: 1;
-  padding: 0 1rem;
-  background: linear-gradient(180deg,#f46d4c,#e4505d);
+  background-color: #3b3b3b;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 50px;
+  padding-left: 100px;
 
-  h2 {
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 1.5rem;
-    line-height: 3em;
-  }
-
-}
-
-.templates {
   display: flex;
-  flex-wrap: wrap;
-}
-
-.template {
-  position: relative;
-  border: 3px solid transparent;
-  width: $template-width;
-  height: $template-height;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: 100ms linear border-color;
-
-  &:hover {
-    border-color: rgba(0, 0, 0, 0.3);
-  }
-  > .template-wrapper {
-    position: absolute;
-    top: 3px; left: 3px; right: 3px; bottom: 3px;
-  }
-  .template-delete {
-    position: absolute;
-    top: -9px;
-    right: -3px;
-    z-index: 2;
-    color: white;
-  }
-}
-
-.template-icon {
-  font-size: 50px;
-  color: #d4d4d4;
-  height: $template-height;
-  line-height: $template-height;
 }

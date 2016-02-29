@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import FileSelector from './FileSelector'
-import { createNewTemplate } from '../actions/templates'
+import { createNewTemplate, open } from '../actions/templates'
+import SideBar from './SideBar'
+import TileGrid from './TileGrid'
 import Button from './Button'
 
 import '../styles/Home.scss'
@@ -14,6 +15,11 @@ class HomePage extends Component {
     this.props.dispatch(createNewTemplate())
   }
 
+  open = () => {
+    this.props.dispatch(open())
+  }
+
+  /*
   render () {
     return (
       <div className='HomePage'>
@@ -25,10 +31,26 @@ class HomePage extends Component {
             {' Create a new template'}
           </Button>
 
+          <Button className='primary' onClick={this.open}>
+            <i className='ion-android-add-circle' />
+            {' Open'}
+          </Button>
+
         </div>
 
         <h2>{'Latest templates'}</h2>
         <FileSelector />
+      </div>
+    )
+  }
+  */
+
+
+  render () {
+    return (
+      <div className='HomePage'>
+        <SideBar />
+        <TileGrid />
       </div>
     )
   }

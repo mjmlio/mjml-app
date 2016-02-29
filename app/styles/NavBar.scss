@@ -1,7 +1,8 @@
 .NavBar {
+  background-color: #202020;
   flex-shrink: 0;
   display: flex;
-  height: 60px;
+  height: 40px;
   align-items: stretch;
 }
 
@@ -14,15 +15,12 @@
   }
 
   a {
+    color: #fafafa;
     display: flex;
     align-items: center;
     padding: 0 1em;
     text-decoration: none;
-    color: rgba(0, 0, 0, 0.5);
     font-weight: bold;
-    &:hover {
-      color: rgba(0, 0, 0, 0.7);
-    }
     &.active {
       background: #f46d4c;
       color: white;

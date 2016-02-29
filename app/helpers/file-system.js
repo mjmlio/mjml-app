@@ -49,6 +49,11 @@ export const save = (template) =>
   checkOrCreate()
     .then(() => promisify(fs.writeFile)(path.join(projectFolder, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
 
+export const writeFile = promisify(fs.writeFile)
+
+export const readFile = (file) =>
+  promisify(fs.readFile)(file, 'utf8')
+
 /**
  * Delete a template
  */
