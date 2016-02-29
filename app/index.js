@@ -9,7 +9,7 @@ import { loadConfig } from './actions'
 import { readTemplates } from './actions/templates'
 
 import './styles/main.scss'
-import './helpers/menu'
+import './actions/shortcuts'
 
 const store = configureStore()
 

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import AceEditor from 'react-ace'
 import { debounce } from 'lodash'
+import { connect } from 'react-redux'
+
+import { registerShortcuts } from '../actions/editor'
 
 import 'brace/ext/searchbox'
 import 'brace/mode/xml'
@@ -41,6 +44,7 @@ import 'brace/theme/xcode'
 
 import '../styles/Editor.scss'
 
+@connect()
 class Editor extends Component {
 
   constructor (props) {
@@ -64,6 +68,12 @@ class Editor extends Component {
     this.saveContent(content)
   }
 
+  componentDidMount () {
+    const editor = this.refs.ace.editor
+    const register = (s) => editor.commands.addCommand(s)
+    this.props.dispatch(registerShortcuts(register))
+  }
+
   render () {
     const { content } = this.state
     const { theme } = this.props
@@ -71,6 +81,7 @@ class Editor extends Component {
     return (
       <div className='Editor'>
         <AceEditor
+          ref="ace"
           mode='xml'
           theme={theme}
           height='100%'
