@@ -6,7 +6,12 @@
   margin-right: 10px;
   flex-shrink: 0;
 
+  .Sidebar-divider {
+    margin: 1em 0;
+  }
+
   .SideBar-section {
+    cursor: pointer;
     position: relative;
     text-decoration: none;
     display: block;
@@ -29,12 +34,37 @@
       opacity: 0;
     }
 
+    &:hover { color: white; }
+
     &.active {
       color: white;
       transform: translateX(10px);
       &:before {
         transform: translate3d(0, 0, 0);
         opacity: 1;
+      }
+    }
+
+    &.action {
+      & + .action {
+        margin-top: 1em;
+      }
+      > div {
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        color: rgba(0, 0, 0, 0.4);
+        padding: 0 2em;
+        > i {
+          font-size: 18px;
+          margin-right: 5px;
+        }
+        &:hover {
+          background: rgba(0, 0, 0, 0.2);
+          border-color: transparent;
+          color: rgba(255, 255, 255, 0.5);
+        }
       }
     }
   }

@@ -50,14 +50,20 @@ class SideBar extends Component {
           {'Components'}
         </Link>
 
-        <div className='SideBar-section action'
-          onClick={this.createNew}>
-          {'New'}
+        <div className='Sidebar-divider' />
+
+        <div className='SideBar-section action'>
+          <div onClick={this.createNew}>
+            <i className='ion-android-add-circle' />
+            {'New'}
+          </div>
         </div>
 
-        <div className='SideBar-section action'
-          onClick={this.open}>
-          {'Open'}
+        <div className='SideBar-section action'>
+          <div onClick={this.open}>
+            <i className='ion-android-folder-open' />
+            {'Open'}
+          </div>
         </div>
 
       </div>
