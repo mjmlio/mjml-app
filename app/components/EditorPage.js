@@ -7,7 +7,6 @@ import { updateTemplate, saveTemplate, exportTemplate } from '../actions/templat
 import { updateConfig } from '../actions'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
-import { Link } from 'react-router'
 
 import '../styles/EditorPage.scss'
 
@@ -77,12 +76,14 @@ class EditorPage extends Component {
       <div className='EditorPage'>
         <div className='EditorPage-bar'>
 
-          <Link to='/'>
-            <img src="assets/images/logo_white.svg" alt="mjml" width='20px' className='img-home' />
-          </Link>
+          <Button onClick={this.save} className='EditorPage-bar-item'>
+            <i className='ion-code-download' />
+            {'Export'}
+          </Button>
 
-          <Button  onClick={this.save} className='button-save'>
-            <i className='ion-code-download save-as' />
+          <Button className='EditorPage-bar-item'>
+            <i className='ion-gear-b' />
+            {'Settings'}
           </Button>
 
           <select onChange={this.setTheme} value={editorTheme} className='select-theme'>

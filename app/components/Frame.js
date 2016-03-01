@@ -10,19 +10,37 @@ class Frame extends Component {
   render () {
     return (
       <div className='Frame'>
-        <div className='window'>
-          <i className='ion-record window-icon close'/>
-          <i className='ion-record window-icon minimize'/>
-          <i className='ion-record window-icon maximize'/>
+        <div className='Frame-center'>
+          <div className='Frame-item'>
+            <Link to='/' className='HomeLink'>
+              <img
+                width='20'
+                height='40'
+                src='assets/images/logo_white.svg'
+                alt='mjml' />
+              {'mjml'}
+            </Link>
+          </div>
         </div>
-        <div className='links'>
-          <Link to='settings'>
+        <div className='Frame-window'>
+          <div className='Frame-item'>
+            <i className='ion-record window-icon close'/>
+          </div>
+          <div className='Frame-item'>
+            <i className='ion-record window-icon minimize'/>
+          </div>
+          <div className='Frame-item'>
+            <i className='ion-record window-icon maximize'/>
+          </div>
+        </div>
+        <div className='Frame-actions'>
+          <Link to='settings' className='Frame-item big'>
             <i className='ion-gear-a' />
           </Link>
-          <Link to='/'>
+          <Link to='/' className='Frame-item big'>
             <i className='ion-help' />
           </Link>
-          <Link to='/'>
+          <Link to='/' className='Frame-item big'>
             <i className='ion-person' />
           </Link>
         </div>

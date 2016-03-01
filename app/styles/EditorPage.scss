@@ -8,13 +8,28 @@
 .EditorPage-bar {
   flex-shrink: 0;
   background: #424242;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
   height: 30px;
   display: flex;
   align-items: center;
   font-size: 14px;
   color: rgba(0,0,0,0.6);
+
+  .EditorPage-bar-item {
+    color: white;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5em;
+
+    i {
+      font-size: 18px;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
 
   .EditorPage-bar-side {
     margin-left: auto;
@@ -55,34 +70,12 @@
   flex-grow: 1;
 }
 
-.img-home {
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-left: 1rem;
-}
-
 .preview {
   color: white;
   font-size: 25px;
   padding: 0;
 }
 
-.button-preview {
-  padding: 0;
-}
-
-.button-save {
-  padding: 20px;
-}
-
 .select-theme {
   background-color: #424242;
-  color: white;
-}
-
-.save-as {
-  font-size: 25px;
-  color: white;
-  font-weight: bold;
 }

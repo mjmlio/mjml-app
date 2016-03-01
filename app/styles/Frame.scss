@@ -1,48 +1,67 @@
+.HomeLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 1em;
+  img {
+    margin-right: 0.5em;
+  }
+}
 
 .Frame {
   -webkit-app-region: drag;
   background-color: #202020;
-  padding: 5px;
+  display: flex;
+  align-items: stretch;
+  height: 40px;
+  position: relative;
 
-  .window {
+  .Frame-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    cursor: pointer;
 
-    float: left;
-    display: inline;
-    background-color: transparent;
-
-    .window-icon {
-      margin-left: 9px;
-      font-size: 0.8em;
+    &.big {
+      padding: 0 1em;
     }
 
-    .close {
-      color: #e74c3c;
-    }
-
-    .minimize {
-      color: #f39c12;
-    }
-
-    .maximize {
-      color: #27ae60;
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
     }
   }
 
-  .links {
-    background-color: transparent;
+  .Frame-center {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     display: flex;
     align-items: stretch;
-    float: right;
+    justify-content: center;
+  }
 
-    &.right {
-      margin-left: auto;
+  .Frame-window {
+    display: flex;
+    padding: 0 5px;
+
+    .window-icon {
+      font-size: 0.8em;
     }
+
+    .close { color: #e74c3c; }
+    .minimize { color: #f39c12; }
+    .maximize { color: #27ae60; }
+  }
+
+  .Frame-actions {
+    display: flex;
+    align-items: stretch;
+    margin-left: auto;
 
     a {
       color: #fafafa;
-      display: flex;
-      align-items: center;
-      padding: 0 1em;
       text-decoration: none;
       font-weight: bold;
       &.active {
