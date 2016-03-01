@@ -5,10 +5,18 @@
   pointer-events: none;
   overflow: hidden;
 
-  iframe {
-    transform: scale(0.23);
-    transform-origin: top left;
-    width: 650px;
-    height: 2147483647px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .Loading {
+    animation: rotating-reverse 0.8s linear infinite;
+  }
+
+  .Preview {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: contain;
+    height: 100%;
   }
 }

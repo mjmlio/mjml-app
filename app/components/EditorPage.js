@@ -3,7 +3,7 @@ import cx from 'classnames'
 import { connect } from 'react-redux'
 
 import Editor from './Editor'
-import { updateTemplate, saveTemplate, exportTemplate } from '../actions/templates'
+import { makeSnapshot, updateCurrentTemplate, saveTemplate, exportTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
@@ -23,8 +23,12 @@ class EditorPage extends Component {
   componentDidMount () { this.renderIframe() }
   componentDidUpdate () { this.renderIframe() }
 
+  componentWillUnmount () {
+    this.props.dispatch(makeSnapshot(this.props.template))
+  }
+
   handleChange = (mjml) => {
-    this.props.dispatch(updateTemplate(template => template.set('mjml', mjml)))
+    this.props.dispatch(updateCurrentTemplate(template => template.set('mjml', mjml)))
     this.props.dispatch(saveTemplate())
   }
 

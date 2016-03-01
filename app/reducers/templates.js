@@ -15,7 +15,7 @@ export default handleActions({
   SET_TEMPLATE: (state, { payload: template }) => state.set('current', template.get('id')),
 
   // Update the current template
-  UPDATE_TEMPLATE: (state, { payload: updater }) => {
+  UPDATE_CURRENT_TEMPLATE: (state, { payload: updater }) => {
     const currentList = state.get('list')
     const current = state.get('current')
     const index = currentList.findIndex(
@@ -24,6 +24,10 @@ export default handleActions({
     const newList = currentList.update(index, template => updater(template))
     return state.set('list', newList)
   },
+
+  // Update a template based on its id
+  UPDATE_TEMPLATE: (state, { payload: { id, updater } }) =>
+    state.updateIn(['list', state.get('list').findIndex(t => t.get('id') === id)], updater),
 
   // Reset the template to null
   RESET_TEMPLATE: state => state.set('current', null),

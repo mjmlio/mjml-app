@@ -17,7 +17,7 @@ const promisify = fn =>
         err ? reject(err) : resolve(...data))))
 
 /*
- * Returs a list of MJML templates
+ * Returns a list of MJML templates
  */
 export const readTemplates = () =>
   checkOrCreate(projectFolder)
@@ -26,6 +26,14 @@ export const readTemplates = () =>
       Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(projectFolder, filename), 'utf8'))))
     .then(fileContents => fileContents.map(JSON.parse))
     .then(templates => _.orderBy(templates, 'modificationDate', 'desc'))
+    .then(fromJS)
+
+/**
+ * Return a single MJML template given its id
+ */
+export const readTemplate = id =>
+  promisify(fs.readFile)(path.join(projectFolder, `${id}.json`), 'utf8')
+    .then(fileContent => JSON.parse(fileContent))
     .then(fromJS)
 
 /*

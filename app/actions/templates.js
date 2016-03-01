@@ -9,6 +9,7 @@ const dialog = remote.require('dialog')
 
 import {
   readTemplates as fsReadTemplates,
+  readTemplate,
   save,
   readFile,
   writeFile,
@@ -25,7 +26,7 @@ export const readTemplates = () => (dispatch, getState) => {
   const state = getState()
   const { config } = state
 
-  fsReadTemplates(config.get('projectDirectory'))
+  return fsReadTemplates()
     .then(templates => dispatch(receiveTemplates(templates)))
 }
 
@@ -43,11 +44,16 @@ export const loadTemplate = (template) => dispatch => {
 }
 
 /**
+ * Template update utilities
+ */
+const doUpdateTemplate = createAction('UPDATE_TEMPLATE')
+const doUpdateCurrentTemplate = createAction('UPDATE_CURRENT_TEMPLATE', updater => updater)
+
+/**
  * Update the current template
  */
-const doUpdateTemplate = createAction('UPDATE_TEMPLATE', updater => updater)
-export const updateTemplate = updater => dispatch => {
-  dispatch(doUpdateTemplate(template => {
+export const updateCurrentTemplate = updater => dispatch => {
+  dispatch(doUpdateCurrentTemplate(template => {
 
     // update the template with updater
     let newTemplate = updater(template)
@@ -130,5 +136,17 @@ export const exportTemplate = template => (dispatch) => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
     writeFile(filename, template.get('mjml'))
+  })
+}
+
+/**
+ * Create a snapshot of a template
+ */
+export const makeSnapshot = template => dispatch => {
+  const id = template.get('id')
+  dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', true) }))
+
+  remote.require('./services').takeSnapshot(template.get('id'), template.get('html'), () => {
+    dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) }))
   })
 }

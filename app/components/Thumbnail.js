@@ -4,22 +4,16 @@ import '../styles/Thumbnail.scss'
 
 class Thumbnail extends Component {
 
-  componentDidMount () { this.renderIframe() }
-  componentDidUpdate () { this.renderIframe() }
-
-  renderIframe () {
-    const { template } = this.props
-    const html = template.get('html')
-    const doc = this._iframe.contentDocument
-    const documentElement = doc.documentElement
-    documentElement.innerHTML = html
-  }
+  static getSrc = (template) => `../thumbnails/${template.get('id')}.png?t=${Date.now()}`
 
   render () {
+    const { template } = this.props
+    const thumbnailLoading = template.get('thumbnailLoading')
+
     return (
       <div className='Thumbnail'>
-        <iframe
-          ref={(el) => this._iframe = el} />
+        {thumbnailLoading && <span className='Loading ion-android-sync'></span>}
+        {!thumbnailLoading && <div className='Preview' style={{ backgroundImage: `url(${Thumbnail.getSrc(template)})` }}></div>}
       </div>
     )
   }
