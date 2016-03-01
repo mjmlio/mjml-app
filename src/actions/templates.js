@@ -79,7 +79,10 @@ export const saveTemplate = () => (dispatch, getState) => {
     template => template.get('id') === id
   ))
 
-  save(template, config.get('projectDirectory'))
+  const cleaned = template
+    .delete('thumbnailLoading')
+
+  save(cleaned, config.get('projectDirectory'))
 }
 
 /**
@@ -97,9 +100,9 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
     modificationDate: now
   })
   dispatch(templateCreated(newTemplate))
-  dispatch(makeSnapshot(newTemplate))
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())
+  dispatch(makeSnapshot(newTemplate))
   dispatch(push('editor'))
 }
 
