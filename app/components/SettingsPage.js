@@ -61,7 +61,7 @@ class SettingsPage extends Component {
     const sections = Object.keys(propertyFields).map(k => [k, propertyFields[k]])
 
     return (
-      <div className='settings-container'>
+      <div className='settings-container anim-page'>
         <ul>
           {sections.map(p => this.renderSection(...p))}
         </ul>

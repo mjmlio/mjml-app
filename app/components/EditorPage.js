@@ -77,7 +77,7 @@ class EditorPage extends Component {
     const editorShowPreview = config.get('editorShowPreview')
 
     return (
-      <div className='EditorPage'>
+      <div className='EditorPage anim-page'>
         <div className='EditorPage-bar'>
 
           <Button onClick={this.save} className='EditorPage-bar-item'>

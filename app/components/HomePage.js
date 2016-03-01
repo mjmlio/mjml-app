@@ -9,7 +9,7 @@ import '../styles/Home.scss'
 class HomePage extends Component {
   render () {
     return (
-      <div className='HomePage'>
+      <div className='HomePage anim-page'>
         <SideBar />
         <TileGrid />
       </div>
