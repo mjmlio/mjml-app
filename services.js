@@ -1,4 +1,6 @@
 const fs = require('fs')
+const path = require('path')
+const app = require('electron').app
 const screenshot = require('electron-screenshot-service')
 
 exports.takeSnapshot = function (id, html, done) {
@@ -10,7 +12,8 @@ exports.takeSnapshot = function (id, html, done) {
     height: 800,
     css: 'body{overflow:hidden}'
   }).then(img => {
-    fs.writeFile(`./thumbnails/${id}.png`, img.data, done)
+    const p = path.join(app.getAppPath(), `./thumbnails/${id}.png`)
+    fs.writeFile(p, img.data, done)
   })
   .catch(done)
 }
