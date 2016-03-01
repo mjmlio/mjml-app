@@ -20,5 +20,6 @@ $ npm run package
  - [ ] Templates should be store with there filenames to extract their name properties
  - [ ] Error/info notification component
  - [ ] TileGrid should display depending on the active SideBar element
+ - [ ] Make a readme
  - [ ] Release
  - [ ] Make it rain
