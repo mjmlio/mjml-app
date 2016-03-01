@@ -57,6 +57,7 @@ class Editor extends Component {
 
   componentDidMount () {
     const editor = this.refs.ace.editor
+    editor.focus()
     const register = (s) => editor.commands.addCommand(s)
     this.props.dispatch(registerShortcuts(register))
   }

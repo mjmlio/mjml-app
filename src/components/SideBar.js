@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createNewTemplate } from '../actions/templates'
+import { createNewTemplate, open } from '../actions/templates'
 
 import '../styles/SideBar.scss'
 
@@ -12,6 +12,10 @@ class SideBar extends Component {
 
   createNew = () => {
     this.props.dispatch(createNewTemplate())
+  }
+
+  open = () => {
+    this.props.dispatch(open())
   }
 
   render () {
@@ -31,7 +35,7 @@ class SideBar extends Component {
             <Button className='SideBar-section action' onClick={this.createNew}>New</Button>
           </li>
           <li>
-            <Button className='SideBar-section action'>Open</Button>
+            <Button className='SideBar-section action' onClick={this.open}>Open</Button>
           </li>
         </ul>
       </div>
