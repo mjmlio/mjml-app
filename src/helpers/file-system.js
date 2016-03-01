@@ -6,6 +6,7 @@ import { fromJS } from 'immutable'
 import { remote } from 'electron'
 
 export const projectFolder = path.join(remote.app.getAppPath(), 'mjml-projects')
+export const thumbnailsFolder = path.join(remote.app.getAppPath(), 'thumbnails')
 
 /*
  * Turns a callback style to a Promise style one
@@ -15,6 +16,12 @@ const promisify = fn =>
     new Promise((resolve, reject) =>
       fn(...args.concat((err, ...data) =>
         err ? reject(err) : resolve(...data))))
+
+export const checkAndCreateAppFolders = () =>
+  Promise.all([
+    checkOrCreate(projectFolder),
+    checkOrCreate(thumbnailsFolder)
+  ])
 
 /*
  * Returns a list of MJML templates
@@ -42,9 +49,9 @@ export const readTemplate = id =>
 export const localConfig = () =>
   fromJS(localStorage.getItem('appconfig'))
 
-const checkOrCreate = () =>
-  promisify((projectFolder, cb) => fs.access(projectFolder, fs.R_OK | fs.W_OK, cb))(projectFolder)
-    .catch(() => promisify(fs.mkdir)(projectFolder))
+const checkOrCreate = folder =>
+  promisify((folder, cb) => fs.access(folder, fs.R_OK | fs.W_OK, cb))(folder)
+    .catch(() => promisify(fs.mkdir)(folder))
 
 /*
  * Save an MJML template
@@ -54,7 +61,7 @@ const checkOrCreate = () =>
  * }
  */
 export const save = (template) =>
-  checkOrCreate()
+  checkOrCreate(projectFolder)
     .then(() => promisify(fs.writeFile)(path.join(projectFolder, `${template.get('id')}.json`), JSON.stringify(template.toJS(), null, 2)))
 
 export const writeFile = promisify(fs.writeFile)

@@ -97,6 +97,7 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
     modificationDate: now
   })
   dispatch(templateCreated(newTemplate))
+  dispatch(makeSnapshot(newTemplate))
   dispatch(setTemplate(newTemplate))
   dispatch(saveTemplate())
   dispatch(push('editor'))

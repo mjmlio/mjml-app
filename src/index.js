@@ -5,6 +5,7 @@ import { Router, hashHistory, match } from 'react-router'
 import { push } from 'react-router-redux'
 import { trigger } from 'redial'
 
+import { checkAndCreateAppFolders } from './helpers/file-system'
 import routes from './routes'
 import configureStore from './store/configureStore'
 import { loadConfig } from './actions'
@@ -18,6 +19,7 @@ const { dispatch } = store
 store.dispatch(push('/browse/recent'))
 
 Promise.all([
+  checkAndCreateAppFolders(),
   store.dispatch(loadConfig()),
   store.dispatch(readTemplates())
 ]).then(() => {
