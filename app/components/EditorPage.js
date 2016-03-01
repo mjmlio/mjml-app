@@ -20,10 +20,17 @@ import '../styles/EditorPage.scss'
 )
 class EditorPage extends Component {
 
+  constructor (props) {
+    super(props)
+
+    this._template = props.template
+  }
+
   componentDidMount () { this.renderIframe() }
   componentDidUpdate () { this.renderIframe() }
 
   componentWillUnmount () {
+    if (this.props.template.get('html') === this._template.get('html')) { return }
     this.props.dispatch(makeSnapshot(this.props.template))
   }
 

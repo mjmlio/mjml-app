@@ -1,6 +1,6 @@
 .Thumbnail {
   position: absolute;
-  background: white;
+  background: rgba(0, 0, 0, 0.15);
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
   overflow: hidden;
@@ -10,6 +10,8 @@
   justify-content: center;
 
   .Loading {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 24px;
     animation: rotating-reverse 0.8s linear infinite;
   }
 
