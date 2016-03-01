@@ -22,7 +22,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({ width: 1024, height: 728, frame: false })
+  mainWindow = new BrowserWindow({ width: 1024, height: 728, titleBarStyle: 'hidden-inset' })
 
   if (process.env.HOT) {
     mainWindow.loadURL(`file://${__dirname}/src/hot-dev-app.html`)

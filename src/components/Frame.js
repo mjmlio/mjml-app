@@ -1,11 +1,18 @@
 
 import React, { Component } from 'react'
+import { remote } from 'electron'
 
 import '../styles/Frame.scss'
 
 import { Link } from 'react-router'
 
 class Frame extends Component {
+
+  close = () => 0
+
+  minimize = () => 0
+
+  maximize = () => 0
 
   render () {
     return (
@@ -20,20 +27,6 @@ class Frame extends Component {
                 alt='mjml' />
               {'mjml'}
             </Link>
-          </div>
-        </div>
-        <div className='Frame-window'>
-          <div className='Frame-item'>
-            <i className='window-icon close' />
-            <i className='hoverdot' />
-          </div>
-          <div className='Frame-item'>
-            <i className='window-icon minimize' />
-            <i className='hoverdot' />
-          </div>
-          <div className='Frame-item'>
-            <i className='window-icon maximize' />
-            <i className='hoverdot' />
           </div>
         </div>
         <div className='Frame-actions'>

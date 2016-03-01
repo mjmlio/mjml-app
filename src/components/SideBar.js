@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createNewTemplate, open } from '../actions/templates'
+import { comingSoon } from '../actions/'
 
 import '../styles/SideBar.scss'
 
@@ -18,6 +19,10 @@ class SideBar extends Component {
     this.props.dispatch(open())
   }
 
+  comingSoon = () => {
+    this.props.dispatch(comingSoon())
+  }
+
   render () {
     return (
       <div className='SideBar'>
@@ -29,7 +34,7 @@ class SideBar extends Component {
             <Button className='SideBar-section'>Templates</Button>
           </li>
           <li>
-            <Button className='SideBar-section'>Components</Button>
+            <Button className='SideBar-section' onClick={this.comingSoon}>Components</Button>
           </li>
           <li>
             <Button className='SideBar-section action' onClick={this.createNew}>New</Button>

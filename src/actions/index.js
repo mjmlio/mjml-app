@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions'
 import { fromJS } from 'immutable'
+import { push } from 'react-router-redux'
 
 const setConfig = createAction('SET_CONFIG')
 
@@ -17,3 +18,6 @@ export const updateConfig = updater => (dispatch, getState) => {
   const state = getState()
   localStorage.setItem('appconfig', JSON.stringify(state.config.toJS()))
 }
+
+export const comingSoon = () => dispatch =>
+  dispatch(push('/coming-soon'))
