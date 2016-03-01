@@ -24,13 +24,16 @@ class Frame extends Component {
         </div>
         <div className='Frame-window'>
           <div className='Frame-item'>
-            <i className='ion-record window-icon close'/>
+            <i className='window-icon close' />
+            <i className='hoverdot' />
           </div>
           <div className='Frame-item'>
-            <i className='ion-record window-icon minimize'/>
+            <i className='window-icon minimize' />
+            <i className='hoverdot' />
           </div>
           <div className='Frame-item'>
-            <i className='ion-record window-icon maximize'/>
+            <i className='window-icon maximize' />
+            <i className='hoverdot' />
           </div>
         </div>
         <div className='Frame-actions'>

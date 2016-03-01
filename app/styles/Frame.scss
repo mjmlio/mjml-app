@@ -1,3 +1,5 @@
+@import './vars.scss';
+
 .HomeLink {
   display: flex;
   align-items: center;
@@ -30,7 +32,9 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
+      .hoverdot {
+        background: rgba(0, 0, 0, 0.0);
+      }
     }
   }
 
@@ -47,12 +51,25 @@
     padding: 0 5px;
 
     .window-icon {
-      font-size: 0.8em;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
     }
 
-    .close { color: #e74c3c; }
-    .minimize { color: #f39c12; }
-    .maximize { color: #27ae60; }
+    .hoverdot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .close { background-color: $close; }
+    .minimize { background-color: $minimize; }
+    .maximize { background-color: $maximize; }
   }
 
   .Frame-actions {
