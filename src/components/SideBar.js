@@ -26,23 +26,30 @@ class SideBar extends Component {
   render () {
     return (
       <div className='SideBar'>
-        <ul>
-          <li>
-            <Button className='SideBar-section'>Recent</Button>
-          </li>
-          <li>
-            <Button className='SideBar-section'>Templates</Button>
-          </li>
-          <li>
-            <Button className='SideBar-section' onClick={this.comingSoon}>Components</Button>
-          </li>
-          <li>
-            <Button className='SideBar-section action' onClick={this.createNew}>New</Button>
-          </li>
-          <li>
-            <Button className='SideBar-section action' onClick={this.open}>Open</Button>
-          </li>
-        </ul>
+
+        <div className='SideBar-section active'>
+          {'Recent'}
+        </div>
+
+        <div className='SideBar-section'>
+          {'Templates'}
+        </div>
+
+        <div className='SideBar-section'
+          onClick={this.comingSoon}>
+          {'Components'}
+        </div>
+
+        <div className='SideBar-section action'
+          onClick={this.createNew}>
+          {'New'}
+        </div>
+
+        <div className='SideBar-section action'
+          onClick={this.open}>
+          {'Open'}
+        </div>
+
       </div>
     )
   }

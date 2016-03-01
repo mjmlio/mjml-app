@@ -1,7 +1,11 @@
 
 .SideBar {
 
+  width: 160px;
+  flex-shrink: 0;
+
   .SideBar-section {
+    line-height: 3em;
     color: #c6c6c6;
     text-transform: uppercase;
     font-weight: bold;
@@ -10,9 +14,5 @@
     margin: 0;
     outline: none;
     border: none;
-  }
-
-  .action {
-    width: 100px;
   }
 }
