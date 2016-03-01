@@ -25,9 +25,9 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({ width: 1024, height: 728, frame: false })
 
   if (process.env.HOT) {
-    mainWindow.loadURL(`file://${__dirname}/app/hot-dev-app.html`)
+    mainWindow.loadURL(`file://${__dirname}/src/hot-dev-app.html`)
   } else {
-    mainWindow.loadURL(`file://${__dirname}/app/app.html`)
+    mainWindow.loadURL(`file://${__dirname}/src/app.html`)
   }
 
   mainWindow.on('closed', () => {

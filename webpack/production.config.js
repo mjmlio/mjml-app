@@ -12,7 +12,7 @@ const config = Object.create(baseConfig)
 
 config.devtool = 'source-map'
 
-config.entry = './app/index'
+config.entry = './src/index'
 
 config.output.publicPath = '../dist/'
 

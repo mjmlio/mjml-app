@@ -6,7 +6,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "npm run hot-server & npm run start-hot & wait",
-    "lint": "eslint app test *.js",
+    "lint": "eslint src test *.js",
     "hot-server": "node server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack/production.config.js --progress --profile --colors",
     "start": "cross-env NODE_ENV=production electron ./",
