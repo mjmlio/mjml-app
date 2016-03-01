@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import SideBar from './SideBar'
-import TileGrid from './TileGrid'
 
 import '../styles/Home.scss'
 
@@ -10,7 +9,9 @@ class HomePage extends Component {
     return (
       <div className='HomePage anim-page'>
         <SideBar />
-        <TileGrid />
+        <div className='HomePage-content'>
+          {this.props.children}
+        </div>
       </div>
     )
   }

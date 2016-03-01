@@ -1,15 +1,17 @@
-
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { createNewTemplate, open } from '../actions/templates'
 import { comingSoon } from '../actions/'
 
 import '../styles/SideBar.scss'
 
-import Button from './Button'
-
-@connect()
+// strange bug: forced to put the connect as pure false
+// because component was not updated on route change
+/* eslint-disable no-undefined */
+@connect(undefined, undefined, undefined, { pure: false })
 class SideBar extends Component {
+/* eslint-enable no-undefined */
 
   createNew = () => {
     this.props.dispatch(createNewTemplate())
@@ -27,18 +29,26 @@ class SideBar extends Component {
     return (
       <div className='SideBar'>
 
-        <div className='SideBar-section active'>
+        <Link
+          to='/browse/recent'
+          activeClassName='active'
+          className='SideBar-section'>
           {'Recent'}
-        </div>
+        </Link>
 
-        <div className='SideBar-section'>
+        <Link
+          to='/browse/templates'
+          activeClassName='active'
+          className='SideBar-section'>
           {'Templates'}
-        </div>
+        </Link>
 
-        <div className='SideBar-section'
-          onClick={this.comingSoon}>
+        <Link
+          to='/browse/components'
+          activeClassName='active'
+          className='SideBar-section'>
           {'Components'}
-        </div>
+        </Link>
 
         <div className='SideBar-section action'
           onClick={this.createNew}>

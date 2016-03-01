@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory, match } from 'react-router'
+import { push } from 'react-router-redux'
 import { trigger } from 'redial'
 
 import routes from './routes'
@@ -13,6 +14,8 @@ import './styles/main.scss'
 
 const store = configureStore()
 const { dispatch } = store
+
+store.dispatch(push('/browse/recent'))
 
 Promise.all([
   store.dispatch(loadConfig()),

@@ -1,6 +1,4 @@
-
 import React, { Component } from 'react'
-import { remote } from 'electron'
 
 import '../styles/Frame.scss'
 
@@ -19,7 +17,7 @@ class Frame extends Component {
       <div className='Frame'>
         <div className='Frame-center'>
           <div className='Frame-item'>
-            <Link to='/' className='HomeLink'>
+            <Link to='/browse/recent' className='HomeLink'>
               <img
                 width='20'
                 height='40'

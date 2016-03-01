@@ -1,18 +1,41 @@
+@import './vars.scss';
 
 .SideBar {
 
   width: 160px;
+  margin-right: 10px;
   flex-shrink: 0;
 
   .SideBar-section {
+    position: relative;
+    text-decoration: none;
+    display: block;
     line-height: 3em;
     color: #c6c6c6;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 12px;
-    padding: 0;
-    margin: 0;
-    outline: none;
-    border: none;
+    transition: 150ms ease-out all;
+
+    &:before {
+      content: ' ';
+      position: absolute;
+      top: 5px; left: -15px; bottom: 5px;
+      width: 5px;
+      background: $blue;
+      transition: 150ms ease-out all;
+      transition-delay: 200ms;
+      transform: translate3d(10px, 0, 0);
+      opacity: 0;
+    }
+
+    &.active {
+      color: white;
+      transform: translateX(10px);
+      &:before {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
   }
 }

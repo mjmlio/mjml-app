@@ -35,7 +35,7 @@ class TileGrid extends Component {
 
     return (
       <div className='TileGrid'>
-        <ScrollArea className='TileGrid-abs'>
+        <ScrollArea className='TileGrid-abs anim-sub-page'>
           <div className='TileGrid-wrapper'>
             {templates.map(this.renderTemplate)}
           </div>

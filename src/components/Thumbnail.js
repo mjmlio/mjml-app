@@ -7,13 +7,8 @@ class Thumbnail extends Component {
 
   static getSrc = template => `../thumbnails/${template.get('id')}.png?t=${crypto.createHash('sha256').update(template.get('mjml')).digest('base64')}`
 
-  state = {
-    imgLoading: true,
-  }
-
   render () {
     const { template } = this.props
-    const { imgLoading } = this.state
     const thumbnailLoading = template.get('thumbnailLoading')
 
     return (
