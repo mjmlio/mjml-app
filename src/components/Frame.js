@@ -40,7 +40,7 @@ class Frame extends Component {
           <Link to='settings' className='Frame-item big'>
             <i className='ion-gear-a' />
           </Link>
-          <Link to='/' className='Frame-item big'>
+          <Link to='/documentation' className='Frame-item big'>
             <i className='ion-help' />
           </Link>
           <Link to='/' className='Frame-item big'>

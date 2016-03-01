@@ -109,6 +109,14 @@ class EditorPage extends Component {
               <i className='ion-android-image preview' />
               {'Preview'}
             </Button>
+            <Button className='EditorPage-bar-item'>
+              <i className='ion-ios-navigate preview' />
+              {'Send'}
+            </Button>
+            <Button className='EditorPage-bar-item'>
+              <i className='ion-social-github preview' />
+              {'Gist'}
+            </Button>
           </div>
         </div>
 
