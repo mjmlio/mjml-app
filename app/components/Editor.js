@@ -55,6 +55,12 @@ class Editor extends Component {
     }
   }
 
+  componentDidMount () {
+    const editor = this.refs.ace.editor
+    const register = (s) => editor.commands.addCommand(s)
+    this.props.dispatch(registerShortcuts(register))
+  }
+
   static aceProps = {
     $blockScrolling: true
   }
@@ -68,12 +74,6 @@ class Editor extends Component {
     this.saveContent(content)
   }
 
-  componentDidMount () {
-    const editor = this.refs.ace.editor
-    const register = (s) => editor.commands.addCommand(s)
-    this.props.dispatch(registerShortcuts(register))
-  }
-
   render () {
     const { content } = this.state
     const { theme } = this.props
@@ -81,7 +81,7 @@ class Editor extends Component {
     return (
       <div className='Editor'>
         <AceEditor
-          ref="ace"
+          ref='ace'
           mode='xml'
           theme={theme}
           height='100%'

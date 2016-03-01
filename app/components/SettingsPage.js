@@ -1,5 +1,4 @@
 
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import shortid from 'shortid'
 
@@ -23,7 +22,7 @@ class SettingsPage extends Component {
       .reduce((p, c) => p.concat(c), [])
       .reduce((p, c) => {
         p[c] = localStorage.getItem(c)
-        return p   
+        return p
       }, {})
   }
 
@@ -34,7 +33,7 @@ class SettingsPage extends Component {
       <li className='setting' key={shortid.generate()}>
         <label htmlFor={id}>{key}</label>
         <br />
-        <input type="text"
+        <input type='text'
                className='value'
                value={value}
                ref={el => this[id] = el}

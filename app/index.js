@@ -10,7 +10,6 @@ import { loadConfig } from './actions'
 import { readTemplates } from './actions/templates'
 
 import './styles/main.scss'
-// import './actions/shortcuts'
 
 const store = configureStore()
 const { dispatch } = store
@@ -20,7 +19,7 @@ Promise.all([
   store.dispatch(readTemplates())
 ]).then(() => {
 
-  hashHistory.listen(location => {
+  const onListen = location => {
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       const { components, params, location: { path } } = renderProps
 
@@ -36,6 +35,8 @@ Promise.all([
           )
         })
     })
-  })
+  }
+
+  hashHistory.listen(onListen)
 
 })

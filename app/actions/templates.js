@@ -9,7 +9,6 @@ const dialog = remote.require('dialog')
 
 import {
   readTemplates as fsReadTemplates,
-  readTemplate,
   save,
   readFile,
   writeFile,
@@ -22,10 +21,7 @@ import defaultContent from '../assets/defaultContent'
  * Retrieve and set the list of templates
  */
 const receiveTemplates = createAction('RECEIVE_TEMPLATES', templates => templates)
-export const readTemplates = () => (dispatch, getState) => {
-  const state = getState()
-  const { config } = state
-
+export const readTemplates = () => dispatch => {
   return fsReadTemplates()
     .then(templates => dispatch(receiveTemplates(templates)))
 }
@@ -95,7 +91,7 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
   const newTemplate = Map({
     id: shortid.generate(),
     name: 'no name',
-    mjml: mjml,
+    mjml,
     html: mjml2html(mjml),
     creationDate: now,
     modificationDate: now
@@ -110,9 +106,7 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
  * Delete a template
  */
 const templateDeleted = createAction('TEMPLATE_DELETED')
-export const deleteTemplate = template => (dispatch, getState) => {
-  const state = getState()
-  const { config } = state
+export const deleteTemplate = template => dispatch => {
   const id = template.get('id')
   dispatch(templateDeleted(id))
   fsDeleteTemplate(id)
@@ -132,7 +126,7 @@ export const open = () => dispatch => {
 /*
  * Show the save dialog window to export the template as an MJML file
  */
-export const exportTemplate = template => (dispatch) => {
+export const exportTemplate = template => () => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
     writeFile(filename, template.get('mjml'))

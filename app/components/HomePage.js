@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 
 import SideBar from './SideBar'
 import TileGrid from './TileGrid'

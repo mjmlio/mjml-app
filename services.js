@@ -1,5 +1,5 @@
-var fs = require('fs')
-var screenshot = require('electron-screenshot-service')
+const fs = require('fs')
+const screenshot = require('electron-screenshot-service')
 
 exports.takeSnapshot = function (id, html, done) {
   const url = `data:text/html,${encodeURIComponent(html)}`
@@ -10,8 +10,7 @@ exports.takeSnapshot = function (id, html, done) {
     height: 800,
     css: 'body{overflow:hidden}'
   }).then(img => {
-    fs.writeFileSync(`./thumbnails/${id}.png`, img.data)
-    done()
+    fs.writeFile(`./thumbnails/${id}.png`, img.data, done)
   })
   .catch(done)
 }

@@ -1,5 +1,3 @@
-import os from 'os'
-import path from 'path'
 import { handleActions } from 'redux-actions'
 import { Map } from 'immutable'
 
