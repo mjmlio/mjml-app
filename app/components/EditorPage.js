@@ -97,9 +97,12 @@ class EditorPage extends Component {
               </option>)}
           </select>
 
-          <Button className='EditorPage-bar-side button-preview' onClick={this.togglePreview}>
+          <div className='EditorPage-bar-side'>
+            <Button className='EditorPage-bar-item' onClick={this.togglePreview}>
               <i className='ion-android-image preview' />
-          </Button>
+              {'Preview'}
+            </Button>
+          </div>
         </div>
 
         <div className='EditorPage-view'>
