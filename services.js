@@ -3,6 +3,8 @@ const path = require('path')
 const app = require('electron').app
 const screenshot = require('electron-screenshot-service')
 
+const Mailjet = require('node-mailjet')
+
 exports.takeSnapshot = function (id, html, done) {
   const url = `data:text/html,${encodeURIComponent(html)}`
 
@@ -16,4 +18,22 @@ exports.takeSnapshot = function (id, html, done) {
     fs.writeFile(p, img.data, done)
   })
   .catch(done)
+}
+
+exports.send = function (options, success, error) {
+  (new Mailjet(options.mjApiKey, options.mjApiSecret))
+    .post('send')
+    .request({
+      FromName: options.name,
+      FromEmail: options.sender,
+      To: options.to,
+      Subject: 'Test Email',
+      'Html-Part': options.html
+    })
+    .on('success', function () {
+      success()
+    })
+    .on('error', function () {
+      error()
+    })
 }
