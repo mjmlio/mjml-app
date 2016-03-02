@@ -4,6 +4,7 @@ import shortid from 'shortid'
 import { Map } from 'immutable'
 import mjml2html from 'mjml/lib/mjml2html'
 import { remote } from 'electron'
+import { error, notify } from '../helpers/notification'
 
 const dialog = remote.require('dialog')
 
@@ -56,8 +57,13 @@ export const updateCurrentTemplate = updater => dispatch => {
 
     // re-calculate mjml only if mjml has changed
     if (newTemplate.get('mjml') !== template.get('mjml')) {
-      const html = mjml2html(newTemplate.get('mjml'))
-      newTemplate = newTemplate.set('html', html)
+      try {
+        const html = mjml2html(newTemplate.get('mjml'))
+        newTemplate = newTemplate.set('html', html)
+      } catch (e) {
+        // notification
+        newTemplate = newTemplate.set('html', '')
+      }
     }
 
     // update modification date
@@ -114,6 +120,8 @@ export const deleteTemplate = template => dispatch => {
   const id = template.get('id')
   dispatch(templateDeleted(id))
   fsDeleteTemplate(id)
+    .then(() => notify('Deleted!'))
+    .catch(() => error('Not Deleted!'))
 }
 
 /**
@@ -134,6 +142,8 @@ export const exportTemplate = template => () => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
     writeFile(filename, template.get('mjml'))
+      .then(() => notify('Saved!'))
+      .catch(() => error('Not Saved!'))
   })
 }
 
