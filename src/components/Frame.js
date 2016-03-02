@@ -6,12 +6,6 @@ import { Link } from 'react-router'
 
 class Frame extends Component {
 
-  close = () => 0
-
-  minimize = () => 0
-
-  maximize = () => 0
-
   render () {
     return (
       <div className='Frame'>
@@ -28,9 +22,6 @@ class Frame extends Component {
           </div>
         </div>
         <div className='Frame-actions'>
-          <Link to='/documentation' className='Frame-item big'>
-            <i className='ion-help' />
-          </Link>
         </div>
       </div>
     )

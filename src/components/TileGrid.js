@@ -26,6 +26,7 @@ class TileGrid extends Component {
         <div className='template-wrapper'>
           <Thumbnail template={template} />
         </div>
+        <span className='template-info'>Untitled</span>
       </div>
     )
   }

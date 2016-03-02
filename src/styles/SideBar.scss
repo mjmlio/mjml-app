@@ -47,23 +47,22 @@
 
     &.action {
       & + .action {
-        margin-top: 1em;
+        margin-top: 0.5em;
       }
       > div {
+        width: 100px;
         border-radius: 20px;
         display: inline-flex;
         align-items: center;
-        border: 1px solid rgba(0, 0, 0, 0.3);
-        color: rgba(200, 200, 200, 0.6);
-        padding: 0 2em;
+        color: #cececc;
+        transition: color 0.2s ease-in-out;
         > i {
           font-size: 18px;
-          margin-right: 5px;
+          margin-right: 10px;
         }
         &:hover {
-          background: rgba(0, 0, 0, 0.2);
-          border-color: transparent;
-          color: rgba(255, 255, 255, 0.5);
+          color: $blue;
+          transition: color 0.2s ease-in-out;
         }
       }
     }

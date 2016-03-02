@@ -84,6 +84,44 @@
   padding: 0;
 }
 
+.platform {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 20px;
+  width: 650px;
+
+  i {
+    margin: 0;
+    color: white;
+    padding: 5px 20px;
+    background-color: #323232;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+
+  .desktop {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+
+  .mobile {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    font-size: 18px;
+  }
+
+  .active {
+    background-color: $blue;
+  }
+}
+
+.platform-button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+}
+
 .select-theme {
   background-color: #424242;
 }

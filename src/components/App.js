@@ -10,8 +10,6 @@ class App extends Component {
 
   render () {
 
-    new Notification('Hey')
-
     return (
       <div className='App'>
         <Frame />

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import Editor from './Editor'
 import { makeSnapshot, updateCurrentTemplate, saveTemplate, exportTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
+import { send } from '../actions/send'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
 
@@ -73,6 +75,18 @@ class EditorPage extends Component {
     this.props.dispatch(exportTemplate(template))
   }
 
+  send = () => {
+    this.props.dispatch(send(this.props.template.get('html')))
+  }
+
+  home = () => {
+    this.props.dispatch(push('/browse/recent'))
+  }
+
+  toggleMode = (platform) => () => {
+    this.props.dispatch(updateConfig(config => config.set('previewMode', platform)))
+  }
+
   render () {
     const { template, config } = this.props
 
@@ -82,10 +96,16 @@ class EditorPage extends Component {
 
     const editorTheme = config.get('editorTheme')
     const editorShowPreview = config.get('editorShowPreview')
+    const previewMode = config.get('previewMode')
+    console.log(previewMode)
 
     return (
       <div className='EditorPage anim-page'>
         <div className='EditorPage-bar'>
+
+          <Button onClick={this.home} className='EditorPage-bar-item'>
+            <i className='ion-android-arrow-back' />
+          </Button>
 
           <Button onClick={this.save} className='EditorPage-bar-item'>
             <i className='ion-code-download' />
@@ -109,7 +129,7 @@ class EditorPage extends Component {
               <i className='ion-android-image preview' />
               {'Preview'}
             </Button>
-            <Button className='EditorPage-bar-item'>
+            <Button className='EditorPage-bar-item' onClick={this.send}>
               <i className='ion-ios-navigate preview' />
               {'Send'}
             </Button>
@@ -129,6 +149,14 @@ class EditorPage extends Component {
           </div>
           <div className={cx('EditorPage-preview', { show: editorShowPreview })}>
             <iframe id='preview' ref={(el) => this._iframe = el} />
+            <div className='platform'>
+              <Button onClick={this.toggleMode('desktop')} className='platform-button'>
+                <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>
+              </Button>
+              <Button onClick={this.toggleMode('mobile')} className='platform-button'>
+                <i className={cx('ion-iphone mobile', { active: previewMode === 'mobile' })}></i>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

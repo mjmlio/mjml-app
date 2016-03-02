@@ -3,7 +3,8 @@ import { Map } from 'immutable'
 
 const initialState = Map({
   editorTheme: 'solarized_dark',
-  editorShowPreview: true
+  editorShowPreview: true,
+  previewMode: 'desktop',
 })
 
 export default handleActions({

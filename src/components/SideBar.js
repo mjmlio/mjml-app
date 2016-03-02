@@ -40,7 +40,7 @@ class SideBar extends Component {
           to='/browse/templates'
           activeClassName='active'
           className='SideBar-section'>
-          {'Templates'}
+          {'Gallery'}
         </Link>
 
         <Link
