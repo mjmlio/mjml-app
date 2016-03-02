@@ -9,6 +9,7 @@ import { updateConfig } from '../actions'
 import { send } from '../actions/send'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
+import Mobile from './Mobile'
 
 import '../styles/EditorPage.scss'
 
@@ -28,8 +29,8 @@ class EditorPage extends Component {
     this._template = props.template
   }
 
-  componentDidMount () { this.renderIframe() }
-  componentDidUpdate () { this.renderIframe() }
+  componentDidMount () { /* this.renderIframe() */ }
+  componentDidUpdate () { /* this.renderIframe() */ }
 
   componentWillUnmount () {
     if (this.props.template.get('html') === this._template.get('html')) { return }
@@ -97,7 +98,10 @@ class EditorPage extends Component {
     const editorTheme = config.get('editorTheme')
     const editorShowPreview = config.get('editorShowPreview')
     const previewMode = config.get('previewMode')
-    console.log(previewMode)
+
+    const frameWidth = previewMode === 'mobile' ? '400px' : '650px'
+
+            // <iframe id='preview' ref={(el) => this._iframe = el} />
 
     return (
       <div className='EditorPage anim-page'>
@@ -148,7 +152,7 @@ class EditorPage extends Component {
               onChange={this.handleChange} />
           </div>
           <div className={cx('EditorPage-preview', { show: editorShowPreview })}>
-            <iframe id='preview' ref={(el) => this._iframe = el} />
+            <Mobile />
             <div className='platform'>
               <Button onClick={this.toggleMode('desktop')} className='platform-button'>
                 <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>
