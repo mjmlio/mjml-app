@@ -5,9 +5,11 @@ import TileGrid from '../TileGrid'
 class BrowseRecent extends Component {
 
   render () {
+    const limit = 5
+
     return (
       <div>
-        <TileGrid />
+        <TileGrid limit={limit} />
       </div>
     )
   }

@@ -1,14 +1,18 @@
 
 .coming-soon {
 
-  background-color: #323232;
   width: 100%;
-  flex-grow: 1;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
   
   span {
-    color: #101010;
+    color: #292929;
+    font-family: Helvetica Neue;
+    font-weight: bolder;
+    font-size: 32px;
+    height: 100%;
+    line-height: 100%;
   }
 }

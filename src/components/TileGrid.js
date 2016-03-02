@@ -31,13 +31,15 @@ class TileGrid extends Component {
   }
 
   render () {
-    const { templates } = this.props
+    const { templates, limit } = this.props
+
+    const tps = limit ? templates.slice(0, limit) : templates
 
     return (
       <div className='TileGrid'>
         <ScrollArea className='TileGrid-abs anim-sub-page'>
           <div className='TileGrid-wrapper'>
-            {templates.map(this.renderTemplate)}
+            {tps.map(this.renderTemplate)}
           </div>
         </ScrollArea>
       </div>

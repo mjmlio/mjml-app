@@ -11,6 +11,11 @@
     border-radius: 5px;
     cursor: pointer;
 
+    span {
+      position: absolute;
+      bottom: 0;
+    }
+
     &:hover {
       border-color: $blue;
     }

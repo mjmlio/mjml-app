@@ -1,6 +1,7 @@
 /* eslint strict: 0 */
 'use strict'
 
+const path = require ('path')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -22,7 +23,13 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({ width: 1024, height: 728, titleBarStyle: 'hidden-inset' })
+
+  mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 728,
+    titleBarStyle: 'hidden-inset',
+    icon: path.join(app.getAppPath(), 'src/assets/images/logo_orange.png')
+  })
 
   if (process.env.HOT) {
     mainWindow.loadURL(`file://${__dirname}/src/hot-dev-app.html`)

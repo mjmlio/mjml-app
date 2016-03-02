@@ -19,7 +19,7 @@ export default (
     <Route path='browse' component={HomePage}>
       <Route path='recent' component={BrowseRecent} />
       <Route path='templates' component={BrowseTemplates} />
-      <Route path='components' component={BrowseRecent} />
+      <Route path='components' component={ComingSoon} />
     </Route>
 
     <Route path='editor' component={EditorPage} />
