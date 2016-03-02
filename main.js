@@ -1,7 +1,7 @@
 /* eslint strict: 0 */
 'use strict'
 
-const path = require ('path')
+const path = require('path')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow

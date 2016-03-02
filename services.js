@@ -30,10 +30,6 @@ exports.send = function (options, success, error) {
       Subject: 'Test Email',
       'Html-Part': options.html
     })
-    .on('success', function () {
-      success()
-    })
-    .on('error', function () {
-      error()
-    })
+    .on('success', success)
+    .on('error', error)
 }

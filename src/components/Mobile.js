@@ -8,7 +8,7 @@ import '../styles/Mobile.scss'
   state => ({
     template: state.templates.getIn(['list', state.templates.get('list').findIndex(
       template => template.get('id') === state.templates.get('current')
-    )]),
+    )])
   })
 )
 class Mobile extends Component {
@@ -30,12 +30,12 @@ class Mobile extends Component {
   render () {
     return (
       <div className='container'>
-        <div id="phone">
-          <div id="home"></div>
-          <div id="speaker"></div>
-          <iframe className='screen' ref={ el => this._iframe = el }/>
-        </div> 
-			</div> 
+        <div id='phone'>
+          <div id='home'></div>
+          <div id='speaker'></div>
+          <iframe className='screen' ref={el => this._iframe = el}/>
+        </div>
+      </div>
     )
   }
 }

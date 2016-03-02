@@ -29,9 +29,6 @@ class EditorPage extends Component {
     this._template = props.template
   }
 
-  componentDidMount () { /* this.renderIframe() */ }
-  componentDidUpdate () { /* this.renderIframe() */ }
-
   componentWillUnmount () {
     if (this.props.template.get('html') === this._template.get('html')) { return }
     this.props.dispatch(makeSnapshot(this.props.template))
@@ -98,10 +95,6 @@ class EditorPage extends Component {
     const editorTheme = config.get('editorTheme')
     const editorShowPreview = config.get('editorShowPreview')
     const previewMode = config.get('previewMode')
-
-    const frameWidth = previewMode === 'mobile' ? '400px' : '650px'
-
-            // <iframe id='preview' ref={(el) => this._iframe = el} />
 
     return (
       <div className='EditorPage anim-page'>

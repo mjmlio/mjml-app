@@ -13,10 +13,10 @@ export const send = (html) => (dispatch, getState) => {
 
   mailjet({
     apiKey: config.get('mjApiKey'),
-    apiKey: config.get('mjApiSecret'),
+    apiSecret: config.get('mjApiSecret'),
     name: config.get('userName'),
     sender: config.get('userEmail'),
     to: config.get('userEmail'),
-    html: html
+    html
   }, sent, notSent)
 }
