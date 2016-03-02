@@ -33,9 +33,6 @@
 
     &:hover {
       background: rgba(255, 255, 255, 0.05);
-      .hoverdot {
-        background: rgba(0, 0, 0, 0.0);
-      }
     }
   }
 
@@ -45,32 +42,6 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-  }
-
-  .Frame-window {
-    display: flex;
-    padding: 0 5px;
-
-    .window-icon {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .hoverdot {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      height: 10px;
-      width: 10px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.3);
-    }
-
-    .close { background-color: $close; }
-    .minimize { background-color: $minimize; }
-    .maximize { background-color: $maximize; }
   }
 
   .Frame-actions {

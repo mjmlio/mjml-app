@@ -7,8 +7,8 @@
   padding: 1em 4em;
   border: 1px solid transparent;
 
-  > i {
-    margin-right: 0.5em;
+  i + span {
+    margin-left: 0.5em;
   }
 
   &.primary {
