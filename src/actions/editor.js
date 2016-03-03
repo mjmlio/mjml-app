@@ -19,7 +19,7 @@ export const registerShortcuts = (register) => dispatch => {
     bindKey: { mac: 'Cmd+y' },
     readOnly: true,
     exec () {
-      dispatch(push('/'))
+      dispatch(push('/browse/recent'))
     }
   })
 }
