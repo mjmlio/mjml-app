@@ -69,28 +69,31 @@
 
   &.show {
     transition: 250ms linear opacity;
-    width: 650px;
     opacity: 1;
+
+    &.platform-mobile {
+      width: 450px;
+    }
+
+    &.platform-desktop {
+      width: 650px;
+    }
   }
 }
 
-#preview {
-  flex-grow: 1;
-}
-
-.preview {
+.bar-icon {
   color: white;
   font-size: 25px;
   padding: 0;
 }
 
-.platform {
+.platform-container {
   z-index: 999999;
   position: absolute;
   display: flex;
   justify-content: center;
   bottom: 20px;
-  width: 650px;
+  width: inherit;
 
   i {
     margin: 0;

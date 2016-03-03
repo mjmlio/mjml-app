@@ -16,6 +16,8 @@ import './styles/main.scss'
 const store = configureStore()
 const { dispatch } = store
 
+localStorage.clear()
+
 store.dispatch(push('/browse/recent'))
 
 Promise.all([

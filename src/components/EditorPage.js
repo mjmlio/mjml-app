@@ -10,6 +10,7 @@ import { send } from '../actions/send'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
 import Mobile from './Mobile'
+import Desktop from './Desktop'
 
 import '../styles/EditorPage.scss'
 
@@ -28,9 +29,6 @@ class EditorPage extends Component {
 
     this._template = props.template
   }
-
-  componentDidMount () { /* this.renderIframe() */ }
-  componentDidUpdate () { /* this.renderIframe() */ }
 
   componentWillUnmount () {
     if (this.props.template.get('html') === this._template.get('html')) { return }
@@ -51,17 +49,6 @@ class EditorPage extends Component {
     this.props.dispatch(updateConfig(config => config.set('editorTheme', theme)))
   }
 
-  renderIframe () {
-    const { template } = this.props
-    if (!template) { return }
-    const html = template.get('html')
-    if (html === this._oldHtml) { return }
-    const doc = this._iframe.contentDocument
-    const documentElement = doc.documentElement
-    documentElement.innerHTML = html
-    this._oldHtml = html
-  }
-
   renderEmpty () {
     return (
       <div>
@@ -77,6 +64,7 @@ class EditorPage extends Component {
   }
 
   send = () => {
+    console.log('hello send method!')
     this.props.dispatch(send(this.props.template.get('html')))
   }
 
@@ -100,8 +88,6 @@ class EditorPage extends Component {
     const previewMode = config.get('previewMode')
 
     const frameWidth = previewMode === 'mobile' ? '400px' : '650px'
-
-            // <iframe id='preview' ref={(el) => this._iframe = el} />
 
     return (
       <div className='EditorPage anim-page'>
@@ -130,30 +116,32 @@ class EditorPage extends Component {
 
           <div className='EditorPage-bar-side'>
             <Button className={cx('EditorPage-bar-item', { active: editorShowPreview })} onClick={this.togglePreview}>
-              <i className='ion-android-image preview' />
+              <i className='ion-android-image bar-icon' />
               {'Preview'}
             </Button>
             <Button className='EditorPage-bar-item' onClick={this.send}>
-              <i className='ion-ios-navigate preview' />
+              <i className='ion-ios-navigate bar-icon' />
               {'Send'}
             </Button>
             <Button className='EditorPage-bar-item'>
-              <i className='ion-social-github preview' />
+              <i className='ion-social-github bar-icon' />
               {'Gist'}
             </Button>
           </div>
         </div>
 
         <div className='EditorPage-view'>
+
           <div className='EditorPage-panel'>
             <Editor
               value={mjml}
               theme={editorTheme}
               onChange={this.handleChange} />
           </div>
-          <div className={cx('EditorPage-preview', { show: editorShowPreview })}>
-            <Mobile />
-            <div className='platform'>
+
+          <div className={cx('EditorPage-preview platform-' + previewMode, { show: editorShowPreview })}>
+            {previewMode === 'desktop' ? <Desktop /> : <Mobile />}
+            <div className={'platform-container platform-' + previewMode}>
               <Button onClick={this.toggleMode('desktop')} className='platform-button'>
                 <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>
               </Button>

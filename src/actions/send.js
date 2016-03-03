@@ -2,8 +2,8 @@
 import { remote } from 'electron'
 import { notify, error } from '../helpers/notification'
 
-const sent = () => notify('Sent')
-const notSent = () => error('Not Sent')
+const sent = () => notify('Sent!')
+const notSent = () => error('Not sent!')
 
 export const send = (html) => (dispatch, getState) => {
 
@@ -13,10 +13,10 @@ export const send = (html) => (dispatch, getState) => {
 
   mailjet({
     apiKey: config.get('mjApiKey'),
-    apiKey: config.get('mjApiSecret'),
+    apiSecret: config.get('mjApiSecret'),
     name: config.get('userName'),
     sender: config.get('userEmail'),
-    to: config.get('userEmail'),
+    to: 'gbadi@mailjet.com',
     html: html
   }, sent, notSent)
 }
