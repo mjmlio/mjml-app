@@ -87,8 +87,6 @@ class EditorPage extends Component {
     const editorShowPreview = config.get('editorShowPreview')
     const previewMode = config.get('previewMode')
 
-    const frameWidth = previewMode === 'mobile' ? '400px' : '650px'
-
     return (
       <div className='EditorPage anim-page'>
         <div className='EditorPage-bar'>
