@@ -5,7 +5,6 @@ const screenshot = require('electron-screenshot-service')
 const request = require('request')
 
 const Mailjet = require('node-mailjet');
-//  .connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
 exports.takeSnapshot = function (id, html, done) {
   const url = `data:text/html,${encodeURIComponent(html)}`
@@ -55,7 +54,6 @@ exports.createGist = function (content, success, error) {
   };
 
   request(options, function (err, response, body) {
-    console.log(typeof body)
     return err || response.statusCode !== 201 ? error(err) : success(JSON.parse(body));
   });
 }
