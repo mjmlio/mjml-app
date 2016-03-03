@@ -7,6 +7,7 @@ import Editor from './Editor'
 import { makeSnapshot, updateCurrentTemplate, saveTemplate, exportTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
 import { send } from '../actions/send'
+import { exportAsGist } from '../actions/gist'
 import aceThemes from '../assets/aceThemes'
 import Button from './Button'
 import Mobile from './Mobile'
@@ -64,8 +65,11 @@ class EditorPage extends Component {
   }
 
   send = () => {
-    console.log('hello send method!')
     this.props.dispatch(send(this.props.template.get('html')))
+  }
+
+  gist = () => {
+    this.props.dispatch(exportAsGist(this.props.template.get('mjml')))
   }
 
   home = () => {
@@ -121,7 +125,7 @@ class EditorPage extends Component {
               <i className='ion-ios-navigate bar-icon' />
               {'Send'}
             </Button>
-            <Button className='EditorPage-bar-item'>
+            <Button className='EditorPage-bar-item' onClick={this.gist}>
               <i className='ion-social-github bar-icon' />
               {'Gist'}
             </Button>
