@@ -7,6 +7,27 @@
   background: #333;
 }
 
+.EditorPage-bar-item {
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5em;
+
+  i {
+    font-size: 18px;
+  }
+
+  &.active, &.active:hover {
+    background: $blue;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
 .EditorPage-bar {
   flex-shrink: 0;
   background: #424242;
@@ -15,27 +36,6 @@
   align-items: center;
   font-size: 14px;
   color: rgba(0,0,0,0.6);
-
-  .EditorPage-bar-item {
-    color: white;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.5em;
-
-    i {
-      font-size: 18px;
-    }
-
-    &.active, &.active:hover {
-      background: $blue;
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.2);
-    }
-  }
 
   .EditorPage-bar-side {
     display: flex;

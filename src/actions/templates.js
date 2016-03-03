@@ -138,10 +138,10 @@ export const open = () => dispatch => {
 /*
  * Show the save dialog window to export the template as an MJML file
  */
-export const exportTemplate = template => () => {
+export const exportTemplate = ({ template, type }) => () => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
-    writeFile(filename, template.get('mjml'))
+    writeFile(filename, template.get(type))
       .then(() => notify('Saved!'))
       .catch(() => error('Not Saved!'))
   })

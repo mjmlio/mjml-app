@@ -1,0 +1,23 @@
+@import './vars.scss';
+
+.DropDown {
+  position: relative;
+  background: #424242;
+
+  &.open, &.open:hover {
+    background: $blue;
+  }
+
+  .DropDown-menu {
+    background: #424242;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    white-space: nowrap;
+    min-width: 100%;
+  }
+}

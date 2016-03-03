@@ -12,6 +12,7 @@ import aceThemes from '../assets/aceThemes'
 import Button from './Button'
 import Mobile from './Mobile'
 import Desktop from './Desktop'
+import DropDown from './DropDown'
 
 import '../styles/EditorPage.scss'
 
@@ -58,10 +59,10 @@ class EditorPage extends Component {
     )
   }
 
-  save = () => {
+  save = (type) => {
     const { template } = this.props
     if (!template) { return }
-    this.props.dispatch(exportTemplate(template))
+    this.props.dispatch(exportTemplate({ template, type }))
   }
 
   send = () => {
@@ -99,15 +100,27 @@ class EditorPage extends Component {
             <i className='ion-android-arrow-back' />
           </Button>
 
-          <Button onClick={this.save} className='EditorPage-bar-item'>
-            <i className='ion-code-download' />
-            {'Export'}
-          </Button>
+          <DropDown
+            className='EditorPage-bar-item'
+            icon='ion-code-download'
+            title='Export'>
 
-          <Button className='EditorPage-bar-item'>
-            <i className='ion-gear-b' />
-            {'Settings'}
-          </Button>
+            <Button onClick={this.save.bind(this, 'html')} className='EditorPage-bar-item'>
+              {'HTML'}
+            </Button>
+
+            <Button onClick={this.save.bind(this, 'mjml')} className='EditorPage-bar-item'>
+              {'MJML'}
+            </Button>
+
+          </DropDown>
+
+          <DropDown
+            className='EditorPage-bar-item'
+            icon='ion-gear-b'
+            title='Settings'>
+            {'im the content'}
+          </DropDown>
 
           <select onChange={this.setTheme} value={editorTheme} className='select-theme'>
             {aceThemes.map(theme =>
@@ -141,9 +154,9 @@ class EditorPage extends Component {
               onChange={this.handleChange} />
           </div>
 
-          <div className={cx('EditorPage-preview platform-' + previewMode, { show: editorShowPreview })}>
+          <div className={cx(`EditorPage-preview platform-${previewMode}`, { show: editorShowPreview })}>
             {previewMode === 'desktop' ? <Desktop /> : <Mobile />}
-            <div className={'platform-container platform-' + previewMode}>
+            <div className={`platform-container platform-${previewMode}`}>
               <Button onClick={this.toggleMode('desktop')} className='platform-button'>
                 <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>
               </Button>
