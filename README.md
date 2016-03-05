@@ -14,12 +14,11 @@ $ npm run package
 
 ### Before open-sourcing
 
- - [ ] Send test via email
- - [ ] Functional window buttons
- - [ ] Functional setting page if we keep one
+ - [x] Send test via email
+ - [x] Functional window buttons
  - [ ] Templates should be store with there filenames to extract their name properties
- - [ ] Error/info notification component
- - [ ] TileGrid should display depending on the active SideBar element
+ - [x] Error/info notification component
+ - [x] TileGrid should display depending on the active SideBar element
  - [ ] Make a readme
  - [ ] Release
  - [ ] Make it rain
