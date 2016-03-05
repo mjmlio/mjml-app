@@ -2,38 +2,6 @@
 
 .TileGrid {
 
-  .template {
-    position: relative;
-    width: 162px;
-    /* height: 212px; */
-    height: 232px; 
-    margin: 0 1em 1em 0;
-    /* border-radius: 5px; */
-    cursor: pointer;
-
-    .template-info {
-      font-family: Helvetica Neue;
-      color: #cecece;
-      font-size: 13px;
-      bottom: 0px;
-      position: absolute;
-      margin-left: 8px;
-    }
-
-    .template-wrapper {
-      position: absolute;
-      top: 5px; left: 5px; right: 5px; bottom: 30px;
-      transition: all 0.15s ease-in-out;
-      border: 4px solid transparent;
-      border-radius: 5px;
-
-      &:hover {
-        border-color: $blue;
-        background-color: #323232;
-        transition: all 0.15s ease-in-out;
-      }
-    }
-  }
 
   .TileGrid-abs {
     position: absolute;

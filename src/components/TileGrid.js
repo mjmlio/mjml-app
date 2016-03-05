@@ -3,8 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import ScrollArea from 'react-scrollbar'
 
-import Thumbnail from './Thumbnail'
-import { loadTemplate } from '../actions/templates'
+import Tile from './Tile'
 
 import '../styles/TileGrid.scss'
 
@@ -15,22 +14,6 @@ import '../styles/TileGrid.scss'
 )
 class TileGrid extends Component {
 
-  loadTemplate = template => {
-    this.props.dispatch(loadTemplate(template))
-  }
-
-  renderTemplate = (template) => {
-
-    return (
-      <div className='template' key={template.get('id')} onClick={this.loadTemplate.bind(this, template)}>
-        <div className='template-wrapper'>
-          <Thumbnail template={template} />
-        </div>
-        <span className='template-info'>Untitled</span>
-      </div>
-    )
-  }
-
   render () {
     const { templates, limit } = this.props
 
@@ -40,7 +23,7 @@ class TileGrid extends Component {
       <div className='TileGrid'>
         <ScrollArea className='TileGrid-abs anim-sub-page'>
           <div className='TileGrid-wrapper'>
-            {tps.map(this.renderTemplate)}
+            {tps.map(template => <Tile template={template} key={template.get('id')}/>)}
           </div>
         </ScrollArea>
       </div>
