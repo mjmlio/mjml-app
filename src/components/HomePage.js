@@ -9,7 +9,6 @@ class HomePage extends Component {
   render () {
     return (
       <div className='HomePage anim-page'>
-        <Modal />
         <SideBar />
         <div className='HomePage-content'>
           {this.props.children}
