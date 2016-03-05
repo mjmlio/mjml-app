@@ -28,7 +28,8 @@ app.on('ready', () => {
     width: 1024,
     height: 728,
     titleBarStyle: 'hidden-inset',
-    icon: path.join(app.getAppPath(), 'src/assets/images/logo_orange.png')
+    icon: path.join(app.getAppPath(), 'src/assets/images/logo_orange.png'),
+    show: false
   })
 
   if (process.env.HOT) {
@@ -36,6 +37,10 @@ app.on('ready', () => {
   } else {
     mainWindow.loadURL(`file://${__dirname}/src/app.html`)
   }
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    setTimeout(() => { mainWindow.show(); }, 100)
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null
