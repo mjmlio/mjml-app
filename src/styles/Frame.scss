@@ -25,14 +25,11 @@
     align-items: center;
     justify-content: center;
     padding: 0 5px;
-    cursor: pointer;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 13px;
 
     &.big {
       padding: 0 1em;
-    }
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.05);
     }
   }
 

@@ -39,8 +39,8 @@ app.on('ready', () => {
   }
 
   mainWindow.webContents.on('did-finish-load', () => {
-    setTimeout(() => { mainWindow.show(); }, 100)
-  });
+    setTimeout(() => { mainWindow.show() }, 100)
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
