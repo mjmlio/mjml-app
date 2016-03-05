@@ -1,0 +1,18 @@
+.BlankPlaceholder {
+
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  color: rgba(255, 255, 255, 0.3);
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

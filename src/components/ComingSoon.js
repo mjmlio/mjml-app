@@ -7,8 +7,10 @@ class ComingSoon extends Component {
 
   render () {
     return (
-      <div className='coming-soon'>
-        <span>Coming Soon</span>
+      <div className='BlankPlaceholder'>
+        <h1 className='anim-fadeInUp'>
+          {'Coming Soon!'}
+        </h1>
       </div>
     )
   }
