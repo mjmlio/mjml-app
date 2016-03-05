@@ -31,6 +31,7 @@ exports.send = function (options, success, error) {
       Subject: 'Test Email',
       'Html-Part': options.html
     }, function (err, response, body) {
+      console.log(response.statusCode);
       if (err || response.statusCode !== 200) error();
       else success();
     })

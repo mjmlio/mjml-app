@@ -14,6 +14,7 @@ class SideBar extends Component {
 /* eslint-enable no-undefined */
 
   createNew = () => {
+    this.refs.portal.openPortal()
     this.props.dispatch(createNewTemplate())
   }
 
@@ -65,7 +66,6 @@ class SideBar extends Component {
             {'Open'}
           </div>
         </div>
-
       </div>
     )
   }

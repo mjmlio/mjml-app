@@ -1,0 +1,30 @@
+
+@import './vars.scss';
+
+.container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 666;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    width: 500px;
+    height: 300px;
+    background-color: #f0f0f0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    position: relative;
+    padding: 50px;
+
+    .button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 7px 13px;
+
+      i { color: $blue }
+    }
+  }
+}
