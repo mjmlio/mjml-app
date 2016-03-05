@@ -8,8 +8,8 @@ import { makeSnapshot, updateCurrentTemplate, saveTemplate, exportTemplate } fro
 import { updateConfig } from '../actions'
 import { send } from '../actions/send'
 import { exportAsGist } from '../actions/gist'
-import aceThemes from '../assets/aceThemes'
 import Button from './Button'
+import EditorSettings from './EditorSettings'
 import Mobile from './Mobile'
 import Desktop from './Desktop'
 import DropDown from './DropDown'
@@ -44,11 +44,6 @@ class EditorPage extends Component {
 
   togglePreview = () => {
     this.props.dispatch(updateConfig(config => config.set('editorShowPreview', !this.props.config.get('editorShowPreview'))))
-  }
-
-  setTheme = e => {
-    const theme = e.target.value
-    this.props.dispatch(updateConfig(config => config.set('editorTheme', theme)))
   }
 
   renderEmpty () {
@@ -115,19 +110,7 @@ class EditorPage extends Component {
 
           </DropDown>
 
-          <DropDown
-            className='EditorPage-bar-item'
-            icon='ion-gear-b'
-            title='Settings'>
-            {'im the content'}
-          </DropDown>
-
-          <select onChange={this.setTheme} value={editorTheme} className='select-theme'>
-            {aceThemes.map(theme =>
-              <option key={theme[0]} value={theme[0]}>
-                {theme[1]}
-              </option>)}
-          </select>
+          <EditorSettings />
 
           <div className='EditorPage-bar-side'>
             <Button className={cx('EditorPage-bar-item', { active: editorShowPreview })} onClick={this.togglePreview}>
