@@ -20,7 +20,7 @@ class Modal extends Component {
       <div className='container'>
         <div className='modal'>
           <Button className='button'>
-            <i className='ion-close-round' />        
+            <i className='ion-close-round' />
           </Button>
           {this.props.children}
         </div>

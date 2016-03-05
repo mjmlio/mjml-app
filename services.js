@@ -4,7 +4,7 @@ const app = require('electron').app
 const screenshot = require('electron-screenshot-service')
 const request = require('request')
 
-const Mailjet = require('node-mailjet');
+const Mailjet = require('node-mailjet')
 
 exports.takeSnapshot = function (id, html, done) {
   const url = `data:text/html,${encodeURIComponent(html)}`
@@ -30,10 +30,10 @@ exports.send = function (options, success, error) {
       To: options.to,
       Subject: 'Test Email',
       'Html-Part': options.html
-    }, function (err, response, body) {
-      console.log(response.statusCode);
-      if (err || response.statusCode !== 200) error();
-      else success();
+    }, (err, response) => {
+      return (err || response.statusCode !== 200)
+        ? error(err)
+        : success()
     })
 }
 
@@ -45,16 +45,18 @@ exports.createGist = function (content, success, error) {
     body: JSON.stringify({
       description: 'Made with MJML App',
       // a voir
-      'public': true,
+      public: true,
       files: {
         'email.mjml': {
+          /* eslint-disable object-shorthand */
           content: content
+          /* eslint-enable object-shorthand */
         }
       }
-    }),
-  };
+    })
+  }
 
-  request(options, function (err, response, body) {
-    return err || response.statusCode !== 201 ? error(err) : success(JSON.parse(body));
-  });
+  request(options, (err, response, body) => {
+    return err || response.statusCode !== 201 ? error(err) : success(JSON.parse(body))
+  })
 }

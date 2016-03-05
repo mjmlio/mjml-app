@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Portal from 'react-portal'
 
 import { loadTemplate, deleteTemplate } from '../actions/templates'
 
@@ -21,7 +20,7 @@ class Overlay extends Component {
   }
 
   renderOverlay (template) {
-  
+
     return (
       <div className='overlay'>
         <Button className='button'>

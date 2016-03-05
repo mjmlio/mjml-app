@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import SideBar from './SideBar'
-import Modal from './Modal'
 
 import '../styles/Home.scss'
 

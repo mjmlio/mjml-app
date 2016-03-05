@@ -2,11 +2,11 @@
 import { remote } from 'electron'
 import { notify, error } from '../helpers/notification'
 
-const saved = (response) => notify('Gist saved! Look at the console') || console.log(response.html_url)
-const notSaved = (err) => error('Something went wrong')
+const saved = () => notify('Gist saved! But you will not get the url.')
+const notSaved = () => error('Something went wrong')
 
-export const exportAsGist = (content) => dispatch => {
-  
+export const exportAsGist = (content) => () => {
+
   const createGist = remote.require('./services').createGist
   createGist(content, saved, notSaved)
 }
