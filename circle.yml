@@ -1,0 +1,8 @@
+machine:
+  node:
+    version: 5.7.1
+
+test:
+  override:
+    - npm run package
+    - npm run lint
