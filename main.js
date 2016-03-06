@@ -5,7 +5,7 @@ const path = require('path')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const crashReporter = electron.crashReporter
+// const crashReporter = electron.crashReporter
 const Menu = electron.Menu
 const shell = electron.shell
 let menu
