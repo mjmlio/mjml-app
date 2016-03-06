@@ -1,2 +1,6 @@
 export amario from './amario'
 export arturia from './arturia'
+export onepage from './one-page'
+export racoon from './racoon'
+export ticket from './ticket'
+export proof from './proof'
