@@ -23,6 +23,10 @@ It allows you to create responsive emails with a live preview on both phone and 
 
 The app is based on React, Redux and Electron.
 
+<p align="center">
+  <img src="screenshot.png">
+</p>
+
 ### Installation
 
 Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version that fits your platform.
