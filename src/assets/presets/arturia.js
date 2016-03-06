@@ -1,5 +1,6 @@
 export default {
-  name: 'Amario',
+  id: 'arturia',
+  name: 'Arturia',
   mjml: `<mj-body background-color="#F2F2F2">
 
   <mj-section vertical-align="center" padding-bottom="0px">

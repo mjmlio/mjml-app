@@ -9,14 +9,17 @@ import '../styles/TileGrid.scss'
 class TileGrid extends Component {
 
   render () {
-    const { items } = this.props
+    const { items, overlayActions } = this.props
 
     return (
       <div className='TileGrid'>
         <ScrollArea className='TileGrid-abs anim-sub-page'>
           <div className='TileGrid-wrapper'>
             {items.map(item =>
-              <Tile template={item} key={item.get('id')}/>)}
+              <Tile
+                item={item}
+                overlayActions={overlayActions}
+                key={item.get('id')}/>)}
           </div>
         </ScrollArea>
       </div>

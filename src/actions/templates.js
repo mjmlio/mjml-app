@@ -165,3 +165,7 @@ export const makeSnapshot = template => dispatch => {
     dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) }))
   })
 }
+
+export const usePreset = preset => dispatch => {
+  dispatch(createNewTemplate(preset.get('mjml')))
+}

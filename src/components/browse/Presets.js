@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import TileGrid from '../TileGrid'
 
+import PresetOverlayActions from '../PresetOverlayActions'
+
+@connect(
+  state => ({
+    presets: state.presets
+  })
+)
 class Templates extends Component {
 
   render () {
-    // TODO: get presets
-    const presets = []
+    const { presets } = this.props
 
     return (
       <div>
-        {!!presets.length
-          ? <TileGrid items={presets} />
+        {!!presets.size
+          ? <TileGrid
+            overlayActions={PresetOverlayActions}
+            items={presets} />
           : (
             <div className='BlankPlaceholder anim-bounce'>
               <h1 className='anim-fadeInUp'>

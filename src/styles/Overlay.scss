@@ -1,6 +1,12 @@
 
 @import './vars.scss';
 
+.Overlay-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .overlay {
   z-index: 666;
   background-color: rgba(0, 0, 0, 0.5);
@@ -9,6 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   .Button {
     box-shadow: rgba(0,0,0,0.2) 0 2px 5px;
@@ -24,7 +31,7 @@
 
     animation: 150ms ease-out anim-btn-overlay-delayed;
 
-    &.open {
+    &.big {
       animation-name: anim-btn-overlay;
       padding: 25px;
     }

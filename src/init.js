@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import { checkAndCreateAppFolders } from './helpers/file-system'
 import { readTemplates } from './actions/templates'
 import { loadConfig } from './actions'
+import createPresetsThumbnails from './helpers/createPresetsThumbnails'
 
 /**
  * Init the app
@@ -16,6 +17,9 @@ export default ({ dispatch }) => Promise.all([
 
   // TODO: we should get rid of this
   checkAndCreateAppFolders(),
+
+  // create the presets thumbnails...
+  createPresetsThumbnails(),
 
   // load user config.
   // TODO: merge with defaults instead of overriding

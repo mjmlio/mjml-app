@@ -2,8 +2,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import '../styles/Desktop.scss'
-
 @connect(
   state => ({
     template: state.templates.getIn(['list', state.templates.get('list').findIndex(

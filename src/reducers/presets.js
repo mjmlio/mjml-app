@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { handleActions } from 'redux-actions'
-import { List } from 'immutable'
+import { fromJS } from 'immutable'
 
 import * as presetsMap from '../assets/presets'
 
-const state = List(_.values(presetsMap))
+const state = fromJS(_.values(presetsMap))
 
 export default handleActions({
 }, state)

@@ -81,6 +81,12 @@
 
     &.platform-desktop {
       width: 650px;
+      .container {
+        align-items: stretch;
+        iframe {
+          width: 100%;
+        }
+      }
     }
   }
 }

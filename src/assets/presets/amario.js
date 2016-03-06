@@ -1,4 +1,5 @@
 export default {
+  id: 'amario',
   name: 'Amario',
   mjml: `<mj-body background-color="#d6dde5">
 

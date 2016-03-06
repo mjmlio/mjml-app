@@ -5,16 +5,16 @@ import '../styles/Thumbnail.scss'
 
 class Thumbnail extends Component {
 
-  static getSrc = template => `../thumbnails/${template.get('id')}.png?t=${crypto.createHash('sha256').update(template.get('mjml')).digest('base64')}`
+  static getSrc = item => `../thumbnails/${item.get('id')}.png?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`
 
   render () {
-    const { template } = this.props
-    const thumbnailLoading = template.get('thumbnailLoading')
+    const { item } = this.props
+    const thumbnailLoading = item.get('thumbnailLoading')
 
     return (
       <div className='Thumbnail'>
         {thumbnailLoading && <span className='Loading ion-android-sync'></span>}
-        {!thumbnailLoading && <div className='Preview' style={{ backgroundImage: `url(${Thumbnail.getSrc(template)})` }}></div>}
+        {!thumbnailLoading && <div className='Preview' style={{ backgroundImage: `url(${Thumbnail.getSrc(item)})` }}></div>}
       </div>
     )
   }
