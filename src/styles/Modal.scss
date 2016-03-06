@@ -24,6 +24,12 @@
   border: 1px solid $blue;
   box-shadow: rgba(0, 0, 0, 0.3) 0 5px 20px;
   animation: 350ms ease-out fadeInUpDelayed;
+
+  input {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1em;
+    width: 100%;
+  }
 }
 
 @keyframes fadeIn {

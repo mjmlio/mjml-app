@@ -43,7 +43,7 @@ export const loadTemplate = (template) => dispatch => {
 /**
  * Template update utilities
  */
-const doUpdateTemplate = createAction('UPDATE_TEMPLATE')
+export const doUpdateTemplate = createAction('UPDATE_TEMPLATE')
 const doUpdateCurrentTemplate = createAction('UPDATE_CURRENT_TEMPLATE', updater => updater)
 
 /**
@@ -71,16 +71,12 @@ export const updateCurrentTemplate = updater => dispatch => {
   }))
 }
 
-/**
- * Save current template to filesystem
- */
-export const saveTemplate = () => (dispatch, getState) => {
+export const saveTemplateWithId = id => (dispatch, getState) => {
 
   const state = getState()
   const { templates, config } = state
 
   const list = templates.get('list')
-  const id = templates.get('current')
   const template = list.get(list.findIndex(
     template => template.get('id') === id
   ))
@@ -89,6 +85,17 @@ export const saveTemplate = () => (dispatch, getState) => {
     .delete('thumbnailLoading')
 
   save(cleaned, config.get('projectDirectory'))
+}
+
+/**
+ * Save current template to filesystem
+ */
+export const saveTemplate = () => (dispatch, getState) => {
+
+  const state = getState()
+  const { templates } = state
+
+  return dispatch(saveTemplateWithId(templates.get('current')))
 }
 
 /**
