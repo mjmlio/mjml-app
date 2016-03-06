@@ -37,7 +37,7 @@ exports.send = function (options, success, error) {
     })
 }
 
-exports.createGist = function (content, success, error) {
+exports.createGist = function (content, done) {
   const options = {
     url: 'https://api.github.com/gists',
     method: 'POST',
@@ -57,6 +57,9 @@ exports.createGist = function (content, success, error) {
   }
 
   request(options, (err, response, body) => {
-    return err || response.statusCode !== 201 ? error(err) : success(JSON.parse(body))
+    if (err || response.statusCode !== 201) {
+      return done(err)
+    }
+    done(null, JSON.parse(body))
   })
 }

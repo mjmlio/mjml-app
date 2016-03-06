@@ -1,12 +1,10 @@
-
-import { remote } from 'electron'
-import { notify, error } from '../helpers/notification'
-
-const saved = () => notify('Gist saved! But you will not get the url.')
-const notSaved = () => error('Something went wrong')
+import { remote, shell } from 'electron'
 
 export const exportAsGist = (content) => () => {
 
   const createGist = remote.require('./services').createGist
-  createGist(content, saved, notSaved)
+  createGist(content, (err, body) => {
+    if (err) { return }
+    shell.openExternal(body.html_url)
+  })
 }
