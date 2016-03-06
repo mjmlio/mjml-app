@@ -12,8 +12,15 @@ class TemplateOverlayActions extends Component {
     editNameModal: false
   }
 
-  showEditNameModal = () => this.setState({ editNameModal: true })
-  hideEditNameModal = () => this.setState({ editNameModal: false })
+  showEditNameModal = () => {
+    this.setState({ editNameModal: true })
+    this.props.captureOverlay(true)
+  }
+
+  hideEditNameModal = () => {
+    this.setState({ editNameModal: false })
+    this.props.captureOverlay(false)
+  }
 
   loadTemplate = template => () => {
     this.props.dispatch(loadTemplate(template))

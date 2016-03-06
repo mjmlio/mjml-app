@@ -11,7 +11,7 @@ class Overlay extends Component {
       <div>
         {visible && (
           <div className='overlay'>
-            <Actions item={item} />
+            <Actions item={item} captureOverlay={this.props.captureOverlay} />
           </div>
         )}
       </div>

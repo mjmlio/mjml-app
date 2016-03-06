@@ -9,11 +9,14 @@ import '../styles/Tile.scss'
 class Tile extends Component {
 
   state = {
-    overlay: false
+    overlay: false,
+    overlayCaptured: false
   }
 
   showOverlay = () => !this.state.showOverlay && this.setState({ overlay: true })
   hideOverlay = () => this.setState({ overlay: false })
+
+  captureOverlay = toggle => this.setState({ overlayCaptured: toggle })
 
   render () {
     const {
@@ -26,7 +29,8 @@ class Tile extends Component {
         <Overlay
           item={item}
           Actions={overlayActions}
-          visible={this.state.overlay} />
+          captureOverlay={this.captureOverlay}
+          visible={this.state.overlay || this.state.overlayCaptured} />
         <div className='template-wrapper'>
           <Thumbnail item={item} />
         </div>
