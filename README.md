@@ -25,7 +25,7 @@ The app is based on React, Redux and Electron.
 
 ### Installation
 
-Visit the [mjml app. website](mjmlio.github.io/mjml-app) to download the version that fits your platform.
+Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version that fits your platform.
 
 ### Build from source
 
