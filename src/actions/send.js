@@ -11,12 +11,13 @@ export const send = (html) => (dispatch, getState) => {
   const { config } = state
   const mailjet = remote.require('./services').send
 
-  mailjet({
+  const payload = {
     apiKey: config.get('mjApiKey'),
     apiSecret: config.get('mjApiSecret'),
     name: config.get('userName'),
     sender: config.get('userEmail'),
-    to: 'gbadi@mailjet.com',
+    to: config.get('sendTo'),
     html
-  }, sent, notSent)
+  }
+  mailjet(payload, sent, notSent)
 }

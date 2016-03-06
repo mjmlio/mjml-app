@@ -88,3 +88,9 @@ img {
     transform: translate3d(0, 0, 0);
   }
 }
+
+.form-group {
+  & + .form-group {
+    margin-top: 20px;
+  }
+}

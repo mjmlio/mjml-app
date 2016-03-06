@@ -6,10 +6,10 @@ import { push } from 'react-router-redux'
 import Editor from './Editor'
 import { makeSnapshot, updateCurrentTemplate, saveTemplate, exportTemplate } from '../actions/templates'
 import { updateConfig } from '../actions'
-import { send } from '../actions/send'
 import { exportAsGist } from '../actions/gist'
 import Button from './Button'
 import EditorSettings from './EditorSettings'
+import EditorSend from './EditorSend'
 import Mobile from './Mobile'
 import Desktop from './Desktop'
 import DropDown from './DropDown'
@@ -58,10 +58,6 @@ class EditorPage extends Component {
     const { template } = this.props
     if (!template) { return }
     this.props.dispatch(exportTemplate({ template, type }))
-  }
-
-  send = () => {
-    this.props.dispatch(send(this.props.template.get('html')))
   }
 
   gist = () => {
@@ -117,10 +113,9 @@ class EditorPage extends Component {
               <i className='ion-android-image bar-icon' />
               {'Preview'}
             </Button>
-            <Button className='EditorPage-bar-item' onClick={this.send}>
-              <i className='ion-ios-navigate bar-icon' />
-              {'Send'}
-            </Button>
+
+            <EditorSend template={template} />
+
             <Button className='EditorPage-bar-item' onClick={this.gist}>
               <i className='ion-social-github bar-icon' />
               {'Gist'}

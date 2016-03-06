@@ -27,8 +27,19 @@
 
   input {
     background: rgba(255, 255, 255, 0.1);
+    cursor: text;
     padding: 1em;
     width: 100%;
+  }
+
+  ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    text-align: right;
   }
 }
 
