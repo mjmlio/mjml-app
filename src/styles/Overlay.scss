@@ -12,6 +12,7 @@
 
   .button {
     background-color: $blue;
+    box-shadow: rgba(0,0,0,0.2) 0 2px 5px;
     width: 20px;
     height: 20px;
     padding: 15px;
@@ -19,9 +20,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px;
+    margin: 3px;
+
+    animation: 150ms ease-out anim-btn-overlay-delayed;
+
+    &:hover {
+      background: #2F62C1;
+      &:active {
+        background: #2653A5;
+      }
+    }
 
     &.open {
+      animation-name: anim-btn-overlay;
       padding: 25px;
     }
 
@@ -29,5 +40,31 @@
       color: white;
       font-size: 13px;
     }
+  }
+}
+
+@keyframes anim-btn-overlay {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes anim-btn-overlay-delayed {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  40% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }

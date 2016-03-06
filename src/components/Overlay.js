@@ -28,7 +28,7 @@ class Overlay extends Component {
         </Button>
 
         <Button className='button open' onClick={this.loadTemplate(template)}>
-          <i className='ion-android-open' />
+          <i className='ion-edit' />
         </Button>
 
         <Button className='button' onClick={this.deleteTemplate(template)}>
