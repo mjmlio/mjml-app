@@ -12,7 +12,7 @@ export default ({ dispatch }) => Promise.all([
 
   // go to browse recent, because react-router :'(
   // TODO: find a solution
-  dispatch(push('/browse/recent')),
+  dispatch(push('/browse/templates')),
 
   // TODO: we should get rid of this
   checkAndCreateAppFolders(),

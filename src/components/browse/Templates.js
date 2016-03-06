@@ -1,21 +1,36 @@
 import React, { Component } from 'react'
-import TileGrid from '../TileGrid'
+import { connect } from 'react-redux'
 
-class Templates extends Component {
+import { createNewTemplate } from '../../actions/templates'
+import TileGrid from '../TileGrid'
+import Button from '../Button'
+
+@connect(
+  state => ({
+    templates: state.templates.get('list')
+  })
+)
+class BrowseRecent extends Component {
+
+  createNew = () => {
+    this.props.dispatch(createNewTemplate())
+  }
 
   render () {
-    // TODO: get presets
-    const presets = []
+    const { templates } = this.props
 
     return (
       <div>
-        {!!presets.length
-          ? <TileGrid items={presets} />
+        {!!templates.size
+          ? <TileGrid items={templates} />
           : (
             <div className='BlankPlaceholder anim-bounce'>
-              <h1 className='anim-fadeInUp'>
-                {'No presets availables!'}
+              <h1 className='anim-fadeInUp' style={{ marginBottom: 40 }}>
+                {'You have no templates.'}
               </h1>
+              <Button className='primary anim-fadeInDelayed' onClick={this.createNew}>
+                {'Create your first template!'}
+              </Button>
             </div>
           )}
       </div>
@@ -24,4 +39,4 @@ class Templates extends Component {
 
 }
 
-export default Templates
+export default BrowseRecent

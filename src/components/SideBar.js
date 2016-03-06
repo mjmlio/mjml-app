@@ -30,17 +30,17 @@ class SideBar extends Component {
       <div className='SideBar'>
 
         <Link
-          to='/browse/recent'
-          activeClassName='active'
-          className='SideBar-section'>
-          {'Recent'}
-        </Link>
-
-        <Link
           to='/browse/templates'
           activeClassName='active'
           className='SideBar-section'>
-          {'Gallery'}
+          {'Templates'}
+        </Link>
+
+        <Link
+          to='/browse/presets'
+          activeClassName='active'
+          className='SideBar-section'>
+          {'Presets'}
         </Link>
 
         <Link

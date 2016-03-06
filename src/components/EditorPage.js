@@ -69,7 +69,7 @@ class EditorPage extends Component {
   }
 
   home = () => {
-    this.props.dispatch(push('/browse/recent'))
+    this.props.dispatch(push('/browse/templates'))
   }
 
   toggleMode = (platform) => () => {

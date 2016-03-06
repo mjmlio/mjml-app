@@ -8,8 +8,8 @@ import Documentation from './components/Documentation'
 import ComingSoon from './components/ComingSoon'
 
 // browse page
-import BrowseRecent from './components/browse/Recent'
 import BrowseTemplates from './components/browse/Templates'
+import BrowsePresets from './components/browse/Presets'
 
 export default (
   <Route component={App}>
@@ -17,8 +17,8 @@ export default (
     <Route path='/' component={HomePage} />
 
     <Route path='browse' component={HomePage}>
-      <Route path='recent' component={BrowseRecent} />
       <Route path='templates' component={BrowseTemplates} />
+      <Route path='presets' component={BrowsePresets} />
       <Route path='components' component={ComingSoon} />
     </Route>
 
