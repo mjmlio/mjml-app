@@ -18,28 +18,23 @@
 
 <br />
 
-This is local editor for the [MJML](https://github.com/mjmlio/mjml) language.
+This is a local editor for the [MJML](https://github.com/mjmlio/mjml) language.
 It allows you to create responsive emails with a live preview on both phone and Desktop.
 
-The app is based on React, Redux and Electron
+The app is based on React, Redux and Electron.
 
 ### Installation
 
-Visit the [mjml app. website](mjmlio.github.io/mjml-app) to download the version that fits your platform
+Visit the [mjml app. website](mjmlio.github.io/mjml-app) to download the version that fits your platform.
 
 ### Build from source
 
 OSX
 
 ``` bash
-
 $ git clone <repo> mjml-app && cd mjml-app
-
-
 $ npm install && npm run package
-
 $ cp -r node_modules/electron-prebuilt release/darwin-x64/mjml-desktop-darwin-x64/mjml-app.app/Contents/Resources/app/node_modules/
-
 ```
 
 ### Releases and Changelogs
