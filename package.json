@@ -90,6 +90,7 @@
     "redux": "^3.2.1",
     "redux-actions": "^0.9.1",
     "redux-thunk": "^1.0.2",
+    "request": "^2.69.0",
     "shortid": "^2.2.4"
   }
 }
