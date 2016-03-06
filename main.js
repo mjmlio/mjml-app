@@ -12,7 +12,8 @@ let menu
 let template
 let mainWindow = null
 
-crashReporter.start()
+// TODO: make this work
+//crashReporter.start()
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
