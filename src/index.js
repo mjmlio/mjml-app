@@ -2,31 +2,23 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory, match } from 'react-router'
-import { push } from 'react-router-redux'
 import { trigger } from 'redial'
 
-import { checkAndCreateAppFolders } from './helpers/file-system'
+import init from './init'
 import routes from './routes'
 import configureStore from './store/configureStore'
-import { loadConfig } from './actions'
-import { readTemplates } from './actions/templates'
 
 import './styles/main.scss'
 
 const store = configureStore()
-const { dispatch } = store
 
-store.dispatch(push('/browse/recent'))
-
-Promise.all([
-  checkAndCreateAppFolders(),
-  store.dispatch(loadConfig()),
-  store.dispatch(readTemplates())
-]).then(() => {
+init(store).then(() => {
 
   const onListen = location => {
     match({ routes, location }, (error, redirectLocation, renderProps) => {
+
       const { components, params, location: { path } } = renderProps
+      const { dispatch } = store
 
       trigger('fetch', components, { params, path, dispatch })
         .then(() => {
