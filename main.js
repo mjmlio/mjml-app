@@ -13,7 +13,7 @@ let template
 let mainWindow = null
 
 // TODO: make this work
-//crashReporter.start()
+// crashReporter.start()
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
