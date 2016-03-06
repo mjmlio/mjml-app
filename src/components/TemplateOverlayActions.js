@@ -63,10 +63,14 @@ class TemplateOverlayActions extends Component {
 
         <Modal isOpened={editNameModal} onClose={this.hideEditNameModal}>
           <form onSubmit={this.saveName}>
-            <input ref='tplName' type='text' defaultValue={item.get('name')} />
-            <button type='submit' className='Button primary'>
-              {'Save'}
-            </button>
+            <div className='form-group'>
+              <input ref='tplName' type='text' defaultValue={item.get('name')} />
+            </div>
+            <div className='form-group'>
+              <button type='submit' className='Button primary'>
+                {'Save'}
+              </button>
+            </div>
           </form>
         </Modal>
       </div>
