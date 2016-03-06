@@ -17,5 +17,16 @@
     border-color: rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.2);
     text-transform: uppercase;
+
+    &:hover {
+      background: #2F62C1;
+      &:active {
+        background: #2653A5;
+      }
+    }
+  }
+
+  &.danger {
+    background: $red;
   }
 }

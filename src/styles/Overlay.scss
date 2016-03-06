@@ -10,26 +10,19 @@
   justify-content: center;
   align-items: center;
 
-  .button {
-    background-color: $blue;
+  .Button {
     box-shadow: rgba(0,0,0,0.2) 0 2px 5px;
     width: 20px;
     height: 20px;
     padding: 15px;
     border-radius: 50%;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 3px;
 
     animation: 150ms ease-out anim-btn-overlay-delayed;
-
-    &:hover {
-      background: #2F62C1;
-      &:active {
-        background: #2653A5;
-      }
-    }
 
     &.open {
       animation-name: anim-btn-overlay;

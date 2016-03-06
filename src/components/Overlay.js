@@ -23,15 +23,15 @@ class Overlay extends Component {
 
     return (
       <div className='overlay'>
-        <Button className='button'>
+        <Button className='primary'>
           <i className='ion-pricetag' />
         </Button>
 
-        <Button className='button open' onClick={this.loadTemplate(template)}>
+        <Button className='primary open' onClick={this.loadTemplate(template)}>
           <i className='ion-edit' />
         </Button>
 
-        <Button className='button' onClick={this.deleteTemplate(template)}>
+        <Button className='danger' onClick={this.deleteTemplate(template)}>
           <i className='ion-trash-b' />
         </Button>
       </div>
