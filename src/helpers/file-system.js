@@ -69,6 +69,9 @@ export const writeFile = promisify(fs.writeFile)
 export const readFile = (file) =>
   promisify(fs.readFile)(file, 'utf8')
 
+export const writeSnapshot = (img, id) =>
+  writeFile(path.join(thumbnailsFolder, `${id}.png`), img.toPng())
+
 /**
  * Delete a template
  */

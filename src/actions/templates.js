@@ -13,6 +13,7 @@ import {
   save,
   readFile,
   writeFile,
+	writeSnapshot,
   deleteTemplate as fsDeleteTemplate
 } from '../helpers/file-system'
 
@@ -167,10 +168,23 @@ export const exportTemplate = ({ template, type }) => () => {
  */
 export const makeSnapshot = template => dispatch => {
   const id = template.get('id')
+  const { BrowserWindow } = remote
+  const win = new BrowserWindow({ width: 650, height: 800, show: false })
+
   dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', true) }))
 
-  remote.require('./services').takeSnapshot(template.get('id'), template.get('html'), () => {
-    dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) }))
+  win.loadUrl(`data:text/html,${encodeURIComponent(template.get('html'))}`)
+	win.webContents.on('did-finish-load', () => {
+    
+    setTimeout(() => {
+      win.capturePage(img => {
+        writeSnapshot(img, template.get('id'))
+          .then(() => dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) })))
+          .then(() => win.close())
+          .catch(e => win.close())
+      })
+    }, 500)
+
   })
 }
 
