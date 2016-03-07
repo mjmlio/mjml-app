@@ -25,6 +25,19 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0 5px 20px;
   animation: 350ms ease-out fadeInUpDelayed;
 
+  > i {
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    &:hover {
+      color: white;
+    }
+  }
+
   input {
     background: rgba(255, 255, 255, 0.1);
     cursor: text;
@@ -41,6 +54,7 @@
     margin-bottom: 1em;
     text-align: right;
   }
+
 }
 
 @keyframes fadeIn {

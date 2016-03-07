@@ -21,7 +21,10 @@ class Modal extends Component {
         className='Modal-container'>
 
         <div className='Modal'>
-          {children}
+          <i onClick={onClose} className='ion-close' />
+          <div>
+            {children}
+          </div>
         </div>
 
       </Portal>
