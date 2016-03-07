@@ -135,9 +135,14 @@ export const deleteTemplate = template => dispatch => {
  * Show the Open dialog window and load an MJML file
  */
 export const open = () => dispatch => {
-  dialog.showOpenDialog((filenames) => {
+  dialog.showOpenDialog({
+    filters: [{ name: 'MJML Files', extensions: ['mjml'] }]
+  }, (filenames) => {
     if (!filenames) { return }
-    readFile(filenames[0])
+    const filename = filenames[0]
+    if (filename.split('.').pop() !== 'mjml') { return }
+
+    readFile(filename)
       .then(content => dispatch(createNewTemplate(content)))
   })
 }
@@ -148,7 +153,9 @@ export const open = () => dispatch => {
 export const exportTemplate = ({ template, type }) => () => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
-    writeFile(filename, template.get(type))
+
+    const name = filename.split('.').pop() !== 'mjml' ? `${filename}.mjml` : filename
+    writeFile(name, template.get(type))
       .then(() => notify('Saved!'))
       .catch(() => error('Not Saved!'))
   })
