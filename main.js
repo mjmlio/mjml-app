@@ -25,9 +25,11 @@ app.on('window-all-closed', () => {
 
 app.on('ready', () => {
 
+  const size = electron.screen.getPrimaryDisplay().workAreaSize
+
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 728,
+    width: size.width,
+    height: size.height,
     titleBarStyle: 'hidden-inset',
     icon: path.join(app.getAppPath(), 'src/assets/images/logo_orange.png'),
     show: false
