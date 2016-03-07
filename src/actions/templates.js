@@ -154,7 +154,8 @@ export const exportTemplate = ({ template, type }) => () => {
   dialog.showSaveDialog((filename) => {
     if (!filename) { return }
 
-    const name = filename.split('.').pop() !== 'mjml' ? `${filename}.mjml` : filename
+    const ext = filename.split('.').pop()
+    const name = ext !== type ? `${filename}.${type}` : filename
     writeFile(name, template.get(type))
       .then(() => notify('Saved!'))
       .catch(() => error('Not Saved!'))
