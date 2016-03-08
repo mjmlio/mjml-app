@@ -3,9 +3,9 @@
 </h3>
 
 <p align="center">
+  <a href="https://travis-ci.org/mjmlio/mjml-app"><img src="https://travis-ci.org/mjmlio/mjml-app.svg?branch=master" alt="Build Status"></a>
   <a href="http://starveller.sigsev.io/mjmlio/mjml-app"><img src="http://starveller.sigsev.io/api/repos/mjmlio/mjml-app/badge" alt="Week Stars"></a>
-  
-<!p>
+</p>
 
 <br />
 
