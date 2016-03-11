@@ -11,7 +11,7 @@ const argv = require('minimist')(process.argv.slice(2))
 const pkg = require('./package.json')
 const devDeps = Object.keys(pkg.devDependencies)
 
-const appName = argv.name || argv.n || pkg.productName
+const appName = 'MJML App.'
 const shouldUseAsar = argv.asar || argv.a || false
 const shouldBuildAll = argv.all || false
 
@@ -97,6 +97,7 @@ function pack (plat, arch, cb) {
   const opts = Object.assign({}, DEFAULT_OPTS, iconObj, {
     platform: plat,
     arch,
+    icon: './logo.icns',
     prune: true,
     out: `release/${plat}-${arch}`
   })

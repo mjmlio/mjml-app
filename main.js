@@ -31,8 +31,8 @@ app.on('ready', () => {
     width: size.width,
     height: size.height,
     titleBarStyle: 'hidden-inset',
-    icon: path.join(app.getAppPath(), 'src/assets/images/logo_orange.png'),
-    show: false
+    show: false,
+    icon: './logo.icns'
   })
 
   if (process.env.HOT) {

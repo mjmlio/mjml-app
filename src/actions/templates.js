@@ -5,6 +5,7 @@ import { Map } from 'immutable'
 import mjml2html from 'mjml/lib/mjml2html'
 import { remote } from 'electron'
 import { error, notify } from '../helpers/notification'
+import { MJMLError } from '../helpers/error'
 
 const dialog = remote.require('dialog')
 
@@ -59,11 +60,13 @@ export const updateCurrentTemplate = updater => dispatch => {
     // re-calculate mjml only if mjml has changed
     if (newTemplate.get('mjml') !== template.get('mjml')) {
       try {
+        console.log('try')
         const html = mjml2html(newTemplate.get('mjml'))
         newTemplate = newTemplate.set('html', html)
       } catch (e) {
-        // notification
-        newTemplate = newTemplate.set('html', '')
+        console.log('catch')
+        console.log(e)
+        newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
       }
     }
 
