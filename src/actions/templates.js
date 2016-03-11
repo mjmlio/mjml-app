@@ -168,24 +168,13 @@ export const exportTemplate = ({ template, type }) => () => {
  */
 export const makeSnapshot = template => dispatch => {
   const id = template.get('id')
-  const { BrowserWindow } = remote
-  const win = new BrowserWindow({ width: 650, height: 800, show: false })
+  const  { capture } = remote.require('./services')
 
   dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', true) }))
 
-  win.loadUrl(`data:text/html,${encodeURIComponent(template.get('html'))}`)
-	win.webContents.on('did-finish-load', () => {
-    
-    setTimeout(() => {
-      win.capturePage(img => {
-        writeSnapshot(img, template.get('id'))
-          .then(() => dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) })))
-          .then(() => win.close())
-          .catch(e => win.close())
-      })
-    }, 500)
-
-  })
+  capture(`data:text/html,${encodeURIComponent(template.get('html'))}`)
+    .then(img => writeSnapshot(img, template.get('id')))
+    .then(() => dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) })))
 }
 
 export const usePreset = preset => dispatch => {
