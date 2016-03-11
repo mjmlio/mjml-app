@@ -5,7 +5,7 @@ import { push } from 'react-router-redux'
 export const registerShortcuts = (register) => dispatch => {
   register({
     name: 'toggle:preview',
-    bindKey: { mac: 'Cmd+h' },
+    bindKey: { mac: 'Cmd+p' },
     readOnly: true,
     exec () {
       dispatch(updateConfig(
@@ -16,10 +16,10 @@ export const registerShortcuts = (register) => dispatch => {
 
   register({
     name: 'goto:home',
-    bindKey: { mac: 'Cmd+y' },
+    bindKey: { mac: 'Cmd+b' },
     readOnly: true,
     exec () {
-      dispatch(push('/browse/recent'))
+      dispatch(push('/browse/templates'))
     }
   })
 }
