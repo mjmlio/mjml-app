@@ -73,7 +73,6 @@
   "dependencies": {
     "brace": "^0.7.0",
     "classnames": "^2.2.3",
-    "electron-screenshot-service": "^2.2.2",
     "immutable": "^3.7.6",
     "lodash": "^4.5.1",
     "mjml": "^1.2.1",

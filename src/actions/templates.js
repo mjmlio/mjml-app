@@ -13,6 +13,7 @@ import {
   save,
   readFile,
   writeFile,
+	writeSnapshot,
   deleteTemplate as fsDeleteTemplate
 } from '../helpers/file-system'
 
@@ -167,11 +168,13 @@ export const exportTemplate = ({ template, type }) => () => {
  */
 export const makeSnapshot = template => dispatch => {
   const id = template.get('id')
+  const  { capture } = remote.require('./services')
+
   dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', true) }))
 
-  remote.require('./services').takeSnapshot(template.get('id'), template.get('html'), () => {
-    dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) }))
-  })
+  capture(`data:text/html,${encodeURIComponent(template.get('html'))}`)
+    .then(img => writeSnapshot(img, template.get('id')))
+    .then(() => dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', false) })))
 }
 
 export const usePreset = preset => dispatch => {

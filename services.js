@@ -1,24 +1,27 @@
 const fs = require('fs')
 const path = require('path')
-const app = require('electron').app
-const screenshot = require('electron-screenshot-service')
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
 const request = require('request')
 
 const Mailjet = require('node-mailjet')
 
-exports.takeSnapshot = function (id, html, done) {
-  const url = `data:text/html,${encodeURIComponent(html)}`
+exports.capture = function (content) {
+  const win = new BrowserWindow({ x: 0, y: 0, width: 650, height: 800, show: false })
+  win.loadUrl(content)
 
-  screenshot({
-    url,
-    width: 650,
-    height: 800,
-    css: 'body{overflow:hidden}'
-  }).then(img => {
-    const p = path.join(app.getAppPath(), `./thumbnails/${id}.png`)
-    fs.writeFile(p, img.data, done)
+  return new Promise((resolve, reject) => {
+    win.webContents.on('did-finish-load', function () {
+      
+      setTimeout(() => {
+        win.capturePage(img => {
+          resolve(img) && win.close()
+        })
+      }, 500)
+
+    })
   })
-  .catch(done)
 }
 
 exports.send = function (options, success, error) {
