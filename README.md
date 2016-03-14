@@ -37,8 +37,9 @@ OSX
 ``` bash
 $ git clone <repo> mjml-app && cd mjml-app
 $ npm install && npm run package
-$ cp -r node_modules/electron-prebuilt release/darwin-x64/mjml-desktop-darwin-x64/mjml-app.app/Contents/Resources/app/node_modules/
 ```
+
+Binary will be created in the `releases` folder.
 
 ### Releases and Changelogs
 
