@@ -10,9 +10,7 @@
 <br />
 
 <p align="center">
-	<a href="#" target="_blank">
-    	<img width="250"src="https://mjml.io/assets/img/component.png">
-    </a>
+  <img src="screenshot.png">
 </p>
 
 <br />
@@ -27,10 +25,6 @@ This is a local editor for the [MJML](https://github.com/mjmlio/mjml) language.
 It allows you to create responsive emails with a live preview on both phone and Desktop.
 
 The app is based on React, Redux and Electron.
-
-<p align="center">
-  <img src="screenshot.png">
-</p>
 
 ### Installation
 
