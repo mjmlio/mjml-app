@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory, match } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { trigger } from 'redial'
 
 import init from './init'
@@ -11,6 +12,7 @@ import configureStore from './store/configureStore'
 import './styles/main.scss'
 
 const store = configureStore()
+const history = syncHistoryWithStore(hashHistory, store)
 
 init(store).then(() => {
 
@@ -24,7 +26,7 @@ init(store).then(() => {
         .then(() => {
           render(
             <Provider store={store}>
-              <Router history={hashHistory}>
+              <Router history={history}>
                 {routes}
               </Router>
             </Provider>,
