@@ -2,5 +2,8 @@
   "extends": ["zavatta", "zavatta-react"],
   "rules": {
     "camelcase": 0
+  },
+  "globals": {
+    "Promise": false
   }
 }

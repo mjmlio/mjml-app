@@ -47,6 +47,10 @@ import '../styles/Editor.scss'
 @connect()
 class Editor extends Component {
 
+  static aceProps = {
+    $blockScrolling: true
+  }
+
   constructor (props) {
     super(props)
 
@@ -61,10 +65,6 @@ class Editor extends Component {
 
     editor.focus()
     this.props.dispatch(registerShortcuts(register))
-  }
-
-  static aceProps = {
-    $blockScrolling: true
   }
 
   saveContent = debounce((content) => {

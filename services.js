@@ -1,7 +1,4 @@
-const fs = require('fs')
-const path = require('path')
 const electron = require('electron')
-const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const request = require('request')
 
@@ -11,12 +8,12 @@ exports.capture = function (content) {
   const win = new BrowserWindow({ x: 0, y: 0, width: 650, height: 800, show: false })
   win.loadUrl(content)
 
-  return new Promise((resolve, reject) => {
-    win.webContents.on('did-finish-load', function () {
-      
+  return new Promise(resolve => {
+    win.webContents.on('did-finish-load', () => {
       setTimeout(() => {
         win.capturePage(img => {
-          resolve(img) && win.close()
+          resolve(img)
+          win.close()
         })
       }, 500)
 

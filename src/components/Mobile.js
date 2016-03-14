@@ -33,7 +33,7 @@ class Mobile extends Component {
         <div id='phone'>
           <div id='home'></div>
           <div id='speaker'></div>
-          <iframe className='screen' ref={el => this._iframe = el}/>
+          <iframe className='screen' ref={el => { this._iframe = el }}/>
         </div>
       </div>
     )

@@ -28,7 +28,7 @@ class Desktop extends Component {
   render () {
     return (
       <div className='container'>
-        <iframe className='preview' ref={(el) => this._iframe = el} />
+        <iframe className='preview' ref={(el) => { this._iframe = el }} />
       </div>
     )
   }

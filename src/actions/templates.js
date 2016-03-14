@@ -60,12 +60,9 @@ export const updateCurrentTemplate = updater => dispatch => {
     // re-calculate mjml only if mjml has changed
     if (newTemplate.get('mjml') !== template.get('mjml')) {
       try {
-        console.log('try')
         const html = mjml2html(newTemplate.get('mjml'))
         newTemplate = newTemplate.set('html', html)
       } catch (e) {
-        console.log('catch')
-        console.log(e)
         newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
       }
     }
@@ -171,7 +168,7 @@ export const exportTemplate = ({ template, type }) => () => {
  */
 export const makeSnapshot = template => dispatch => {
   const id = template.get('id')
-  const  { capture } = remote.require('./services')
+  const { capture } = remote.require('./services')
 
   dispatch(doUpdateTemplate({ id, updater: template => template.set('thumbnailLoading', true) }))
 
