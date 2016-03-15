@@ -9,24 +9,22 @@ import createPresetsThumbnails from './helpers/createPresetsThumbnails'
  * Init the app
  * All pre-1rst-render operations should be here
  */
-export default ({ dispatch }) => Promise.all([
-
-  // go to browse recent, because react-router :'(
-  // TODO: find a solution
-  dispatch(push('/browse/templates')),
+export default ({ dispatch }) =>
 
   // TODO: we should get rid of this
-  checkAndCreateAppFolders(),
+  checkAndCreateAppFolders()
 
-  // create the presets thumbnails...
-  createPresetsThumbnails(),
+    // create the presets thumbnails...
+    .then(() => createPresetsThumbnails())
 
-  // load user config.
-  // TODO: merge with defaults instead of overriding
-  dispatch(loadConfig()),
+    // load user config.
+    // TODO: merge with defaults instead of overriding
+    .then(() => dispatch(loadConfig()))
 
-  // load all user templates
-  // TODO: db?
-  dispatch(readTemplates())
+    // load all user templates
+    // TODO: db?
+    .then(() => dispatch(readTemplates()))
 
-])
+    // go to browse recent, because react-router :'(
+    // TODO: find a solution
+    .then(() => dispatch(push('/browse/templates')))

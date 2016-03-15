@@ -1,24 +1,36 @@
+const fs = require('fs')
+const path = require('path')
 const electron = require('electron')
+const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const request = require('request')
 
 const Mailjet = require('node-mailjet')
 
-exports.capture = function (content) {
-  const win = new BrowserWindow({ x: 0, y: 0, width: 650, height: 800, show: false })
-  win.loadUrl(content)
+exports.takeSnapshot = (id, html, done) => {
 
-  return new Promise(resolve => {
-    win.webContents.on('did-finish-load', () => {
-      setTimeout(() => {
-        win.capturePage(img => {
-          resolve(img)
-          win.close()
-        })
-      }, 500)
+  const winOpts = {
+    x: 0,
+    y: 0,
+    width: 650,
+    height: 800,
+    show: false
+  }
 
-    })
+  const win = new BrowserWindow(winOpts)
+
+  win.loadUrl(`data:text/html,${encodeURIComponent(html)}`)
+
+  win.webContents.on('did-finish-load', () => {
+    setTimeout(() => {
+      win.capturePage(img => {
+        win.close()
+        const p = path.join(app.getAppPath(), `./thumbnails/${id}.png`)
+        fs.writeFile(p, img.toPng(), done)
+      })
+    }, 500)
   })
+
 }
 
 exports.send = function (options, success, error) {
