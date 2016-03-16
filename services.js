@@ -19,7 +19,7 @@ exports.takeSnapshot = (id, html, done) => {
 
   const win = new BrowserWindow(winOpts)
 
-  win.loadUrl(`data:text/html,${encodeURIComponent(html)}`)
+  win.loadURL(`data:text/html,${encodeURIComponent(html)}`)
 
   win.webContents.on('did-finish-load', () => {
     setTimeout(() => {
