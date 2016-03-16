@@ -151,9 +151,8 @@ export const open = () => dispatch => {
  * Show the save dialog window to export the template as an MJML file
  */
 export const exportTemplate = ({ template, type }) => () => {
-  console.log(type)
   dialog.showSaveDialog({
-    defaultPath: `${template.get('name')}.${type}`,
+    defaultPath: `${template.get('name')}.${type}`
   }, (filename) => {
     if (!filename) { return }
 
