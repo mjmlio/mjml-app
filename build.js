@@ -20,6 +20,7 @@ const DEFAULT_OPTS = {
   name: appName,
   asar: shouldUseAsar,
   ignore: [
+    '/mjml.gif',
     '/test($|/)',
     '/tools($|/)',
     '/release($|/)'

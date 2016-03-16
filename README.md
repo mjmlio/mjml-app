@@ -10,7 +10,7 @@
 <br />
 
 <p align="center">
-  <img src="screenshot.png">
+  <img src="mjml.gif">
 </p>
 
 <br />
