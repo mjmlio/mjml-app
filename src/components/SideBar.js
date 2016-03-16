@@ -43,13 +43,6 @@ class SideBar extends Component {
           {'Presets'}
         </Link>
 
-        <Link
-          to='/browse/components'
-          activeClassName='active'
-          className='SideBar-section'>
-          {'Components'}
-        </Link>
-
         <div className='Sidebar-divider' />
 
         <div className='SideBar-section action'>

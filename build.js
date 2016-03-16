@@ -11,7 +11,7 @@ const argv = require('minimist')(process.argv.slice(2))
 const pkg = require('./package.json')
 const devDeps = Object.keys(pkg.devDependencies)
 
-const appName = 'MJML App.'
+const appName = 'MJML'
 const shouldUseAsar = argv.asar || argv.a || false
 const shouldBuildAll = argv.all || false
 
