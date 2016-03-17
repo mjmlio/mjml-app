@@ -7,17 +7,26 @@ import Button from './Button'
 @connect()
 class TemplateOverlayActions extends Component {
 
+  state = {
+    loading: false
+  }
+
   usePreset = () => {
     const { item } = this.props
 
-    this.props.dispatch(usePreset(item))
+    this.setState({ loading: true })
+    setTimeout(() => this.props.dispatch(usePreset(item)))
   }
 
   render () {
+    const { loading } = this.state
+
     return (
       <div className='Overlay-actions'>
-        <Button className='success big' onClick={this.usePreset}>
-          <i style={{ fontSize: 25 }} className='ion-ios-copy' />
+        <Button className='success big' onClick={this.usePreset} disabled={loading}>
+          {loading
+            ? <i style={{ fontSize: 25 }} className='ion-aperture rotating' />
+            : <i style={{ fontSize: 25 }} className='ion-ios-copy' />}
         </Button>
       </div>
     )

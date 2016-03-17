@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import cx from 'classnames'
 
 import '../styles/Button.scss'
@@ -12,15 +13,16 @@ class Button extends Component {
   render () {
     const {
       className,
-      children,
-      onClick
+      children
     } = this.props
 
     const cn = cx('Button', className)
+    const props = _.omit(this.props, ['children', 'className'])
+
     return (
-      <div className={cn} onClick={onClick}>
+      <button className={cn} {...props}>
         {children}
-      </div>
+      </button>
     )
   }
 

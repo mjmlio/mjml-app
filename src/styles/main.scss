@@ -10,6 +10,7 @@
   cursor: inherit;
   outline: none;
   border: none;
+  background: transparent;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
 
   font-family: 'Open Sans', sans-serif;
   background-color: #202020;
+  -webkit-user-select: none;
 }
 
 a, button {
@@ -49,6 +51,10 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.rotating {
+  animation: 1s linear rotating infinite;
 }
 
 @keyframes rotating {

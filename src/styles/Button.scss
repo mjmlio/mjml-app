@@ -29,11 +29,17 @@
   &.success {
     background: $green;
 
-    &:hover {
-      background: $green-d1;
-      &:active {
-        background: $green-d2;
+    &:not([disabled]) {
+      &:hover {
+        background: $green-d1;
+        &:active {
+          background: $green-d2;
+        }
       }
+    }
+
+    &[disabled] {
+      cursor: default;
     }
   }
 
