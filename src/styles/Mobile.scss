@@ -1,10 +1,10 @@
-
-.container {
-  width: 100%;
+.Phone-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  justify-content: center;
+  overflow: hidden;
 }
 
 #phone {
@@ -18,44 +18,41 @@
   justify-content: center;
 
   iframe {
-    margin-top: 55px;
     border: 1px solid #f0f0f0;
-    width: 94%;
-    height: 80%;
   }
-}
 
-#screen {
-  width: 290px;
-  height: 520px;
-  border: 1px solid #ccc;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -260px -145px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
+  #screen {
+    width: 290px;
+    height: 520px;
+    border: 1px solid #ccc;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -260px -145px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
 
-#home {
-  width: 36px;
-  height: 36px;
-  border: 1px solid #ccc;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  margin: 0 -18px;
-  border-radius: 50%;
-}
+  #home {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ccc;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin: 0 -18px;
+    border-radius: 50%;
+  }
 
-#speaker {
-  width: 50px;
-  height: 6px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  position: absolute;
-  left: 50%;
-  top: 25px;
-  margin: 0 -25px;
+  #speaker {
+    width: 50px;
+    height: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    position: absolute;
+    left: 50%;
+    top: 25px;
+    margin: 0 -25px;
+  }
 }
 

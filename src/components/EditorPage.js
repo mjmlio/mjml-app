@@ -11,7 +11,7 @@ import Button from './Button'
 import EditorSettings from './EditorSettings'
 import EditorSend from './EditorSend'
 import Mobile from './Mobile'
-import Desktop from './Desktop'
+import Iframe from './Iframe'
 import DropDown from './DropDown'
 
 import '../styles/EditorPage.scss'
@@ -133,7 +133,9 @@ class EditorPage extends Component {
           </div>
 
           <div className={cx(`EditorPage-preview platform-${previewMode}`, { show: editorShowPreview })}>
-            {previewMode === 'desktop' ? <Desktop /> : <Mobile />}
+            {previewMode === 'desktop'
+              ? <Iframe template={template} />
+              : <Mobile template={template} />}
             <div className={`platform-container platform-${previewMode}`}>
               <Button onClick={this.toggleMode('desktop')} className='platform-button'>
                 <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>

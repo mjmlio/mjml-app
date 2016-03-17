@@ -71,6 +71,7 @@
   overflow: auto;
   background: white;
   position: relative;
+  overflow: hidden;
 
   &.show {
     transition: 250ms linear opacity;
@@ -82,12 +83,6 @@
 
     &.platform-desktop {
       width: 650px;
-      .container {
-        align-items: stretch;
-        iframe {
-          width: 100%;
-        }
-      }
     }
   }
 }
