@@ -26,6 +26,12 @@ class EditorSettings extends Component {
     this.props.dispatch(updateConfig(config => config.set('editorTheme', theme)))
   }
 
+  setWrap = () => {
+    this.props.dispatch(updateConfig(
+      config => config.set('editorWrapText', !config.get('editorWrapText'))
+    ))
+  }
+
   render () {
     const { config } = this.props
     const { modalOpened } = this.state
@@ -51,6 +57,16 @@ class EditorSettings extends Component {
                 {theme[1]}
               </option>)}
           </select>
+
+          <div>
+            <label>
+              <input
+                type='checkbox'
+                checked={config.get('editorWrapText')}
+                onChange={this.setWrap} />
+              {' Wrap lines'}
+            </label>
+          </div>
 
         </Modal>
 

@@ -44,7 +44,11 @@ import 'brace/theme/xcode'
 
 import '../styles/Editor.scss'
 
-@connect()
+@connect(
+  state => ({
+    wrapEnabled: state.config.get('editorWrapText')
+  })
+)
 class Editor extends Component {
 
   static aceProps = {
@@ -78,7 +82,7 @@ class Editor extends Component {
 
   render () {
     const { content } = this.state
-    const { theme } = this.props
+    const { theme, wrapEnabled } = this.props
 
     return (
       <div className='Editor'>
@@ -86,6 +90,7 @@ class Editor extends Component {
           ref='ace'
           mode='xml'
           theme={theme}
+          wrapEnabled={wrapEnabled}
           height='100%'
           value={content}
           tabSize={2}
