@@ -32,8 +32,6 @@ Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version t
 
 ### Build from source
 
-OSX
-
 ``` bash
 $ git clone <repo> mjml-app && cd mjml-app
 $ npm install && npm run package
