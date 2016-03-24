@@ -75,7 +75,7 @@
     "classnames": "^2.2.3",
     "immutable": "^3.7.6",
     "lodash": "^4.6.1",
-    "mjml": "^1.2.1",
+    "mjml": "1.2.1",
     "node-mailjet": "^1.1.0",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.7",
