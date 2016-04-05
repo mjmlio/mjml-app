@@ -2,7 +2,7 @@ import { createAction } from 'redux-actions'
 import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
-import mjml2html from 'mjml/lib/mjml2html'
+import { mjml2html } from 'mjml'
 import { remote } from 'electron'
 import { error, notify } from '../helpers/notification'
 import { MJMLError } from '../helpers/error'
@@ -62,7 +62,9 @@ export const updateCurrentTemplate = updater => dispatch => {
         const html = mjml2html(newTemplate.get('mjml'))
         newTemplate = newTemplate.set('html', html)
       } catch (e) {
-        newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
+        // newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
+        newTemplate = newTemplate.set('html', MJMLError(e.message, template.get('html')))
+        console.log(newTemplate)
       }
     }
 
