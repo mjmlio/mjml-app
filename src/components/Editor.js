@@ -41,7 +41,6 @@ import 'brace/theme/tomorrow_night_eighties'
 import 'brace/theme/twilight'
 import 'brace/theme/vibrant_ink'
 import 'brace/theme/xcode'
-import '../assets/mjml'
 
 import '../styles/Editor.scss'
 

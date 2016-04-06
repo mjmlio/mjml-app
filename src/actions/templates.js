@@ -64,7 +64,6 @@ export const updateCurrentTemplate = updater => dispatch => {
       } catch (e) {
         // newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
         newTemplate = newTemplate.set('html', MJMLError(e.message, template.get('html')))
-        console.log(newTemplate)
       }
     }
 

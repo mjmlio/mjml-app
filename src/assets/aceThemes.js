@@ -2,7 +2,6 @@
 const aceThemes = [
   ['ambiance',                'Ambiance'],
   ['chaos',                   'Chaos'],
-  ['mjml',                    'MJML'],
   ['chrome',                  'Chrome'],
   ['clouds',                  'Clouds'],
   ['clouds_midnight',         'Clouds Midnight'],
