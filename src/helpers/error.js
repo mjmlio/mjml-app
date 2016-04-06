@@ -1,26 +1,7 @@
 
-export const MJMLError = (message) =>
-`
-<mj-body background-color="#f0f0f0">
-  <mj-section></mj-section>
-  <mj-section background-color="#fff">
-    <mj-column>
-      <mj-text
-        color="red"
-        font-weight="bolder"
-        font-size="20px"
-        align="center">Error:</mj-text>
-    </mj-column>
-  </mj-section>
-  <mj-section background-color="#fff">
-    <mj-column>
-      <mj-text
-        color="red"
-        font-size="16px"
-        align="center">
-				${message}
-      </mj-text>
-    </mj-column>
-  </mj-section>
-</mj-body>
+export const MJMLError = (message, template) => `
+<div style='position: absolute; width: 100%; top: 0; left: 0; padding: 10px; color: #f0f0f0; text-align:center;'>
+  <span style='background-color: #e74c3c; padding: 10px;'>${message}</span>
+</div>
+${template}
 `
