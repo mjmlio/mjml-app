@@ -12,7 +12,8 @@
     "start": "cross-env NODE_ENV=production electron ./",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./",
     "package": "cross-env NODE_ENV=production node build.js",
-    "package-all": "npm run package -- --all"
+    "package-all": "npm run package -- --all",
+    "build:osx": "appdmg build/osx.json ./MJML.dmg -v"
   },
   "bin": {
     "electron": "./node_modules/.bin/electron"
@@ -28,6 +29,7 @@
   "homepage": "https://github.com/meriadec/mjml-desktop",
   "devDependencies": {
     "ansi-to-html-umd": "^0.4.2",
+    "appdmg": "^0.3.6",
     "asar": "^0.10.0",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
@@ -75,7 +77,7 @@
     "classnames": "^2.2.3",
     "immutable": "^3.7.6",
     "lodash": "^4.6.1",
-    "mjml": "1.2.1",
+    "mjml": "latest",
     "node-mailjet": "^1.1.0",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.7",

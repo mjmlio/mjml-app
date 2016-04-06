@@ -1,0 +1,10 @@
+{
+  "title": "MJML",
+  "icon-size": 80,
+  "icon": "./logo.icns",
+  "background": "./background.png",
+  "contents": [
+    { "x": 150, "y": 170, "type": "file", "path": "release/darwin-x64/MJML-darwin-x64/MJML.app" },
+    { "x": 400, "y": 170, "type": "link", "path": "/Applications" }
+  ]
+}

@@ -16,10 +16,6 @@ if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
 }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') { app.quit() }
-})
-
 app.on('ready', () => {
 
   const size = electron.screen.getPrimaryDisplay().workAreaSize
@@ -31,7 +27,7 @@ app.on('ready', () => {
     'min-height': 600,
     titleBarStyle: 'hidden-inset',
     show: false,
-    icon: './logo.icns'
+    icon: './build/logo.icns'
   })
 
   if (process.env.HOT) {
@@ -62,7 +58,10 @@ app.on('ready', () => {
         { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' }
+        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+        { label: 'Quit', accelerator: 'Command+Q', selector: 'Quit', click: function () {
+          app.quit()
+        } }
       ] }
     ]
 

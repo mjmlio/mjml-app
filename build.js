@@ -57,6 +57,7 @@ function startPack () {
     if (err) { return console.error(err) }
     del('release')
     .then(paths => {
+      console.log('release folder deleted')
       if (shouldBuildAll) {
         // build for all platforms
         const archs = ['ia32', 'x64']
@@ -80,6 +81,7 @@ function startPack () {
 }
 
 function pack (plat, arch, cb) {
+  console.log('packing ', arch, plat)
   // there is no darwin ia32 electron
   if (plat === 'darwin' && arch === 'ia32') { return }
 
@@ -98,7 +100,7 @@ function pack (plat, arch, cb) {
   const opts = Object.assign({}, DEFAULT_OPTS, iconObj, {
     platform: plat,
     arch,
-    icon: './logo.icns',
+    icon: './build/logo.icns',
     prune: true,
     out: `release/${plat}-${arch}`
   })
