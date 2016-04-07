@@ -29,7 +29,6 @@
   "homepage": "https://github.com/meriadec/mjml-desktop",
   "devDependencies": {
     "ansi-to-html-umd": "^0.4.2",
-    "appdmg": "^0.3.6",
     "asar": "^0.10.0",
     "babel-core": "^6.7.2",
     "babel-eslint": "^5.0.0",
@@ -94,5 +93,8 @@
     "redux-thunk": "^2.0.1",
     "request": "^2.69.0",
     "shortid": "^2.2.4"
+  },
+  "optionalDependencies": {
+    "appdmg": "^0.3.6"
   }
 }
