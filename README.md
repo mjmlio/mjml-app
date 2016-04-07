@@ -41,6 +41,11 @@ Binary will be created in the `releases` folder.
 
 ### Releases and Changelogs
 
+#### 1.1.1
+ - Prevent drag'n'drop on the app
+ - added dmg build config for OSX
+ - Better Error handling on the editor
+
 #### 1.0.0
  - Templates manager on the Home Page
  - Mobile/Desktop preview

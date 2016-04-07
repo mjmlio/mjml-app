@@ -14,6 +14,12 @@ import './styles/main.scss'
 const store = configureStore()
 const history = syncHistoryWithStore(hashHistory, store)
 
+document.addEventListener('dragover', (event) =>
+  event.preventDefault())
+
+document.addEventListener('drop', (event) =>
+  event.preventDefault())
+
 init(store).then(() => {
 
   const onListen = location => {
