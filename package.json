@@ -13,7 +13,8 @@
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron ./",
     "package": "cross-env NODE_ENV=production node build.js",
     "package-all": "npm run package -- --all",
-    "build:osx": "appdmg build/osx.json ./MJML.dmg -v"
+    "clean:osx": "rm -rf ~/Library/Application\\ Support/mjml-app/* release *.dmg *.zip",
+    "build:osx": "npm run clean:osx && npm run package && appdmg build/osx.json ./mjml-app-osx.dmg -v"
   },
   "bin": {
     "electron": "./node_modules/.bin/electron"
