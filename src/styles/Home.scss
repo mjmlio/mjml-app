@@ -1,5 +1,7 @@
+@import './vars.scss';
+
 .HomePage {
-  background-color: #3b3b3b;
+  background-color: $grey;
   padding: 50px 100px;
 
   flex-grow: 1;
