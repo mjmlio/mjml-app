@@ -9,7 +9,6 @@ const Menu = electron.Menu
 const shell = electron.shell
 let mainWindow = null
 
-
 shell.openExternal('http://google.com')
 
 if (process.env.NODE_ENV === 'development') {
@@ -30,10 +29,10 @@ app.on('ready', () => {
     icon: './build/logo.icns'
   })
 
-	mainWindow.webContents.on('new-window', function(e, url) {
-		e.preventDefault();
-		shell.openExternal(url);
-	});
+  mainWindow.webContents.on('new-window', (e, url) => {
+    e.preventDefault()
+    shell.openExternal(url)
+  })
 
   if (process.env.HOT) {
     mainWindow.loadURL(`file://${__dirname}/src/hot-dev-app.html`)
@@ -65,10 +64,10 @@ app.on('ready', () => {
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
         { label: 'Upadates', click () {
- 					shell.openExternal('https://github.com/mjmlio/mjml-app/releases')
+          shell.openExternal('https://github.com/mjmlio/mjml-app/releases')
         } },
         { label: 'Documentation', click () {
- 					shell.openExternal('https://mjml.io/documentation/')
+          shell.openExternal('https://mjml.io/documentation/')
         } },
         { label: 'Quit', accelerator: 'Command+Q', selector: 'Quit', click: () => {
           app.quit()
