@@ -5,8 +5,8 @@ import path from 'path'
 import { fromJS } from 'immutable'
 import { remote } from 'electron'
 
-export const projectFolder = path.join(remote.app.getAppPath(), 'mjml-projects')
-export const thumbnailsFolder = path.join(remote.app.getAppPath(), 'thumbnails')
+export const projectFolder = path.join(remote.app.getPath('appData'), 'mjml-app', 'MJML-Projects')
+export const thumbnailsFolder = path.join(remote.app.getPath('appData'), 'mjml-app', 'MJML-thumbnails')
 
 /*
  * Turns a callback style to a Promise style one
