@@ -4,8 +4,12 @@ const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const request = require('request')
-
 const Mailjet = require('node-mailjet')
+
+const dataFolder = process.env.NODE_ENV === 'development' ?
+  app.getAppPath() : app.getPath('appData')
+
+const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')
 
 exports.takeSnapshot = (id, html, done) => {
 
@@ -25,7 +29,7 @@ exports.takeSnapshot = (id, html, done) => {
     setTimeout(() => {
       win.capturePage(img => {
         win.close()
-        const p = path.join(app.getAppPath(), `./thumbnails/${id}.png`)
+        const p = path.join(thumbnailsFolder, `${id}.png`)
         fs.writeFile(p, img.toPng(), done)
       })
     }, 500)

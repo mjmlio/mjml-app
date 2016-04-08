@@ -78,6 +78,7 @@
     "immutable": "^3.7.6",
     "lodash": "^4.6.1",
     "mjml": "latest",
+    "mkdirp": "^0.5.1",
     "node-mailjet": "^1.1.0",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.7",

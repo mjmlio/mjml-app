@@ -5,6 +5,10 @@ import { readTemplates } from './actions/templates'
 import { loadConfig } from './actions'
 import createPresetsThumbnails from './helpers/createPresetsThumbnails'
 
+if (process.env.NODE_ENV === 'development') {
+  localStorage.clear()
+}
+
 /**
  * Init the app
  * All pre-1rst-render operations should be here

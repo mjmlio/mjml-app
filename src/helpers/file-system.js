@@ -4,9 +4,13 @@ import _ from 'lodash'
 import path from 'path'
 import { fromJS } from 'immutable'
 import { remote } from 'electron'
+import mkdir from 'mkdirp'
 
-export const projectFolder = path.join(remote.app.getPath('appData'), 'mjml-app', 'MJML-Projects')
-export const thumbnailsFolder = path.join(remote.app.getPath('appData'), 'mjml-app', 'MJML-thumbnails')
+const dataFolder = process.env.NODE_ENV === 'development' ?
+  remote.app.getAppPath() : remote.app.getPath('appData')
+
+export const projectFolder = path.join(dataFolder, 'mjml-app', 'MJML-Projects')
+export const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')
 
 /*
  * Turns a callback style to a Promise style one
@@ -31,7 +35,13 @@ export const readTemplates = () =>
     .then(() => promisify(fs.readdir)(projectFolder))
     .then((filenames = []) =>
       Promise.all(filenames.map(filename => promisify(fs.readFile)(path.join(projectFolder, filename), 'utf8'))))
-    .then(fileContents => fileContents.map(JSON.parse))
+    .then(fileContents => fileContents.map(json => {
+      try {
+        return JSON.parse(json)
+      } catch (e) {
+        return null
+      }
+    }).filter(e => !!e))
     .then(templates => _.orderBy(templates, 'modificationDate', 'desc'))
     .then(fromJS)
 
@@ -49,9 +59,12 @@ export const readTemplate = id =>
 export const localConfig = () =>
   fromJS(localStorage.getItem('appconfig'))
 
+export const exists = file => 
+  promisify((folder, cb) => fs.access(folder, fs.R_OK | fs.W_OK, cb))(file)
+    
 const checkOrCreate = folder =>
-  promisify((folder, cb) => fs.access(folder, fs.R_OK | fs.W_OK, cb))(folder)
-    .catch(() => promisify(fs.mkdir)(folder))
+  exists(folder)
+    .catch(() => promisify(mkdir)(folder))
 
 /*
  * Save an MJML template

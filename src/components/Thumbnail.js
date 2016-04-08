@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import crypto from 'crypto'
+import { thumbnailsFolder } from '../helpers/file-system'
+import path from 'path'
 
 import '../styles/Thumbnail.scss'
 
 class Thumbnail extends Component {
 
-  static getSrc = item => `../thumbnails/${item.get('id')}.png?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`
+  static getSrc = item => {
+    const itemPath = path.join(thumbnailsFolder, `${item.get('id')}.png`)
+    return `${itemPath}?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`
+  }
 
   render () {
     const { item } = this.props
