@@ -5,6 +5,9 @@ import { push } from 'react-router-redux'
 const setConfig = createAction('SET_CONFIG')
 
 export const loadConfig = () => dispatch => {
+  if (process.env.NODE_ENV === 'development') {
+    localStorage.clear()
+  }
   let config = localStorage.getItem('appconfig')
   if (config) {
     config = fromJS(JSON.parse(config))
