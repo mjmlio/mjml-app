@@ -6,11 +6,11 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 // const crashReporter = electron.crashReporter
 const Menu = electron.Menu
-// const shell = electron.shell
+const shell = electron.shell
 let mainWindow = null
 
-// TODO: make this work
-// crashReporter.start()
+
+shell.openExternal('http://google.com')
 
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
@@ -29,6 +29,11 @@ app.on('ready', () => {
     show: false,
     icon: './build/logo.icns'
   })
+
+	mainWindow.webContents.on('new-window', function(e, url) {
+		e.preventDefault();
+		shell.openExternal(url);
+	});
 
   if (process.env.HOT) {
     mainWindow.loadURL(`file://${__dirname}/src/hot-dev-app.html`)
@@ -59,6 +64,12 @@ app.on('ready', () => {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+        { label: 'Upadates', click () {
+ 					shell.openExternal('https://github.com/mjmlio/mjml-app/releases')
+        } },
+        { label: 'Documentation', click () {
+ 					shell.openExternal('https://mjml.io/documentation/')
+        } },
         { label: 'Quit', accelerator: 'Command+Q', selector: 'Quit', click: () => {
           app.quit()
         } }
