@@ -9,8 +9,6 @@ const Menu = electron.Menu
 const shell = electron.shell
 let mainWindow = null
 
-shell.openExternal('http://google.com')
-
 if (process.env.NODE_ENV === 'development') {
   require('electron-debug')()
 }
