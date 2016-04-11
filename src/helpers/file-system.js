@@ -6,8 +6,9 @@ import { fromJS } from 'immutable'
 import { remote } from 'electron'
 import mkdir from 'mkdirp'
 
-const dataFolder = process.env.NODE_ENV === 'development' ?
-  remote.app.getAppPath() : remote.app.getPath('appData')
+const dataFolder = process.env.NODE_ENV === 'development'
+  ? remote.app.getAppPath()
+  : remote.app.getPath('appData')
 
 export const projectFolder = path.join(dataFolder, 'mjml-app', 'MJML-Projects')
 export const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')
@@ -59,9 +60,9 @@ export const readTemplate = id =>
 export const localConfig = () =>
   fromJS(localStorage.getItem('appconfig'))
 
-export const exists = file => 
+export const exists = file =>
   promisify((folder, cb) => fs.access(folder, fs.R_OK | fs.W_OK, cb))(file)
-    
+
 const checkOrCreate = folder =>
   exists(folder)
     .catch(() => promisify(mkdir)(folder))
