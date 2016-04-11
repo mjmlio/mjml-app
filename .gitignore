@@ -35,5 +35,4 @@ release
 *.dmg
 *.app
 
-mjml-projects/
-thumbnails/
+mjml-app/
