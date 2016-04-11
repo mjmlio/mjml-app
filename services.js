@@ -1,4 +1,5 @@
 const fs = require('fs')
+const mjml = require('mjml')
 const path = require('path')
 const electron = require('electron')
 const app = electron.app
@@ -79,4 +80,16 @@ exports.createGist = function (content, done) {
     }
     done(null, JSON.parse(body))
   })
+}
+
+/**
+ * Generate html from mjml
+ */
+exports.mjml2html = (mjmlInput, done) => {
+  try {
+    const html = mjml.mjml2html(mjmlInput)
+    done(null, html)
+  } catch (e) {
+    done(e.message)
+  }
 }

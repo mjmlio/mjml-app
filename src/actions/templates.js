@@ -2,7 +2,6 @@ import { createAction } from 'redux-actions'
 import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
-import { mjml2html } from 'mjml'
 import { remote } from 'electron'
 import { error, notify } from '../helpers/notification'
 import { MJMLError } from '../helpers/error'
@@ -50,26 +49,52 @@ const doUpdateCurrentTemplate = createAction('UPDATE_CURRENT_TEMPLATE', updater 
 /**
  * Update the current template
  */
-export const updateCurrentTemplate = updater => dispatch => {
-  dispatch(doUpdateCurrentTemplate(template => {
+export const updateCurrentTemplate = updater => (dispatch, getState) => {
 
-    // update the template with updater
-    let newTemplate = updater(template)
+  // create empty promise, as we don't know if we have to generate
+  // html or not, #opti
+  let promise = Promise.resolve()
 
-    // re-calculate mjml only if mjml has changed
-    if (newTemplate.get('mjml') !== template.get('mjml')) {
-      try {
-        const html = mjml2html(newTemplate.get('mjml'))
-        newTemplate = newTemplate.set('html', html)
-      } catch (e) {
-        // newTemplate = newTemplate.set('html', mjml2html(MJMLError(e.message)))
-        newTemplate = newTemplate.set('html', MJMLError(e.message, template.get('html')))
-      }
-    }
+  // get current template
+  const templates = getState().templates
+  const currentId = templates.get('current')
+  const template = templates.get('list').find(template => template.get('id') === currentId)
+
+  // update the template with updater
+  let newTemplate = updater(template)
+
+  // re-calculate mjml only if mjml has changed
+  if (newTemplate.get('mjml') !== template.get('mjml')) {
+
+    // get service method
+    const { mjml2html } = remote.require('./services')
+
+    // chain promise ;-) yolo
+    promise = promise.then(() => new Promise(resolve => {
+
+      // generate html
+      mjml2html(newTemplate.get('mjml'), (err, html) => {
+        if (err) {
+          newTemplate = newTemplate.set('html', MJMLError(err, template.get('html')))
+        } else {
+          newTemplate = newTemplate.set('html', html)
+        }
+        resolve()
+      })
+
+    }))
+
+  }
+
+  promise.then(() => {
 
     // update modification date
-    return newTemplate.set('modificationDate', new Date())
-  }))
+    newTemplate = newTemplate.set('modificationDate', new Date())
+
+    // save template
+    dispatch(doUpdateCurrentTemplate(() => newTemplate))
+
+  })
 }
 
 export const saveTemplateWithId = id => (dispatch, getState) => {
@@ -104,20 +129,27 @@ export const saveTemplate = () => (dispatch, getState) => {
  */
 const templateCreated = createAction('TEMPLATE_CREATED')
 export const createNewTemplate = (mjml = defaultContent) => dispatch => {
-  const now = new Date()
-  const newTemplate = Map({
-    id: shortid.generate(),
-    name: 'no name',
-    mjml,
-    html: mjml2html(mjml),
-    creationDate: now,
-    modificationDate: now
+
+  // get service method
+  const { mjml2html } = remote.require('./services')
+
+  mjml2html(mjml, (err, html) => {
+    if (err) { return }
+    const now = new Date()
+    const newTemplate = Map({
+      id: shortid.generate(),
+      name: 'no name',
+      mjml,
+      html,
+      creationDate: now,
+      modificationDate: now
+    })
+    dispatch(templateCreated(newTemplate))
+    dispatch(setTemplate(newTemplate))
+    dispatch(saveTemplate())
+    dispatch(makeSnapshot(newTemplate))
+    dispatch(push('editor'))
   })
-  dispatch(templateCreated(newTemplate))
-  dispatch(setTemplate(newTemplate))
-  dispatch(saveTemplate())
-  dispatch(makeSnapshot(newTemplate))
-  dispatch(push('editor'))
 }
 
 /**
