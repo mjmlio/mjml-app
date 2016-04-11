@@ -20,8 +20,8 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: size.width / 1.2,
     height: size.height / 1.2,
-    'min-width': 1000,
-    'min-height': 600,
+    minWidth: 1024,
+    minHeight: 768,
     titleBarStyle: 'hidden-inset',
     show: false,
     icon: './build/logo.icns'

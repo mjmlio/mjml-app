@@ -6,8 +6,9 @@ const BrowserWindow = electron.BrowserWindow
 const request = require('request')
 const Mailjet = require('node-mailjet')
 
-const dataFolder = process.env.NODE_ENV === 'development' ?
-  app.getAppPath() : app.getPath('appData')
+const dataFolder = process.env.NODE_ENV === 'development'
+  ? app.getAppPath()
+  : app.getPath('appData')
 
 const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')
 
