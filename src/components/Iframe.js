@@ -17,6 +17,11 @@ class Iframe extends Component {
 
   componentDidUpdate () { this.renderIframe() }
 
+  /**
+   * Load all images in the iframe and set the state to { loading: false }
+   *
+   * @return {undefined}
+   */
   loadImages () {
 
     const doc = this._iframe.contentDocument
@@ -33,6 +38,11 @@ class Iframe extends Component {
     })
   }
 
+  /**
+   * Refresh the Iframe
+   *
+   * @returns {undefined}
+   */
   renderIframe () {
     const { template } = this.props
     if (!template) { return }

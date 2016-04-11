@@ -42,6 +42,11 @@ class EditorPage extends Component {
     this.props.dispatch(saveTemplate())
   }
 
+  /**
+   * Toggles the preview mode
+   *
+   * @returns {undefined}
+   */
   togglePreview = () => {
     this.props.dispatch(updateConfig(config => config.set('editorShowPreview', !this.props.config.get('editorShowPreview'))))
   }

@@ -13,7 +13,18 @@ class Tile extends Component {
     overlayCaptured: false,
   }
 
+  /**
+   * Show the hover overlay
+   *
+   * @returns {undefined}
+   */
   showOverlay = () => !this.state.showOverlay && this.setState({ overlay: true })
+
+  /**
+   * Hides the hover overlay
+   *
+   * @returns {undefined}
+   */
   hideOverlay = () => this.setState({ overlay: false })
 
   captureOverlay = toggle => this.setState({ overlayCaptured: toggle })

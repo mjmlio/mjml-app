@@ -7,6 +7,12 @@ import '../styles/Thumbnail.scss'
 
 class Thumbnail extends Component {
 
+  /**
+   * Creates a path that loads the image
+   *
+   * @param {Object} item the wanted item's image
+   * @returns {String} the image path
+   */
   static getSrc = item => {
     const itemPath = path.join(thumbnailsFolder, `${item.get('id')}.png`)
     return `${itemPath}?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`

@@ -1,0 +1,295 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 486,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 15,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 228,
+      "end": 485,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 235,
+        "end": 485,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 7
+          },
+          "end": {
+            "line": 14,
+            "column": 1
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 241,
+            "end": 485,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 13
+              },
+              "end": {
+                "line": 14,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 241,
+              "end": 250,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 13
+                },
+                "end": {
+                  "line": 9,
+                  "column": 22
+                }
+              },
+              "name": "MJMLError",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 253,
+              "end": 485,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 25
+                },
+                "end": {
+                  "line": 14,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 254,
+                  "end": 261,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 26
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 33
+                    }
+                  },
+                  "name": "message"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 263,
+                  "end": 271,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 35
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 43
+                    }
+                  },
+                  "name": "template"
+                }
+              ],
+              "body": {
+                "type": "TemplateLiteral",
+                "start": 276,
+                "end": 485,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 48
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 1
+                  }
+                },
+                "expressions": [
+                  {
+                    "type": "Identifier",
+                    "start": 449,
+                    "end": 456,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 60
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 67
+                      }
+                    },
+                    "name": "message"
+                  },
+                  {
+                    "type": "Identifier",
+                    "start": 474,
+                    "end": 482,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 10
+                      }
+                    },
+                    "name": "template"
+                  }
+                ],
+                "quasis": [
+                  {
+                    "type": "TemplateElement",
+                    "start": 277,
+                    "end": 447,
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 58
+                      }
+                    },
+                    "value": {
+                      "raw": "\n<div style='position: fixed; width: 100%; top: 0; left: 0; padding: 10px; color: #f0f0f0; text-align:center;'>\n  <span style='background-color: #e74c3c; padding: 10px;'>",
+                      "cooked": "\n<div style='position: fixed; width: 100%; top: 0; left: 0; padding: 10px; color: #f0f0f0; text-align:center;'>\n  <span style='background-color: #e74c3c; padding: 10px;'>"
+                    },
+                    "tail": false
+                  },
+                  {
+                    "type": "TemplateElement",
+                    "start": 457,
+                    "end": 472,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 68
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 0
+                      }
+                    },
+                    "value": {
+                      "raw": "</span>\n</div>\n",
+                      "cooked": "</span>\n</div>\n"
+                    },
+                    "tail": false
+                  },
+                  {
+                    "type": "TemplateElement",
+                    "start": 483,
+                    "end": 484,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 0
+                      }
+                    },
+                    "value": {
+                      "raw": "\n",
+                      "cooked": "\n"
+                    },
+                    "tail": true
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Add an error header to the template explaining why the compilation failed\n *\n * @param {String} message error message\n * @param {String} template Html template content\n * @returns {String} the newly created template\n ",
+            "start": 1,
+            "end": 227,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            },
+            "range": [
+              1,
+              227
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Add an error header to the template explaining why the compilation failed\n *\n * @param {String} message error message\n * @param {String} template Html template content\n * @returns {String} the newly created template\n ",
+          "start": 1,
+          "end": 227,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          },
+          "range": [
+            1,
+            227
+          ]
+        }
+      ]
+    }
+  ]
+}

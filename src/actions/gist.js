@@ -1,6 +1,12 @@
 import { remote, shell } from 'electron'
 
-export const exportAsGist = (content) => () => {
+/**
+ * Creates a anonymous gist file and open it in the browser
+ *
+ * @param {String} content
+ * @returns {undefined}
+ */
+export const exportAsGist = content => () => {
 
   const createGist = remote.require('./services').createGist
   createGist(content, (err, body) => {

@@ -11,6 +11,11 @@ class TemplateOverlayActions extends Component {
     loading: false,
   }
 
+  /**
+   * Load the selected preset
+   *
+   * @returns {undefined}
+   */
   usePreset = () => {
     const { item } = this.props
 

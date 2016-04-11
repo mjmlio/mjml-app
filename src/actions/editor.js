@@ -2,6 +2,13 @@
 import { updateConfig } from './index'
 import { push } from 'react-router-redux'
 
+/**
+ * Creates the Ace editor compilant shortcuts. Cmd+P: toggle preview, cmd+b => home
+ *
+ * @param {Function} register Ace register function
+ * @param {Function} dispatch store.dispatch
+ * @returns {undefined} nothing
+ */
 export const registerShortcuts = (register) => dispatch => {
   register({
     name: 'toggle:preview',

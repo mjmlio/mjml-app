@@ -1,0 +1,231 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 13711,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 159,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 0,
+      "end": 13710,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 158,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 15,
+        "end": 13710,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 158,
+            "column": 1
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 19,
+            "end": 31,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 19,
+              "end": 21,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "line": 2,
+                  "column": 4
+                }
+              },
+              "name": "id"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 23,
+              "end": 31,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 6
+                },
+                "end": {
+                  "line": 2,
+                  "column": 14
+                }
+              },
+              "value": "amario",
+              "rawValue": "amario",
+              "raw": "'amario'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 35,
+            "end": 49,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "line": 3,
+                "column": 16
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 35,
+              "end": 39,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 2
+                },
+                "end": {
+                  "line": 3,
+                  "column": 6
+                }
+              },
+              "name": "name"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 41,
+              "end": 49,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 8
+                },
+                "end": {
+                  "line": 3,
+                  "column": 16
+                }
+              },
+              "value": "Amario",
+              "rawValue": "Amario",
+              "raw": "'Amario'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 53,
+            "end": 13707,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 157,
+                "column": 11
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 53,
+              "end": 57,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "line": 4,
+                  "column": 6
+                }
+              },
+              "name": "mjml"
+            },
+            "value": {
+              "type": "TemplateLiteral",
+              "start": 59,
+              "end": 13707,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 8
+                },
+                "end": {
+                  "line": 157,
+                  "column": 11
+                }
+              },
+              "expressions": [],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 60,
+                  "end": 13706,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 157,
+                      "column": 10
+                    }
+                  },
+                  "value": {
+                    "raw": "<mj-body background-color=\"#d6dde5\">\n\n  <mj-section locked=\"true\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"66.66666666666666%\" vertical-align=\"middle\">\n      <mj-text align=\"left\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"true\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"middle\">\n      <mj-text align=\"right\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"false\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/xxr.png\" alt=\"Amario logo\" align=\"center\" border=\"none\" width=\"182\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" background-url=\"http://191n.mj.am/img/191n/3s/xm6.jpg\" padding-bottom=\"27\" padding-top=\"0\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size: 16px;\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">Home</span></span></a><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"> / </span></span><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">blog</span></span></a></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 16px;\"><br></span></span></span></p><p><span style=\"font-size: 27px;\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">AMARIO.COM</span></span></a></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 27px;\">YOUR CRUISES EXPERT</span></span></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 27px;\">FROM EUROPE TO ASIA</span></span></span></p>\n      </mj-text>\n      <mj-button background-color=\"#414141\" color=\"#FFFFFF\" font-size=\"15px\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"70\">\n        CHECK OUT OUR PROMOTIONS !\n      </mj-button>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"25%\" vertical-align=\"top\">\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(106, 138, 162);\"><span style=\"font-weight: bold;\"><span style=\"font-size: 16px;\">WHY SAILING WITH US ?</span></span></span></p>\n      </mj-text>\n      <mj-text align=\"justify\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(57, 63, 76);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget </span><span style=\"font-weight: bold;\"><span style=\"color: rgb(57, 63, 76);\">magna efficitur</span></span><span style=\"color: rgb(57, 63, 76);\">, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus, sit amet </span><span style=\"font-weight: bold;\"><span style=\"color: rgb(57, 63, 76);\">suscipit nibh</span></span><span style=\"color: rgb(57, 63, 76);\">. Proin nec commodo purus. Sed eget nulla elit. Nulla aliquet mollis faucibus.</span></p>\n      </mj-text>\n      <mj-button background-color=\"#c7896f\" color=\"#FFFFFF\" font-size=\"13\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        LEARN MORE\n      </mj-button>\n    </mj-column>\n    <mj-column width=\"25%\" vertical-align=\"top\">\n\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/xx9.png\" alt=\"Step 1 - Choose a destination\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0w.png\" alt=\"Step 2 - Select a type of boat\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0x.png\" alt=\"Step 3 - Book and enjoy your trip\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmh.jpg\" alt=\"Boat\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x0s.png\" alt=\"A wide range of cruises\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x01.png\" alt=\"Eco friendly sailing\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x0l.png\" alt=\"Insurances included\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 24px;\">Cruise of the month : Corse, preserved beauty</span></span></p>\n      </mj-text>\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmi.jpg\" alt=\"Cruise of the month : Corse\" align=\"center\" border=\"none\" width=\"500\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-button background-color=\"#464e5e\" color=\"#FFFFFF\" font-size=\"13\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"10\">\n        BOOK A CORSICAN TOUR NOW\n      </mj-button>\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 18px;\">22 places available</span></span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmj.jpg\" alt=\"Sailing\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">RENT A SAILING</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">BOAT</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">AND ORGANIZE</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">YOUR OWN</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">CRUISE</span></span></span></p>\n      </mj-text>\n      <mj-button background-color=\"#c7896f\" color=\"#FFFFFF\" font-size=\"15px\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        SEE CONDITIONS\n      </mj-button>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p>Any questions, comments, concerns?</p><p>Contact our support staff at <a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\">support@amario.com</span></a></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#8bafad\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0p.png\" alt=\"Amario logo\" align=\"center\" border=\"none\" width=\"77\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"color: rgb(255, 255, 255);\">Privacy policy</span></a></p>\n      </mj-text>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-social color=\"#333333\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" text-mode=\"true\" facebook-href=\"[[SHORT_PERMALINK]]\" facebook-content=\" \" twitter-href=\"[[SHORT_PERMALINK]]\" twitter-content=\" \" google-href=\"[[SHORT_PERMALINK]]\" google-content=\" \" mode=\"horizontal\" display=\"facebook twitter google\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-social>\n    </mj-column>\n  </mj-section>\n  <mj-section locked=\"true\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"middle\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"false\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size:11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"true\" type=\"user-address\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size:11px\">[[POSTAL_ADDRESS]]</p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>",
+                    "cooked": "<mj-body background-color=\"#d6dde5\">\n\n  <mj-section locked=\"true\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"66.66666666666666%\" vertical-align=\"middle\">\n      <mj-text align=\"left\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"true\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"middle\">\n      <mj-text align=\"right\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"false\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/xxr.png\" alt=\"Amario logo\" align=\"center\" border=\"none\" width=\"182\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" background-url=\"http://191n.mj.am/img/191n/3s/xm6.jpg\" padding-bottom=\"27\" padding-top=\"0\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size: 16px;\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">Home</span></span></a><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"> / </span></span><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">blog</span></span></a></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 16px;\"><br></span></span></span></p><p><span style=\"font-size: 27px;\"><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\">AMARIO.COM</span></span></a></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 27px;\">YOUR CRUISES EXPERT</span></span></span></p><p><span style=\"font-weight: bold;\"><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size: 27px;\">FROM EUROPE TO ASIA</span></span></span></p>\n      </mj-text>\n      <mj-button background-color=\"#414141\" color=\"#FFFFFF\" font-size=\"15px\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"70\">\n        CHECK OUT OUR PROMOTIONS !\n      </mj-button>\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"25%\" vertical-align=\"top\">\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(106, 138, 162);\"><span style=\"font-weight: bold;\"><span style=\"font-size: 16px;\">WHY SAILING WITH US ?</span></span></span></p>\n      </mj-text>\n      <mj-text align=\"justify\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(57, 63, 76);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rutrum enim eget </span><span style=\"font-weight: bold;\"><span style=\"color: rgb(57, 63, 76);\">magna efficitur</span></span><span style=\"color: rgb(57, 63, 76);\">, eu semper augue semper. Aliquam erat volutpat. Cras id dui lectus. Vestibulum sed finibus lectus, sit amet </span><span style=\"font-weight: bold;\"><span style=\"color: rgb(57, 63, 76);\">suscipit nibh</span></span><span style=\"color: rgb(57, 63, 76);\">. Proin nec commodo purus. Sed eget nulla elit. Nulla aliquet mollis faucibus.</span></p>\n      </mj-text>\n      <mj-button background-color=\"#c7896f\" color=\"#FFFFFF\" font-size=\"13\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        LEARN MORE\n      </mj-button>\n    </mj-column>\n    <mj-column width=\"25%\" vertical-align=\"top\">\n\n    </mj-column>\n  </mj-section>\n\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/xx9.png\" alt=\"Step 1 - Choose a destination\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0w.png\" alt=\"Step 2 - Select a type of boat\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0x.png\" alt=\"Step 3 - Book and enjoy your trip\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmh.jpg\" alt=\"Boat\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x0s.png\" alt=\"A wide range of cruises\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x01.png\" alt=\"Eco friendly sailing\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/x0l.png\" alt=\"Insurances included\" align=\"center\" border=\"none\" width=\"125\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 24px;\">Cruise of the month : Corse, preserved beauty</span></span></p>\n      </mj-text>\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmi.jpg\" alt=\"Cruise of the month : Corse\" align=\"center\" border=\"none\" width=\"500\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n      <mj-button background-color=\"#464e5e\" color=\"#FFFFFF\" font-size=\"13\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"10\">\n        BOOK A CORSICAN TOUR NOW\n      </mj-button>\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 18px;\">22 places available</span></span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-image src=\"http://191n.mj.am/img/191n/3s/xmj.jpg\" alt=\"Sailing\" align=\"center\" border=\"none\" width=\"250\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"50%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">RENT A SAILING</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">BOAT</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">AND ORGANIZE</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">YOUR OWN</span></span></span></p><p><span style=\"color: rgb(59, 70, 82);\"><span style=\"font-size: 15px;\"><span style=\"font-weight: bold;\">CRUISE</span></span></span></p>\n      </mj-text>\n      <mj-button background-color=\"#c7896f\" color=\"#FFFFFF\" font-size=\"15px\" align=\"center\" vertical-align=\"middle\" border=\"none\" padding=\"15px 30px\" border-radius=\"3px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        SEE CONDITIONS\n      </mj-button>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p>Any questions, comments, concerns?</p><p>Contact our support staff at <a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"font-weight: bold;\">support@amario.com</span></a></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#8bafad\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-image href=\"https://mjml.io\" src=\"http://191n.mj.am/img/191n/3s/x0p.png\" alt=\"Amario logo\" align=\"center\" border=\"none\" width=\"77\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><a href=\"https://mjml.io\" style=\"text-decoration: none; color: inherit;\"><span style=\"color: rgb(255, 255, 255);\">Privacy policy</span></a></p>\n      </mj-text>\n    </mj-column>\n    <mj-column width=\"33.33333333333333%\" vertical-align=\"top\">\n      <mj-social color=\"#333333\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"13\" text-mode=\"true\" facebook-href=\"[[SHORT_PERMALINK]]\" facebook-content=\" \" twitter-href=\"[[SHORT_PERMALINK]]\" twitter-content=\" \" google-href=\"[[SHORT_PERMALINK]]\" google-content=\" \" mode=\"horizontal\" display=\"facebook twitter google\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-social>\n    </mj-column>\n  </mj-section>\n  <mj-section locked=\"true\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column width=\"100%\" vertical-align=\"middle\">\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"false\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size:11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif\" font-size=\"11\" locked=\"true\" editable=\"true\" type=\"user-address\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size:11px\">[[POSTAL_ADDRESS]]</p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>"
+                  },
+                  "tail": true
+                }
+              ]
+            },
+            "kind": "init"
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

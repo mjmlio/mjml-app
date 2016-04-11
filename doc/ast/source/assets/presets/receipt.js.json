@@ -1,0 +1,231 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 13398,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 113,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 0,
+      "end": 13397,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 112,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 15,
+        "end": 13397,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 112,
+            "column": 1
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 19,
+            "end": 32,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 19,
+              "end": 21,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "line": 2,
+                  "column": 4
+                }
+              },
+              "name": "id"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 23,
+              "end": 32,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 6
+                },
+                "end": {
+                  "line": 2,
+                  "column": 15
+                }
+              },
+              "value": "receipt",
+              "rawValue": "receipt",
+              "raw": "'receipt'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 36,
+            "end": 51,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 36,
+              "end": 40,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 2
+                },
+                "end": {
+                  "line": 3,
+                  "column": 6
+                }
+              },
+              "name": "name"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 42,
+              "end": 51,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 8
+                },
+                "end": {
+                  "line": 3,
+                  "column": 17
+                }
+              },
+              "value": "Receipt",
+              "rawValue": "Receipt",
+              "raw": "'Receipt'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 55,
+            "end": 13394,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 111,
+                "column": 1
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 55,
+              "end": 59,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "line": 4,
+                  "column": 6
+                }
+              },
+              "name": "mjml"
+            },
+            "value": {
+              "type": "TemplateLiteral",
+              "start": 61,
+              "end": 13394,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 8
+                },
+                "end": {
+                  "line": 111,
+                  "column": 1
+                }
+              },
+              "expressions": [],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 62,
+                  "end": 13393,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 111,
+                      "column": 0
+                    }
+                  },
+                  "value": {
+                    "raw": "<mj-body background-color=\"#fce7b4\" font-size=\"13px\">\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"66.66666666666666%\">\n      <mj-text align=\"left\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"middle\" width=\"33.33333333333333%\">\n      <mj-text align=\"right\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" target=\"_blank\" style=\"text-decoration: none; color: inherit\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/rwt.png\" alt=\"\" align=\"center\" border=\"none\" width=\"150\" vertical-align=\"middle\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/rw6.png\" alt=\"\" align=\"center\" border=\"none\" vertical-align=\"top\" width=\"600\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356cc7\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(255, 255, 255);\"></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 25px;\"><span style=\"font-family: &apos;Open Sans&apos;, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(119, 170, 255);\"><span style=\"font-size: 15px;\">HELLO</span></span></span></span></span></p><p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><font color=\"#77aaff\" face=\"Open Sans, Helvetica, Arial, sans-serif\"><span style=\"font-size: 15px; line-height: 20.7px; white-space: pre-wrap;\"><span style=\"font-size: 20px;\"><span style=\"color: rgb(255, 253, 253);\">[[FirstName]]</span></span></span></font></p><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356cc7\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" padding-bottom=\"5\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-divider border-color=\"#ffffff\" border-width=\"2px\" border-style=\"solid\" vertical-align=\"middle\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-divider>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(255, 255, 255);\"></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><strong style=\"font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14.6667px; white-space: pre-wrap; line-height: 1.38; background-color: transparent;\"><span style=\"font-size: 25px;\"><span style=\"color: rgb(255, 255, 255);\">Thank you very much for your purchase.</span></span></strong></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">Please find the receipt below.</span></span></span></p><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#568feb\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"5\" padding-top=\"5\">\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\"><strong>Order Number</strong></span></span></span></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[OrderNumber]]</span></span></p>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\"><strong>Order Date</strong></span></span></span></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[OrderDate]]</span></span></p>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><font color=\"#ffffff\" face=\"Roboto, Helvetica, Arial, sans-serif\"><span style=\"font-size: 14.6667px; white-space: pre-wrap;\"><b>Total Price</b></span></font></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[TotalPrice]]</span></span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356CC7\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"top\" width=\"50%\">\n      <mj-button background-color=\"#ffae00\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"10px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" container-background-color=\"transparent\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(255, 255, 255);\">Download Receipt</span></strong></span>\n      </mj-button>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"50%\">\n      <mj-button background-color=\"#ffae00\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"10px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" container-background-color=\"transparent\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(255, 255, 255);\"></span></strong><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><strong><span style=\"color: rgb(255, 255, 255);\"> Track my Order</span></strong></span></span></span></span>\n      </mj-button>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356CC7\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">Best,</span></span></span></p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">The [[CompanyName]] Team</span></span></span><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"transparent\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/r07.png\" alt=\"\" align=\"center\" border=\"none\" width=\"600\" container-background-color=\"transparent\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\"><span>   EN</span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>\n",
+                    "cooked": "<mj-body background-color=\"#fce7b4\" font-size=\"13px\">\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"66.66666666666666%\">\n      <mj-text align=\"left\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"middle\" width=\"33.33333333333333%\">\n      <mj-text align=\"right\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" target=\"_blank\" style=\"text-decoration: none; color: inherit\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/rwt.png\" alt=\"\" align=\"center\" border=\"none\" width=\"150\" vertical-align=\"middle\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/rw6.png\" alt=\"\" align=\"center\" border=\"none\" vertical-align=\"top\" width=\"600\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356cc7\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(255, 255, 255);\"></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 25px;\"><span style=\"font-family: &apos;Open Sans&apos;, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(119, 170, 255);\"><span style=\"font-size: 15px;\">HELLO</span></span></span></span></span></p><p style=\"margin-top: 0pt; margin-bottom: 0pt;\"><font color=\"#77aaff\" face=\"Open Sans, Helvetica, Arial, sans-serif\"><span style=\"font-size: 15px; line-height: 20.7px; white-space: pre-wrap;\"><span style=\"font-size: 20px;\"><span style=\"color: rgb(255, 253, 253);\">[[FirstName]]</span></span></span></font></p><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356cc7\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" padding-bottom=\"5\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-divider border-color=\"#ffffff\" border-width=\"2px\" border-style=\"solid\" vertical-align=\"middle\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-divider>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p><span style=\"color: rgb(255, 255, 255);\"></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><strong style=\"font-family: Roboto, Helvetica, Arial, sans-serif; font-size: 14.6667px; white-space: pre-wrap; line-height: 1.38; background-color: transparent;\"><span style=\"font-size: 25px;\"><span style=\"color: rgb(255, 255, 255);\">Thank you very much for your purchase.</span></span></strong></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">Please find the receipt below.</span></span></span></p><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#568feb\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"5\" padding-top=\"5\">\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\"><strong>Order Number</strong></span></span></span></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[OrderNumber]]</span></span></p>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\"><strong>Order Date</strong></span></span></span></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[OrderDate]]</span></span></p>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"33.33333333333333%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><font color=\"#ffffff\" face=\"Roboto, Helvetica, Arial, sans-serif\"><span style=\"font-size: 14.6667px; white-space: pre-wrap;\"><b>Total Price</b></span></font></p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"color: rgb(247, 247, 247);\">[[TotalPrice]]</span></span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356CC7\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"top\" width=\"50%\">\n      <mj-button background-color=\"#ffae00\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"10px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" container-background-color=\"transparent\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(255, 255, 255);\">Download Receipt</span></strong></span>\n      </mj-button>\n    </mj-column>\n    <mj-column vertical-align=\"top\" width=\"50%\">\n      <mj-button background-color=\"#ffae00\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"10px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" container-background-color=\"transparent\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(255, 255, 255);\"></span></strong><span style=\"color: rgb(255, 255, 255);\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><strong><span style=\"color: rgb(255, 255, 255);\"> Track my Order</span></strong></span></span></span></span>\n      </mj-button>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#356CC7\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">Best,</span></span></span></p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-family: Roboto, Helvetica, Arial, sans-serif;\"><span style=\"color: rgb(255, 255, 255);\">The [[CompanyName]] Team</span></span></span><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"transparent\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lhu/r07.png\" alt=\"\" align=\"center\" border=\"none\" width=\"600\" container-background-color=\"transparent\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"0\" padding-top=\"0\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\"><span>   EN</span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>\n"
+                  },
+                  "tail": true
+                }
+              ]
+            },
+            "kind": "init"
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

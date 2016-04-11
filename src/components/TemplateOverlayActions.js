@@ -12,24 +12,52 @@ class TemplateOverlayActions extends Component {
     editNameModal: false,
   }
 
+  /**
+   * Show the modal to edit a template name
+   *
+   * @returns {undefined}
+   */
   showEditNameModal = () => {
     this.setState({ editNameModal: true })
     this.props.captureOverlay(true)
   }
 
+  /**
+   * Close the modal to edit the template name
+   *
+   * @returns {undefined}
+   */
   hideEditNameModal = () => {
     this.setState({ editNameModal: false })
     this.props.captureOverlay(false)
   }
 
+  /**
+   * load the selected template
+   *
+   * @param {Object} template the selected template
+   * @returns {undefined}
+   */
   loadTemplate = template => () => {
     this.props.dispatch(loadTemplate(template))
   }
 
+  /**
+   * Deletes an unwanted template
+   *
+   * @param {Object} template the unwanted template
+   * @returns {undefined}
+   */
   deleteTemplate = template => () => {
     this.props.dispatch(deleteTemplate(template))
   }
 
+  /**
+   * Update the template's name
+   *
+   * @param {Object} e event tha triggered the action
+   * @returns {undefined}
+   */
   saveName = e => {
     e.preventDefault()
     const { item } = this.props

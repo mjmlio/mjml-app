@@ -5,7 +5,15 @@ import { notify, error } from '../helpers/notification'
 const sent = () => notify('Sent!')
 const notSent = () => error('Not sent!')
 
-export const send = (html) => (dispatch, getState) => {
+/**
+ * Sends a test email using the mailjet api
+ *
+ * @param {String} html html email content
+ * @param {Function} dispatch store.dispatch function
+ * @param {Function} returns the store state
+ * @returns
+ */
+export const send = html => (dispatch, getState) => {
 
   const state = getState()
   const { config } = state

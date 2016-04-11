@@ -7,6 +7,12 @@ import { remote } from 'electron'
 import * as presetsMap from '../assets/presets'
 import { thumbnailsFolder } from './file-system'
 
+/**
+ * Given a preset, if there is not an existing thumbnail, create it
+ *
+ * @param {Object} preset the checked preset
+ * @returns {Promise} resolve anyway
+ */
 const checkPresetThumbnail = preset => new Promise(resolve => {
 
   const { id } = preset
@@ -25,4 +31,9 @@ const checkPresetThumbnail = preset => new Promise(resolve => {
 
 })
 
+/**
+ * Run checkPresetThumbnail for each preset in presetsMap
+ *
+ * @returns {Promise}
+ */
 export default () => Promise.all(_.values(presetsMap).map(checkPresetThumbnail))

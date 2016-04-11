@@ -1,0 +1,231 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 7752,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 61,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 0,
+      "end": 7751,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 60,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 15,
+        "end": 7751,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 60,
+            "column": 1
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 19,
+            "end": 33,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 16
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 19,
+              "end": 21,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "line": 2,
+                  "column": 4
+                }
+              },
+              "name": "id"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 23,
+              "end": 33,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 6
+                },
+                "end": {
+                  "line": 2,
+                  "column": 16
+                }
+              },
+              "value": "referral",
+              "rawValue": "referral",
+              "raw": "'referral'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 37,
+            "end": 53,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "line": 3,
+                "column": 18
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 37,
+              "end": 41,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 2
+                },
+                "end": {
+                  "line": 3,
+                  "column": 6
+                }
+              },
+              "name": "name"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 43,
+              "end": 53,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 8
+                },
+                "end": {
+                  "line": 3,
+                  "column": 18
+                }
+              },
+              "value": "Referral",
+              "rawValue": "Referral",
+              "raw": "'Referral'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 57,
+            "end": 7748,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 59,
+                "column": 11
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 57,
+              "end": 61,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "line": 4,
+                  "column": 6
+                }
+              },
+              "name": "mjml"
+            },
+            "value": {
+              "type": "TemplateLiteral",
+              "start": 63,
+              "end": 7748,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 8
+                },
+                "end": {
+                  "line": 59,
+                  "column": 11
+                }
+              },
+              "expressions": [],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 64,
+                  "end": 7747,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 59,
+                      "column": 10
+                    }
+                  },
+                  "value": {
+                    "raw": "<mj-body background-color=\"#bedae6\" font-size=\"13px\">\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"66.66666666666666%\">\n      <mj-text align=\"left\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"middle\" width=\"33.33333333333333%\">\n      <mj-text align=\"right\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" target=\"_blank\" style=\"text-decoration: none; color: inherit\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" image-id=\"19872\" background-url=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/k05.png\" background-size=\"cover\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/k0g.png\" alt=\"\" align=\"center\" border=\"none\" vertical-align=\"middle\" width=\"210\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"60\" padding-top=\"60\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"10\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"display: block; font-size: 28px; font-weight: bold;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 20px;\"><span style=\"color: rgb(81, 45, 11);\">Hey {{FirstName}}!</span></span></strong></span></span>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 18px;\">Are you enjoying our weekly newsletter?</span></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 18px;\">Then why not share it with your friends? </span></span></p><p></p>\n      </mj-text>\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/ks5.png\" alt=\"\" align=\"center\" border=\"none\" width=\"271\" vertical-align=\"top\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(68, 154, 220);\"><span style=\"font-size: 25px;\">You&apos;ll get a 15% discount&#xA0;</span></span></strong></span></p><p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">on your next order </span></span></strong></span><strong style=\"font-family: Arial; font-size: 14.666666666666666px; white-space: pre-wrap;\"><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">when a friend uses the code</span></span></strong></p><p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">{{ReferalCode}}!</span></span></strong></span></p>\n      </mj-text>\n      <mj-button background-color=\"#8bb420\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"0px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <strong>Refer a friend now !</strong>\n      </mj-button>\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/ksr.png\" alt=\"\" align=\"center\" border=\"none\" width=\"251\" vertical-align=\"top\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\">Best,</span></p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\">The {{CompanyName}} Team</span><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\"><span>   FR</span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>",
+                    "cooked": "<mj-body background-color=\"#bedae6\" font-size=\"13px\">\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"66.66666666666666%\">\n      <mj-text align=\"left\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\">[[HEADLINE]]</span>\n      </mj-text>\n    </mj-column>\n    <mj-column vertical-align=\"middle\" width=\"33.33333333333333%\">\n      <mj-text align=\"right\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <span style=\"font-size: 11px\"><a href=\"https://mjml.io\" target=\"_blank\" style=\"text-decoration: none; color: inherit\">[[PERMALINK_LABEL]]</a></span>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" vertical-align=\"middle\" name=\"Section-A\" image-id=\"19872\" background-url=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/k05.png\" background-size=\"cover\" padding-bottom=\"0\" padding-top=\"0\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/k0g.png\" alt=\"\" align=\"center\" border=\"none\" vertical-align=\"middle\" width=\"210\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"60\" padding-top=\"60\">\n\n      </mj-image>\n    </mj-column>\n  </mj-section>\n  <mj-section background-color=\"#ffffff\" hidden=\"false\" name=\"Nouvelle section\" padding-bottom=\"20\" padding-top=\"10\">\n    <mj-column vertical-align=\"top\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <span style=\"display: block; font-size: 28px; font-weight: bold;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 20px;\"><span style=\"color: rgb(81, 45, 11);\">Hey {{FirstName}}!</span></span></strong></span></span>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 18px;\">Are you enjoying our weekly newsletter?</span></span></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><span style=\"font-size: 18px;\">Then why not share it with your friends? </span></span></p><p></p>\n      </mj-text>\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/ks5.png\" alt=\"\" align=\"center\" border=\"none\" width=\"271\" vertical-align=\"top\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"color: rgb(68, 154, 220);\"><span style=\"font-size: 25px;\">You&apos;ll get a 15% discount&#xA0;</span></span></strong></span></p><p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">on your next order </span></span></strong></span><strong style=\"font-family: Arial; font-size: 14.666666666666666px; white-space: pre-wrap;\"><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">when a friend uses the code</span></span></strong></p><p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\"><strong><span style=\"font-size: 18px;\"><span style=\"color: rgb(68, 154, 220);\">{{ReferalCode}}!</span></span></strong></span></p>\n      </mj-text>\n      <mj-button background-color=\"#8bb420\" color=\"#FFFFFF\" font-size=\"13px\" align=\"center\" vertical-align=\"top\" border=\"none\" padding=\"15px 30px\" border-radius=\"0px\" href=\"https://mjml.io\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <strong>Refer a friend now !</strong>\n      </mj-button>\n      <mj-image src=\"http://z2mx.mjt.lu/img/z2mx/b/lwo/ksr.png\" alt=\"\" align=\"center\" border=\"none\" width=\"251\" vertical-align=\"top\" padding-left=\"0\" padding-right=\"0\" padding-bottom=\"10\" padding-top=\"10\">\n\n      </mj-image>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"13px\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" vertical-align=\"top\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"10\" padding-top=\"10\">\n        <p></p><p style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\">Best,</span></p><span style=\"font-size:14.666666666666666px;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap;\">The {{CompanyName}} Team</span><p></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n  <mj-section hidden=\"false\" locked=\"true\" full-width=\"full-width\" padding-bottom=\"20\" padding-top=\"20\">\n    <mj-column vertical-align=\"middle\" width=\"100%\">\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"false\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\">[[DELIVERY_INFO]]</p>\n      </mj-text>\n      <mj-text align=\"center\" color=\"#000000\" font-size=\"11\" word-wrap=\"break-word\" font-family=\"Ubuntu, Helvetica, Arial, sans-serif\" locked=\"true\" editable=\"true\" vertical-align=\"middle\" padding-left=\"25\" padding-right=\"25\" padding-bottom=\"0\" padding-top=\"0\">\n        <p style=\"font-size: 11px\"><span>   FR</span></p>\n      </mj-text>\n    </mj-column>\n  </mj-section>\n</mj-body>"
+                  },
+                  "tail": true
+                }
+              ]
+            },
+            "kind": "init"
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

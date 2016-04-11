@@ -1,0 +1,231 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 2568,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 57,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 0,
+      "end": 2567,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 56,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 15,
+        "end": 2567,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 56,
+            "column": 1
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 19,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 19,
+              "end": 21,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "line": 2,
+                  "column": 4
+                }
+              },
+              "name": "id"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 23,
+              "end": 30,
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 6
+                },
+                "end": {
+                  "line": 2,
+                  "column": 13
+                }
+              },
+              "value": "proof",
+              "rawValue": "proof",
+              "raw": "'proof'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 34,
+            "end": 47,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 2
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 34,
+              "end": 38,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 2
+                },
+                "end": {
+                  "line": 3,
+                  "column": 6
+                }
+              },
+              "name": "name"
+            },
+            "value": {
+              "type": "Literal",
+              "start": 40,
+              "end": 47,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 8
+                },
+                "end": {
+                  "line": 3,
+                  "column": 15
+                }
+              },
+              "value": "Proof",
+              "rawValue": "Proof",
+              "raw": "'Proof'"
+            },
+            "kind": "init"
+          },
+          {
+            "type": "Property",
+            "start": 51,
+            "end": 2564,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 55,
+                "column": 11
+              }
+            },
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 51,
+              "end": 55,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 2
+                },
+                "end": {
+                  "line": 4,
+                  "column": 6
+                }
+              },
+              "name": "mjml"
+            },
+            "value": {
+              "type": "TemplateLiteral",
+              "start": 57,
+              "end": 2564,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 8
+                },
+                "end": {
+                  "line": 55,
+                  "column": 11
+                }
+              },
+              "expressions": [],
+              "quasis": [
+                {
+                  "type": "TemplateElement",
+                  "start": 58,
+                  "end": 2563,
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 55,
+                      "column": 10
+                    }
+                  },
+                  "value": {
+                    "raw": "<mj-body>\n  <mj-section>\n    <mj-column>\n\n      <mj-image width=\"162\" src=\"http://i.imgur.com/6wwIX3R.png\"></mj-image>\n\n    </mj-column>\n    </mj-section>\n  <mj-section background-color=\"#f3f3f3\">\n    <mj-column>\n      <mj-image width=\"170\"  src=\"http://i.imgur.com/nwNZ0TW.png\"></mj-image>\n    </mj-column>\n\n    <mj-column>\n      <mj-text font-weight=\"bold\" align=\"justify\" font-size=\"24px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"15px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet ipsum consequat.</mj-text>\n      <mj-button align=\"justify\" background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n    </mj-column>\n  </mj-section>\n\n      <mj-section>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/2aRBc7u.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/L7Q88fd.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/0NBMznR.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n  </mj-section>\n\n</mj-body>",
+                    "cooked": "<mj-body>\n  <mj-section>\n    <mj-column>\n\n      <mj-image width=\"162\" src=\"http://i.imgur.com/6wwIX3R.png\"></mj-image>\n\n    </mj-column>\n    </mj-section>\n  <mj-section background-color=\"#f3f3f3\">\n    <mj-column>\n      <mj-image width=\"170\"  src=\"http://i.imgur.com/nwNZ0TW.png\"></mj-image>\n    </mj-column>\n\n    <mj-column>\n      <mj-text font-weight=\"bold\" align=\"justify\" font-size=\"24px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"15px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet ipsum consequat.</mj-text>\n      <mj-button align=\"justify\" background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n    </mj-column>\n  </mj-section>\n\n      <mj-section>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/2aRBc7u.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/L7Q88fd.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n        <mj-column>\n          <mj-image width=\"165\"  src=\"http://i.imgur.com/0NBMznR.png\"></mj-image>\n\n          <mj-text font-weight=\"bold\" align=\"center\" font-size=\"16px\" color=\"#000\" font-family=\"helvetica\">Article Title</mj-text>\n          <mj-text align=\"justify\" font-size=\"13px\" color=\"#000\" font-family=\"helvetica\">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</mj-text>\n\n          <mj-button background-color=\"#8ccaca\" border-radius=\"40px\" font-family=\"helvetica\" font-size=\"12px\">READ MORE</mj-button>\n        </mj-column>\n\n  </mj-section>\n\n</mj-body>"
+                  },
+                  "tail": true
+                }
+              ]
+            },
+            "kind": "init"
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

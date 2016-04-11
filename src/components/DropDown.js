@@ -24,6 +24,11 @@ class DropDown extends Component {
     document.removeEventListener('click', this.close)
   }
 
+  /**
+   * toggle the drop menu visibility
+   *
+   * @returns {undefined}
+   */
   toggle = () => {
     this.setState({ open: !this.state.open })
     if (!this.state.open) {
