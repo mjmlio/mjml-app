@@ -4,11 +4,12 @@ import thunk from 'redux-thunk'
 import { hashHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 import rootReducer from '../reducers'
+import actionReport from '../middlewares/action-report'
 
 import DevTools from '../components/DevTools'
 
 const enhancer = compose(
-  applyMiddleware(thunk, routerMiddleware(hashHistory)),
+  applyMiddleware(actionReport, thunk, routerMiddleware(hashHistory)),
   DevTools.instrument(),
   persistState(
     window.location.href.match(

@@ -42,7 +42,9 @@ export const readTemplates = () =>
       } catch (e) {
         return null
       }
-    }).filter(e => !!e)) // dismiss invalid templates
+    })
+    // dismiss invalid templates
+    .filter(e => !!e))
     .then(templates => _.orderBy(templates, 'modificationDate', 'desc'))
     .then(fromJS)
 
