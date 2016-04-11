@@ -6,7 +6,7 @@ import PresetOverlayActions from '../PresetOverlayActions'
 
 @connect(
   state => ({
-    presets: state.presets
+    presets: state.presets,
   })
 )
 class Templates extends Component {

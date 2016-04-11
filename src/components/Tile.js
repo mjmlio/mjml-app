@@ -10,7 +10,7 @@ class Tile extends Component {
 
   state = {
     overlay: false,
-    overlayCaptured: false
+    overlayCaptured: false,
   }
 
   showOverlay = () => !this.state.showOverlay && this.setState({ overlay: true })
@@ -21,7 +21,7 @@ class Tile extends Component {
   render () {
     const {
       item,
-      overlayActions
+      overlayActions,
     } = this.props
 
     return (

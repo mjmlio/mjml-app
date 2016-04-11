@@ -24,7 +24,7 @@ app.on('ready', () => {
     minHeight: 768,
     titleBarStyle: 'hidden-inset',
     show: false,
-    icon: './build/logo.icns'
+    icon: './build/logo.icns',
   })
 
   mainWindow.webContents.on('new-window', (e, url) => {
@@ -69,8 +69,8 @@ app.on('ready', () => {
         } },
         { label: 'Quit', accelerator: 'Command+Q', selector: 'Quit', click: () => {
           app.quit()
-        } }
-      ] }
+        } },
+      ] },
     ]
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(template))

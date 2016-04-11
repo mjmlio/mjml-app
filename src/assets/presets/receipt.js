@@ -108,5 +108,5 @@ export default {
     </mj-column>
   </mj-section>
 </mj-body>
-`
+`,
 }

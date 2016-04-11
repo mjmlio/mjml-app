@@ -8,7 +8,7 @@ import Button from './Button'
 class TemplateOverlayActions extends Component {
 
   state = {
-    loading: false
+    loading: false,
   }
 
   usePreset = () => {

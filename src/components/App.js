@@ -5,7 +5,7 @@ import Frame from './Frame'
 class App extends Component {
 
   static propTypes = {
-    children: PropTypes.element.isRequired
+    children: PropTypes.element.isRequired,
   }
 
   render () {

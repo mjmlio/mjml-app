@@ -9,13 +9,13 @@ import { send } from '../actions/send'
 
 @connect(
   state => ({
-    config: state.config
+    config: state.config,
   })
 )
 class EditorSend extends Component {
 
   state = {
-    modalOpened: false
+    modalOpened: false,
   }
 
   openModal = () => this.setState({ modalOpened: true })
@@ -96,7 +96,7 @@ class EditorSend extends Component {
                 placeholder='To' />
             </div>
             <div className='form-group' style={{
-              opacity: this.isValid() ? 1 : 0.4
+              opacity: this.isValid() ? 1 : 0.4,
             }}>
               <button type='submit' className='Button primary' disabled={!this.isValid()}>
                 {'Send'}

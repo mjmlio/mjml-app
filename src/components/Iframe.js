@@ -7,7 +7,7 @@ import '../styles/Iframe.scss'
 class Iframe extends Component {
 
   state = {
-    loading: true
+    loading: true,
   }
 
   componentDidMount () {

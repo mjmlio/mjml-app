@@ -25,7 +25,7 @@ const promisify = fn =>
 export const checkAndCreateAppFolders = () =>
   Promise.all([
     checkOrCreate(projectFolder),
-    checkOrCreate(thumbnailsFolder)
+    checkOrCreate(thumbnailsFolder),
   ])
 
 /*

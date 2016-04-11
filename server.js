@@ -14,8 +14,8 @@ const PORT = 3000
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
   stats: {
-    colors: true
-  }
+    colors: true,
+  },
 }))
 
 app.use(require('webpack-hot-middleware')(compiler))

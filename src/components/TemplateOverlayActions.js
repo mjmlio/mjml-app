@@ -9,7 +9,7 @@ import Modal from './Modal'
 class TemplateOverlayActions extends Component {
 
   state = {
-    editNameModal: false
+    editNameModal: false,
   }
 
   showEditNameModal = () => {
@@ -37,7 +37,7 @@ class TemplateOverlayActions extends Component {
     const id = item.get('id')
     this.props.dispatch(doUpdateTemplate({
       id,
-      updater: t => t.set('name', newTemplateName)
+      updater: t => t.set('name', newTemplateName),
     }))
     this.props.dispatch(saveTemplateWithId(id))
     this.hideEditNameModal()

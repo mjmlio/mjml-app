@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   routing,
   templates,
   presets,
-  config
+  config,
 })
 
 export default rootReducer

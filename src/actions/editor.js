@@ -11,7 +11,7 @@ export const registerShortcuts = (register) => dispatch => {
       dispatch(updateConfig(
         config => config.set('editorShowPreview', !config.get('editorShowPreview'))
       ))
-    }
+    },
   })
 
   register({
@@ -20,6 +20,6 @@ export const registerShortcuts = (register) => dispatch => {
     readOnly: true,
     exec () {
       dispatch(push('/browse/templates'))
-    }
+    },
   })
 }

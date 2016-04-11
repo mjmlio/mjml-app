@@ -9,7 +9,7 @@ class Modal extends Component {
     const {
       isOpened,
       onClose,
-      children
+      children,
     } = this.props
 
     return (

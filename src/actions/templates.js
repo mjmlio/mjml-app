@@ -13,7 +13,7 @@ import {
   save,
   readFile,
   writeFile,
-  deleteTemplate as fsDeleteTemplate
+  deleteTemplate as fsDeleteTemplate,
 } from '../helpers/file-system'
 
 import defaultContent from '../assets/defaultContent'
@@ -142,7 +142,7 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
       mjml,
       html,
       creationDate: now,
-      modificationDate: now
+      modificationDate: now,
     })
     dispatch(templateCreated(newTemplate))
     dispatch(setTemplate(newTemplate))
@@ -169,7 +169,7 @@ export const deleteTemplate = template => dispatch => {
  */
 export const open = () => dispatch => {
   dialog.showOpenDialog({
-    filters: [{ name: 'MJML Files', extensions: ['mjml'] }]
+    filters: [{ name: 'MJML Files', extensions: ['mjml'] }],
   }, (filenames) => {
     if (!filenames) { return }
     const filename = filenames[0]
@@ -185,7 +185,7 @@ export const open = () => dispatch => {
  */
 export const exportTemplate = ({ template, type }) => () => {
   dialog.showSaveDialog({
-    defaultPath: `${template.get('name')}.${type}`
+    defaultPath: `${template.get('name')}.${type}`,
   }, (filename) => {
     if (!filename) { return }
 

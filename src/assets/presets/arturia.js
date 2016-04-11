@@ -111,5 +111,5 @@ export default {
       <mj-divider padding-left="0px" padding-right="0px"></mj-divider>
     </mj-column>
   </mj-section>
-</mj-body>`
+</mj-body>`,
 }

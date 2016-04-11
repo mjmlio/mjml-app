@@ -17,7 +17,7 @@ export const send = (html) => (dispatch, getState) => {
     name: config.get('userName'),
     sender: config.get('userEmail'),
     to: config.get('sendTo'),
-    html
+    html,
   }
   mailjet(payload, sent, notSent)
 }

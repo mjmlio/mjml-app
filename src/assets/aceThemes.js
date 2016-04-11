@@ -33,7 +33,7 @@ const aceThemes = [
   ['tomorrow_night_eighties', 'Tomorrow Night Eighties'],
   ['twilight',                'Twilight'],
   ['vibrant_ink',             'Vibrant Ink'],
-  ['xcode',                   'Xcode']
+  ['xcode',                   'Xcode'],
 ]
 /* eslint-enable no-multi-spaces */
 

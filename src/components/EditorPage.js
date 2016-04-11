@@ -21,7 +21,7 @@ import '../styles/EditorPage.scss'
     template: state.templates.getIn(['list', state.templates.get('list').findIndex(
       template => template.get('id') === state.templates.get('current')
     )]),
-    config: state.config
+    config: state.config,
   })
 )
 class EditorPage extends Component {

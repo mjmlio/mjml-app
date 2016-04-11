@@ -8,7 +8,7 @@ import Thumbnail from './Thumbnail'
 
 @connect(
   state => ({
-    templates: state.templates.get('list')
+    templates: state.templates.get('list'),
   })
 )
 class FileSelector extends Component {

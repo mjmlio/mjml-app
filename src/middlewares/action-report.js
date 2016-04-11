@@ -9,12 +9,12 @@ const report = (e, state, action) => {
     .post(reportUrl)
     .send({
       state,
-      action: action,
+      action,
       error: JSON.stringify(e),
       version: remote.app.getVersion(),
       appData: remote.app.getPath('appData'),
     })
-    .end(err => console.log('Well...', err))
+    .end(() => false)
 }
 
 export default store => next => action => {

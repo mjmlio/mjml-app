@@ -23,8 +23,8 @@ const DEFAULT_OPTS = {
     '/mjml.gif',
     '/test($|/)',
     '/tools($|/)',
-    '/release($|/)'
-  ].concat(devDeps.map(name => `/node_modules/${name}($|/)`))
+    '/release($|/)',
+  ].concat(devDeps.map(name => `/node_modules/${name}($|/)`)),
 }
 
 const icon = argv.icon || argv.i || 'src/app'
@@ -94,7 +94,7 @@ function pack (plat, arch, cb) {
         extension = '.ico'
       }
       return extension
-    })()
+    })(),
   }
 
   const opts = Object.assign({}, DEFAULT_OPTS, iconObj, {
@@ -102,7 +102,7 @@ function pack (plat, arch, cb) {
     arch,
     icon: './build/logo.icns',
     prune: true,
-    out: `release/${plat}-${arch}`
+    out: `release/${plat}-${arch}`,
   })
 
   packager(opts, cb)

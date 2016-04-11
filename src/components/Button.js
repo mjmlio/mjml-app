@@ -7,13 +7,13 @@ import '../styles/Button.scss'
 class Button extends Component {
 
   static defaultProps = {
-    onClick: () => {}
+    onClick: () => {},
   }
 
   render () {
     const {
       className,
-      children
+      children,
     } = this.props
 
     const cn = cx('Button', className)

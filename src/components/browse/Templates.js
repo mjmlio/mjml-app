@@ -9,7 +9,7 @@ import Button from '../Button'
 
 @connect(
   state => ({
-    templates: state.templates.get('list')
+    templates: state.templates.get('list'),
   })
 )
 class BrowseRecent extends Component {

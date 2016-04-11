@@ -8,11 +8,11 @@ import Button from './Button'
 class DropDown extends Component {
 
   static propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
   }
 
   state = {
-    open: false
+    open: false,
   }
 
   componentWillUnmount () {
@@ -38,7 +38,7 @@ class DropDown extends Component {
       className,
       title,
       icon,
-      children
+      children,
     } = this.props
     const { open } = this.state
 

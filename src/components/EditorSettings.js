@@ -9,13 +9,13 @@ import { updateConfig } from '../actions'
 
 @connect(
   state => ({
-    config: state.config
+    config: state.config,
   })
 )
 class EditorSettings extends Component {
 
   state = {
-    modalOpened: false
+    modalOpened: false,
   }
 
   openModal = () => this.setState({ modalOpened: true })

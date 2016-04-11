@@ -3,7 +3,7 @@ import { fromJS } from 'immutable'
 
 const state = fromJS({
   current: null,
-  list: []
+  list: [],
 })
 
 export default handleActions({
@@ -38,6 +38,6 @@ export default handleActions({
 
   // Delete a template from list
   TEMPLATE_DELETED: (state, { payload: id }) =>
-    state.set('list', state.get('list').delete(state.get('list').findIndex(t => t.get('id') === id)))
+    state.set('list', state.get('list').delete(state.get('list').findIndex(t => t.get('id') === id))),
 
 }, state)

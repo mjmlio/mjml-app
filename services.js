@@ -20,7 +20,7 @@ exports.takeSnapshot = (id, html, done) => {
     y: 0,
     width: 650,
     height: 800,
-    show: false
+    show: false,
   }
 
   const win = new BrowserWindow(winOpts)
@@ -47,7 +47,7 @@ exports.send = function (options, success, error) {
       FromEmail: options.sender,
       To: options.to,
       Subject: 'Test Email',
-      'Html-Part': options.html
+      'Html-Part': options.html,
     }, (err, response) => {
       return (err || response.statusCode !== 200)
         ? error(err)
@@ -67,11 +67,11 @@ exports.createGist = function (content, done) {
       files: {
         'email.mjml': {
           /* eslint-disable object-shorthand */
-          content: content
+          content: content,
           /* eslint-enable object-shorthand */
-        }
-      }
-    })
+        },
+      },
+    }),
   }
 
   request(options, (err, response, body) => {

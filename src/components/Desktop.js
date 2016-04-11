@@ -7,7 +7,7 @@ import Iframe from './Iframe'
   state => ({
     template: state.templates.getIn(['list', state.templates.get('list').findIndex(
       template => template.get('id') === state.templates.get('current')
-    )])
+    )]),
   })
 )
 class Desktop extends Component {

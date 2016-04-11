@@ -52,5 +52,5 @@ export default {
 
   </mj-section>
 
-</mj-body>`
+</mj-body>`,
 }

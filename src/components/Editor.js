@@ -46,20 +46,20 @@ import '../styles/Editor.scss'
 
 @connect(
   state => ({
-    wrapEnabled: state.config.get('editorWrapText')
+    wrapEnabled: state.config.get('editorWrapText'),
   })
 )
 class Editor extends Component {
 
   static aceProps = {
-    $blockScrolling: true
+    $blockScrolling: true,
   }
 
   constructor (props) {
     super(props)
 
     this.state = {
-      content: props.value
+      content: props.value,
     }
   }
 
