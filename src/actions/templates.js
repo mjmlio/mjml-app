@@ -155,7 +155,6 @@ export const saveTemplate = () => (dispatch, getState) => {
   return dispatch(saveTemplateWithId(templates.get('current')))
 }
 
-
 const templateCreated = createAction('TEMPLATE_CREATED')
 
 /**
@@ -188,7 +187,6 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
     dispatch(push('editor'))
   })
 }
-
 
 const templateDeleted = createAction('TEMPLATE_DELETED')
 
