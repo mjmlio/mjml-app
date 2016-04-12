@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { dismissVersion } from '../actions'
+import { fetchLastVersion } from '../actions'
 
 import NotificationBar from './NotificationBar'
 import SideBar from './SideBar'
@@ -15,6 +16,10 @@ import '../styles/Home.scss'
   })
 )
 class HomePage extends Component {
+
+  componentDidMount () {
+    this.props.dispatch(fetchLastVersion())
+  }
 
   dismiss = () => {
     this.props.dispatch(dismissVersion())

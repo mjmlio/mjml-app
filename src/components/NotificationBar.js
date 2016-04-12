@@ -11,7 +11,7 @@ class NotificationBar extends Component {
 
     return (
 			<div className='NotificationBar'>
-				<span>A brand new version of MJML App is available! :link: </span>
+				<span>A brand new version of MJML App is available! <a href='https://mjmlio.github.io/mjml-app' target='_blank'>Visit the Download page!</a></span>
 				<i className='ion-close-circled' onClick={onDismiss} />
 			</div>
 		)

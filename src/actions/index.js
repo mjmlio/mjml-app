@@ -40,7 +40,7 @@ export const updateConfig = updater => (dispatch, getState) => {
 }
 
 export const fetchLastVersion = () => dispatch =>
-  fetch('/repos/mjmlio/mjml-app/releases/latest')
+  fetch('https://api.github.com/repos/mjmlio/mjml-app/releases/latest')
     .end((err, data) => err ? false : dispatch(updateConfig(config => config.set('lastVersion', data.body.tag_name))))
 
 /**
