@@ -6,8 +6,11 @@
  * @param {String} message the error message
  * @returns {undefined}
  */
-export const error = (message) => {
-  new Notification(message)
+export const error = (message, error) => {
+  new Notification(message, {
+    title: message,
+    body: error
+  })
 }
 
 /**

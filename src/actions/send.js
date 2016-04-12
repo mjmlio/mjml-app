@@ -3,7 +3,7 @@ import { remote } from 'electron'
 import { notify, error } from '../helpers/notification'
 
 const sent = () => notify('Sent!')
-const notSent = () => error('Not sent!')
+const notSent = e => error('Not sent!', e)
 
 /**
  * Sends a test email using the mailjet api

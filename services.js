@@ -48,10 +48,12 @@ exports.send = function (options, success, error) {
       To: options.to,
       Subject: 'Test Email',
       'Html-Part': options.html,
-    }, (err, response) => {
-      return (err || response.statusCode !== 200)
-        ? error(err)
-        : success()
+    }, (err, res) => {
+      if (err && err.message) { error(err.message) }
+      else if (err && err['ErrorMessage']) { error(err['ErrorMessage']) }
+      else if (res.statusCode === 401) { error('Not Authorized') }
+      else if (err) { error('There wre a problem while sending your email') }
+      else { success() }
     })
 }
 
