@@ -9,7 +9,7 @@
 export const error = (message, error) => {
   new Notification(message, {
     title: message,
-    body: error
+    body: error,
   })
 }
 

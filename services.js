@@ -49,11 +49,17 @@ exports.send = function (options, success, error) {
       Subject: 'Test Email',
       'Html-Part': options.html,
     }, (err, res) => {
-      if (err && err.message) { error(err.message) }
-      else if (err && err['ErrorMessage']) { error(err['ErrorMessage']) }
-      else if (res.statusCode === 401) { error('Not Authorized') }
-      else if (err) { error('There wre a problem while sending your email') }
-      else { success() }
+      if (err && err.message) {
+        error(err.message)
+      } else if (err && err.ErrorMessage) {
+        error(err.ErrorMessage)
+      } else if (res.statusCode === 401) {
+        error('Not Authorized')
+      } else if (err) {
+        error('There wre a problem while sending your email')
+      } else {
+        success()
+      }
     })
 }
 
