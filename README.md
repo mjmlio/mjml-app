@@ -3,6 +3,7 @@
 </h3>
 
 <p align="center">
+  <a href="https://www.codacy.com/app/gbadi/mjml-app"><img src="https://api.codacy.com/project/badge/grade/e53df5057c4f449ca89ce162bb2d8663"/></a>
   <a href="https://travis-ci.org/mjmlio/mjml-app"><img src="http://img.shields.io/travis/mjmlio/mjml-app/master.svg?style=flat-square" alt="Build Status"></a>
   <a href="http://starveller.sigsev.io/mjmlio/mjml-app"><img src="http://starveller.sigsev.io/api/repos/mjmlio/mjml-app/badge" alt="Week Stars"></a>
 </p>
