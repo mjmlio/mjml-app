@@ -56,7 +56,7 @@ Using a Mailjet account, send your template right to your inbox.
 #### Gist integration
 Export your template in a gist to be able to share it with your friends
 
-### Contribute
+## Contribute
 We highly recommend this project to anyone willing to start learning React/Redux or electron. It is a really and easy cool ecosystem.
 
 #### Step 1:
