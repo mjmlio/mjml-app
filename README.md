@@ -86,8 +86,13 @@ Yes, dangling-commas on, sorry haters!
 #### Step 4
 Package your app, make sure it works, and create a pull request
 
+## TODO
+ - [ ] Documentation currently 35% coverage
+ - [ ] Updated screenshots
+ - [ ] smaller website images
+ - [ ] automated download links in website
 
-### Releases and Changelogs
+## Releases and Changelogs
 
 ### 1.1.2
  - New Design for modals 💡
