@@ -3,6 +3,7 @@
 </h3>
 
 <p align="center">
+  <a href="https://www.codacy.com/app/gbadi/mjml-app"><img src="https://api.codacy.com/project/badge/grade/e53df5057c4f449ca89ce162bb2d8663"/></a>
   <a href="https://travis-ci.org/mjmlio/mjml-app"><img src="http://img.shields.io/travis/mjmlio/mjml-app/master.svg?style=flat-square" alt="Build Status"></a>
   <a href="http://starveller.sigsev.io/mjmlio/mjml-app"><img src="http://starveller.sigsev.io/api/repos/mjmlio/mjml-app/badge" alt="Week Stars"></a>
 </p>
@@ -50,13 +51,13 @@ The app auto reload your template when you stop writing for a short amount of ti
 #### Themes
 You can customize your environment by choosing your favorite theme under the setting tab in the editor
 
-#### Send Test emsils
+#### Send Test emails
 Using a Mailjet account, send your template right to your inbox.
 
 #### Gist integration
 Export your template in a gist to be able to share it with your friends
 
-### Contribute
+## Contribute
 We highly recommend this project to anyone willing to start learning React/Redux or electron. It is a really and easy cool ecosystem.
 
 #### Step 1:
@@ -85,8 +86,13 @@ Yes, dangling-commas on, sorry haters!
 #### Step 4
 Package your app, make sure it works, and create a pull request
 
+## TODO
+ - [ ] Documentation currently 35% coverage
+ - [ ] Updated screenshots
+ - [ ] smaller website images
+ - [ ] automated download links in website
 
-### Releases and Changelogs
+## Releases and Changelogs
 
 ### 1.1.2
  - New Design for modals 💡
