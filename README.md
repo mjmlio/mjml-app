@@ -50,7 +50,7 @@ The app auto reload your template when you stop writing for a short amount of ti
 #### Themes
 You can customize your environment by choosing your favorite theme under the setting tab in the editor
 
-#### Send Test emsils
+#### Send Test emails
 Using a Mailjet account, send your template right to your inbox.
 
 #### Gist integration
