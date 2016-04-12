@@ -1,7 +1,9 @@
 import { handleActions } from 'redux-actions'
 import { Map } from 'immutable'
+import { version } from '../../package.json'
 
 const initialState = Map({
+  version,
   editorTheme: 'clouds_midnight',
   editorShowPreview: true,
   previewMode: 'desktop',
@@ -10,6 +12,8 @@ const initialState = Map({
   userName: '',
   userEmail: 'foo@bar.com',
   sendTo: 'foo@bar.com',
+  lastVersion: version,
+  hiddenVersion: '',
 })
 
 export default handleActions({

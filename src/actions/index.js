@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions'
 import { fromJS } from 'immutable'
 import { push } from 'react-router-redux'
+import fetch from 'superagent'
 
 const setConfig = createAction('SET_CONFIG')
 
@@ -21,6 +22,9 @@ export const loadConfig = () => (dispatch, getState) => {
   }
 }
 
+export const dismissVersion = () => dispatch =>
+	dispatch(updateConfig(config => config.set('hiddenVersion', config.get('lastVersion'))))
+
 const configUpdate = createAction('UPDATE_CONFIG', updater => updater)
 
 /**
@@ -34,6 +38,10 @@ export const updateConfig = updater => (dispatch, getState) => {
   const state = getState()
   localStorage.setItem('appconfig', JSON.stringify(state.config.toJS()))
 }
+
+export const fetchLastVersion = () => dispatch =>
+  fetch('/repos/mjmlio/mjml-app/releases/latest')
+    .end((err, data) => err ? false : dispatch(updateConfig(config => config.set('lastVersion', data.body.tag_name))))
 
 /**
  * Redirect to the comming soon page (used nowhere right now)

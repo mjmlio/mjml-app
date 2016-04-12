@@ -8,7 +8,7 @@ import mkdir from 'mkdirp'
 
 const dataFolder = process.env.NODE_ENV === 'development'
   ? remote.app.getAppPath()
-  : remote.app.getPath('appData')
+  : remote.app.getPath('home')
 
 export const projectFolder = path.join(dataFolder, 'mjml-app', 'MJML-Projects')
 export const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')

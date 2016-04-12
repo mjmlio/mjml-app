@@ -9,7 +9,7 @@ const Mailjet = require('node-mailjet')
 
 const dataFolder = process.env.NODE_ENV === 'development'
   ? app.getAppPath()
-  : app.getPath('appData')
+  : app.getPath('home')
 
 const thumbnailsFolder = path.join(dataFolder, 'mjml-app', 'MJML-thumbnails')
 

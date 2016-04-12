@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import { checkAndCreateAppFolders } from './helpers/file-system'
 import { readTemplates } from './actions/templates'
 import { loadConfig } from './actions'
+import { fetchLastVersion } from './actions'
 import createPresetsThumbnails from './helpers/createPresetsThumbnails'
 
 if (process.env.NODE_ENV === 'development') {
@@ -22,12 +23,14 @@ export default ({ dispatch }) =>
     .then(() => createPresetsThumbnails())
 
     // load user config.
-    // TODO: merge with defaults instead of overriding
     .then(() => dispatch(loadConfig()))
 
     // load all user templates
     // TODO: db?
     .then(() => dispatch(readTemplates()))
+
+    // check for a new version
+    .then(() => fetchLastVersion())
 
     // go to browse recent, because react-router :'(
     // TODO: find a solution

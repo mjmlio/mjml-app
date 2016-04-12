@@ -1,0 +1,16 @@
+.NotificationBar {
+
+  position: fixed;
+  top: 40px; left: 0; right: 0;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #3498db;
+  color: white;
+  font-family: Helvetica;
+  font-size: .9em;
+
+  i {
+    cursor: pointer;
+  }
+}
