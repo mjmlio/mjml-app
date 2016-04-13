@@ -94,6 +94,7 @@ class EditorSend extends Component {
 
             <div className='form-group'>
               <label>{'Mailjet API Key:'}</label>
+              <p style={{ fontSize: '.9em' }}>You can find your API Keys in the <a target='_blank' href='https://app.mailjet.com/account/api_keys'>Account/API Key section</a></p>
               <input
                 type='text'
                 value={config.get('mjApiKey')}
@@ -110,6 +111,7 @@ class EditorSend extends Component {
             </div>
             <div className='form-group'>
               <label>{'From email:'}</label>
+              <p style={{ fontSize: '.9em' }}>The from email must be a <a target='_blank' href='https://app.mailjet.com/account/sender'>verified sender</a></p>
               <input
                 type='text'
                 value={config.get('userEmail')}

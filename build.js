@@ -13,7 +13,8 @@ const devDeps = Object.keys(pkg.devDependencies)
 
 const appName = 'MJML'
 const shouldUseAsar = argv.asar || argv.a || false
-const shouldBuildAll = argv.all || false
+const shouldBuildAll = true
+// const shouldBuildAll = argv.all || false
 
 const DEFAULT_OPTS = {
   dir: './',
@@ -27,7 +28,7 @@ const DEFAULT_OPTS = {
   ].concat(devDeps.map(name => `/node_modules/${name}($|/)`)),
 }
 
-const icon = argv.icon || argv.i || 'src/app'
+const icon = './build/logo'
 
 if (icon) {
   DEFAULT_OPTS.icon = icon
@@ -100,7 +101,6 @@ function pack (plat, arch, cb) {
   const opts = Object.assign({}, DEFAULT_OPTS, iconObj, {
     platform: plat,
     arch,
-    icon: './build/logo.icns',
     prune: true,
     out: `release/${plat}-${arch}`,
   })
