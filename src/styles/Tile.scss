@@ -10,7 +10,11 @@
     font-size: 13px;
     bottom: 6px;
     left: 10px;
+    right: 10px;
     position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   .template-wrapper {
