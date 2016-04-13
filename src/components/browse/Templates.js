@@ -25,6 +25,7 @@ class BrowseRecent extends Component {
       <div>
         {!!templates.size
           ? <TileGrid
+            canEditName
             overlayActions={TemplateOverlayActions}
             items={templates} />
           : (

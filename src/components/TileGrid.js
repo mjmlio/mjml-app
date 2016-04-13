@@ -8,8 +8,12 @@ import '../styles/TileGrid.scss'
 
 class TileGrid extends Component {
 
+  static defaultProps = {
+    canEditName: false,
+  }
+
   render () {
-    const { items, overlayActions } = this.props
+    const { items, overlayActions, canEditName } = this.props
 
     return (
       <div className='TileGrid'>
@@ -17,6 +21,7 @@ class TileGrid extends Component {
           <div className='TileGrid-wrapper'>
             {items.map(item =>
               <Tile
+                canEditName={canEditName}
                 item={item}
                 overlayActions={overlayActions}
                 key={item.get('id')}/>)}
