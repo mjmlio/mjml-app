@@ -7,6 +7,13 @@ import { doUpdateTemplate, saveTemplateWithId } from '../actions/templates'
 @connect()
 class EditNameModal extends Component {
 
+  componentDidUpdate (prevProps) {
+    if (!prevProps.isOpened && this.props.isOpened) {
+      this.refs.tplName.setSelectionRange(0, this.refs.tplName.value.length)
+      this.refs.tplName.focus()
+    }
+  }
+
   saveName = e => {
     e.preventDefault()
     const { item, dispatch, onClose } = this.props
