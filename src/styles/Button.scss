@@ -47,3 +47,9 @@
     background: $red;
   }
 }
+
+.Button-invisible {
+  &:hover {
+    color: $blue;
+  }
+}
