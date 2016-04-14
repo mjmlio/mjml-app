@@ -68,6 +68,7 @@ class Editor extends Component {
     const register = (s) => editor.commands.addCommand(s)
 
     editor.focus()
+    editor.getSession().setUndoManager(new ace.UndoManager())
     this.props.dispatch(registerShortcuts(register))
   }
 
