@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AceEditor from 'react-ace'
+import brace from 'brace'
 import { debounce } from 'lodash'
 import { connect } from 'react-redux'
 
@@ -64,11 +65,12 @@ class Editor extends Component {
   }
 
   componentDidMount () {
-    const editor = this.refs.ace.editor
+    const ace = this.refs.ace
+    const editor = ace.editor
     const register = (s) => editor.commands.addCommand(s)
 
     editor.focus()
-    editor.getSession().setUndoManager(new ace.UndoManager())
+    editor.getSession().setUndoManager(new brace.UndoManager())
     this.props.dispatch(registerShortcuts(register))
   }
 

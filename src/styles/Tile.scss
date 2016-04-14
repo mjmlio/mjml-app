@@ -5,16 +5,33 @@
   height: 212px;
   margin: 0 1em 1em 0;
 
+  .Tile-input {
+    text-align: center;
+    background-color: #e7e7e7;
+    color: #424242;
+    width: 100%;
+    padding: 0 5px;
+  }
+
   .template-info {
+    cursor: pointer;
     color: #cecece;
     font-size: 13px;
-    bottom: 6px;
-    left: 10px;
-    right: 10px;
+    bottom: 4px;
+    left: 10px; right: 10px;
     position: absolute;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    text-align: center;
+
+    &.edit {
+      left: 0; right: 0;
+      border: 1px solid #424242;
+      padding: 0 5px;
+      background-color: #e7e7e7;
+      color: #424242;
+    }
   }
 
   .template-wrapper {

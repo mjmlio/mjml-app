@@ -4,14 +4,20 @@ import Thumbnail from './Thumbnail'
 import Overlay from './Overlay'
 import EditNameModal from './EditNameModal'
 
+import { connect } from 'react-redux'
+import { doUpdateTemplate, saveTemplateWithId } from '../actions/templates'
+
 import '../styles/Tile.scss'
 
+@connect()
 class Tile extends Component {
 
   state = {
     isEditingName: false,
     overlay: false,
     overlayCaptured: false,
+    input: false,
+    mouseOver: false,
   }
 
   /**
@@ -28,7 +34,29 @@ class Tile extends Component {
    */
   hideOverlay = () => this.setState({ overlay: false })
 
+  toggle = () => {
+    this.setState({ input: true })
+  }
+
   captureOverlay = toggle => this.setState({ overlayCaptured: toggle })
+
+  onChange = e => {
+    if (e.key === 'Enter') {
+      this.validate(e.target.value)
+    }
+  }
+
+  validate = value => {
+
+    value = value.target ? value.target.value : value
+
+    const { item, dispatch } = this.props
+
+    this.setState({ input: false, mouseOver: false })
+    if (value.trim() === '') { return }
+    dispatch(doUpdateTemplate({ id: item.get('id'), updater: t => t.set('name', value) }))
+    dispatch(saveTemplateWithId(item.get('id')))
+  }
 
   toggleEditNameModal (isEditingName) {
     this.captureOverlay(isEditingName)
@@ -37,10 +65,9 @@ class Tile extends Component {
 
   render () {
 
-    const { isEditingName } = this.state
+    const { isEditingName, mouseOver } = this.state
 
     const {
-      canEditName,
       item,
       overlayActions,
     } = this.props
@@ -57,16 +84,19 @@ class Tile extends Component {
         <div className='template-wrapper'>
           <Thumbnail item={item} />
         </div>
-        <span className='template-info'>
-          {canEditName && shouldShowOverlay && (
-            <button
-              onClick={this.toggleEditNameModal.bind(this, true)}
-              className='Button-invisible'
-              style={{ marginRight: 5 }}>
-              <i className='ion-edit' />
-            </button>
-          )}
-          {item.get('name')}
+        <span className={`template-info${mouseOver ? ' edit' : ''}`}>
+          {this.state.input
+            ? <input
+              ref={input => input && input.focus()}
+              className='Tile-input'
+              onBlur={this.validate}
+              defaultValue={item.get('name')}
+              type='text'
+              onKeyPress={this.onChange} />
+            : <span
+              onClick={this.toggle}
+              onMouseEnter={() => this.setState({ mouseOver: true })}
+              onMouseLeave={() => this.setState({ mouseOver: false })}>{item.get('name')}</span>}
         </span>
         <EditNameModal
           item={item}
