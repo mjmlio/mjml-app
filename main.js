@@ -19,9 +19,7 @@ app.on('ready', () => {
 
   mainWindow = new BrowserWindow({
     width: size.width / 1.2,
-    height: size.height / 1.2,
-    minWidth: 1024,
-    minHeight: 768,
+    height: size.height - 10,
     titleBarStyle: 'hidden-inset',
     show: false,
     icon: './build/logo.icns',
