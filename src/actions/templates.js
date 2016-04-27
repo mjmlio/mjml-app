@@ -3,8 +3,9 @@ import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
 import { remote } from 'electron'
+
 import { error, notify } from '../helpers/notification'
-import { MJMLError } from '../helpers/error'
+import { emitAlert } from './alerts'
 
 const dialog = remote.require('dialog')
 
@@ -96,7 +97,7 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
       // generate html
       mjml2html(newTemplate.get('mjml'), (err, html) => {
         if (err) {
-          newTemplate = newTemplate.set('html', MJMLError(err, template.get('html')))
+          dispatch(emitAlert(err.toString(), 'error'))
         } else {
           newTemplate = newTemplate.set('html', html)
         }
@@ -170,7 +171,10 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
   const { mjml2html } = remote.require('./services')
 
   mjml2html(mjml, (err, html) => {
-    if (err) { return }
+    if (err) {
+      dispatch(emitAlert('Bad input file.', 'error'))
+      return
+    }
     const now = new Date()
     const newTemplate = Map({
       id: shortid.generate(),

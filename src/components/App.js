@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 import Frame from './Frame'
+import Alerter from './Alerter'
 
 class App extends Component {
 
@@ -12,6 +13,7 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <Alerter />
         <Frame />
         <div className='App-content'>
           {this.props.children}
