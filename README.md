@@ -88,6 +88,17 @@ Package your app, make sure it works, and create a pull request
 
 ## Releases and Changelogs
 
+### 1.2.0
+
+ - Thumnails support for Windows :laughing:
+ - Custom notifications system :point_up:
+ - Local bug reporter :bug:
+ - All presets updated with mjml@2 syntax :fireworks:
+ - Human windows size :computer:
+ - Visual helper texts in UI (for send email) :question:
+ - Display a notification bar when an update is available :metal:
+ - Dependencies updates: mjml@2 and react@15 :white_check_mark:
+
 ### 1.1.2
  - New Design for modals 💡
  - Home is the new AppData 🍊
