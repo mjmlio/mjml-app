@@ -1,0 +1,78 @@
+@import './vars.scss';
+
+.Alerter {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  left: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  will-change: transform;
+}
+
+.Alerter-Alert {
+  cursor: pointer;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 4px 5px;
+  opacity: 0.95;
+
+  // lazy to do other colors
+  background: white;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.error {
+    background: $red;
+  }
+}
+
+.Alerter-Alert-wrapper {
+  padding-bottom: 20px;
+}
+
+.messagesTransition-enter {
+  position: relative;
+  z-index: -1;
+  animation: show-alerter-message 0.5s;
+}
+
+.messagesTransition-leave {
+  position: relative;
+  z-index: -1;
+}
+
+.messagesTransition-leave.messagesTransition-leave-active {
+  animation: hide-alerter-message ease-out 0.5s;
+}
+
+@keyframes show-alerter-message {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    max-height: 100px;
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes hide-alerter-message {
+  from {
+    max-height: 300px;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(60px);
+    max-height: 0;
+    opacity: 0;
+  }
+}
