@@ -13,8 +13,7 @@ const devDeps = Object.keys(pkg.devDependencies)
 
 const appName = 'MJML'
 const shouldUseAsar = argv.asar || argv.a || false
-const shouldBuildAll = true
-// const shouldBuildAll = argv.all || false
+const shouldBuildAll = argv.all || false
 
 const DEFAULT_OPTS = {
   dir: './',
