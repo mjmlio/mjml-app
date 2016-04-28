@@ -15,7 +15,9 @@ class Thumbnail extends Component {
    */
   static getSrc = item => {
     const itemPath = path.join(thumbnailsFolder, `${item.get('id')}.png`)
-    return `${itemPath}?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`
+    const imagePath = `${itemPath}?t=${crypto.createHash('sha256').update(item.get('mjml')).digest('base64')}`
+    const windowsIsShit = imagePath.replace(/\\/g, '\\\\')
+    return windowsIsShit
   }
 
   render () {
