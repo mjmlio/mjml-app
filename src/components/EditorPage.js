@@ -93,7 +93,7 @@ class EditorPage extends Component {
         <div className='EditorPage-bar'>
 
           <Button onClick={this.home} className='EditorPage-bar-item'>
-            <i className='ion-android-arrow-back' />
+            <i className='ion-android-arrow-back' style={{ marginRight: 0 }} />
           </Button>
 
           <DropDown

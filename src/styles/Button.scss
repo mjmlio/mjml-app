@@ -7,10 +7,6 @@
   padding: 1em 4em;
   border: 1px solid transparent;
 
-  i + span {
-    margin-left: 0.5em;
-  }
-
   &.primary {
     background: $blue;
     color: white;
