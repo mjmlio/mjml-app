@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { registerShortcuts } from '../actions/editor'
 
 import 'brace/ext/searchbox'
+import 'brace/ext/language_tools'
 import 'brace/mode/xml'
 import 'brace/theme/ambiance'
 import 'brace/theme/chaos'
