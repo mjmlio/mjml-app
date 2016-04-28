@@ -82,12 +82,8 @@
     "node-mailjet": "^1.1.0",
     "pure-render-decorator": "^0.2.0",
     "react": "^0.14.7",
-<<<<<<< HEAD
     "react-ace": "3.1.0",
-=======
-    "react-ace": "^3.1.0",
     "react-addons-css-transition-group": "^15.0.1",
->>>>>>> 9775fe755f7b375d7d74f27896225c40abc37172
     "react-dom": "^0.14.7",
     "react-portal": "^2.1.0",
     "react-redux": "^4.4.1",
