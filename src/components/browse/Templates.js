@@ -31,11 +31,11 @@ class BrowseRecent extends Component {
           : (
             <div className='BlankPlaceholder anim-bounce'>
               <h1 className='anim-fadeInUp' style={{ marginBottom: 40 }}>
-                {'You have no templates.'}
+                {'You have no template.'}
               </h1>
               <div className='anim-fadeInDelayed'>
                 <Button className='primary' onClick={this.createNew}>
-                  {'Create one from scrath!'}
+                  {'Create one from scratch!'}
                 </Button>
                 <span style={{ margin: 15 }}>
                   {' or '}
