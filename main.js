@@ -59,7 +59,7 @@ app.on('ready', () => {
         { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
-        { label: 'Upadates', click () {
+        { label: 'Updates', click () {
           shell.openExternal('https://github.com/mjmlio/mjml-app/releases')
         } },
         { label: 'Documentation', click () {
