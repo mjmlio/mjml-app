@@ -81,7 +81,7 @@ Once you have your feature ready, run
 npm run lint
 
 ```
-Yes, dangling-commas on, sorry haters!
+Yes, commas-dangle on, sorry haters!
 
 #### Step 4
 Package your app, make sure it works, and create a pull request
