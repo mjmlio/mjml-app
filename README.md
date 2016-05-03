@@ -11,7 +11,7 @@
 <br />
 
 <p align="center">
-  <img src="mjml.gif">
+  <img src="http://g.recordit.co/uuhiQFZd7D.gif">
 </p>
 
 <br />
