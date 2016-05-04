@@ -18,8 +18,8 @@ app.on('ready', () => {
   const size = electron.screen.getPrimaryDisplay().workAreaSize
 
   mainWindow = new BrowserWindow({
-    width: size.width / 1.2,
-    height: size.height - 10,
+    width: size.width - 300,
+    height: size.height - 300,
     titleBarStyle: 'hidden-inset',
     show: false,
     icon: './build/logo.icns',
