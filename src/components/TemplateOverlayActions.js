@@ -3,40 +3,48 @@ import { connect } from 'react-redux'
 
 import { loadTemplate, deleteTemplate } from '../actions/templates'
 import Button from './Button'
+import ConfirmModal from './ConfirmModal'
 
 @connect()
 class TemplateOverlayActions extends Component {
 
-  /**
-   * load the selected template
-   *
-   * @param {Object} template the selected template
-   */
-  loadTemplate = template => () => {
-    this.props.dispatch(loadTemplate(template))
+  state = {
+    confirmModal: false,
   }
 
-  /**
-   * Deletes an unwanted template
-   *
-   * @param {Object} template the unwanted template
-   */
-  deleteTemplate = template => () => {
-    this.props.dispatch(deleteTemplate(template))
+  loadTemplate = () => this.props.dispatch(loadTemplate(this.props.item))
+  deleteTemplate = () => this.props.dispatch(deleteTemplate(this.props.item))
+
+  toggleConfirmModal = o => () => {
+    this.setState({ confirmModal: o })
+    this.props.captureOverlay(o)
+  }
+
+  confirmDelete = () => {
+    this.deleteTemplate()
+    this.toggleConfirmModal(false)()
   }
 
   render () {
-    const { item } = this.props
+    const { confirmModal } = this.state
 
     return (
       <div className='Overlay-actions'>
-        <Button className='primary big' onClick={this.loadTemplate(item)}>
+        <Button className='primary big' onClick={this.loadTemplate}>
           <i className='ion-android-open' />
         </Button>
 
-        <Button className='danger' onClick={this.deleteTemplate(item)}>
+        <Button className='danger' onClick={this.toggleConfirmModal(true)}>
           <i className='ion-trash-b' />
         </Button>
+
+        <ConfirmModal
+          isOpened={confirmModal}
+          onConfirm={this.confirmDelete}
+          onClose={this.toggleConfirmModal(false)}>
+          {'Are you sure you want to delete your template?'}
+        </ConfirmModal>
+
       </div>
     )
   }
