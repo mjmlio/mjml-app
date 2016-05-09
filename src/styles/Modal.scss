@@ -10,19 +10,19 @@
   justify-content: center;
   z-index: 10000;
 
-  background: rgba(0, 0, 0, 0.35);
-  animation: 150ms ease-in fadeIn;
+  background: rgba(0, 0, 0, 0.5);
+  animation: 100ms ease-in fadeIn;
 }
 
 .Modal {
   position: relative;
   background-color: $grey;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.8);
   min-width: 400px;
   padding: 3rem 2rem;
   border: 1px solid $dark-grey;
   box-shadow: 0px 0px 113px -37px rgba(41,117,230,0.35);
-  animation: 350ms ease-out fadeInUpDelayed;
+  animation: 150ms cubic-bezier(.39,1.44,.38,1.07) fadeInUpDelayed;
 
   > i {
     cursor: pointer;
@@ -31,10 +31,11 @@
     right: 8px;
     top: 8px;
     z-index: 1;
-    color: #e1e1e1;
+    color: white;
     display: flex;
+    opacity: 0.4;
     &:hover {
-      color: white;
+      opacity: 1;
     }
   }
 
@@ -75,16 +76,16 @@
 @keyframes fadeInUpDelayed {
   0% {
     opacity: 0;
-    transform: translate3d(0, 20%, 0);
+    transform: scale(0.9);
   }
 
-  50% {
+  20% {
     opacity: 0;
-    transform: translate3d(0, 20%, 0);
+    transform: scale(0.9);
   }
 
   100% {
     opacity: 1;
-    transform: none;
+    transform: scale(1);
   }
 }
