@@ -49,6 +49,7 @@ import '../styles/Editor.scss'
 @connect(
   state => ({
     wrapEnabled: state.config.get('editorWrapText'),
+    showPreview: state.config.get('editorShowPreview'),
   })
 )
 class Editor extends Component {
@@ -73,6 +74,13 @@ class Editor extends Component {
     editor.focus()
     editor.getSession().setUndoManager(new brace.UndoManager())
     this.props.dispatch(registerShortcuts(register))
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.wrapEnabled !== this.props.wrapEnabled
+    || prevProps.showPreview !== this.props.showPreview) {
+      this.refs.ace.editor.resize()
+    }
   }
 
   saveContent = debounce((content) => {
