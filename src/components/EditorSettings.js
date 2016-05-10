@@ -83,7 +83,7 @@ class EditorSettings extends Component {
             <label>
               <input
                 type='checkbox'
-                checked={config.get('editorWrapText')}
+                defaultChecked={config.get('editorWrapText')}
                 onChange={this.setWrap} />
               {' Wrap lines'}
             </label>
