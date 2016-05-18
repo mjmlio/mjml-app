@@ -23,7 +23,6 @@ import defaultContent from 'assets/defaultContent'
  * Triggers RECEIVE_TEMPLATES and set the templates in the store
  *
  * @param {Array} templates
- * @returns {undefined}
  */
 const receiveTemplates = createAction('RECEIVE_TEMPLATES', templates => templates)
 
@@ -42,7 +41,6 @@ export const readTemplates = () => dispatch => {
  * Set the current template
  *
  * @param {Object} template the current template
- * @returns {undefined}
  */
 export const setTemplate = createAction('SET_TEMPLATE', template => template)
 
@@ -50,7 +48,6 @@ export const setTemplate = createAction('SET_TEMPLATE', template => template)
  * Set the current template and redirect the app to the editor
  *
  * @param {Object} template the new current template
- * @returns {Function} dispatch store.dispatch function
  */
 export const loadTemplate = template => dispatch => {
   dispatch(setTemplate(template))
@@ -69,7 +66,6 @@ const doUpdateCurrentTemplate = createAction('UPDATE_CURRENT_TEMPLATE', updater 
  * @param {Function} updater the update function that updates the template
  * @param {Function} dispatch store.dispatch function
  * @param {Function} getState returns the current state
- * @returns {undefined}
  */
 export const updateCurrentTemplate = updater => (dispatch, getState) => {
 
@@ -123,7 +119,6 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
  * Finds and updates the template
  *
  * @param {String} id the wanted template's id
- * @returns {undefined}
  */
 export const saveTemplateWithId = id => (dispatch, getState) => {
 
@@ -146,7 +141,6 @@ export const saveTemplateWithId = id => (dispatch, getState) => {
  *
  * @param {Function} dispatch store.dispatch
  * @param {Function} getState returns the current state
- * @returns {undefined}
  */
 export const saveTemplate = () => (dispatch, getState) => {
 
@@ -163,7 +157,6 @@ const templateCreated = createAction('TEMPLATE_CREATED')
  *
  * @param {String} mjml mjml content
  * @param {Function} dispatch store.dispatch function
- * @returns {undefined}
  */
 export const createNewTemplate = (mjml = defaultContent) => dispatch => {
 
@@ -198,7 +191,6 @@ const templateDeleted = createAction('TEMPLATE_DELETED')
  * Deletes a template
  *
  * @param {Object} template the template to be deleted
- * @returns {undefined}
  */
 export const deleteTemplate = template => dispatch => {
   const id = template.get('id')
@@ -232,7 +224,6 @@ export const open = () => dispatch => {
  *
  * @param {Object} template the template to be saved
  * @param {enum('mjml', 'html')} type the file type
- * @returns {undefined}
  */
 export const exportTemplate = ({ template, type }) => () => {
   dialog.showSaveDialog({
@@ -253,7 +244,6 @@ export const exportTemplate = ({ template, type }) => () => {
  *
  * @param {Object} template
  * @param {Function} dispatch store.dispatch function
- * @returns {undefined}
  */
 export const makeSnapshot = template => dispatch => {
 
@@ -276,7 +266,6 @@ export const makeSnapshot = template => dispatch => {
  * Load a preset by creating a template with the same content as the preset.
  *
  * @param {Object} preset preset definition
- * @returns {undefined}
  */
 export const usePreset = preset => dispatch => {
   dispatch(createNewTemplate(preset.get('mjml')))

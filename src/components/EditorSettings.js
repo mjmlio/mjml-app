@@ -18,35 +18,16 @@ class EditorSettings extends Component {
     modalOpened: false,
   }
 
-  /**
-   * Opens the configuration modal
-   *
-   * @returns {undefined}
-   */
   openModal = () => this.setState({ modalOpened: true })
-
-  /**
-   * Closes the config modal
-   *
-   * @returns {undefined}
-   */
   closeModal = () => this.setState({ modalOpened: false })
 
-  /**
-   * Set the selected theme
-   *
-   * @param {Object} e the event that triggered this
-   * @returns {undefined}
-   */
+  // Set the selected theme
   setTheme = e => {
     const theme = e.target.value
     this.props.dispatch(updateConfig(config => config.set('editorTheme', theme)))
   }
 
-  /**
-   * Toggle the wrap mode in ace editor
-   *
-   */
+  // Toggle the wrap mode in ace editor
   setWrap = () => {
     this.props.dispatch(updateConfig(
       config => config.set('editorWrapText', !config.get('editorWrapText'))

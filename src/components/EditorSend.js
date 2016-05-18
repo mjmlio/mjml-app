@@ -18,25 +18,10 @@ class EditorSend extends Component {
     modalOpened: false,
   }
 
-  /**
-   * Opens the configuration modal
-   *
-   * @returns {undefined}
-   */
   openModal = () => this.setState({ modalOpened: true })
-
-  /**
-   * Closes the config modal
-   *
-   * @returns {undefined}
-   */
   closeModal = () => this.setState({ modalOpened: false })
 
-  /**
-   * Check the send config validity (it should not be empty ATM)
-   *
-   * @returns {Boolean} true/false
-   */
+  // Check the send config validity (it should not be empty ATM)
   isValid () {
     const { config } = this.props
     return !!config.get('mjApiKey')
@@ -45,13 +30,7 @@ class EditorSend extends Component {
       && !!config.get('sendTo')
   }
 
-  /**
-   * Update a config entry
-   *
-   * @param {String} key the config entry to be updated
-   * @param {Object} e the event to get the field value
-   * @returns {undefined}
-   */
+  // Update a config entry
   updateInConf = (key, e) => {
     const { value } = e.target
     this.props.dispatch(
@@ -59,12 +38,7 @@ class EditorSend extends Component {
     )
   }
 
-  /**
-   * Sends a test email using mailjet and closes the modal
-   *
-   * @param {Object} e the triggered event
-   * @returns {undefined}
-   */
+  // Sends a test email using mailjet and closes the modal
   sendEmail = e => {
     e.preventDefault()
     this.props.dispatch(

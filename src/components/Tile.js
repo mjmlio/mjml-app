@@ -20,18 +20,8 @@ class Tile extends Component {
     mouseOver: false,
   }
 
-  /**
-   * Show the hover overlay
-   *
-   * @returns {undefined}
-   */
   showOverlay = () => !this.state.showOverlay && this.setState({ overlay: true })
 
-  /**
-   * Hides the hover overlay
-   *
-   * @returns {undefined}
-   */
   hideOverlay = () => this.setState({ overlay: false })
 
   toggle = () => {

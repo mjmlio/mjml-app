@@ -11,7 +11,6 @@ const notSent = e => error('Not sent!', e)
  * @param {String} html html email content
  * @param {Function} dispatch store.dispatch function
  * @param {Function} returns the store state
- * @returns
  */
 export const send = html => (dispatch, getState) => {
 

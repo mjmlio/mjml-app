@@ -7,9 +7,8 @@ import { updateConfig } from 'actions'
  *
  * @param {Function} register Ace register function
  * @param {Function} dispatch store.dispatch
- * @returns {undefined} nothing
  */
-export const registerShortcuts = (register) => dispatch => {
+export const registerShortcuts = register => dispatch => {
   register({
     name: 'toggle:preview',
     bindKey: { mac: 'Cmd+p' },

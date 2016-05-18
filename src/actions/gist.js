@@ -4,7 +4,6 @@ import { remote, shell } from 'electron'
  * Creates a anonymous gist file and open it in the browser
  *
  * @param {String} content
- * @returns {undefined}
  */
 export const exportAsGist = content => () => {
 

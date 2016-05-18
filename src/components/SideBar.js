@@ -13,32 +13,11 @@ import 'styles/SideBar.scss'
 class SideBar extends Component {
 /* eslint-enable no-undefined */
 
-  /**
-   * Creates a new template
-   *
-   * @returns {undefined}
-   */
-  createNew = () => {
-    this.props.dispatch(createNewTemplate())
-  }
+  createNew = () => { this.props.dispatch(createNewTemplate()) }
 
-  /**
-   * Opens an mjml template through the open dialog window
-   *
-   * @returns {undefined}
-   */
-  open = () => {
-    this.props.dispatch(open())
-  }
+  open = () => { this.props.dispatch(open()) }
 
-  /**
-   * Redirect to the comming soon page
-   *
-   * @returns {undefined}
-   */
-  comingSoon = () => {
-    this.props.dispatch(comingSoon())
-  }
+  comingSoon = () => { this.props.dispatch(comingSoon()) }
 
   render () {
     return (
