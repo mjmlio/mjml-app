@@ -3,10 +3,11 @@ import { persistState } from 'redux-devtools'
 import thunk from 'redux-thunk'
 import { hashHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
-import rootReducer from '../reducers'
-import actionReport from '../middlewares/action-report'
 
-import DevTools from '../components/DevTools'
+import rootReducer from 'reducers'
+import actionReport from 'middlewares/action-report'
+
+import DevTools from 'components/DevTools'
 
 const enhancer = compose(
   applyMiddleware(actionReport, thunk, routerMiddleware(hashHistory)),

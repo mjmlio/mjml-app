@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Modal from './Modal'
-import { doUpdateTemplate, saveTemplateWithId } from '../actions/templates'
+import Modal from 'components/Modal'
+import { doUpdateTemplate, saveTemplateWithId } from 'actions/templates'
 
 @connect()
 class EditNameModal extends Component {

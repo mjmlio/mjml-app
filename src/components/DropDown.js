@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import cx from 'classnames'
 
-import '../styles/DropDown.scss'
+import 'styles/DropDown.scss'
 
-import Button from './Button'
+import Button from 'components/Button'
 
 class DropDown extends Component {
 

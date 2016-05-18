@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import TemplateOverlayActions from '../TemplateOverlayActions'
-import { createNewTemplate } from '../../actions/templates'
-import TileGrid from '../TileGrid'
-import Button from '../Button'
+import TemplateOverlayActions from 'components/TemplateOverlayActions'
+import { createNewTemplate } from 'actions/templates'
+import TileGrid from 'components/TileGrid'
+import Button from 'components/Button'
 
 @connect(
   state => ({

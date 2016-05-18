@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import '../styles/Frame.scss'
+import 'styles/Frame.scss'
 
 class Frame extends Component {
 

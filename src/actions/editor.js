@@ -1,6 +1,6 @@
-
-import { updateConfig } from './index'
 import { push } from 'react-router-redux'
+
+import { updateConfig } from 'actions'
 
 /**
  * Creates the Ace editor compilant shortcuts. Cmd+P: toggle preview, cmd+b => home

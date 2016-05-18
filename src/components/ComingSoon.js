@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react'
 
-import '../styles/ComingSoon.scss'
+import 'styles/ComingSoon.scss'
 
 class ComingSoon extends Component {
 

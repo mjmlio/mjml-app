@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Portal from 'react-portal'
 
-import '../styles/Modal.scss'
+import 'styles/Modal.scss'
 
 class Modal extends Component {
 

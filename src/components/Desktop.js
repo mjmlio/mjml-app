@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Iframe from './Iframe'
+import Iframe from 'components/Iframe'
 
 @connect(
   state => ({

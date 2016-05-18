@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
-import Frame from './Frame'
-import Alerter from './Alerter'
+import Frame from 'components/Frame'
+import Alerter from 'components/Alerter'
 
 class App extends Component {
 

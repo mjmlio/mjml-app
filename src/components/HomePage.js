@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { dismissVersion } from '../actions'
 import { fetchLastVersion } from '../actions'
 
-import NotificationBar from './NotificationBar'
-import SideBar from './SideBar'
+import NotificationBar from 'components/NotificationBar'
+import SideBar from 'components/SideBar'
 
-import '../styles/Home.scss'
+import 'styles/Home.scss'
 
 @connect(
   state => ({

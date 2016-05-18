@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadTemplate, deleteTemplate } from '../actions/templates'
-import Button from './Button'
-import ConfirmModal from './ConfirmModal'
+import { loadTemplate, deleteTemplate } from 'actions/templates'
+import Button from 'components/Button'
+import ConfirmModal from 'components/ConfirmModal'
 
 @connect()
 class TemplateOverlayActions extends Component {

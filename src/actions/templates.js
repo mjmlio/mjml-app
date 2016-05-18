@@ -4,8 +4,8 @@ import shortid from 'shortid'
 import { Map } from 'immutable'
 import { remote } from 'electron'
 
-import { error, notify } from '../helpers/notification'
-import { emitAlert } from './alerts'
+import { error, notify } from 'helpers/notification'
+import { emitAlert } from 'actions/alerts'
 
 const dialog = remote.require('dialog')
 
@@ -15,9 +15,9 @@ import {
   readFile,
   writeFile,
   deleteTemplate as fsDeleteTemplate,
-} from '../helpers/file-system'
+} from 'helpers/file-system'
 
-import defaultContent from '../assets/defaultContent'
+import defaultContent from 'assets/defaultContent'
 
 /**
  * Triggers RECEIVE_TEMPLATES and set the templates in the store

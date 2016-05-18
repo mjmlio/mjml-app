@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { usePreset } from '../actions/templates'
-import Button from './Button'
+import { usePreset } from 'actions/templates'
+import Button from 'components/Button'
 
 @connect()
 class TemplateOverlayActions extends Component {

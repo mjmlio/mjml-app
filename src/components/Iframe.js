@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import pureRender from 'pure-render-decorator'
 
-import '../styles/Iframe.scss'
+import 'styles/Iframe.scss'
 
 @pureRender
 class Iframe extends Component {

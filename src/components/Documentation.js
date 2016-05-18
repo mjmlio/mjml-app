@@ -1,7 +1,6 @@
-
 import React, { Component } from 'react'
 
-import '../styles/Documentation.scss'
+import 'styles/Documentation.scss'
 
 class Documentation extends Component {
 

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
-import '../styles/Home.scss'
+import 'styles/Home.scss'
 
-import { createNewTemplate, loadTemplate, deleteTemplate } from '../actions/templates'
-import Thumbnail from './Thumbnail'
+import { createNewTemplate, loadTemplate, deleteTemplate } from 'actions/templates'
+import Thumbnail from 'components/Thumbnail'
 
 @connect(
   state => ({

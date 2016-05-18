@@ -2,8 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import _ from 'lodash'
 import { remote } from 'electron'
-import * as presetsMap from '../assets/presets'
-import { thumbnailsFolder } from './file-system'
+
+import * as presetsMap from 'assets/presets'
+import { thumbnailsFolder } from 'helpers/file-system'
 
 /**
  * Given a preset, if there is not an existing thumbnail, create it

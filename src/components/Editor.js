@@ -4,7 +4,7 @@ import brace from 'brace'
 import { debounce } from 'lodash'
 import { connect } from 'react-redux'
 
-import { registerShortcuts } from '../actions/editor'
+import { registerShortcuts } from 'actions/editor'
 
 import 'brace/ext/searchbox'
 import 'brace/ext/language_tools'
@@ -44,7 +44,7 @@ import 'brace/theme/twilight'
 import 'brace/theme/vibrant_ink'
 import 'brace/theme/xcode'
 
-import '../styles/Editor.scss'
+import 'styles/Editor.scss'
 
 @connect(
   state => ({

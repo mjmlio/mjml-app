@@ -23,7 +23,7 @@ export const loadConfig = () => (dispatch, getState) => {
 }
 
 export const dismissVersion = () => dispatch =>
-	dispatch(updateConfig(config => config.set('hiddenVersion', config.get('lastVersion'))))
+  dispatch(updateConfig(config => config.set('hiddenVersion', config.get('lastVersion'))))
 
 const configUpdate = createAction('UPDATE_CONFIG', updater => updater)
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 import cx from 'classnames'
 
-import '../styles/Button.scss'
+import 'styles/Button.scss'
 
 class Button extends Component {
 

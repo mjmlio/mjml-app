@@ -1,10 +1,9 @@
-
 import React, { Component } from 'react'
 import ScrollArea from 'react-scrollbar'
 
-import Tile from './Tile'
+import Tile from 'components/Tile'
 
-import '../styles/TileGrid.scss'
+import 'styles/TileGrid.scss'
 
 class TileGrid extends Component {
 

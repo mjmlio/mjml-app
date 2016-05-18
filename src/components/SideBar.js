@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { createNewTemplate, open } from '../actions/templates'
-import { comingSoon } from '../actions/'
+import { createNewTemplate, open } from 'actions/templates'
+import { comingSoon } from 'actions/'
 
-import '../styles/SideBar.scss'
+import 'styles/SideBar.scss'
 
 // strange bug: forced to put the connect as pure false
 // because component was not updated on route change

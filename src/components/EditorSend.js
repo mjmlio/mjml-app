@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 
-import Modal from './Modal'
-import Button from './Button'
-import { updateConfig } from '../actions'
-import { send } from '../actions/send'
+import Modal from 'components/Modal'
+import Button from 'components/Button'
+import { updateConfig } from 'actions'
+import { send } from 'actions/send'
 
 @connect(
   state => ({

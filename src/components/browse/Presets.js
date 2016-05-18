@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import TileGrid from '../TileGrid'
 
-import PresetOverlayActions from '../PresetOverlayActions'
+import TileGrid from 'components/TileGrid'
+import PresetOverlayActions from 'components/PresetOverlayActions'
 
 @connect(
   state => ({

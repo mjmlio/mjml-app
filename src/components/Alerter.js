@@ -3,9 +3,9 @@ import cx from 'classnames'
 import { connect } from 'react-redux'
 import Transition from 'react-addons-css-transition-group'
 
-import { dismissAlert } from '../actions/alerts'
+import { dismissAlert } from 'actions/alerts'
 
-import '../styles/Alerter.scss'
+import 'styles/Alerter.scss'
 
 @connect(
   state => ({ alerts: state.alerts })

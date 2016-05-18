@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
-import Iframe from './Iframe'
+import Iframe from 'components/Iframe'
 
-import '../styles/Mobile.scss'
+import 'styles/Mobile.scss'
 
 class Mobile extends Component {
 

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import crypto from 'crypto'
-import { thumbnailsFolder } from '../helpers/file-system'
 import path from 'path'
 
-import '../styles/Thumbnail.scss'
+import 'styles/Thumbnail.scss'
+
+import { thumbnailsFolder } from 'helpers/file-system'
 
 class Thumbnail extends Component {
 

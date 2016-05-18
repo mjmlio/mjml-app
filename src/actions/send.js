@@ -1,6 +1,6 @@
-
 import { remote } from 'electron'
-import { notify, error } from '../helpers/notification'
+
+import { notify, error } from 'helpers/notification'
 
 const sent = () => notify('Sent!')
 const notSent = e => error('Not sent!', e)

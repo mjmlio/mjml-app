@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-
-import Thumbnail from './Thumbnail'
-import Overlay from './Overlay'
-import EditNameModal from './EditNameModal'
-
 import { connect } from 'react-redux'
-import { doUpdateTemplate, saveTemplateWithId } from '../actions/templates'
 
-import '../styles/Tile.scss'
+import Thumbnail from 'components/Thumbnail'
+import Overlay from 'components/Overlay'
+import EditNameModal from 'components/EditNameModal'
+
+import { doUpdateTemplate, saveTemplateWithId } from 'actions/templates'
+
+import 'styles/Tile.scss'
 
 @connect()
 class Tile extends Component {

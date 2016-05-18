@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import '../styles/Overlay.scss'
+import 'styles/Overlay.scss'
 
 class Overlay extends Component {
 
