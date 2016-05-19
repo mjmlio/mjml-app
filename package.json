@@ -16,6 +16,45 @@
     "clean:osx": "rm -rf release *.dmg *.zip mjml-app/*",
     "build:osx": "npm run clean:osx && npm run package && appdmg build/osx.json ./mjml-app-osx.dmg -v && zip -r mjml-app-osx.zip release/darwin-x64/MJML-darwin-x64/"
   },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "add-module-exports",
+      "transform-decorators-legacy"
+    ],
+    "env": {
+      "development": {
+        "presets": [
+          "react-hmre"
+        ]
+      },
+      "test": {
+        "plugins": [
+          [
+            "webpack-loaders",
+            {
+              "config": "webpack.config.node.js",
+              "verbose": false
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": ["zavatta", "zavatta-react"],
+    "rules": {
+      "camelcase": 0,
+      "comma-dangle": [2, "always-multiline"]
+    },
+    "globals": {
+      "Promise": false
+    }
+  },
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
