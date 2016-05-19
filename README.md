@@ -88,6 +88,10 @@ Package your app, make sure it works, and create a pull request
 
 ## Releases and Changelogs
 
+### 1.3.1 (2016-05-19)
+
+ - Fix buggy overlay hover, and prevent edit name of preset :smiley:
+
 ### 1.3.0
 
  - Typos fixes :pencil:
