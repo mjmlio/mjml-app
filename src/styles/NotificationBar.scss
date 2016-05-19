@@ -1,7 +1,7 @@
 .NotificationBar {
 
   position: fixed;
-  top: 40px; left: 0; right: 0;
+  top: 35px; left: 0; right: 0;
   padding: 5px 20px;
   display: flex;
   justify-content: space-between;
@@ -9,6 +9,8 @@
   color: white;
   font-family: Helvetica;
   font-size: .9em;
+  animation: 0.6s cubic-bezier(.33,1.59,.67,.94) fadeInDown;
+  z-index: 800;
 
   i {
     cursor: pointer;

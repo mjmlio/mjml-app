@@ -26,7 +26,6 @@ class HomePage extends Component {
   }
 
   render () {
-
     const { version, lastVersion, hiddenVersion } = this.props
 
     return (

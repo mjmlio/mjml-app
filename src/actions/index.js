@@ -9,13 +9,15 @@ const setConfig = createAction('SET_CONFIG')
  * Load the config from localStorage. Empty localstorage if devmode
  */
 export const loadConfig = () => (dispatch, getState) => {
-  if (process.env.NODE_ENV === 'development') {
-    localStorage.clear()
-  }
-  const localConfig = localStorage.getItem('appconfig')
+  let localConfig = localStorage.getItem('appconfig')
   if (localConfig) {
+    localConfig = JSON.parse(localConfig)
+
+    // prevent wrong version to be stored in config
+    delete localConfig.version
+
     const actualConfig = getState().config.toJS()
-    const config = fromJS({ ...actualConfig, ...JSON.parse(localConfig) })
+    const config = fromJS({ ...actualConfig, ...localConfig })
     dispatch(setConfig(config))
   }
 }
