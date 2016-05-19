@@ -88,9 +88,16 @@ Package your app, make sure it works, and create a pull request
 
 ## Releases and Changelogs
 
+### 1.3.0
+
+ - Typos fixes :pencil:
+ - Correct app quit when closing main window :clap:
+ - Better windows size :computer:
+ - Confirmation modal when deleting template :smile:
+
 ### 1.2.0
 
- - Thumnails support for Windows :laughing:
+ - Thumbnails support for Windows :laughing:
  - Custom notifications system :point_up:
  - Local bug reporter :bug:
  - All presets updated with mjml@2 syntax :fireworks:
