@@ -31,6 +31,7 @@ class Tile extends Component {
   hideOverlay = () => this.setState({ overlay: false })
 
   toggleEdit = () => {
+    if (!this.props.canEditName) { return }
     this.setState({ input: true })
   }
 
@@ -56,12 +57,12 @@ class Tile extends Component {
 
   render () {
     const { edit, mouseOver } = this.state
-    const { item, overlayActions } = this.props
+    const { item, overlayActions, canEditName } = this.props
 
     const shouldShowOverlay = this.state.overlay || this.state.overlayCaptured
 
     return (
-      <div className='template'>
+      <div className='template' onMouseLeave={this.hideOverlay}>
         <Overlay
           onMouseLeave={this.hideOverlay}
           item={item}
@@ -71,7 +72,11 @@ class Tile extends Component {
         <div className='template-wrapper' onMouseOver={this.showOverlay}>
           <Thumbnail item={item} />
         </div>
-        <span className={cx('template-info', { hover: mouseOver, edit })}
+        <span className={cx('template-info', {
+          editable: canEditName,
+          hover: mouseOver && canEditName,
+          edit: edit && canEditName,
+        })}
           onClick={this.toggleEdit}
           onMouseEnter={() => this.setState({ mouseOver: true })}
           onMouseLeave={() => this.setState({ mouseOver: false })}>

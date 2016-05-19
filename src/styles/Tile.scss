@@ -13,7 +13,6 @@
   }
 
   .template-info {
-    cursor: pointer;
     color: #cecece;
     font-size: 13px;
     bottom: 4px;
@@ -24,6 +23,10 @@
     overflow: hidden;
     text-align: center;
     transition: 100ms ease-out background;
+
+    &.editable {
+      cursor: pointer;
+    }
 
     &.hover {
       background: rgba(255, 255, 255, 0.1);
