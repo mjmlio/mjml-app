@@ -5,10 +5,10 @@ import 'styles/Overlay.scss'
 class Overlay extends Component {
 
   render () {
-    const { visible, item, Actions } = this.props
+    const { visible, item, Actions, onMouseLeave } = this.props
 
     return (
-      <div>
+      <div onMouseLeave={onMouseLeave}>
         {visible && (
           <div className='overlay'>
             <Actions item={item} captureOverlay={this.props.captureOverlay} />
