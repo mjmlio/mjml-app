@@ -58,3 +58,14 @@
     }
   }
 }
+
+.Frame-about {
+  margin-right: 10px;
+  i {
+    font-size: 20px;
+    cursor: pointer; /* not working, wtf electron */
+  }
+  &:hover i {
+    color: white;
+  }
+}
