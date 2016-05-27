@@ -88,6 +88,11 @@ Package your app, make sure it works, and create a pull request
 
 ## Releases and Changelogs
 
+### 1.3.2
+ - add modal to show app version and mjml version :notebook: 
+ - correct bug with notification bar :bug:
+ - mjml 2.1.1 with new components 💥
+
 ### 1.3.1 (2016-05-19)
 
  - Fix buggy overlay hover, and prevent edit name of preset :smiley:
