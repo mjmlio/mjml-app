@@ -39,7 +39,7 @@ class EditorPage extends Component {
 
   handleChange = (mjml) => {
     this.props.dispatch(updateCurrentTemplate(template => template.set('mjml', mjml)))
-    this.props.dispatch(saveTemplate())
+      .then(() => this.props.dispatch(saveTemplate()))
   }
 
   /**

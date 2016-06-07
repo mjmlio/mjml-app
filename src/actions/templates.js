@@ -104,7 +104,7 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
 
   }
 
-  promise.then(() => {
+  return promise.then(() => {
 
     // update modification date
     newTemplate = newTemplate.set('modificationDate', new Date())
