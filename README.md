@@ -27,13 +27,12 @@ It allows you to create responsive emails with a live preview on both mobile and
 
 ### Installation
 
-Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version that fits your platform, or just go to the release page
+Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version that fits your platform, or just [go to the release page](https://github.com/mjmlio/mjml-app/releases).
 
 ### Build from source
 
 ``` bash
 
-$ git clone <repo> mjml-app && cd mjml-app
 $ npm install && npm run package
 
 # an executable will be created in the `release` folder.
@@ -42,25 +41,17 @@ $ npm install && npm run package
 
 ## Features
 
-#### Template Manager
-Create your own template gallery in your local environment
-
-#### Live reload:
-The app auto reload your template when you stop writing for a short amount of time
-
-#### Themes
-You can customize your environment by choosing your favorite theme under the setting tab in the editor
-
-#### Send Test emails
-Using a Mailjet account, send your template right to your inbox.
-
-#### Gist integration
-Export your template in a gist to be able to share it with your friends
+  - **Template manager**: Create your own template gallery in your local environment
+  - **Live reload**: The app auto reload your template when you stop writing for a short amount of time
+  - **Themes**: You can customize your environment by choosing your favorite theme under the setting tab in the editor
+  - **Send test emails**: Using a Mailjet account, send your template right to your inbox.
+  - **Gist integration**: Export your template in a gist to be able to share it with your friends
 
 ## Contribute
+
 We highly recommend this project to anyone willing to start learning React/Redux or electron. It is a really and easy cool ecosystem.
 
-#### Step 1:
+##### Launch environment
 Open a terminal, clone this repository, go into the generated folder, and run
 ``` bash
 
@@ -70,11 +61,11 @@ npm install && npm run dev
 Wait for a few second, focus on the newly created window and hit Cmd+R to refresh the app.
 It will start a new development server that will allow you to live reload the app when you change the code.
 
-#### Step 2
 Open your Favorite text editor (we use Vim because it is simply better), and start playing around with the code
 
-#### Step 3
-Once you have your feature ready, run
+##### Code quality
+
+Once you have your feature ready, run the static code analysis:
 
 ``` bash
 
@@ -83,8 +74,9 @@ npm run lint
 ```
 Yes, commas-dangle on, sorry haters!
 
-#### Step 4
-Package your app, make sure it works, and create a pull request
+##### Make the world a better place
+
+Create a pull request!
 
 ## Releases and Changelogs
 
