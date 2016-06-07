@@ -94,6 +94,7 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
       mjml2html(newTemplate.get('mjml'), (err, html) => {
         if (err) {
           dispatch(emitAlert(err.toString(), 'error'))
+          reject(err)
         } else {
           newTemplate = newTemplate.set('html', html)
         }
@@ -133,7 +134,7 @@ export const saveTemplateWithId = id => (dispatch, getState) => {
   const cleaned = template
     .delete('thumbnailLoading')
 
-  save(cleaned, config.get('projectDirectory'))
+  save(cleaned)
 }
 
 /**
