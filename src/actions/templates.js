@@ -88,7 +88,7 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
     const { mjml2html } = remote.require('./services')
 
     // chain promise ;-) yolo
-    promise = promise.then(() => new Promise(resolve => {
+    promise = promise.then(() => new Promise((resolve, reject) => {
 
       // generate html
       mjml2html(newTemplate.get('mjml'), (err, html) => {
@@ -124,7 +124,7 @@ export const updateCurrentTemplate = updater => (dispatch, getState) => {
 export const saveTemplateWithId = id => (dispatch, getState) => {
 
   const state = getState()
-  const { templates, config } = state
+  const { templates } = state
 
   const list = templates.get('list')
   const template = list.get(list.findIndex(
