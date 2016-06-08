@@ -80,10 +80,11 @@ Create a pull request!
 
 ## Releases and Changelogs
 
-### 1.3.2
- - add modal to show app version and mjml version :notebook: 
- - correct bug with notification bar :bug:
- - mjml 2.1.1 with new components 💥
+### 1.3.2 (2016-05-27)
+
+ - Add modal to show app version and mjml version :notebook:
+ - Correct bug with notification bar :bug:
+ - Mjml 2.1.1 with new components 💥
 
 ### 1.3.1 (2016-05-19)
 
@@ -108,6 +109,7 @@ Create a pull request!
  - Dependencies updates: mjml@2 and react@15 :white_check_mark:
 
 ### 1.1.2
+
  - New Design for modals 💡
  - Home is the new AppData 🍊
  - Developer config folder is separated from the prod one 💉
@@ -115,11 +117,13 @@ Create a pull request!
  - Redux crash report middleware 💥
 
 #### 1.1.1
+
  - Prevent drag'n'drop on the app ☂
- - added dmg build config for OSX ❤️
+ - Added dmg build config for OSX ❤️
  - Better Error handling on the editor 🛡
 
 #### 1.0.0
+
  - Templates manager on the Home Page 🖼
  - Mobile/Desktop preview 📲
  - Live reloading 🏃
