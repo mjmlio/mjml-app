@@ -80,6 +80,10 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.3.3 (2016-06-08)
+
+ - Fix a bug which caused issues with template saves #47 :bug:
+
 ### 1.3.2 (2016-05-27)
 
  - Add modal to show app version and mjml version :notebook:
