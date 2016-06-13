@@ -13,7 +13,10 @@ class Mobile extends Component {
           <div id='home'></div>
           <div id='speaker'></div>
           <div id='screen'>
-            <Iframe template={this.props.template} />
+            <Iframe
+              scroll={this.props.scroll}
+              onScroll={this.props.onScroll}
+              template={this.props.template} />
           </div>
         </div>
       </div>
