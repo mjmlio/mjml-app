@@ -13,9 +13,20 @@ class Iframe extends Component {
   componentDidMount () {
     this.renderIframe()
     this.loadImages()
+
+    this._iframe.contentWindow.addEventListener('scroll', () => {
+      if (this.props.onScroll) {
+        this.props.onScroll(this._iframe.contentWindow.pageYOffset)
+      }
+    })
   }
 
-  componentDidUpdate () { this.renderIframe() }
+  componentDidUpdate (prevProps) {
+    this.renderIframe()
+    if (prevProps.scroll !== this.props.scroll) {
+      this._iframe.contentWindow.scrollTo(0, this.props.scroll)
+    }
+  }
 
   // Load all images in the iframe and set the state to { loading: false }
   loadImages () {

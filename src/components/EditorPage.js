@@ -30,6 +30,9 @@ class EditorPage extends Component {
     super(props)
 
     this._template = props.template
+    this.state = {
+      scroll: 0,
+    }
   }
 
   componentWillUnmount () {
@@ -37,16 +40,21 @@ class EditorPage extends Component {
     this.props.dispatch(makeSnapshot(this.props.template))
   }
 
+  setScroll = scroll => {
+    if (this.props.config.get('editorSyncScroll')) {
+      this.setState({ scroll })
+    }
+  }
+
   handleChange = (mjml) => {
     this.props.dispatch(updateCurrentTemplate(template => template.set('mjml', mjml)))
       .then(() => this.props.dispatch(saveTemplate()))
   }
 
-  /**
-   * Toggles the preview mode
-   *
-   * @returns {undefined}
-   */
+  toggleSyncScroll = () => {
+    this.props.dispatch(updateConfig(config => config.set('editorSyncScroll', !this.props.config.get('editorSyncScroll'))))
+  }
+
   togglePreview = () => {
     this.props.dispatch(updateConfig(config => config.set('editorShowPreview', !this.props.config.get('editorShowPreview'))))
   }
@@ -79,6 +87,7 @@ class EditorPage extends Component {
 
   render () {
     const { template, config } = this.props
+    const { scroll } = this.state
 
     if (!template) { return this.renderEmpty() }
 
@@ -133,14 +142,16 @@ class EditorPage extends Component {
           <div className='EditorPage-panel'>
             <Editor
               value={mjml}
+              scroll={scroll}
+              onScroll={this.setScroll}
               theme={editorTheme}
               onChange={this.handleChange} />
           </div>
 
           <div className={cx(`EditorPage-preview platform-${previewMode}`, { show: editorShowPreview })}>
             {previewMode === 'desktop'
-              ? <Iframe template={template} />
-              : <Mobile template={template} />}
+              ? <Iframe template={template} scroll={scroll} onScroll={this.setScroll} />
+              : <Mobile template={template} scroll={scroll} onScroll={this.setScroll} />}
             <div className={`platform-container platform-${previewMode}`}>
               <Button onClick={this.toggleMode('desktop')} className='platform-button'>
                 <i className={cx('ion-android-desktop desktop', { active: previewMode === 'desktop' })}></i>

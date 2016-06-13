@@ -72,14 +72,27 @@ class Editor extends Component {
     const register = (s) => editor.commands.addCommand(s)
 
     editor.focus()
-    editor.getSession().setUndoManager(new brace.UndoManager())
+
+    const session = editor.getSession()
+
+    session.on('changeScrollTop', scroll => {
+      if (this.props.onScroll) {
+        this.props.onScroll(Math.max(0, scroll))
+      }
+    })
+
+    session.setUndoManager(new brace.UndoManager())
     this.props.dispatch(registerShortcuts(register))
+    this._session = session
   }
 
   componentDidUpdate (prevProps) {
     if (prevProps.wrapEnabled !== this.props.wrapEnabled
     || prevProps.showPreview !== this.props.showPreview) {
       this.refs.ace.editor.resize()
+    }
+    if (prevProps.scroll !== this.props.scroll) {
+      this._session.setScrollTop(this.props.scroll)
     }
   }
 

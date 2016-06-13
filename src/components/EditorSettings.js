@@ -34,6 +34,12 @@ class EditorSettings extends Component {
     ))
   }
 
+  setSyncScroll = () => {
+    this.props.dispatch(updateConfig(
+      config => config.set('editorSyncScroll', !config.get('editorSyncScroll'))
+    ))
+  }
+
   render () {
     const { config } = this.props
     const { modalOpened } = this.state
@@ -67,6 +73,16 @@ class EditorSettings extends Component {
                 defaultChecked={config.get('editorWrapText')}
                 onChange={this.setWrap} />
               {' Wrap lines'}
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type='checkbox'
+                defaultChecked={config.get('editorSyncScroll')}
+                onChange={this.setSyncScroll} />
+              {' Synchronize scroll'}
             </label>
           </div>
 
