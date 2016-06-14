@@ -1,0 +1,39 @@
+
+.Features-item {
+
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+
+  @media screen and (max-width: 1000px) {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .image {
+    max-width: 70%;
+  }
+}
+
+.Feature-description {
+  max-width: 300px;
+  color: grey;
+  position: relative;
+
+  .heading {
+    color: #E7585C;
+    font-weight: bolder;
+    font-size: 0.9em;
+  }
+
+  h3 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    line-height: 1.2em;
+    color: rgb(34, 34, 34);
+  }
+}

@@ -1,0 +1,40 @@
+
+/* Colors */
+$grey: #424242;
+$dark-grey: #202020;
+$light-grey: #f0f0f0;
+$black: #101010;
+$orange: orange;
+
+/* Elements */
+
+/* Button */
+$button-color: $orange;
+$button-padding: 10px;
+$button-shadow: none;
+$button-border-radius: 25px;
+
+/* Menu */
+$menu-item-color: $orange;
+$menu-item-padding: 10px;
+$menu-item-margin: 10px;
+$menu-padding: 10px;
+
+/* Header */
+$header-padding: 10px;
+$header-height: 600px;
+
+/* Text */
+$title-size: 18px;
+$text-size: 13px;
+$subtitle-size: 15px;
+$title-color: $dark-grey;
+$subtitle-color: $grey;
+$text-color: $black;
+$bold-color: $black;
+
+/* Editor */
+$editor-transition: all 0.2s ease-in-out;
+$editor-width: 600px;
+$editor-margin: 0;
+$editor-padding: 0;

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name='description' content='mjml app: html email editor'>
+  <title>MJML App</title>
+<% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+<% } %>
+  <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+  <style>
+
+    /* critical css - don't move it @weshguillaume :D */
+
+    body {
+      /* fix scroll bar crap */
+      min-height: 101vh;
+    }
+
+    #root-loader {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 2147483647; /* don't even try to go up */
+      background: white;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
+    .root-loader-spinner {
+      -webkit-animation: 1s linear rotating infinite;
+      animation: 1s linear rotating infinite;
+    }
+
+    .root-loader-spinner > div {
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+      background: #f46d4c;
+    }
+
+    @-webkit-keyframes rotating {
+      from { -webkit-transform: rotate(0); transform: rotate(0); }
+      to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+
+    @keyframes rotating {
+      from { -webkit-transform: rotate(0); transform: rotate(0); }
+      to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    }
+
+  </style>
+</head>
+<body class="tk-proxima-nova">
+
+  <div id="root-loader">
+    <div class="root-loader-wrapper">
+      <div class="root-loader-spinner">
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="root"></div>
+
+	<script src="https://use.typekit.net/tds2uft.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+  <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>
+<!-- Google Tag Manager -->
+<script type="text/javascript">
+  var dataLayer = [];
+</script>
+<noscript>
+  <iframe src="//www.googletagmanager.com/ns.html?id=GTM-BS24" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:''; j.async=true; j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-BS24');
+</script>
+<!-- End Google Tag Manager -->
+</body>
+</html>

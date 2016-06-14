@@ -1,0 +1,14 @@
+{
+  "extends": ["zavatta", "zavatta-react"],
+  "rules": {
+    "no-multi-str": 0,
+    "comma-dangle": [2, "always-multiline"]
+  },
+  "globals": {
+    "Promise": false,
+    "Back": false,
+    "dataLayer": true,
+    "TimelineMax": false,
+    "TweenMax": false
+  }
+}

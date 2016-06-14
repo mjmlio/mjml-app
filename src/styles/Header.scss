@@ -1,0 +1,60 @@
+.Header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: height 150ms ease-in-out;
+  backdrop-filter: blur(3px);
+  z-index: 2;
+
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  &.compact {
+    height: 60px;
+    border-color: rgb(243, 243, 243);
+  }
+
+  .Header-left {
+    z-index: 3;
+    img {
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      transition: transform .5s ease-in-out;
+
+      &:hover {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .Header-right {
+    @media screen and (max-width: 1000px) {
+      margin-right: 20px;
+    }
+
+    z-index: 3;
+    a {
+      text-decoration: none;
+      color: #b2b2b2;
+
+      & + a {
+        margin-left: 30px;
+      }
+    }
+
+    .download {
+
+      @media screen and (max-width: 1000px) {
+        display: none;
+      }
+      color: white;
+      padding: 7px 20px;
+    }
+  }
+}

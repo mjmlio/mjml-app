@@ -1,0 +1,38 @@
+
+.Features {
+  background-color: #FaFaFa;
+  padding-top: 150px;
+  padding-bottom: 200px;
+
+  .container {
+    position: relative;
+    height: auto;
+    max-height: 50vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .switcher {
+      position: absolute;
+      margin-left: -30px;
+      top: 170px;
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+
+      ul li {
+        list-style: none;
+        font-size: .6em;
+        line-height: 20px;
+        cursor: pointer;
+        color: #d5d5d5;
+
+        &.active {
+          color: #EC6053
+        }
+      }
+    }
+  }
+}
+

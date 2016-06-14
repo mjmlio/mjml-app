@@ -1,0 +1,15 @@
+
+.Title {
+
+  span {
+    line-height: 40px;
+    color: #222222;
+    font-size: 30px;
+    font-weight: 200;
+    margin: 0 3px;
+
+    &.switch {
+      font-weight: 700;
+    }
+  }
+}

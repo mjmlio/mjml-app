@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  flex-shrink: 0;
+}
+
+body {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1220px;
+  min-width: 300px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.github-corner svg {
+  z-index: 4;
+
+  &:hover {
+    .octo-banner {
+      fill: #f45e43;
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
