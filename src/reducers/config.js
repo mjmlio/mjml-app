@@ -14,6 +14,7 @@ const initialState = Map({
   sendTo: 'foo@bar.com',
   lastVersion: version,
   hiddenVersion: '',
+  fontSize: 15,
 })
 
 export default handleActions({

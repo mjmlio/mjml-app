@@ -50,6 +50,7 @@ import 'styles/Editor.scss'
   state => ({
     wrapEnabled: state.config.get('editorWrapText'),
     showPreview: state.config.get('editorShowPreview'),
+    fontSize: state.config.get('fontSize'),
   })
 )
 class Editor extends Component {
@@ -107,13 +108,14 @@ class Editor extends Component {
 
   render () {
     const { content } = this.state
-    const { theme, wrapEnabled } = this.props
+    const { theme, wrapEnabled, fontSize } = this.props
 
     return (
       <div className='Editor'>
         <AceEditor
           ref='ace'
           mode='xml'
+          fontSize={fontSize}
           theme={theme}
           wrapEnabled={wrapEnabled}
           height='100%'

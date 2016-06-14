@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import aceThemes from 'assets/aceThemes'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
-import { updateConfig } from 'actions'
+import { updateConfig, setFontSize } from 'actions'
 
 @connect(
   state => ({
@@ -25,6 +25,15 @@ class EditorSettings extends Component {
   setTheme = e => {
     const theme = e.target.value
     this.props.dispatch(updateConfig(config => config.set('editorTheme', theme)))
+  }
+
+  setFontSize = e => {
+    const { value } = e.target
+    const size = parseInt(value, 10)
+
+    if (!isNaN(size)) {
+      this.props.dispatch(setFontSize(size))
+    }
   }
 
   // Toggle the wrap mode in ace editor
@@ -83,6 +92,18 @@ class EditorSettings extends Component {
                 defaultChecked={config.get('editorSyncScroll')}
                 onChange={this.setSyncScroll} />
               {' Synchronize scroll'}
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <input
+                type='text'
+                style={{ padding: 5 }}
+                placeholder={config.get('fontSize')}
+                onBlur={({ target }) => { target.value = config.get('fontSize') }}
+                onChange={this.setFontSize} />
+              {'Font size'}
             </label>
           </div>
 
