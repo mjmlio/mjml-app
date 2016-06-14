@@ -98,10 +98,12 @@ class EditorSettings extends Component {
           <div>
             <label>
               <input
-                type='text'
-                style={{ padding: 5 }}
+                type='number'
+                min={10}
+                max={19}
+                style={{ backgroundColor: 'white', color: 'grey', padding: 5, marginTop: 4 }}
                 placeholder={config.get('fontSize')}
-                onBlur={({ target }) => { target.value = config.get('fontSize') }}
+                defaultValue={config.get('fontSize')}
                 onChange={this.setFontSize} />
               {'Font size'}
             </label>

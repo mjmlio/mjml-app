@@ -28,10 +28,7 @@ export const dismissVersion = () => dispatch =>
 const configUpdate = createAction('UPDATE_CONFIG', updater => updater)
 
 export const setFontSize = size => dispatch =>
-  parseInt(size, 10)
-  && size < 20
-  && size > 9
-  && dispatch(updateConfig(config => config.set('fontSize', size)))
+  dispatch(updateConfig(config => config.set('fontSize', size)))
 
 /**
  * Dispatch a config update
