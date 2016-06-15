@@ -80,6 +80,12 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.4.0 (2016-06-15)
+ - Sync Scrolling
+ - Font size in editor settings
+ - [MJML 2.2](https://github.com/mjmlio/mjml/releases/tag/2.2.0)
+ - Fixed Package version notification on first load
+
 ### 1.3.3 (2016-06-08)
 
  - Fix a bug which caused issues with template saves #47 :bug:
