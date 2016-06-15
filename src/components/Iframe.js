@@ -14,17 +14,25 @@ class Iframe extends Component {
     this.renderIframe()
     this.loadImages()
 
+    /*
     this._iframe.contentWindow.addEventListener('scroll', () => {
       if (this.props.onScroll) {
         this.props.onScroll(this._iframe.contentWindow.pageYOffset)
       }
     })
+   */
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate (prev) {
     this.renderIframe()
-    if (prevProps.scroll !== this.props.scroll) {
-      this._iframe.contentWindow.scrollTo(0, this.props.scroll)
+
+    const body = this._iframe.contentWindow.document.body
+    const { scrollHeight, clientHeight } = body
+
+    if (prev.scroll !== this.props.scroll) {
+      const scroll = (scrollHeight - clientHeight) * (this.props.scroll / 100)
+
+      this._iframe.contentWindow.document.body.scrollTop = scroll
     }
   }
 

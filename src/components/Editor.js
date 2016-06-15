@@ -76,9 +76,13 @@ class Editor extends Component {
 
     const session = editor.getSession()
 
-    session.on('changeScrollTop', scroll => {
-      if (this.props.onScroll) {
-        this.props.onScroll(Math.max(0, scroll))
+    session.on('changeScrollTop', scrollTop => {
+      const { offsetParent } = editor.renderer.scrollBarV.inner
+
+      if (offsetParent) {
+        const { scrollHeight, clientHeight } = offsetParent
+
+        this.props.onScroll(100 * scrollTop / (scrollHeight - clientHeight))
       }
     })
 
@@ -92,9 +96,11 @@ class Editor extends Component {
     || prevProps.showPreview !== this.props.showPreview) {
       this.refs.ace.editor.resize()
     }
+    /*
     if (prevProps.scroll !== this.props.scroll) {
       this._session.setScrollTop(this.props.scroll)
     }
+   */
   }
 
   saveContent = debounce((content) => {
