@@ -9,6 +9,15 @@ npm install
 
 ```
 
+### Update Download links
+
+``` bash
+
+vim +10 src/components/Hero.js
+fhci'<paste the new url>
+
+```
+
 ### Test the website
 
 #### Hot reload
