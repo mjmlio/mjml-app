@@ -159,7 +159,7 @@ const templateCreated = createAction('TEMPLATE_CREATED')
  * @param {String} mjml mjml content
  * @param {Function} dispatch store.dispatch function
  */
-export const createNewTemplate = (mjml = defaultContent) => dispatch => {
+export const createNewTemplate = (mjml = defaultContent, opts = {}) => dispatch => {
 
   // get service method
   const { mjml2html } = remote.require('./services')
@@ -172,17 +172,22 @@ export const createNewTemplate = (mjml = defaultContent) => dispatch => {
     const now = new Date()
     const newTemplate = Map({
       id: shortid.generate(),
-      name: 'no name',
+      name: opts.name || 'no name',
       mjml,
       html,
       creationDate: now,
       modificationDate: now,
     })
+
     dispatch(templateCreated(newTemplate))
-    dispatch(setTemplate(newTemplate))
-    dispatch(saveTemplate())
+    dispatch(saveTemplateWithId(newTemplate.get('id')))
     dispatch(makeSnapshot(newTemplate))
-    dispatch(push('editor'))
+
+    if (!opts.noRedirect) {
+      dispatch(setTemplate(newTemplate))
+      dispatch(push('editor'))
+    }
+
   })
 }
 
@@ -270,4 +275,18 @@ export const makeSnapshot = template => dispatch => {
  */
 export const usePreset = preset => dispatch => {
   dispatch(createNewTemplate(preset.get('mjml')))
+}
+
+/**
+ * Duplicate a template
+ *
+ * @param {Object} template template definition
+ */
+export const duplicateTemplate = template => dispatch => {
+
+  dispatch(createNewTemplate(template.get('mjml'), {
+    name: `${template.get('name')}_copy`,
+    noRedirect: true,
+  }))
+
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadTemplate, deleteTemplate } from 'actions/templates'
+import { loadTemplate, deleteTemplate, duplicateTemplate } from 'actions/templates'
 import Button from 'components/Button'
 import ConfirmModal from 'components/ConfirmModal'
 
@@ -25,11 +25,20 @@ class TemplateOverlayActions extends Component {
     this.toggleConfirmModal(false)()
   }
 
+  duplicateTemplate = () => {
+    this.props.dispatch(duplicateTemplate(this.props.item))
+  }
+
   render () {
     const { confirmModal } = this.state
 
     return (
       <div className='Overlay-actions'>
+
+        <Button className='primary' onClick={this.duplicateTemplate}>
+          <i className='ion-ios-copy' />
+        </Button>
+
         <Button className='primary big' onClick={this.loadTemplate}>
           <i className='ion-android-open' />
         </Button>
