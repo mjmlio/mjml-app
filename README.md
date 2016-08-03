@@ -31,6 +31,8 @@ Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version t
 
 ### Build from source
 
+> to update the MJML version, simply update it in the `package.json`
+
 ``` bash
 
 $ npm install && npm run package
