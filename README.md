@@ -82,6 +82,9 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.4.1 (2016-08-20)
+ - [MJML 2.3.3](https://github.com/mjmlio/mjml/releases/tag/2.3.3) 🆙
+
 ### 1.4.0 (2016-06-15)
  - Sync Scrolling ⚖
  - Font size in editor settings 🍅
