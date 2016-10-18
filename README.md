@@ -1,5 +1,5 @@
 <h3 align="center">
-	Mjml app
+	MJML App
 </h3>
 
 <p align="center">
@@ -81,6 +81,9 @@ Yes, commas-dangle on, sorry haters!
 Create a pull request!
 
 ## Releases and Changelogs
+
+### 1.5.0 (2016-09-18)
+ - [MJML 3.0.0](https://github.com/mjmlio/mjml/releases/tag/3.0.0) 🆙
 
 ### 1.4.1 (2016-08-20)
  - [MJML 2.3.3](https://github.com/mjmlio/mjml/releases/tag/2.3.3) 🆙

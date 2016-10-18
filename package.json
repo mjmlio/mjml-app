@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mjml-app",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "The only framework that makes responsive-email easy",
   "main": "main.js",
   "scripts": {
@@ -122,7 +122,7 @@
     "classnames": "^2.2.3",
     "immutable": "^3.7.6",
     "lodash": "^4.6.1",
-    "mjml": "^2.3.3",
+    "mjml": "^3.0.0",
     "mkdirp": "^0.5.1",
     "node-mailjet": "^1.1.0",
     "pure-render-decorator": "^1.1.0",
