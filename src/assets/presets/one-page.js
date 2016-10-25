@@ -1,8 +1,7 @@
 export default {
   id: 'onepage',
   name: 'One Page',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
     <mj-container background-color="#d7dde5">
       <mj-section locked="true" full-width="full-width">

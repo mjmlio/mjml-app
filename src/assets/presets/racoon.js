@@ -1,8 +1,7 @@
 export default {
   id: 'racoon',
   name: 'Racoon',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
     <mj-container background-color="#d6dde5">
       <mj-section locked="true" full-width="full-width" padding-bottom="20" padding-top="20">

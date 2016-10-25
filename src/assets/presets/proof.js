@@ -1,8 +1,7 @@
 export default {
   id: 'proof',
   name: 'Proof',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
       <mj-container>
           <mj-section>

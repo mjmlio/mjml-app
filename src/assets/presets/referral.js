@@ -1,8 +1,7 @@
 export default {
   id: 'referral',
   name: 'Referral',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
       <mj-container background-color="#bedae6" font-size="13px">
       <mj-section hidden="false" locked="true" full-width="full-width" padding-bottom="20" padding-top="20">

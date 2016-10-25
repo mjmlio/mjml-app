@@ -1,8 +1,7 @@
 export default {
   name: 'Confirmation',
   id: 'confirmation',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
     <mj-container background-color="#dcefff" font-size="13px">
       <mj-section hidden="false" locked="true" full-width="full-width" padding-bottom="20" padding-top="20">

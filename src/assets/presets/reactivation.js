@@ -1,8 +1,7 @@
 export default {
   id: 'reactivation',
   name: 'Reactivation',
-  mjml: `
-<mjml>
+  mjml: `<mjml>
   <mj-body>
     <mj-container background-color="#e0f2ff" font-size="13px">
       <mj-section hidden="false" locked="true" full-width="full-width" padding-bottom="20" padding-top="20">

@@ -1,8 +1,7 @@
 export default {
   id: 'arturia',
   name: 'Arturia',
-  mjml: `
-  <mjml>
+  mjml: `<mjml>
     <mj-body>
       <mj-container background-color="#F2F2F2">
 
