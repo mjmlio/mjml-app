@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions'
 import { List } from 'immutable'
 
-const MAX_CONCURRENT_ALERTS = 5
+const MAX_CONCURRENT_ALERTS = 1
 const state = List()
 
 export default handleActions({
