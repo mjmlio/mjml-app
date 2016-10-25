@@ -95,8 +95,14 @@ exports.createGist = function (content, done) {
  */
 exports.mjml2html = (mjmlInput, done) => {
   try {
-    const html = mjml.mjml2html(mjmlInput)
-    done(null, html)
+    const res = mjml.mjml2html(mjmlInput)
+    if (res.errors.length) {
+      const formattedErrors = res.errors
+        .map(e => e.formattedMessage)
+        .join('\n')
+      return done(formattedErrors)
+    }
+    done(null, res.html)
   } catch (e) {
     done(e.message)
   }
