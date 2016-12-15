@@ -82,6 +82,9 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.6.0 (2016-12-15)
+ - [MJML 3.1.1](https://github.com/mjmlio/mjml/releases/tag/3.1.1) 🆙
+
 ### 1.5.0 (2016-10-18)
  - [MJML 3.0.0](https://github.com/mjmlio/mjml/releases/tag/3.0.0) 🆙
 
