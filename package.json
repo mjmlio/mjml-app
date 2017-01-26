@@ -58,7 +58,8 @@
       ]
     },
     "globals": {
-      "Promise": false
+      "Promise": false,
+      "MJML_VERSION": false
     }
   },
   "bin": {

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { shell } from 'electron'
 import { connect } from 'react-redux'
 
-import { version as mjmlVersion } from 'mjml'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 
@@ -44,7 +43,7 @@ class Frame extends Component {
             {`v${version}`}
           </p>
           <p style={{ textAlign: 'center', fontSize: 15, marginBottom: 40 }}>
-            {`mjml v${mjmlVersion()}`}
+            {`mjml v${MJML_VERSION}`}
           </p>
           <p style={{ textAlign: 'center' }}>
             <Button className='primary' onClick={this.openGithub}>
