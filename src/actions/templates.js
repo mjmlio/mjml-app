@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import path from 'path'
 import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
@@ -16,6 +17,10 @@ import {
   writeFile,
   deleteTemplate as fsDeleteTemplate,
 } from 'helpers/file-system'
+
+import {
+  updateConfig,
+} from 'actions/index'
 
 import defaultContent from 'assets/defaultContent'
 
@@ -231,17 +236,31 @@ export const open = () => dispatch => {
  * @param {Object} template the template to be saved
  * @param {enum('mjml', 'html')} type the file type
  */
-export const exportTemplate = ({ template, type }) => () => {
-  dialog.showSaveDialog({
-    defaultPath: `${template.get('name')}.${type}`,
-  }, (filename) => {
-    if (!filename) { return }
+export const exportTemplate = ({ template, type }) => (dispatch, getState) => {
 
-    const ext = filename.split('.').pop()
-    const name = ext !== type ? `${filename}.${type}` : filename
+  const fileName = `${template.get('name')}.${type}`
+
+  // get last used folder in config
+  const lastFolder = getState().config.get('lastFolder', null)
+
+  dialog.showSaveDialog({
+    defaultPath: lastFolder ? path.join(lastFolder, fileName) : fileName,
+  }, (filePath) => {
+    if (!filePath) { return }
+
+    const ext = filePath.split('.').pop()
+    const name = ext !== type ? `${filePath}.${type}` : filePath
     writeFile(name, template.get(type))
       .then(() => notify('Saved!'))
       .catch(() => error('Not Saved!'))
+
+    // store folder name
+    // see http://stackoverflow.com/questions/818576
+    const folder = filePath.match(/(.*)[/\\]/)[1] || ''
+    if (folder) {
+      const action = updateConfig(config => config.set('lastFolder', folder))
+      dispatch(action)
+    }
   })
 }
 
