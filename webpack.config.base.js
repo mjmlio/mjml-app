@@ -2,6 +2,7 @@
  * Base webpack config used across other specific configs
  */
 
+import webpack from 'webpack'
 import path from 'path'
 import validate from 'webpack-validator'
 import { dependencies as externals } from './app/package.json'
@@ -38,7 +39,9 @@ export default validate({
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
   },
 
-  plugins: [],
+  plugins: [
+    new webpack.IgnorePlugin(/vertx/),
+  ],
 
   externals: Object.keys(externals || {}),
 })

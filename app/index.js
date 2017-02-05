@@ -9,6 +9,7 @@ import settings from 'electron-settings'
 import os from 'os'
 
 import 'styles/global.scss'
+import 'styles/utils.scss'
 
 // --- USER SETTINGS
 
