@@ -29,18 +29,11 @@ export default validate(merge(baseConfig, {
   module: {
     loaders: [
       {
-        test: /\.global\.css$/,
+        test: /\.scss$/,
         loaders: [
           'style-loader',
-          'css-loader?sourceMap',
-        ],
-      },
-
-      {
-        test: /^((?!\.global).)*\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'css-loader',
+          'sass-loader',
         ],
       },
 
