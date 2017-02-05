@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "zavatta",
+    "zavatta-react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "Promise": false,
+  },
+  "rules": {
+    "no-undefined": 0,
+  },
+  "plugins": [
+    "react"
+  ],
+}

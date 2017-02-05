@@ -1,0 +1,144 @@
+{
+  "private": true,
+  "name": "mjml-app",
+  "productName": "MJML",
+  "version": "2.0.0",
+  "description": "The desktop app for MJML",
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
+    "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
+    "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.production.js --progress --profile --colors",
+    "build": "npm run build-main && npm run build-renderer",
+    "start": "cross-env NODE_ENV=production electron ./app/",
+    "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
+    "dev": "npm run hot-server -- --start-hot",
+    "package": "npm run build && build --publish never",
+    "package-win": "npm run build && build --win --x64",
+    "package-linux": "npm run build && build --linux",
+    "package-all": "npm run build && build -mwl"
+  },
+  "browserslist": "electron 1.4",
+  "build": {
+    "productName": "MJML",
+    "appId": "org.develar.MJML",
+    "category": "public.app-category.tools",
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "files": [
+      "dist/",
+      "node_modules/",
+      "app.html",
+      "main.js",
+      "main.js.map",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "AppImage"
+      ]
+    }
+  },
+  "directories": {
+    "buildResources": "resources",
+    "output": "release"
+  },
+  "bin": {
+    "electron": "./node_modules/.bin/electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meriadec/mjml-app.git"
+  },
+  "author": {
+    "name": "Meriadec Pillet",
+    "email": "meriadec.pillet@gmail.com",
+    "url": "https://github.com/meriadec"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meriadec/mjml-app/issues"
+  },
+  "keywords": [
+    "mjml",
+    "app"
+  ],
+  "homepage": "https://github.com/meriadec/mjml-app#readme",
+  "devDependencies": {
+    "asar": "^0.13.0",
+    "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.22.0",
+    "babel-plugin-transform-es2015-classes": "^6.22.0",
+    "babel-plugin-webpack-loaders": "^0.8.0",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-react-optimize": "^1.0.1",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.22.0",
+    "babili-webpack-plugin": "^0.0.9",
+    "cross-env": "^3.1.4",
+    "css-loader": "^0.26.1",
+    "devtron": "^1.4.0",
+    "electron": "^1.4.15",
+    "electron-builder": "^11.4.4",
+    "electron-devtools-installer": "^2.0.1",
+    "eslint": "^3.14.0",
+    "eslint-config-zavatta": "^4.2.0",
+    "eslint-config-zavatta-react": "^2.1.1",
+    "eslint-formatter-pretty": "^1.1.0",
+    "eslint-plugin-react": "^6.9.0",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.10.0",
+    "html-webpack-plugin": "^2.26.0",
+    "jsdom": "^9.9.1",
+    "json-loader": "^0.5.4",
+    "minimist": "^1.2.0",
+    "mocha": "^3.2.0",
+    "react-addons-test-utils": "^15.4.2",
+    "redux-logger": "^2.7.4",
+    "spectron": "^3.4.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.15.0",
+    "webpack-merge": "^2.4.0",
+    "webpack-validator": "^2.3.0"
+  },
+  "dependencies": {
+    "electron-debug": "^1.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "source-map-support": "^0.4.10"
+  }
+}
