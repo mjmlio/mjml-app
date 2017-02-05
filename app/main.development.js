@@ -76,31 +76,8 @@ app.on('ready', async () => {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'Electron',
+      label: 'MJML App',
       submenu: [{
-        label: 'About ElectronReact',
-        selector: 'orderFrontStandardAboutPanel:',
-      }, {
-        type: 'separator',
-      }, {
-        label: 'Services',
-        submenu: [],
-      }, {
-        type: 'separator',
-      }, {
-        label: 'Hide ElectronReact',
-        accelerator: 'Command+H',
-        selector: 'hide:',
-      }, {
-        label: 'Hide Others',
-        accelerator: 'Command+Shift+H',
-        selector: 'hideOtherApplications:',
-      }, {
-        label: 'Show All',
-        selector: 'unhideAllApplications:',
-      }, {
-        type: 'separator',
-      }, {
         label: 'Quit',
         accelerator: 'Command+Q',
         click () {
@@ -110,16 +87,6 @@ app.on('ready', async () => {
     }, {
       label: 'Edit',
       submenu: [{
-        label: 'Undo',
-        accelerator: 'Command+Z',
-        selector: 'undo:',
-      }, {
-        label: 'Redo',
-        accelerator: 'Shift+Command+Z',
-        selector: 'redo:',
-      }, {
-        type: 'separator',
-      }, {
         label: 'Cut',
         accelerator: 'Command+X',
         selector: 'cut:',
@@ -179,47 +146,12 @@ app.on('ready', async () => {
         label: 'Bring All to Front',
         selector: 'arrangeInFront:',
       }],
-    }, {
-      label: 'Help',
-      submenu: [{
-        label: 'Learn More',
-        click () {
-          shell.openExternal('http://electron.atom.io')
-        },
-      }, {
-        label: 'Documentation',
-        click () {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
-        },
-      }, {
-        label: 'Community Discussions',
-        click () {
-          shell.openExternal('https://discuss.atom.io/c/electron')
-        },
-      }, {
-        label: 'Search Issues',
-        click () {
-          shell.openExternal('https://github.com/atom/electron/issues')
-        },
-      }],
     }]
 
     menu = Menu.buildFromTemplate(template)
     Menu.setApplicationMenu(menu)
   } else {
     template = [{
-      label: '&File',
-      submenu: [{
-        label: '&Open',
-        accelerator: 'Ctrl+O',
-      }, {
-        label: '&Close',
-        accelerator: 'Ctrl+W',
-        click () {
-          mainWindow.close()
-        },
-      }],
-    }, {
       label: '&View',
       submenu: (process.env.NODE_ENV === 'development') ? [{
         label: '&Reload',
@@ -244,29 +176,6 @@ app.on('ready', async () => {
         accelerator: 'F11',
         click () {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
-        },
-      }],
-    }, {
-      label: 'Help',
-      submenu: [{
-        label: 'Learn More',
-        click () {
-          shell.openExternal('http://electron.atom.io')
-        },
-      }, {
-        label: 'Documentation',
-        click () {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
-        },
-      }, {
-        label: 'Community Discussions',
-        click () {
-          shell.openExternal('https://discuss.atom.io/c/electron')
-        },
-      }, {
-        label: 'Search Issues',
-        click () {
-          shell.openExternal('https://github.com/atom/electron/issues')
         },
       }],
     }]
