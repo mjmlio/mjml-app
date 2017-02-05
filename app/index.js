@@ -8,7 +8,7 @@ import configureStore from './store/configureStore'
 import settings from 'electron-settings'
 import os from 'os'
 
-import './app.global.css'
+import 'app.global.css'
 
 // --- USER SETTINGS
 

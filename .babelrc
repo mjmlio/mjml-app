@@ -13,7 +13,15 @@
     "development": {
       "plugins": [
         "transform-class-properties",
-        "transform-es2015-classes"
+        "transform-es2015-classes",
+        [
+          "module-resolver",
+          {
+            "root": [
+              "app"
+            ]
+          }
+        ],
       ],
       "presets": ["react-hmre"]
     },
