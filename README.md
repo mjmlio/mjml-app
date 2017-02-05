@@ -11,6 +11,7 @@
 - [ ] use linter? see how.
 - [ ] prevent losing preview by clicking on email links ([#73](https://github.com/mjmlio/mjml-app/issues/73))
 - [ ] button to clear images cache ([#72](https://github.com/mjmlio/mjml-app/issues/72))
+- [ ] put back MJML desktop icons instead of Electron icons from boilerplate
 
 #### Internal refactoring
 
