@@ -132,6 +132,7 @@
   },
   "dependencies": {
     "electron-debug": "^1.1.0",
+    "electron-settings": "^2.2.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

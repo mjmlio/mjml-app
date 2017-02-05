@@ -5,7 +5,17 @@ import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import routes from './routes'
 import configureStore from './store/configureStore'
+import settings from 'electron-settings'
+import os from 'os'
+
 import './app.global.css'
+
+// --- USER SETTINGS
+
+settings.defaults({
+  // the folder where the file explorer will be
+  initialFolder: os.homedir(),
+})
 
 const store = configureStore()
 const history = syncHistoryWithStore(hashHistory, store)
