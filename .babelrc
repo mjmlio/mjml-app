@@ -4,25 +4,25 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports"],
+  "plugins": [
+    "add-module-exports",
+    "transform-decorators-legacy",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "app"
+        ]
+      }
+    ],
+  ],
   "env": {
     "production": {
       "presets": ["react-optimize"],
       "plugins": ["babel-plugin-dev-expression"]
     },
     "development": {
-      "plugins": [
-        "transform-class-properties",
-        "transform-es2015-classes",
-        [
-          "module-resolver",
-          {
-            "root": [
-              "app"
-            ]
-          }
-        ],
-      ],
+      "plugins": [],
       "presets": ["react-hmre"]
     },
     "test": {
