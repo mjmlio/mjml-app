@@ -9,3 +9,7 @@
 .row {
   flex-direction: column;
 }
+
+.no-shrink {
+  flex-shrink: 0;
+}

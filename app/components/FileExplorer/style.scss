@@ -2,4 +2,12 @@
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   overflow: auto;
+
+  background: rgba(black, 0.2);
+
+  .FileItem {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
 }
