@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import FileExplorer from 'components/FileExplorer'
+import AppPlaceholder from 'components/AppPlaceholder'
 
 import './style.scss'
 
-export default class Application extends Component {
+@connect(state => ({
+  config: state.config,
+}))
+class Application extends Component {
+
   render () {
+
+    const {
+      config,
+    } = this.props
+
     return (
       <div className='Application'>
-        <div className='grow flex'>
-          <div
-            style={{
-              width: 200,
-              position: 'relative',
-            }}
-          >
-            <FileExplorer />
-          </div>
-          <div>
-            {this.props.children}
-          </div>
-        </div>
+        {config ? this.props.children : <AppPlaceholder />}
       </div>
     )
   }
+
 }
+
+export default Application
