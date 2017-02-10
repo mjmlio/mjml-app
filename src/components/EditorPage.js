@@ -13,6 +13,8 @@ import EditorSend from 'components/EditorSend'
 import Mobile from 'components/Mobile'
 import Iframe from 'components/Iframe'
 import DropDown from 'components/DropDown'
+import CopyToClipboard from 'react-copy-to-clipboard';
+
 
 import 'styles/EditorPage.scss'
 
@@ -46,6 +48,8 @@ class EditorPage extends Component {
     }
   }
 
+
+
   handleChange = (mjml) => {
     this.props.dispatch(updateCurrentTemplate(template => template.set('mjml', mjml)))
       .then(() => this.props.dispatch(saveTemplate()))
@@ -73,9 +77,13 @@ class EditorPage extends Component {
     this.props.dispatch(exportTemplate({ template, type }))
   }
 
-  gist = () => {
-    this.props.dispatch(exportAsGist(this.props.template.get('mjml')))
+  gist = (type) => {
+    const { template } = this.props
+    if (!template) { return }
+    this.props.dispatch(exportAsGist(this.props.template.get(type)))
   }
+  
+ 
 
   home = () => {
     this.props.dispatch(push('/browse/templates'))
@@ -119,8 +127,29 @@ class EditorPage extends Component {
             </Button>
 
           </DropDown>
+          
+          <DropDown
+            className='EditorPage-bar-item'
+            icon='ion-android-clipboard'
+            title='Copy'>
+
+			<CopyToClipboard text={this.props.template.get('html')}>
+            	<Button className='EditorPage-bar-item'>
+            	  	{'HTML'}
+            	</Button>
+            </CopyToClipboard>
+
+			<CopyToClipboard text={this.props.template.get('mjml')}>
+            	<Button className='EditorPage-bar-item'>
+              		{'MJML'}
+            	</Button>
+            </CopyToClipboard>
+          </DropDown>
+
 
           <EditorSettings />
+          
+           
 
           <div className='EditorPage-bar-side'>
             <Button className={cx('EditorPage-bar-item', { active: editorShowPreview })} onClick={this.togglePreview}>
@@ -130,10 +159,22 @@ class EditorPage extends Component {
 
             <EditorSend template={template} />
 
-            <Button className='EditorPage-bar-item' onClick={this.gist}>
-              <i className='ion-social-github bar-icon' />
-              {'Gist'}
+
+ 			<DropDown
+           	 className='EditorPage-bar-item'
+           	 icon='ion-social-github bar-icon'
+           	 title='Gist'>
+
+            <Button onClick={this.gist.bind(this, 'html')} className='EditorPage-bar-item'>
+              {'HTML'}
             </Button>
+
+            <Button onClick={this.gist.bind(this, 'mjml')} className='EditorPage-bar-item'>
+              {'MJML'}
+            </Button>
+
+          </DropDown>
+            
           </div>
         </div>
 
