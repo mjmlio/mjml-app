@@ -5,6 +5,11 @@ import 'styles/Modal.scss'
 
 class Modal extends Component {
 
+  preventdefault = e => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
   render () {
     const {
       isOpened,
@@ -15,18 +20,18 @@ class Modal extends Component {
     return (
       <Portal
         onClose={onClose}
-        closeOnOutsideClick
         closeOnEsc
         isOpened={isOpened}
-        className='Modal-container'>
-
-        <div className='Modal'>
-          <i onClick={onClose} className='ion-close' />
-          <div>
-            {children}
+        className='Modal-container'
+      >
+        <div className='Modal-container' onClick={onClose}>
+          <div className='Modal' onClick={this.preventdefault}>
+            <i onClick={onClose} className='ion-close' />
+            <div>
+              {children}
+            </div>
           </div>
         </div>
-
       </Portal>
     )
   }
