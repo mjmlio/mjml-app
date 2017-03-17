@@ -2,6 +2,22 @@
 # yarn lockfile v1
 
 
+"@types/fs-extra@0.0.37":
+  version "0.0.37"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-0.0.37.tgz#195f11bcd9a1b97d9e412c6b66899b545471a1f7"
+  dependencies:
+    "@types/node" "*"
+
+"@types/mz@0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/mz/-/mz-0.0.30.tgz#58daa9f35811d607037bab1f9cc7d4a23e6aafae"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
+
 abab@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -96,7 +112,7 @@ any-promise@^0.1.0, any-promise@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-0.1.0.tgz#830b680aa7e56f33451d4b049f3bd8044498ee27"
 
-any-promise@^1.0.0:
+any-promise@^1.0.0, any-promise@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
 
@@ -2732,6 +2748,13 @@ fs-extra@^1.0.0:
     jsonfile "^2.1.0"
     klaw "^1.0.0"
 
+fs-extra@^2.0.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-2.1.2.tgz#046c70163cef9aad46b0e4a7fa467fb22d71de35"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^2.1.0"
+
 fs-promise@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/fs-promise/-/fs-promise-0.3.1.tgz#bf34050368f24d6dc9dfc6688ab5cead8f86842a"
@@ -2745,6 +2768,17 @@ fs-promise@^1.0.0:
     any-promise "^1.0.0"
     fs-extra "^1.0.0"
     mz "^2.3.1"
+    thenify-all "^1.6.0"
+
+fs-promise@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/fs-promise/-/fs-promise-2.0.0.tgz#d1c8bae6ab2bc2ea0cfad643d5fb1c07814d22b3"
+  dependencies:
+    "@types/fs-extra" "0.0.37"
+    "@types/mz" "0.0.30"
+    any-promise "^1.3.0"
+    fs-extra "^2.0.0"
+    mz "^2.6.0"
     thenify-all "^1.6.0"
 
 fs.realpath@^1.0.0:
@@ -3911,7 +3945,7 @@ lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -4117,52 +4151,61 @@ minimist@^1.1.0, minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
-mjml-button@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-button/-/mjml-button-3.2.2.tgz#1be0830ab8ab147349c8bf8f190bcbd60d0189b1"
-  dependencies:
-    lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    react "^15.4.2"
-
-mjml-carousel@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-carousel/-/mjml-carousel-3.2.2.tgz#102ca5421a417eb714e071b82497e81ca8744f12"
-  dependencies:
-    lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    react "^15.4.2"
-
-mjml-cli@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-cli/-/mjml-cli-3.2.2.tgz#983ef995ed83fb5483dedfd70cc92a73737007be"
-  dependencies:
-    chokidar "^1.6.1"
-    commander "^2.9.0"
-    fs-promise "^1.0.0"
-    glob "^7.1.1"
-    lodash "^4.17.4"
-    mjml-core "~3.2.2"
-
-mjml-column@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-column/-/mjml-column-3.2.2.tgz#3a6ba4d5f25f74d951d81bfdae420aab843699e2"
+mjml-accordion@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-accordion/-/mjml-accordion-3.3.0.tgz#25a80b584f60b581819c08b70ceab55eb869c9a1"
   dependencies:
     classnames "^2.2.5"
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-container@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-container/-/mjml-container-3.2.2.tgz#fd10d2b9cff25a7dcf972a7d0bd5a7e167d774fb"
+mjml-button@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-button/-/mjml-button-3.3.0.tgz#1cc2f9477ba130dbf35097ad0cd624b2f1b719ca"
   dependencies:
-    mjml-core "~3.2.2"
+    lodash "^4.17.4"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-core@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-core/-/mjml-core-3.2.2.tgz#80fafb29b129760ce9c2dd7776160d33651ec7c6"
+mjml-carousel@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-carousel/-/mjml-carousel-3.3.0.tgz#9881e27bb88ae568a70c875c4e16b64dfaeee6b7"
+  dependencies:
+    lodash "^4.17.4"
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-cli@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-cli/-/mjml-cli-3.3.0.tgz#fc7b95106f4f92ccc14e69fc361624243e8c0aa3"
+  dependencies:
+    chokidar "^1.6.1"
+    commander "^2.9.0"
+    fs-promise "^2.0.0"
+    glob "^7.1.1"
+    lodash "^4.17.4"
+    mjml-core "~3.3.0"
+
+mjml-column@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-column/-/mjml-column-3.3.0.tgz#3265ce41413578adc0f07cbea9c09762b4ce09dc"
+  dependencies:
+    classnames "^2.2.5"
+    lodash "^4.17.4"
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-container@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-container/-/mjml-container-3.3.0.tgz#cc949d6aca369e9e616c6b2e9322fdc1950c8d56"
+  dependencies:
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-core@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-core/-/mjml-core-3.3.0.tgz#4033694b2ac7a27efe387b72cb4d89ccc9886edb"
   dependencies:
     cheerio "^0.22.0"
     classnames "^2.2.5"
@@ -4175,189 +4218,201 @@ mjml-core@~3.2.2:
     js-beautify "^1.6.8"
     juice "^4.0.2"
     lodash "^4.17.4"
-    mjml-validator "^3.2.0"
+    mjml-validator "~3.3.0"
     react "^15.4.2"
     react-dom "^15.4.2"
     warning "^3.0.0"
 
-mjml-divider@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-divider/-/mjml-divider-3.2.2.tgz#b39f2207bb1754e04f7d4acce96d62d8d6856439"
+mjml-divider@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-divider/-/mjml-divider-3.3.0.tgz#8f0a9bb9b1c35f1a09fe200c577535762fc64fe1"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-group@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-group/-/mjml-group-3.2.2.tgz#a262ea1e2155eb7ffeb4a7d236318dbf4b744d14"
+mjml-group@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-group/-/mjml-group-3.3.0.tgz#f17291d3d9269bbbee8a00adf4365e3f911c0fd9"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-head-attributes@~3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mjml-head-attributes/-/mjml-head-attributes-3.2.0.tgz#cba51491c8b0998c56cc24160ddee4d036b96e8f"
-  dependencies:
-    lodash "^4.17.4"
-
-mjml-head-font@~3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mjml-head-font/-/mjml-head-font-3.2.0.tgz#f93efd84240afe8961468e6804dd0414a9c98f4d"
+mjml-head-attributes@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-attributes/-/mjml-head-attributes-3.3.0.tgz#3854135733f4114f80c5bc757ed31e2dbc15faad"
   dependencies:
     lodash "^4.17.4"
 
-mjml-head-style@~3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mjml-head-style/-/mjml-head-style-3.2.0.tgz#e3d1b64030b7227b255c81071bd0436e340c415a"
-
-mjml-head-title@~3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mjml-head-title/-/mjml-head-title-3.2.0.tgz#98e5f2526fc39cdff1f41bcfa38ebb85718f5401"
-
-mjml-hero@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-hero/-/mjml-hero-3.2.2.tgz#2f654eeb1a2ba825fd23de9d72a277ba0d11f3db"
+mjml-head-font@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-font/-/mjml-head-font-3.3.0.tgz#856dc0842a9c29eda17a49e8f9e2b6d33d016bc7"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    react "^15.4.2"
 
-mjml-html@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-html/-/mjml-html-3.2.2.tgz#c057380d6a43fd160c2c8819be1a9dcf7acbf6c5"
+mjml-head-style@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-style/-/mjml-head-style-3.3.0.tgz#79e0cc385a282f320add9d743bffb52b0efe66bc"
+
+mjml-head-title@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-title/-/mjml-head-title-3.3.0.tgz#7713c4dc4f92f1353aca725d4209649755f27717"
+
+mjml-hero@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-hero/-/mjml-hero-3.3.0.tgz#82da728a4ddc2474d8619322a59bd41d5a95d911"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-image@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-image/-/mjml-image-3.2.2.tgz#15c94112e346c1edac4bd2d6871cd1a137fbe445"
+mjml-html@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-html/-/mjml-html-3.3.0.tgz#7b8e1d67635b4a92adcf529563cd5a146ccf3d02"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-invoice@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-invoice/-/mjml-invoice-3.2.2.tgz#8e92704bbafc2ea66b65ee67adbfa524388bac79"
+mjml-image@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-image/-/mjml-image-3.3.0.tgz#e642e84d16e595da7d121c5ae4db3170f484b371"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    mjml-table "~3.2.2"
-    numeral "^1.5.6"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-list@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-list/-/mjml-list-3.2.2.tgz#a0925a14ac887ceeb5f42b6519870da6800bab32"
+mjml-invoice@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-invoice/-/mjml-invoice-3.3.0.tgz#dd36ef6656636ce9fb22be9caa98a73fa3359202"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
+    mjml-table "~3.3.0"
+    numeral "^2.0.4"
     react "^15.4.2"
 
-mjml-location@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-location/-/mjml-location-3.2.2.tgz#262c48ece84901b29d628c3dfc94810a221c4db2"
+mjml-list@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-list/-/mjml-list-3.3.0.tgz#acfb964fdec036d237704783d2c0a6872b04df5a"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    mjml-image "~3.2.2"
-    mjml-text "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-navbar@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-navbar/-/mjml-navbar-3.2.2.tgz#6c6bab2b8bbe26caa87e108e3aa5fc46edcfeafe"
+mjml-location@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-location/-/mjml-location-3.3.0.tgz#c6f2107815d20bb1e5841abab087c8d058525639"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
-    mjml-section "~3.2.2"
+    mjml-core "~3.3.0"
+    mjml-image "~3.3.0"
+    mjml-text "~3.3.0"
     react "^15.4.2"
 
-mjml-raw@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-raw/-/mjml-raw-3.2.2.tgz#e65a26c2f26fe519556f473976841f550abd2cd7"
-  dependencies:
-    mjml-core "~3.2.2"
-    react "^15.4.2"
-
-mjml-section@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-section/-/mjml-section-3.2.2.tgz#80aff592d01bd895f26a8c5aa08581db0fba8eb0"
+mjml-navbar@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-navbar/-/mjml-navbar-3.3.0.tgz#0534548a9748a048806d63cea68d6628f5cd891a"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
+    mjml-section "~3.3.0"
     react "^15.4.2"
 
-mjml-social@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-social/-/mjml-social-3.2.2.tgz#4b42af0cec8a61d1e6972c2b9cce23ea8c7f17c6"
+mjml-raw@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-raw/-/mjml-raw-3.3.0.tgz#99b5386ea193291e0565e62e70f01be4841a6fea"
+  dependencies:
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-section@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-section/-/mjml-section-3.3.0.tgz#49d822e1a028a8c50436bc592e9d6204c61b33ac"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-spacer@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-spacer/-/mjml-spacer-3.2.2.tgz#c7009fa82e2bc3ccccdb8d5f05bfe9cbb157486c"
-  dependencies:
-    mjml-core "~3.2.2"
-    react "^15.4.2"
-
-mjml-table@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-table/-/mjml-table-3.2.2.tgz#df9da4d73e93f64723f755f2a8c2c0974838a7a7"
-  dependencies:
-    mjml-core "~3.2.2"
-    react "^15.4.2"
-
-mjml-text@~3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml-text/-/mjml-text-3.2.2.tgz#a5c5db6a53c8af50edd467dd99f7896dd909b211"
+mjml-social@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-social/-/mjml-social-3.3.0.tgz#63d7689b5b8018b97db4da8dd982be1b1d594bbb"
   dependencies:
     lodash "^4.17.4"
-    mjml-core "~3.2.2"
+    mjml-core "~3.3.0"
     react "^15.4.2"
 
-mjml-validator@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/mjml-validator/-/mjml-validator-3.2.0.tgz#917270e76052aa819da11a7851e49b739970336c"
+mjml-spacer@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-spacer/-/mjml-spacer-3.3.0.tgz#6847284103a8af9f94fe12297d13f521a5b4a729"
+  dependencies:
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-table@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-table/-/mjml-table-3.3.0.tgz#12a07b0a1f673f4970ddaf438525f87d0cedcd7d"
+  dependencies:
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-text@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-text/-/mjml-text-3.3.0.tgz#51691eda48829dfd2bfe6efcfe695ea79c6b8967"
+  dependencies:
+    lodash "^4.17.4"
+    mjml-core "~3.3.0"
+    react "^15.4.2"
+
+mjml-validator@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-validator/-/mjml-validator-3.3.0.tgz#1f9acaf0eb313625757ca86ce2f6c03805407cfd"
   dependencies:
     lodash "^4.17.4"
     warning "^3.0.0"
 
-mjml@^3.1.1:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/mjml/-/mjml-3.2.2.tgz#0f1582d2c53755aaba9080330e8c88f0edecd98e"
+mjml-wrapper@~3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml-wrapper/-/mjml-wrapper-3.3.0.tgz#db9f89f180ecd431b2bb1d94243ef071fcccabff"
   dependencies:
-    mjml-button "~3.2.2"
-    mjml-carousel "~3.2.2"
-    mjml-cli "~3.2.2"
-    mjml-column "~3.2.2"
-    mjml-container "~3.2.2"
-    mjml-core "~3.2.2"
-    mjml-divider "~3.2.2"
-    mjml-group "~3.2.2"
-    mjml-head-attributes "~3.2.0"
-    mjml-head-font "~3.2.0"
-    mjml-head-style "~3.2.0"
-    mjml-head-title "~3.2.0"
-    mjml-hero "~3.2.2"
-    mjml-html "~3.2.2"
-    mjml-image "~3.2.2"
-    mjml-invoice "~3.2.2"
-    mjml-list "~3.2.2"
-    mjml-location "~3.2.2"
-    mjml-navbar "~3.2.2"
-    mjml-raw "~3.2.2"
-    mjml-section "~3.2.2"
-    mjml-social "~3.2.2"
-    mjml-spacer "~3.2.2"
-    mjml-table "~3.2.2"
-    mjml-text "~3.2.2"
+    lodash "^4.17.2"
+    mjml-core "~3.3.0"
+    mjml-section "~3.3.0"
+    react "^15.4.1"
+
+mjml@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/mjml/-/mjml-3.3.0.tgz#d4d1a188d8bd1c9e5aba3a0f77ccfc6e2ce33596"
+  dependencies:
+    lodash "^4.17.4"
+    mjml-accordion "~3.3.0"
+    mjml-button "~3.3.0"
+    mjml-carousel "~3.3.0"
+    mjml-cli "~3.3.0"
+    mjml-column "~3.3.0"
+    mjml-container "~3.3.0"
+    mjml-core "~3.3.0"
+    mjml-divider "~3.3.0"
+    mjml-group "~3.3.0"
+    mjml-head-attributes "~3.3.0"
+    mjml-head-font "~3.3.0"
+    mjml-head-style "~3.3.0"
+    mjml-head-title "~3.3.0"
+    mjml-hero "~3.3.0"
+    mjml-html "~3.3.0"
+    mjml-image "~3.3.0"
+    mjml-invoice "~3.3.0"
+    mjml-list "~3.3.0"
+    mjml-location "~3.3.0"
+    mjml-navbar "~3.3.0"
+    mjml-raw "~3.3.0"
+    mjml-section "~3.3.0"
+    mjml-social "~3.3.0"
+    mjml-spacer "~3.3.0"
+    mjml-table "~3.3.0"
+    mjml-text "~3.3.0"
+    mjml-wrapper "~3.3.0"
 
 mkdirp@0.5.0:
   version "0.5.0"
@@ -4403,7 +4458,7 @@ mv@^2.0.3:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-mz@^2.3.1:
+mz@^2.3.1, mz@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/mz/-/mz-2.6.0.tgz#c8b8521d958df0a4f2768025db69c719ee4ef1ce"
   dependencies:
@@ -4631,9 +4686,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-numeral@^1.5.6:
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/numeral/-/numeral-1.5.6.tgz#3831db968451b9cf6aff9bf95925f1ef8e37b33f"
+numeral@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/numeral/-/numeral-2.0.4.tgz#545a0c709e090a9cf79bebec802b93f60061f038"
 
 "nwmatcher@>= 1.3.7 < 2.0.0":
   version "1.3.9"
@@ -5617,7 +5672,7 @@ react-transform-hmr@^1.0.3:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@^15.0.1, react@^15.1.0, react@^15.4.2:
+react@^15.0.1, react@^15.1.0, react@^15.4.1, react@^15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:
@@ -6659,7 +6714,7 @@ ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
 
-uglify-js@2.8.x, uglify-js@^2.6.1:
+uglify-js@2.8.x:
   version "2.8.12"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.12.tgz#8a50f5d482243650b7108f6080aa3a6afe2a6c55"
   dependencies:
@@ -6667,7 +6722,7 @@ uglify-js@2.8.x, uglify-js@^2.6.1:
     uglify-to-browserify "~1.0.0"
     yargs "~3.10.0"
 
-uglify-js@~2.7.3:
+uglify-js@^2.6.1, uglify-js@~2.7.3:
   version "2.7.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.5.tgz#4612c0c7baaee2ba7c487de4904ae122079f2ca8"
   dependencies:
