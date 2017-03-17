@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mjml-app",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "The only framework that makes responsive-email easy",
   "main": "main.js",
   "scripts": {

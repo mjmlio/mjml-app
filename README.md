@@ -82,6 +82,9 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.8.0 (2017-03-17)
+ - [MJML 3.3.0](https://github.com/mjmlio/mjml/releases/tag/3.3.0) 🆙
+
 ### 1.7.0 (2017-01-26)
  - [MJML 3.2.2](https://github.com/mjmlio/mjml/releases/tag/3.2.2) 🆙
  - Remember last used folder when exporting a template ([#69](https://github.com/mjmlio/mjml-app/issues/69)) :recycle:
