@@ -1,0 +1,78 @@
+@import "./vars.scss";
+
+.d-f { display: flex; }
+.d-b { display: block; }
+.d-if { display: inline-flex; }
+
+.ai-c { align-items: center; }
+
+.fg-1 { flex-grow: 1; }
+.fs-0 { flex-shrink: 0; }
+
+.fd-c { flex-direction: column; }
+
+.mb-5 { margin-bottom: 5px; }
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.ml-5 { margin-left: 5px; }
+.ml-10 { margin-left: 10px; }
+.ml-20 { margin-left: 20px; }
+.mr-5 { margin-right: 5px; }
+.mr-10 { margin-right: 10px; }
+.mr-20 { margin-right: 20px; }
+.mt-5 { margin-top: 5px; }
+.mt-10 { margin-top: 10px; }
+.mt-20 { margin-top: 20px; }
+
+.p-5 { padding: 5px; }
+.p-10 { padding: 10px; }
+.p-20 { padding: 20px; }
+.p-h-20 {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.p-v-20 {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.pl-5 { padding-left: 5px; }
+.pl-10 { padding-left: 10px; }
+
+.pr-5 { padding-right: 5px; }
+.pr-10 { padding-right: 10px; }
+
+.flow-h-5 > * + * { margin-left: 5px; }
+.flow-h-10 > * + * { margin-left: 10px; }
+.flow-h-20 > * + * { margin-left: 20px; }
+
+.flow-v-5 > * + * { margin-top: 5px; }
+.flow-v-10 > * + * { margin-top: 10px; }
+.flow-v-20 > * + * { margin-top: 20px; }
+
+.unstyled { text-decoration: none; }
+
+.o-a { overflow: auto; }
+.o-y-a { overflow-y: auto; }
+
+.as-fe { align-self: flex-end; }
+
+.sticky {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.z {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.c-blue { color: $blue !important; }
+.c-yellow { color: $yellow !important; }
+.c-red { color: $red !important; }
+
+.fw-b { font-weight: bold; }
+
+.small { font-size: 13px; }

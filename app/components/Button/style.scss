@@ -1,0 +1,40 @@
+@import '../../styles/vars.scss';
+
+.Button {
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-user-select: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+
+  &.primary {
+    background: $blue;
+    color: white;
+    &:hover, &:focus {
+      background: lighten($blue, 5);
+    }
+    &:active {
+      background: darken($blue, 5);
+    }
+  }
+
+  &.ghost, &.transparent {
+    color: $lighterGrey;
+    &:hover, &:focus {
+      background-color: rgba(white, 0.05);
+      color: white;
+    }
+  }
+
+  &.ghost {
+    background-color: rgba(white, 0.03);
+  }
+
+  &.unclickable {
+    pointer-events: none;
+  }
+}

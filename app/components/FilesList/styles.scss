@@ -1,0 +1,89 @@
+@import "../../styles/vars.scss";
+
+.FilesList--list {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.FilesList--file {
+  height: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 13px;
+
+  border: 1px solid transparent;
+
+  &:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+  &:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  &.active {
+    color: $blue;
+    background-color: rgba($blue, 0.1) !important;
+    border-color: rgba($blue, 0.3);
+    .FilesList--file-actions {
+      display: block;
+    }
+  }
+
+  &:nth-child(odd) {
+    background-color: rgba(black, 0.06);
+  }
+
+  &:hover, &:focus {
+    border-color: $blue;
+  }
+}
+
+.FilesList--file-actions {
+  display: none;
+}
+
+.FilesList--ariane {
+  display: flex;
+  border: 1px dashed rgba(white, 0.2);
+}
+
+.FilesList--preview-container {
+  background: rgba(black, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.FilesList--preview {
+  pointer-events: none;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  iframe {
+    background: white;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.rel { position: relative; }
+
+.FilesList--item-name-container {
+  min-width: 0;
+}
+
+.FilesList--item-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

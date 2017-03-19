@@ -1,0 +1,15 @@
+{
+  "name": "mjml-app",
+  "version": "2.0.0",
+  "productName": "MJML",
+  "description": "The desktop app for MJML",
+  "main": "./main.js",
+  "author": {
+    "name": "Meriadec Pillet",
+    "email": "meriadec.pillet@gmail.com",
+    "url": "https://github.com/meriadec"
+  },
+  "license": "MIT",
+  "dependencies": {
+  }
+}

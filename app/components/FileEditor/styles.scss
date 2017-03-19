@@ -1,0 +1,21 @@
+@import "~codemirror/lib/codemirror.css";
+@import "../../styles/one-dark.scss";
+@import "../../styles/vars.scss";
+
+.FileEditor {
+  flex-grow: 1;
+  position: relative;
+  .CodeMirror {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%;
+    .CodeMirror-scroll {
+      font-family: monospace;
+      font-size: 16px;
+    }
+  }
+}
+
+.FileEditor--loader {
+  background: $bg;
+}

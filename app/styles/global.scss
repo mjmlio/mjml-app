@@ -1,0 +1,79 @@
+@import "./vars.scss";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: rgba(black, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(black, 0.1);
+}
+
+body {
+  font-family: Lato, sans-serif;
+  color: $lighterGrey;
+}
+
+h2 {
+  font-weight: bold;
+  padding-bottom: 10px;
+  color: rgba(white, 0.7);
+  text-align: right;
+  border-bottom: 5px solid rgba(white, 0.05);
+  margin-bottom: 20px;
+}
+
+input[type=text] {
+  background-color: rgba(black, 0.1);
+  padding: 10px;
+  min-width: 0;
+  width: 100%;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(white, 0.2);
+}
+
+.round-label {
+  font-weight: bold;
+  background: $yellow;
+  color: $grey;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Resizer {
+  position: relative;
+  background: rgba(black, 0.1);
+  z-index: 4;
+}
+
+.Resizer.vertical {
+  width: 10px;
+  margin: 0 -5px;
+  border-left: 1px solid rgba(255, 255, 255, 0);
+  border-right: 1px solid rgba(255, 255, 255, 0);
+  cursor: col-resize;
+}

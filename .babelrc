@@ -1,6 +1,7 @@
 {
   "presets": [
     ["env", { "targets": { "node": 6 }, "useBuiltIns": true }],
+    "es2015",
     "stage-0",
     "react"
   ],
@@ -11,7 +12,7 @@
       "module-resolver",
       {
         "root": [
-          "src"
+          "app"
         ]
       }
     ],

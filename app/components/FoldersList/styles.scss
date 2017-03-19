@@ -1,0 +1,67 @@
+@import "../../styles/vars.scss";
+
+.FoldersList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -20px;
+
+  > * {
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+}
+
+.FoldersList--add-btn {
+  width: 150px;
+  height: 150px;
+  background: rgba(white, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  svg path {
+    fill: white;
+  }
+
+  &:hover, &:focus {
+    svg path {
+      fill: lighten($blue, 10);
+    }
+  }
+
+  &:active {
+    svg path {
+      fill: darken($blue, 10);
+    }
+  }
+}
+
+.FolderItem {
+  width: 150px;
+  cursor: pointer;
+  min-width: 0;
+  position: relative;
+
+  &:hover, &:focus {
+    .FolderItem--label {
+      color: white;
+    }
+  }
+}
+
+.FolderItem--thumbnail {
+  background: rgba(black, 0.2);
+  height: 150px;
+}
+
+.FolderItem--label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  font-size: 13px;
+  text-align: center;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
+}
