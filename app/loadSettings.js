@@ -5,7 +5,7 @@ export default () => new Promise((resolve, reject) => {
   storage.get('settings', (err, res) => {
     if (err) { return reject(err) }
     const settings = defaults(res, {
-      folders: [],
+      projects: [],
     })
     resolve(settings)
   })

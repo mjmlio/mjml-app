@@ -1,58 +1,56 @@
 import React, { Component } from 'react'
+import IconCreate from 'react-icons/md/create-new-folder'
+import IconOpen from 'react-icons/md/file-download'
 import { connect } from 'react-redux'
 
-import { addFolder } from 'actions/folders'
+import { addProject } from 'actions/projects'
 
-import FoldersList from 'components/FoldersList'
 import Button from 'components/Button'
 
 @connect(state => ({
-  folders: state.settings.get('folders'),
+  projects: state.settings.get('projects'),
 }), {
-  addFolder,
+  addProject,
 })
 class HomePage extends Component {
-
-  componentDidMount () {
-    this.focusWatchIfNeeded()
-  }
-
-  componentDidUpdate (prevProps) {
-    if (prevProps.folders.size !== this.props.folders.size) {
-      this.focusWatchIfNeeded()
-    }
-  }
-
-  focusWatchIfNeeded = () => {
-    if (this.props.folders.size === 0) {
-      this._btnAdd.focus()
-    }
-  }
 
   render () {
 
     const {
-      folders,
-      addFolder,
+      projects,
+      addProject,
     } = this.props
 
+    console.log(projects)
+
     return (
-      <div className='p-10 flow-v-20'>
-        {folders.size === 0 ? (
-          <div className='sticky z'>
-            <div className='mb-20'>
-              {'You have no folders.'}
-            </div>
-            <Button primary onClick={() => addFolder()} ref={n => this._btnAdd = n}>
-              {'Watch one'}
-            </Button>
-          </div>
-        ) : (
-          <FoldersList
-            folders={folders}
-            onClickAdd={addFolder}
+      <div className='fg-1 z'>
+
+        <div className='flow-h-20 d-f ai-c'>
+          <Button
+            primary
+            autoFocus
+            onClick={() => addProject()}
+          >
+            <IconCreate size={20} className='mr-5' />
+            {'New project'}
+          </Button>
+          <Button
+            ghost
+            onClick={() => addProject()}
+          >
+            <IconOpen size={20} className='mr-5' />
+            {'Open project'}
+          </Button>
+        </div>
+
+        {projects.size > 0 && (
+          <ProjectsList
+            className='mt-20'
+            projects={projects}
           />
         )}
+
       </div>
     )
   }

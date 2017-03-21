@@ -15,7 +15,7 @@
     background: $blue;
     color: white;
     &:hover, &:focus {
-      background: lighten($blue, 5);
+      background: lighten($blue, 2);
     }
     &:active {
       background: darken($blue, 5);

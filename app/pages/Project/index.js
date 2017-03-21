@@ -14,7 +14,7 @@ import defaultMJML from 'data/defaultMJML'
 
 import { fileDialog } from 'helpers/fs'
 
-import { removeFolder } from 'actions/folders'
+import { removeProject } from 'actions/projects'
 
 import Button from 'components/Button'
 import FilesList from 'components/FilesList'
@@ -23,7 +23,7 @@ import Modal from 'components/Modal'
 @connect(null, (dispatch, props) => ({
   handleClickUnwatch: () => {
     const { path } = props.location.query
-    dispatch(removeFolder(path))
+    dispatch(removeProject(path))
     dispatch(replace('/'))
   },
 }))

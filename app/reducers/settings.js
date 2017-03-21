@@ -7,14 +7,14 @@ export default handleActions({
 
   SETTINGS_LOAD_SUCCESS: (state, { payload }) => {
     return Map({
-      folders: Set(payload.folders),
+      projects: Set(payload.projects),
     })
   },
 
-  FOLDER_ADD: (state, { payload: path }) => state
-    .update('folders', folders => folders.add(path)),
+  PROJECT_ADD: (state, { payload: path }) => state
+    .update('projects', projects => projects.add(path)),
 
-  FOLDER_REMOVE: (state, { payload: path }) => state
-    .update('folders', folders => folders.remove(path)),
+  PROJECT_REMOVE: (state, { payload: path }) => state
+    .update('projects', projects => projects.remove(path)),
 
 }, state)

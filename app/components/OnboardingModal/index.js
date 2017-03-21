@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import noop from 'lodash/noop'
 import { connect } from 'react-redux'
 
-import { addFolder } from 'actions/folders'
+import { addProject } from 'actions/folders'
 
 import Button from 'components/Button'
 import Modal from 'components/Modal'
@@ -10,14 +10,14 @@ import Modal from 'components/Modal'
 @connect(state => ({
   isOpened: state.settings.get('folders').size === 0,
 }), {
-  addFolder,
+  addProject,
 })
 class OnboardingModal extends Component {
 
   render () {
 
     const {
-      addFolder,
+      addProject,
       isOpened,
     } = this.props
 
@@ -27,7 +27,7 @@ class OnboardingModal extends Component {
         onClose={noop}
       >
 
-        <Button primary onClick={() => addFolder()}>
+        <Button primary onClick={() => addProject()}>
           {'import folder'}
         </Button>
 
