@@ -77,3 +77,13 @@ input[type=text] {
   border-right: 1px solid rgba(255, 255, 255, 0);
   cursor: col-resize;
 }
+
+.rotating {
+  transform-origin: center center;
+  animation: rotate linear infinite 2s;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}

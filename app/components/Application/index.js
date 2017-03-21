@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import AppPlaceholder from 'components/AppPlaceholder'
+import Placeholder from './Placeholder'
 
 import './style.scss'
 
@@ -18,7 +18,8 @@ class Application extends Component {
 
     return (
       <div className='Application'>
-        {settings ? this.props.children : <AppPlaceholder />}
+        <Placeholder show={!settings} />
+        {settings && this.props.children}
       </div>
     )
   }
