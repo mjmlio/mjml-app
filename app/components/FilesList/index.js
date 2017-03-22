@@ -155,7 +155,6 @@ class FilesList extends Component {
       activeFile,
       path,
       rootPath,
-      withPreview,
       children,
     } = this.props
 

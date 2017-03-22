@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Placeholder from './Placeholder'
+import NewProjectModal from 'components/NewProjectModal'
 
 import './style.scss'
 
@@ -18,8 +19,12 @@ class Application extends Component {
 
     return (
       <div className='Application'>
+
         <Placeholder show={!settings} />
         {settings && this.props.children}
+
+        <NewProjectModal />
+
       </div>
     )
   }

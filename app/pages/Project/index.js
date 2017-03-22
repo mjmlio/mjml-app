@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import rimraf from 'rimraf'
 import { connect } from 'react-redux'
-import path from 'path'
 import FaCog from 'react-icons/fa/cog'
 import FaUnlink from 'react-icons/fa/chain-broken'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -47,9 +46,8 @@ class FolderPage extends Component {
   handlePathChange = path => this.setState({ path })
   handleFileDoubleClick = p => {
     if (p.endsWith('.mjml')) {
-      console.log(`opening ${p}`)
+      // console.log(`opening ${p}`)
     }
-    console.log(path)
   }
 
   handleClickImport = () => {

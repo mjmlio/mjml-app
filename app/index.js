@@ -8,6 +8,8 @@ import routes from './routes'
 import configureStore from './store/configureStore'
 import loadSettings from './loadSettings'
 
+import { openModal } from 'reducers/modals'
+
 import 'styles/global.scss'
 import 'styles/utils.scss'
 
@@ -24,4 +26,11 @@ render(
 loadSettings().then(settings => {
   store.dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })
   replace('/')
+})
+
+// handle menu actions
+require('electron').ipcRenderer.on('redux-command', (event, message) => {
+  if (message === 'new-project') {
+    store.dispatch(openModal('newProject'))
+  }
 })

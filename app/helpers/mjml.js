@@ -1,6 +1,5 @@
 import { remote } from 'electron'
 
-
 export function mjml2html (mjmlContent) {
 
   const {

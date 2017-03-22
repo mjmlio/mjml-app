@@ -1,7 +1,6 @@
 import { app, BrowserWindow, Menu } from 'electron'
 
 let menu
-let template
 let mainWindow = null
 
 if (process.env.NODE_ENV === 'production') {
@@ -47,7 +46,6 @@ app.on('ready', async () => {
     show: false,
     width: 1024,
     height: 728,
-    frame: false,
   })
 
   mainWindow.loadURL(`file://${__dirname}/app.html`)
@@ -75,10 +73,20 @@ app.on('ready', async () => {
     })
   }
 
-  if (process.platform === 'darwin') {
-    template = [{
-      label: 'MJML App',
+  const template = [
+    {
+      label: 'MJML',
       submenu: [{
+        label: 'New project',
+        click () {
+          mainWindow.webContents.send('redux-command', 'new-project')
+        },
+      }, {
+        label: 'Open project',
+        click () {
+          mainWindow.webContents.send('redux-command', 'open-project')
+        },
+      }, {
         label: 'Quit',
         accelerator: 'Command+Q',
         click () {
@@ -147,40 +155,10 @@ app.on('ready', async () => {
         label: 'Bring All to Front',
         selector: 'arrangeInFront:',
       }],
-    }]
+    },
+  ]
 
-    menu = Menu.buildFromTemplate(template)
-    Menu.setApplicationMenu(menu)
-  } else {
-    template = [{
-      label: '&View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
-        label: '&Reload',
-        accelerator: 'Ctrl+R',
-        click () {
-          mainWindow.webContents.reload()
-        },
-      }, {
-        label: 'Toggle &Full Screen',
-        accelerator: 'F11',
-        click () {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
-        },
-      }, {
-        label: 'Toggle &Developer Tools',
-        accelerator: 'Alt+Ctrl+I',
-        click () {
-          mainWindow.toggleDevTools()
-        },
-      }] : [{
-        label: 'Toggle &Full Screen',
-        accelerator: 'F11',
-        click () {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
-        },
-      }],
-    }]
-    menu = Menu.buildFromTemplate(template)
-    mainWindow.setMenu(menu)
-  }
+  menu = Menu.buildFromTemplate(template)
+  mainWindow.setMenu(menu)
+
 })

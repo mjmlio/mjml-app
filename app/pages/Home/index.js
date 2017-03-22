@@ -4,6 +4,7 @@ import IconOpen from 'react-icons/md/file-download'
 import { connect } from 'react-redux'
 
 import { addProject } from 'actions/projects'
+import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
 
@@ -11,17 +12,16 @@ import Button from 'components/Button'
   projects: state.settings.get('projects'),
 }), {
   addProject,
+  openModal,
 })
 class HomePage extends Component {
 
   render () {
 
     const {
-      projects,
       addProject,
+      openModal,
     } = this.props
-
-    console.log(projects)
 
     return (
       <div className='fg-1 z'>
@@ -30,7 +30,7 @@ class HomePage extends Component {
           <Button
             primary
             autoFocus
-            onClick={() => addProject()}
+            onClick={() => openModal('newProject')}
           >
             <IconCreate size={20} className='mr-5' />
             {'New project'}
@@ -43,13 +43,6 @@ class HomePage extends Component {
             {'Open project'}
           </Button>
         </div>
-
-        {projects.size > 0 && (
-          <ProjectsList
-            className='mt-20'
-            projects={projects}
-          />
-        )}
 
       </div>
     )
