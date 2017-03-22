@@ -133,7 +133,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "codemirror": "^5.24.2",
+    "codemirror": "^5.25.0",
     "electron-debug": "^1.1.0",
     "electron-json-storage": "^3.0.1",
     "es6-promisify": "^5.0.0",
@@ -143,15 +143,15 @@
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
     "react-mortal": "^2.1.0",
-    "react-redux": "^5.0.2",
+    "react-redux": "^5.0.3",
     "react-router": "^3.0.2",
-    "react-router-redux": "^4.0.7",
+    "react-router-redux": "^4.0.8",
     "react-split-pane": "^0.1.59",
     "react-steack": "^1.2.0",
     "redux": "^3.6.0",
-    "redux-actions": "^1.2.1",
+    "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.1",
-    "source-map-support": "^0.4.10"
+    "source-map-support": "^0.4.14"
   }
 }
