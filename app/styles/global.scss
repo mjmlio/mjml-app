@@ -31,6 +31,10 @@ body {
   color: $lighterGrey;
 }
 
+b {
+  font-weight: bold;
+}
+
 h2 {
   font-weight: bold;
   padding-bottom: 10px;
@@ -44,7 +48,6 @@ input[type=text] {
   background-color: rgba(black, 0.1);
   padding: 10px;
   min-width: 0;
-  width: 100%;
 }
 
 ::-webkit-input-placeholder {

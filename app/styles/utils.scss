@@ -5,6 +5,11 @@
 .d-if { display: inline-flex; }
 
 .ai-c { align-items: center; }
+.ai-b { align-items: baseline; }
+.ai-s { align-items: stretch; }
+
+.jc-fs { justify-content: flex-start; }
+.jc-fe { justify-content: flex-end; }
 
 .fg-1 { flex-grow: 1; }
 .fs-0 { flex-shrink: 0; }
@@ -72,9 +77,14 @@
 .c-blue { color: $blue !important; }
 .c-yellow { color: $yellow !important; }
 .c-red { color: $red !important; }
+.c-white { color: white !important; }
 
 .fw-b { font-weight: bold; }
 
 .small { font-size: 13px; }
 
 .bg-dark { background-color: $bg; }
+
+.t-small { font-size: 13px; }
+
+.wb-ba { word-break: break-all; }
