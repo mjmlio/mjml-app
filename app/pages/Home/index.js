@@ -47,7 +47,7 @@ class HomePage extends Component {
           </Button>
         </div>
 
-        {projects.size && (
+        {!!projects.size && (
           <div>
             <h2 className='mt-20'>{'Recent projects'}</h2>
             {projects.map(p => (
