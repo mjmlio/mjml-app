@@ -12,7 +12,7 @@ export default handleActions({
   },
 
   PROJECT_ADD: (state, { payload: path }) => state
-    .update('projects', projects => projects.add(path)),
+    .update('projects', projects => projects.remove(path).add(path)),
 
   PROJECT_REMOVE: (state, { payload: path }) => state
     .update('projects', projects => projects.remove(path)),

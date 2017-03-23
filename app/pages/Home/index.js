@@ -3,7 +3,7 @@ import IconCreate from 'react-icons/md/create-new-folder'
 import IconOpen from 'react-icons/md/file-download'
 import { connect } from 'react-redux'
 
-import { addProject } from 'actions/projects'
+import { addProject, openProject } from 'actions/projects'
 import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
@@ -13,6 +13,7 @@ import Button from 'components/Button'
 }), {
   addProject,
   openModal,
+  openProject,
 })
 class HomePage extends Component {
 
@@ -20,13 +21,15 @@ class HomePage extends Component {
 
     const {
       addProject,
+      openProject,
       openModal,
+      projects,
     } = this.props
 
     return (
-      <div className='fg-1 z'>
+      <div className='fg-1 p-20'>
 
-        <div className='flow-h-20 d-f ai-c'>
+        <div className='flow-h-20 d-f ai-c jc-fe'>
           <Button
             primary
             autoFocus
@@ -43,6 +46,20 @@ class HomePage extends Component {
             {'Open project'}
           </Button>
         </div>
+
+        {projects.size && (
+          <div>
+            <h2 className='mt-20'>{'Recent projects'}</h2>
+            {projects.map(p => (
+              <div
+                key={p}
+                onClick={() => openProject(p)}
+              >
+                {p}
+              </div>
+            ))}
+          </div>
+        )}
 
       </div>
     )

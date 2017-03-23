@@ -32,11 +32,13 @@
 .ModalFooter {
   @extend .d-f;
   @extend .jc-fs;
-  @extend .flow-h-5;
   flex-direction: row-reverse;
   background: rgba(black, 0.1);
   margin: 20px -20px -20px -20px;
   padding: 20px;
+  > * + * {
+    margin-right: 5px;
+  }
 }
 
 .Modal--label {

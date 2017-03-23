@@ -18,8 +18,6 @@ export function addProject (p) {
 
     await fsAccess(p, fs.constants.R_OK | fs.constants.W_OK)
 
-    dispatch({ type: 'PROJECT_ADD', payload: p })
-    dispatch(saveSettings())
     dispatch(openProject(p))
   }
 }
@@ -32,5 +30,11 @@ export function removeProject (p) {
 }
 
 export function openProject (path) {
-  return replace(`/project?path=${path}`)
+  return dispatch => {
+    dispatch(replace(`/project?path=${path}`))
+    window.requestIdleCallback(() => {
+      dispatch({ type: 'PROJECT_ADD', payload: path })
+      dispatch(saveSettings())
+    })
+  }
 }
