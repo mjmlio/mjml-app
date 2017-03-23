@@ -25,6 +25,8 @@
   border: 1px solid rgba(white, 0.1);
   box-shadow: rgba(black, 0.5) 0 0 15px;
   width: 600px;
+  position: relative;
+  z-index: 1;
 }
 
 .ModalFooter {
@@ -35,4 +37,20 @@
   background: rgba(black, 0.1);
   margin: 20px -20px -20px -20px;
   padding: 20px;
+}
+
+.Modal--label {
+  position: absolute;
+  bottom: 100%;
+  left: -1px;
+  border-top-right-radius: 3px;
+  margin-bottom: -1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(white, 0.1);
+  border-bottom-color: $bg;
+  padding: 6px 8px;
+  background: $bg;
+  color: rgba(white, 0.4);
+  font-size: 11px;
+  z-index: -1;
 }

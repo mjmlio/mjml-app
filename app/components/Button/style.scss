@@ -11,14 +11,21 @@
   padding: 0 10px;
   border: 1px solid transparent;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &.primary {
     background: $blue;
     color: white;
-    &:hover, &:focus {
+    &:hover:not(:disabled), &:focus:not(:disabled) {
       background: lighten($blue, 2);
     }
-    &:active {
+    &:active:not(:disabled) {
       background: darken($blue, 5);
+    }
+    &:disabled {
+      opacity: 0.4;
     }
   }
 

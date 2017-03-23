@@ -25,7 +25,7 @@ class Modal extends Component {
         onClose={onClose}
         motionStyle={(spring, isVisible) => ({
           opacity: spring(isVisible ? 1 : 0, springConfig),
-          modalOffset: spring(isVisible ? 0 : -90, springConfig),
+          modalOffset: spring(isVisible ? 0 : -20, springConfig),
         })}
       >
         {(motion, isVisible) => (

@@ -22,6 +22,7 @@ class Button extends Component {
       unclickable,
       className,
       children,
+      disabled,
       ...props
     } = this.props
 
@@ -34,6 +35,7 @@ class Button extends Component {
 
     return React.createElement(link ? Link : unclickable ? 'div' : 'button', {
       className: cn,
+      disabled,
       tabIndex: unclickable ? undefined : 0,
       children,
       ...props,

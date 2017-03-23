@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Placeholder from './Placeholder'
+import Alerts from 'components/Alerts'
 import NewProjectModal from 'components/NewProjectModal'
+
+import Placeholder from './Placeholder'
 
 import './style.scss'
 
@@ -24,6 +26,8 @@ class Application extends Component {
         {settings && this.props.children}
 
         <NewProjectModal />
+
+        <Alerts />
 
       </div>
     )

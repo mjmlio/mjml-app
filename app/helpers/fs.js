@@ -10,12 +10,14 @@ const { dialog } = remote
 export const fsReadDir = promisify(fs.readdir)
 export const fsReadFile = promisify(fs.readFile)
 export const fsWriteFile = promisify(fs.writeFile)
-const stat = promisify(fs.stat)
+export const fsAccess = promisify(fs.access)
+export const fsStat = promisify(fs.stat)
+export const fsMkdir = promisify(fs.mkdir)
 
 function getFileInfoFactory (p) {
   return async name => {
     try {
-      const stats = await stat(path.resolve(p, name))
+      const stats = await fsStat(path.resolve(p, name))
       return {
         name,
         isFolder: stats.isDirectory(),
@@ -59,4 +61,18 @@ export function fileDialog (options) {
 export function readMJMLFile (path) {
   return fsReadFile(path, { encoding: 'utf8' })
     .then(mjml2html)
+}
+
+export async function createOrEmpty (location) {
+  try {
+    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      await fsMkdir(location)
+    }
+  }
+  const filesList = await fsReadDir(location)
+  if (filesList.length > 0) {
+    throw new Error('Directory not empty')
+  }
 }

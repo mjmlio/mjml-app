@@ -1,3 +1,33 @@
+@import '../../styles/vars.scss';
+
 .NewProjectModal {
   min-height: 0;
+}
+
+.TemplateChooser {
+  display: flex;
+}
+
+.TemplateChooser--template {
+  border: 3px solid rgba(white, 0.1);
+  flex: 1;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  font-size: 13px;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(white, 0.01);
+  }
+  & + & {
+    margin-left: 10px;
+  }
+  &.active {
+    border-color: rgba($blue, 0.9);
+    background: rgba($blue, 0.1);
+  }
 }

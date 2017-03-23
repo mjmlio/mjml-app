@@ -1,11 +1,8 @@
 import fs from 'fs'
-import promisify from 'es6-promisify'
 import { replace } from 'react-router-redux'
 
 import { saveSettings } from 'actions/settings'
-import { fileDialog } from 'helpers/fs'
-
-const fsAccess = promisify(fs.access)
+import { fileDialog, fsAccess } from 'helpers/fs'
 
 export function addProject (p) {
   return async dispatch => {
@@ -23,7 +20,7 @@ export function addProject (p) {
 
     dispatch({ type: 'PROJECT_ADD', payload: p })
     dispatch(saveSettings())
-    dispatch(replace(`/project?path=${p}`))
+    dispatch(openProject(p))
   }
 }
 
@@ -32,4 +29,8 @@ export function removeProject (p) {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
   }
+}
+
+export function openProject (path) {
+  return replace(`/project?path=${path}`)
 }
