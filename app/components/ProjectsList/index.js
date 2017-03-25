@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { openProject } from 'actions/projects'
 
+import Preview from 'components/Preview'
+
 import './style.scss'
 
 @connect(state => ({
@@ -29,6 +31,7 @@ class ProjectsList extends Component {
             onClick={() => openProject(p.get('path'))}
           >
             <div className='ProjectItem--preview-container'>
+              <Preview scaled html={p.get('html', null)} />
             </div>
             <div className='ProjectItem--label'>
               {path.basename(p.get('path'))}
