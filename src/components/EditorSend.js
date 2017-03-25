@@ -103,7 +103,7 @@ class EditorSend extends Component {
             <div className='form-group' style={{
               opacity: this.isValid() ? 1 : 0.4,
             }}>
-              <button type='submit' className='Button primary' disabled={!this.isValid()}>
+              <button onClick={this.sendEmail} type='submit' className='Button primary' disabled={!this.isValid()}>
                 {'Send'}
               </button>
             </div>

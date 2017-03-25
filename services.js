@@ -5,7 +5,7 @@ const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const request = require('request')
-const Mailjet = require('node-mailjet')
+const nodeMailjet = require('node-mailjet')
 
 const dataFolder = process.env.NODE_ENV === 'development'
   ? app.getAppPath()
@@ -40,27 +40,22 @@ exports.takeSnapshot = (id, html, done) => {
 }
 
 exports.send = function (options, success, error) {
-  new Mailjet(options.apiKey, options.apiSecret)
-    .post('send')
-    .request({
-      FromName: options.name,
-      FromEmail: options.sender,
-      To: options.to,
-      Subject: 'Test Email',
-      'Html-Part': options.html,
-    }, (err, res) => {
-      if (err && err.message) {
-        error(err.message)
-      } else if (err && err.ErrorMessage) {
-        error(err.ErrorMessage)
-      } else if (res.statusCode === 401) {
-        error('Not Authorized')
-      } else if (err) {
-        error('There wre a problem while sending your email')
-      } else {
-        success()
-      }
-    })
+
+  const Mailjet = nodeMailjet.connect(options.apiKey, options.apiSecret)
+  const sendEmail = Mailjet.post('send')
+
+  const emailData = {
+    FromEmail: options.sender,
+    FromName: options.name,
+    Subject: 'Test email',
+    'Html-part': options.html,
+    Recipients: [{ Email: options.to }],
+  }
+
+  sendEmail.request(emailData)
+    .then(success)
+    .catch(error)
+
 }
 
 exports.createGist = function (content, done) {
