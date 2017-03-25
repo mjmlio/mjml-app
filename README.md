@@ -82,6 +82,9 @@ Create a pull request!
 
 ## Releases and Changelogs
 
+### 1.8.1 (2017-03-25)
+ - Fix email sending ([#85](https://github.com/mjmlio/mjml-app/issues/85)) :mailbox:
+
 ### 1.8.0 (2017-03-17)
  - [MJML 3.3.0](https://github.com/mjmlio/mjml/releases/tag/3.3.0) 🆙
 
