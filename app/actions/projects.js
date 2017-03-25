@@ -45,7 +45,19 @@ export function openProject (path) {
   return dispatch => {
     dispatch(replace(`/project?path=${path}`))
     dispatch({ type: 'PROJECT_ADD', payload: path })
+    dispatch(loadIfNeeded(path))
     dispatch(saveSettings())
+  }
+}
+
+function loadIfNeeded (path) {
+  return async (dispatch, getState) => {
+    const state = getState()
+    const proj = state.projects.find(p => p.get('path') === path)
+    if (!proj) {
+      const enriched = await loadProject(path)
+      dispatch({ type: 'PROJECT_LOAD', payload: enriched })
+    }
   }
 }
 
