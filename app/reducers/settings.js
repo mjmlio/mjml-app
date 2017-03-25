@@ -17,4 +17,7 @@ export default handleActions({
   PROJECT_REMOVE: (state, { payload: path }) => state
     .update('projects', projects => projects.remove(path)),
 
+  PROJECTS_REMOVE: (state, { payload: paths }) => state
+    .update('projects', projects => projects.filter(p => paths.indexOf(p) === -1)),
+
 }, state)

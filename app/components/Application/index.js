@@ -9,21 +9,21 @@ import Placeholder from './Placeholder'
 import './style.scss'
 
 @connect(state => ({
-  settings: state.settings,
+  projects: state.projects,
 }))
 class Application extends Component {
 
   render () {
 
     const {
-      settings,
+      projects,
     } = this.props
 
     return (
       <div className='Application'>
 
-        <Placeholder show={!settings} />
-        {settings && this.props.children}
+        <Placeholder show={!projects} />
+        {projects && this.props.children}
 
         <NewProjectModal />
 

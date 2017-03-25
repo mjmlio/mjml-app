@@ -1,6 +1,6 @@
 import { remote } from 'electron'
 
-export function mjml2html (mjmlContent) {
+export default function mjml2html (mjmlContent) {
 
   const {
     mjml2html: mjml2htmlService,

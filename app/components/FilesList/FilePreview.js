@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { mjml2html } from 'helpers/mjml'
+import mjml2html from 'helpers/mjml'
 import { readMJMLFile } from 'helpers/fs'
 
 @connect(state => ({

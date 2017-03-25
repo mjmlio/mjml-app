@@ -3,7 +3,7 @@ import path from 'path'
 import promisify from 'es6-promisify'
 import { remote } from 'electron'
 
-import { mjml2html } from 'helpers/mjml'
+import mjml2html from 'helpers/mjml'
 
 const { dialog } = remote
 
@@ -61,6 +61,16 @@ export function fileDialog (options) {
 export function readMJMLFile (path) {
   return fsReadFile(path, { encoding: 'utf8' })
     .then(mjml2html)
+}
+
+export async function isValidDir (path) {
+  try {
+    await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
+  } catch (e) {
+    return false
+  }
+  const stats = await fsStat(path)
+  return stats.isDirectory()
 }
 
 export async function createOrEmpty (location) {
