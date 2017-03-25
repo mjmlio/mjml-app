@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import IconCreate from 'react-icons/md/create-new-folder'
 import IconOpen from 'react-icons/md/file-download'
 import { connect } from 'react-redux'
 
-import { addProject, openProject } from 'actions/projects'
+import { addProject } from 'actions/projects'
 import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
@@ -25,8 +26,15 @@ class HomePage extends Component {
       projects,
     } = this.props
 
+    const hasProjects = !!projects.size
+
     return (
-      <div className='fg-1 d-f fd-c p-20'>
+      <div
+        className={cx({
+          'fg-1 d-f fd-c p-20': hasProjects,
+          'fg-1 z': !hasProjects,
+        })}
+      >
 
         <div className='flow-h-20 d-f ai-c jc-fe'>
           <Button
@@ -46,9 +54,7 @@ class HomePage extends Component {
           </Button>
         </div>
 
-        {!projects.size ? (
-          <div>{'no projects eheheheh'}</div>
-        ) : (
+        {hasProjects && (
           <div className='fg-1 d-f fd-c'>
             <h2 className='mt-20'>{'Recent projects'}</h2>
             <div className='fg-1 r'>
