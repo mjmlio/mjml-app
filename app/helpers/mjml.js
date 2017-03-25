@@ -8,7 +8,7 @@ export default function mjml2html (mjmlContent) {
 
   return new Promise((resolve, reject) => {
     mjml2htmlService(mjmlContent, (err, html) => {
-      if (err) { return reject(err) }
+      if (err) { return resolve('') }
       resolve(html)
     })
   })

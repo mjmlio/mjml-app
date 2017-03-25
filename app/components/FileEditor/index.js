@@ -9,10 +9,13 @@ import 'codemirror/addon/search/match-highlighter'
 import 'codemirror/mode/xml/xml'
 
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
+import { setPreview } from 'actions/preview'
 
 import './styles.scss'
 
-@connect()
+@connect(null, {
+  setPreview,
+})
 class FileEditor extends Component {
 
   state = {
@@ -35,6 +38,7 @@ class FileEditor extends Component {
       this._codeMirror.toTextArea()
       this._codeMirror = null
     }
+    this.props.setPreview(null)
   }
 
   loadContent () {
@@ -75,13 +79,15 @@ class FileEditor extends Component {
   }
 
   handleChange = debounce(() => {
-    const v = this._codeMirror.getValue()
-    fsWriteFile(this.props.fileName, v)
-    this.props.dispatch({
-      type: 'SET_PREVIEW',
-      payload: { mjml: v },
-    })
-  }, 100)
+    const { setPreview, fileName } = this.props
+    const mjml = this._codeMirror.getValue()
+    setPreview('mjml', fileName, mjml)
+    this.debounceWrite(mjml)
+  }, 200)
+
+  debounceWrite = debounce(mjml => {
+    fsWriteFile(this.props.fileName, mjml)
+  }, 500)
 
   render () {
 

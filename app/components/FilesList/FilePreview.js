@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import mjml2html from 'helpers/mjml'
-import { readMJMLFile } from 'helpers/fs'
-
 @connect(state => ({
   preview: state.preview,
 }))
@@ -11,13 +8,9 @@ class FilePreview extends Component {
 
   componentDidUpdate (prevProps) {
     const { preview } = this.props
-    if (preview && prevProps.preview !== preview) {
-      if (preview.file) {
-        if (preview.file.endsWith('.mjml')) {
-          readMJMLFile(preview.file).then(this.setIframeContent)
-        }
-      } else if (preview.mjml) {
-        mjml2html(preview.mjml).then(this.setIframeContent)
+    if (prevProps.preview !== preview) {
+      if (preview && preview.type === 'html') {
+        this.setIframeContent(preview.content)
       }
     }
   }
@@ -45,7 +38,7 @@ class FilePreview extends Component {
       <div className='FilesList--preview'>
         {!preview ? (
           null
-        ) : (preview.mjml || preview.file.endsWith('.mjml')) && (
+        ) : preview.type === 'html' && (
           <iframe
             src=''
             style={{

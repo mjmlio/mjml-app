@@ -94,3 +94,13 @@ export function loadProjects () {
 
   }
 }
+
+export function updateProjectPreview (p, html) {
+  return {
+    type: 'PROJECT_UPDATE_PREVIEW',
+    payload: {
+      path: p,
+      html,
+    },
+  }
+}
