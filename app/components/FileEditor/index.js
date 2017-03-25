@@ -50,6 +50,7 @@ class FileEditor extends Component {
     }
 
     fsReadFile(fileName, { encoding: 'utf8' }).then(content => {
+      if (!this._codeMirror) { return }
       this._codeMirror.setValue(content)
       this.setState({
         isLoading: false,
@@ -81,7 +82,7 @@ class FileEditor extends Component {
   handleChange = debounce(() => {
     const { setPreview, fileName } = this.props
     const mjml = this._codeMirror.getValue()
-    setPreview('mjml', fileName, mjml)
+    setPreview(fileName, mjml)
     this.debounceWrite(mjml)
   }, 200)
 

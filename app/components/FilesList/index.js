@@ -8,6 +8,7 @@ import FaHome from 'react-icons/fa/home'
 import FaPlus from 'react-icons/fa/plus'
 
 import { readDir, sortFiles } from 'helpers/fs'
+import { setPreview } from 'actions/preview'
 
 import FileEditor from 'components/FileEditor'
 import FilePreview from './FilePreview'
@@ -15,7 +16,9 @@ import Button from 'components/Button'
 
 import './styles.scss'
 
-@connect()
+@connect(null, {
+  setPreview,
+})
 class FilesList extends Component {
 
   state = {
@@ -78,10 +81,7 @@ class FilesList extends Component {
     if (this.props.onFileClick) {
       this.props.onFileClick(p)
     }
-    this.props.dispatch({
-      type: 'SET_PREVIEW',
-      payload: { file: p },
-    })
+    this.props.setPreview(p)
     this.props.onActiveFileChange(f)
   }
 
