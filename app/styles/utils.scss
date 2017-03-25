@@ -88,3 +88,9 @@
 .t-small { font-size: 13px; }
 
 .wb-ba { word-break: break-all; }
+
+.r { position: relative; }
+.abs {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}

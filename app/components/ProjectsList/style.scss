@@ -1,0 +1,32 @@
+.ProjectsList {
+  overflow: auto;
+}
+
+.ProjectItem {
+  float: left; // i mean, wtf?
+  width: 250px;
+  margin-right: 20px;
+  margin-bottom: 40px;
+  &:hover {
+    .ProjectItem--preview-container {
+      border-color: rgba(white, 0.3);
+    }
+    .ProjectItem--label {
+      color: white;
+    }
+  }
+}
+
+.ProjectItem--preview-container {
+  height: 300px;
+  border: 1px solid rgba(white, 0.1);
+}
+
+.ProjectItem--label {
+  font-size: 13px;
+  margin-top: 5px;
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

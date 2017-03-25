@@ -7,13 +7,13 @@ import { addProject, openProject } from 'actions/projects'
 import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
+import ProjectsList from 'components/ProjectsList'
 
 @connect(state => ({
   projects: state.settings.get('projects'),
 }), {
   addProject,
   openModal,
-  openProject,
 })
 class HomePage extends Component {
 
@@ -21,13 +21,12 @@ class HomePage extends Component {
 
     const {
       addProject,
-      openProject,
       openModal,
       projects,
     } = this.props
 
     return (
-      <div className='fg-1 p-20'>
+      <div className='fg-1 d-f fd-c p-20'>
 
         <div className='flow-h-20 d-f ai-c jc-fe'>
           <Button
@@ -47,17 +46,14 @@ class HomePage extends Component {
           </Button>
         </div>
 
-        {!!projects.size && (
-          <div>
+        {!projects.size ? (
+          <div>{'no projects eheheheh'}</div>
+        ) : (
+          <div className='fg-1 d-f fd-c'>
             <h2 className='mt-20'>{'Recent projects'}</h2>
-            {projects.map(p => (
-              <div
-                key={p}
-                onClick={() => openProject(p)}
-              >
-                {p}
-              </div>
-            ))}
+            <div className='fg-1 r'>
+              <ProjectsList />
+            </div>
           </div>
         )}
 
