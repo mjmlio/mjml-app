@@ -24,7 +24,7 @@ class ProjectsList extends Component {
 
     return (
       <div className='ProjectsList abs'>
-        {projects.map(p => (
+        {projects.reverse().map(p => (
           <div
             className='ProjectItem'
             key={p}

@@ -5,7 +5,7 @@
 .ProjectItem {
   cursor: pointer;
   float: left; // i mean, wtf?
-  width: 300px;
+  width: 260px;
   margin-right: 20px;
   margin-bottom: 40px;
   overflow: hidden;
@@ -18,7 +18,7 @@
 
 .ProjectItem--preview-container {
   position: relative;
-  height: 350px;
+  height: 280px;
   background-color: rgba(black, 0.15)
 }
 

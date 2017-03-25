@@ -7,7 +7,7 @@ export default handleActions({
   PROJECT_UPDATE_PREVIEW: (state, { payload }) => {
     if (!state) { return state }
     const { path, html } = payload
-    const index = state.findIndex(pr => pr.path === path)
+    const index = state.findIndex(pr => pr.get('path') === path)
     if (index === -1) { return state }
     return state.update(index, p => p.set('html', html))
   },

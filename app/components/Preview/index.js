@@ -36,7 +36,7 @@ class Preview extends Component {
     return (
       <div className={cx('Preview abs', { scaled })}>
         {html ? (
-          <iframe ref={n => this._iframe = n} />
+          <iframe scrolling='no' ref={n => this._iframe = n} />
         ) : (
           <div className='abs z'>
             <IconEmpty size={50} />
