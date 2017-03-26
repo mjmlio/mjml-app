@@ -44,7 +44,7 @@ export function removeProject (p) {
 export function openProject (path) {
   return dispatch => {
     dispatch(replace(`/project?path=${path}`))
-    dispatch({ type: 'PROJECT_ADD', payload: path })
+    dispatch({ type: 'PROJECT_OPEN', payload: path })
     dispatch(loadIfNeeded(path))
     dispatch(saveSettings())
   }

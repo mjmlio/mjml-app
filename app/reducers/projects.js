@@ -15,5 +15,12 @@ export default handleActions({
   PROJECT_REMOVE: (state, { payload: path }) => {
     return state.filter(p => p.get('path') !== path)
   },
+  PROJECT_OPEN: (state, { payload: path }) => {
+    const i = state.findIndex(p => p.get('path') === path)
+    if (i === -1) { return state }
+    const p = state.get(i)
+    state = state.splice(i, 1).push(p)
+    return state
+  },
 
 }, null)
