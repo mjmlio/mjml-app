@@ -4642,7 +4642,7 @@ mjml-wrapper@~3.3.0:
     mjml-section "~3.3.0"
     react "^15.4.1"
 
-mjml@^3.3.0:
+mjml@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/mjml/-/mjml-3.3.0.tgz#d4d1a188d8bd1c9e5aba3a0f77ccfc6e2ce33596"
   dependencies:
@@ -6269,13 +6269,7 @@ source-map-resolve@^0.3.0:
     source-map-url "~0.3.0"
     urix "~0.1.0"
 
-source-map-support@^0.4.10, source-map-support@^0.4.2:
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.10.tgz#d7b19038040a14c0837a18e630a196453952b378"
-  dependencies:
-    source-map "^0.5.3"
-
-source-map-support@^0.4.14:
+source-map-support@^0.4.10, source-map-support@^0.4.14, source-map-support@^0.4.2:
   version "0.4.14"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.14.tgz#9d4463772598b86271b4f523f6c1f4e02a7d6aef"
   dependencies:

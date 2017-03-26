@@ -8,6 +8,8 @@ import merge from 'webpack-merge'
 import BabiliPlugin from 'babili-webpack-plugin'
 import baseConfig from './webpack.config.base'
 
+import pkg from './package.json'
+
 export default validate(merge(baseConfig, {
   devtool: 'source-map',
 
@@ -41,6 +43,8 @@ export default validate(merge(baseConfig, {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
       },
+      '__MJML_APP_VERSION__': JSON.stringify(pkg.version),
+      '__MJML_VERSION__': JSON.stringify(pkg.dependencies.mjml),
     }),
   ],
 

@@ -89,3 +89,8 @@ input[type=text] {
   0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 }
+
+.version-box {
+  background: rgba(white, 0.05);
+  padding: 10px;
+}
