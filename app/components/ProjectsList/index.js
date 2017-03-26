@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import path from 'path'
 import { connect } from 'react-redux'
+import IconClose from 'react-icons/md/close'
 
-import { openProject } from 'actions/projects'
+import { openProject, removeProject } from 'actions/projects'
 
 import Preview from 'components/Preview'
 
@@ -12,6 +14,7 @@ import './style.scss'
   projects: state.projects,
 }), {
   openProject,
+  removeProject,
 })
 class ProjectsList extends Component {
 
@@ -19,17 +22,27 @@ class ProjectsList extends Component {
 
     const {
       openProject,
+      removeProject,
+      isEditing,
       projects,
     } = this.props
 
     return (
-      <div className='ProjectsList abs'>
+      <div className={cx('ProjectsList abs', { isEditing })}>
         {projects.reverse().map(p => (
           <div
             className='ProjectItem'
             key={p}
-            onClick={() => openProject(p.get('path'))}
+            onClick={isEditing ? undefined : () => openProject(p.get('path'))}
           >
+            {isEditing && (
+              <div
+                className='ProjectItem--delete-btn'
+                onClick={() => removeProject(p.get('path'))}
+              >
+                <IconClose color='#fff' />
+              </div>
+            )}
             <div className='ProjectItem--preview-container'>
               <Preview scaled html={p.get('html', null)} />
             </div>

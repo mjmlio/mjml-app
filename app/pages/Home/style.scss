@@ -1,0 +1,11 @@
+.Home--edit-thing {
+  font-weight: normal;
+}
+
+.Home--edit-link {
+  opacity: 0.7;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+}

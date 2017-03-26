@@ -10,6 +10,8 @@ import { openModal } from 'reducers/modals'
 import Button from 'components/Button'
 import ProjectsList from 'components/ProjectsList'
 
+import './style.scss'
+
 @connect(state => ({
   projects: state.settings.get('projects'),
 }), {
@@ -18,7 +20,15 @@ import ProjectsList from 'components/ProjectsList'
 })
 class HomePage extends Component {
 
+  state = {
+    isEditing: false,
+  }
+
   render () {
+
+    const {
+      isEditing,
+    } = this.state
 
     const {
       addProject,
@@ -56,9 +66,25 @@ class HomePage extends Component {
 
         {hasProjects && (
           <div className='fg-1 d-f fd-c'>
-            <h2 className='mt-20'>{'Recent projects'}</h2>
+            <h2 className='mt-20 d-f ai-c'>
+              {'Recent projects'}
+              <div className='Home--edit-thing t-small d-f ai-c'>
+                <div className='ml-10 mr-10'>
+                  {'-'}
+                </div>
+                {isEditing ? (
+                  <div className='Home--edit-link c-yellow' onClick={() => this.setState({ isEditing: false })}>
+                    {'finish'}
+                  </div>
+                ) : (
+                  <div className='Home--edit-link' onClick={() => this.setState({ isEditing: true })}>
+                    {'edit'}
+                  </div>
+                )}
+              </div>
+            </h2>
             <div className='fg-1 r'>
-              <ProjectsList />
+              <ProjectsList isEditing={isEditing} />
             </div>
           </div>
         )}

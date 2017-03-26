@@ -1,14 +1,29 @@
+@import '../../styles/vars.scss';
+
 .ProjectsList {
   overflow: auto;
+  &.isEditing {
+    .ProjectItem--preview-container {
+      transform: scale(0.88);
+    }
+    .ProjectItem {
+      cursor: default;
+      &:hover {
+        .ProjectItem--label {
+          color: $lighterGrey;
+        }
+      }
+    }
+  }
 }
 
 .ProjectItem {
+  position: relative;
   cursor: pointer;
   float: left; // i mean, wtf?
   width: 260px;
   margin-right: 20px;
   margin-bottom: 40px;
-  overflow: hidden;
   &:hover {
     .ProjectItem--label {
       color: white;
@@ -17,6 +32,8 @@
 }
 
 .ProjectItem--preview-container {
+  transition: 150ms ease-in-out transform;
+  overflow: hidden;
   position: relative;
   height: 280px;
   background-color: rgba(black, 0.15)
@@ -29,4 +46,33 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ProjectItem--delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #ca2d2d;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transform-origin: center center;
+  animation: deleteBounce 200ms ease-in-out;
+  &:hover {
+    transition: 100ms ease-in-out transform;
+    background: lighten(#ca2d2d, 10);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes deleteBounce {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
