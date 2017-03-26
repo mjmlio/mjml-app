@@ -60,7 +60,7 @@ export function fileDialog (options) {
 
 export function readMJMLFile (path) {
   return fsReadFile(path, { encoding: 'utf8' })
-    .then(mjml2html)
+    .then(content => mjml2html(content, path))
 }
 
 export async function isValidDir (path) {

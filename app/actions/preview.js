@@ -1,7 +1,7 @@
 import path from 'path'
 import { createAction } from 'redux-actions'
-import mjml2html from 'helpers/mjml'
 
+import mjml2html, { wrapIntoMJMLTags } from 'helpers/mjml'
 import { fsReadFile } from 'helpers/fs'
 import { updateProjectPreview } from 'actions/projects'
 
@@ -27,7 +27,10 @@ export function setPreview (fileName, content = '') {
       if (!content) {
         content = await fsReadFile(fileName, { encoding: 'utf8' })
       }
-      const html = await mjml2html(content)
+      if (!content.trim().startsWith('<mjml>')) {
+        content = wrapIntoMJMLTags(content)
+      }
+      const html = await mjml2html(content, fileName)
       dispatch(setPrev({ type: 'html', content: html }))
       // update the preview in project
       if (bName === 'index.mjml') {

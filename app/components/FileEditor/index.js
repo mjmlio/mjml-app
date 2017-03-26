@@ -15,7 +15,7 @@ import './styles.scss'
 
 @connect(null, {
   setPreview,
-})
+}, null, { withRef: true })
 class FileEditor extends Component {
 
   state = {
@@ -83,12 +83,20 @@ class FileEditor extends Component {
     const { setPreview, fileName } = this.props
     const mjml = this._codeMirror.getValue()
     setPreview(fileName, mjml)
-    this.debounceWrite(mjml)
+    this.debounceWrite(fileName, mjml)
   }, 200)
 
-  debounceWrite = debounce(mjml => {
-    fsWriteFile(this.props.fileName, mjml)
+  debounceWrite = debounce((fileName, mjml) => {
+    fsWriteFile(fileName, mjml)
   }, 500)
+
+  refresh = () => {
+    this._codeMirror && this._codeMirror.refresh()
+  }
+
+  focus = () => {
+    this._codeMirror && this._codeMirror.focus()
+  }
 
   render () {
 

@@ -69,8 +69,9 @@ async function loadProject (p) {
   res.isOK = await isValidDir(p)
   if (res.isOK) {
     try {
-      const mjmlContent = await fsReadFile(path.join(p, 'index.mjml'), { encoding: 'utf8' })
-      const htmlContent = await mjml2html(mjmlContent)
+      const indexFilePath = path.join(p, 'index.mjml')
+      const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
+      const htmlContent = await mjml2html(mjmlContent, indexFilePath)
       res.html = htmlContent
     } catch (e) {} // eslint-disable-line
   }

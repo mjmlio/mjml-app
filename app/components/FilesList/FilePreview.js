@@ -36,6 +36,9 @@ class FilePreview extends Component {
 
     return (
       <div className='FilesList--preview'>
+        {disablePointer && (
+          <div className='FilesList--preview-overlay abs' />
+        )}
         {!preview ? (
           null
         ) : preview.type === 'html' && (
@@ -43,7 +46,6 @@ class FilePreview extends Component {
             src=''
             style={{
               overflow: 'hidden',
-              pointerEvents: disablePointer ? 'none' : 'auto',
             }}
             ref={n => this._iframe = n}
           />

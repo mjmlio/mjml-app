@@ -4,7 +4,7 @@ import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
 import FaFolder from 'react-icons/fa/folder'
-import FaHome from 'react-icons/fa/home'
+import FaHome from 'react-icons/md/arrow-back'
 import FaPlus from 'react-icons/fa/plus'
 
 import { readDir, sortFiles } from 'helpers/fs'
@@ -18,7 +18,7 @@ import './styles.scss'
 
 @connect(null, {
   setPreview,
-})
+}, null, { withRef: true })
 class FilesList extends Component {
 
   state = {
@@ -36,9 +36,6 @@ class FilesList extends Component {
 
   componentDidMount () {
     this.refresh()
-    if (this.props.focusHome) {
-      this._btnHome.focus()
-    }
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -81,7 +78,11 @@ class FilesList extends Component {
     if (this.props.onFileClick) {
       this.props.onFileClick(p)
     }
-    this.props.setPreview(p)
+    // preview will be set by the onChange on editor
+    // no need to trigger it here
+    if (!p.endsWith('.mjml')) {
+      this.props.setPreview(p)
+    }
     this.props.onActiveFileChange(f)
   }
 
@@ -122,14 +123,20 @@ class FilesList extends Component {
         files,
       })
       if (files.length && !this._hasFocused) {
-        this.props.onActiveFileChange(files[0])
+        const indexOfIndexFile = files.findIndex(f => f.name === 'index.mjml')
+        this.props.onActiveFileChange(files[indexOfIndexFile === -1 ? 0 : indexOfIndexFile])
         this._hasFocused = true
       }
     })
   }
 
   startDrag = () => this.setState({ isDragging: true })
-  stopDrag = () => this.setState({ isDragging: false })
+  stopDrag = () => {
+    this.setState({ isDragging: false })
+    const editor = this._editor.getWrappedInstance()
+    editor.refresh()
+    editor.focus()
+  }
 
   toggleAdding = e => {
     if (e) { e.preventDefault() }
@@ -187,9 +194,9 @@ class FilesList extends Component {
               unclickable={pathItems.length === 0}
               onClick={this.handleClickDirectFactory(pathItems, -1)}
             >
-              <span className='round-label'>
+              <b>
                 {rootPathItems[rootPathItems.length - 1]}
-              </span>
+              </b>
             </Button>
             {pathItems.map((item, i) => (
               <Button
@@ -248,7 +255,7 @@ class FilesList extends Component {
         <div className='rel fg-1'>
           <SplitPane
             split='vertical'
-            defaultSize={300}
+            defaultSize={180}
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
@@ -280,12 +287,16 @@ class FilesList extends Component {
             <SplitPane
               split='vertical'
               defaultSize='50%'
+              maxSize={650}
+              minSize={300}
+              primary='second'
               onDragStarted={this.startDrag}
               onDragFinished={this.stopDrag}
             >
               <div className='d-f fd-c sticky'>
                 {activeFile && activeFile.name.endsWith('.mjml') && (
                   <FileEditor
+                    ref={n => this._editor = n}
                     fileName={fullActiveFile}
                     disablePointer={isDragging}
                   />

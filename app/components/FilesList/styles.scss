@@ -51,7 +51,6 @@
 
 .FilesList--ariane {
   display: flex;
-  border: 1px dashed rgba(white, 0.2);
 }
 
 .FilesList--preview-container {
@@ -61,7 +60,6 @@
 }
 
 .FilesList--preview {
-  pointer-events: none;
   flex: 1;
   display: flex;
   align-items: center;
@@ -74,6 +72,10 @@
     height: 100%;
     border: none;
   }
+}
+
+.FilesList--preview-overlay {
+  z-index: 999;
 }
 
 .rel { position: relative; }

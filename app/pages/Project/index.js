@@ -72,14 +72,14 @@ class FolderPage extends Component {
   handleAddFile = (fileName) => {
     fs.writeFile(fileName, defaultMJML, (err) => {
       if (err) { return }
-      this._filelist.refresh()
+      this._filelist.getWrappedInstance().refresh()
     })
   }
 
   handleRemoveFile = fileName => {
     rimraf(fileName, err => {
       if (err) { return }
-      this._filelist.refresh()
+      this._filelist.getWrappedInstance().refresh()
       this.setState({ activeFile: null })
     })
   }
