@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import debounce from 'lodash/debounce'
 import { bindActionCreators } from 'redux'
 import os from 'os'
 import path from 'path'
@@ -6,10 +7,12 @@ import { connect } from 'react-redux'
 import IconArrowRight from 'react-icons/md/arrow-forward'
 import IconArrowLeft from 'react-icons/md/arrow-back'
 import IconCheck from 'react-icons/md/check-circle'
+import IconChecking from 'react-icons/md/autorenew'
+import IconError from 'react-icons/md/error'
 
 import * as templates from 'templates'
 
-import { fileDialog } from 'helpers/fs'
+import { fileDialog, isEmptyOrDontExist } from 'helpers/fs'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
@@ -30,6 +33,8 @@ const HOME_DIR = os.homedir()
 const defaultState = {
   projectName: '',
   projectLocation: HOME_DIR,
+  // unset / checking / valid / invalid
+  projectLocStatus: 'unset',
   // name / template
   step: 'name',
   template: 'singleBasic',
@@ -68,7 +73,6 @@ class NewProjectModal extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
   }
 
   handleBrowse = () => {
@@ -118,6 +122,33 @@ class NewProjectModal extends Component {
 
   handleSelectTemplate = template => this.setState({ template })
 
+  handleChangeName = e => {
+    const { value } = e.target
+    const { projectLocation } = this.state
+    this.setState({
+      projectName: value,
+      projectLocStatus: value ? 'checking' : 'unset',
+    })
+    if (value) {
+      this.debounceCheckName()
+    }
+  }
+
+  debounceCheckName = debounce(async () => {
+    const { projectLocation, projectName } = this.state
+    if (!projectName) {
+      this.setState({
+        projectLocStatus: 'unset',
+      })
+      return
+    }
+    const full = path.join(projectLocation, projectName)
+    const locOK = await isEmptyOrDontExist(full)
+    this.setState({
+      projectLocStatus: locOK ? 'valid' : 'invalid',
+    })
+  }, 250)
+
   render () {
 
     const {
@@ -128,6 +159,7 @@ class NewProjectModal extends Component {
     const {
       projectName,
       projectLocation,
+      projectLocStatus,
       step,
       template,
     } = this.state
@@ -158,7 +190,7 @@ class NewProjectModal extends Component {
                   ref={n => this._inputName = n}
                   className='fg-1'
                   value={projectName}
-                  onChange={e => this.setState({ projectName: e.target.value })}
+                  onChange={this.handleChangeName}
                   placeholder='Project name'
                   type='text'
                   autoFocus
@@ -190,6 +222,24 @@ class NewProjectModal extends Component {
                       </b>
                     </div>
                   )}
+                  {projectLocStatus === 'checking' && (
+                    <div className='t-small mt-10'>
+                      <IconChecking className='rotating mr-5' />
+                      {'Checking...'}
+                    </div>
+                  )}
+                  {projectLocStatus === 'valid' && (
+                    <div className='t-small mt-10 c-green'>
+                      <IconCheck className='mr-5' />
+                      {'Location is OK'}
+                    </div>
+                  )}
+                  {projectLocStatus === 'invalid' && (
+                    <div className='t-small mt-10 c-red'>
+                      <IconError className='mr-5' />
+                      {'Directory exists and is not empty'}
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -204,7 +254,7 @@ class NewProjectModal extends Component {
           <div className='ModalFooter'>
             <Button
               disabled={
-                (step === 'name' && (!projectName || !projectLocation))
+                (step === 'name' && (!projectName || !projectLocation || projectLocStatus !== 'valid'))
                 || (step === 'template' && !template)
               }
               primary

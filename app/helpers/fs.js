@@ -73,6 +73,19 @@ export async function isValidDir (path) {
   return stats.isDirectory()
 }
 
+export async function isEmptyOrDontExist (location) {
+  try {
+    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return true
+    }
+    return false
+  }
+  const filesList = await fsReadDir(location)
+  return filesList.length === 0
+}
+
 export async function createOrEmpty (location) {
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
