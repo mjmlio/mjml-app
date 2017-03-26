@@ -3,17 +3,31 @@ export default {
     {
       name: 'index.mjml',
       content: `<mjml>
+
+  <mj-head>
+
+    <mj-attributes>
+      <mj-text align="center" color="#555" />
+      <mj-container background-color="#eee" />
+    </mj-attributes>
+
+  </mj-head>
+
   <mj-body>
     <mj-container>
 
       <mj-include path="./header.mjml" />
 
-      <mj-section>
+      <mj-section background-color="#fff">
 
         <mj-column>
-          <mj-text>
-            Hello world.
+          <mj-text align="center">
+            <h2>MJML Rocks!</h2>
           </mj-text>
+        </mj-column>
+
+        <mj-column>
+          <mj-image width="200" src="http://placehold.it/200x200"></mj-image>
         </mj-column>
 
       </mj-section>
@@ -22,6 +36,7 @@ export default {
 
     </mj-container>
   </mj-body>
+
 </mjml>`,
     },
     {

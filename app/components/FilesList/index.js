@@ -286,7 +286,7 @@ class FilesList extends Component {
             </div>
             <SplitPane
               split='vertical'
-              defaultSize='50%'
+              defaultSize={500}
               maxSize={650}
               minSize={300}
               primary='second'
