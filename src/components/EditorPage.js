@@ -33,6 +33,15 @@ class EditorPage extends Component {
     this._template = props.template
     this.state = {
       scroll: 0,
+      updateName: false,
+      mouseOverName: false,
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (!prevState.updateName && this.state.updateName) {
+      this.refs.editName.focus()
+      this.refs.editName.setSelectionRange(0, this.refs.editName.value.length)
     }
   }
 
@@ -88,12 +97,33 @@ class EditorPage extends Component {
     this.props.dispatch(updateConfig(config => config.set('previewMode', platform)))
   }
 
+  toggleNameEdit = () => {
+    this.setState({ updateName: true })
+  }
+
+  onNameChange = e => {
+    if (e.key === 'Enter') {
+      this.validateName(e.target.value)
+    }
+  }
+
+  validateName = value => {
+
+    value = value.target ? value.target.value : value
+
+    this.setState({ updateName: false })
+    if (value.trim() === '') { return }
+    this.props.dispatch(updateCurrentTemplate(template => template.set('name', value)))
+      .then(() => this.props.dispatch(saveTemplate()))
+  }
+
   render () {
     const { template, config } = this.props
-    const { scroll } = this.state
+    const { scroll, editName, mouseOverName } = this.state
 
     if (!template) { return this.renderEmpty() }
 
+    const name = template.get('name')
     const mjml = template.get('mjml')
 
     const editorTheme = config.get('editorTheme')
@@ -107,6 +137,29 @@ class EditorPage extends Component {
           <Button onClick={this.home} className='EditorPage-bar-item'>
             <i className='ion-android-arrow-back' style={{ marginRight: 0 }} />
           </Button>
+
+          <span className={cx('EditorPage-bar-item', {
+            editable: true,
+            hover: mouseOverName,
+            edit: editName,
+          })}
+            onClick={this.toggleNameEdit}
+            onMouseEnter={() => this.setState({ mouseOverName: true })}
+            onMouseLeave={() => this.setState({ mouseOverName: false })}>
+              {this.state.updateName
+                ? <input
+                  ref='editName'
+                  className='Tile-input'
+                  onBlur={this.validate}
+                  defaultValue={name}
+                  type='text'
+                  onKeyPress={this.onNameChange} />
+                : <span className='template-name'>
+                    <span>
+                      {name}
+                    </span>
+                  </span>}
+          </span>
 
           <DropDown
             className='EditorPage-bar-item'
@@ -128,7 +181,7 @@ class EditorPage extends Component {
             icon='ion-android-clipboard'
             title='Copy'>
 
-			<CopyToClipboard text={this.props.template.get('html')}>
+      <CopyToClipboard text={this.props.template.get('html')}>
               <Button className='EditorPage-bar-item'>
                {'HTML'}
               </Button>

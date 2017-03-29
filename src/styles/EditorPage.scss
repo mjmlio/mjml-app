@@ -20,6 +20,15 @@
     margin-right: 0.5em;
   }
 
+  .template-name {
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 0.5em;
+    cursor: pointer;
+  }
+
   &.active, &.active:hover {
     background: $blue;
   }
