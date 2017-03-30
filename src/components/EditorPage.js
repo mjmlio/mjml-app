@@ -34,7 +34,6 @@ class EditorPage extends Component {
     this.state = {
       scroll: 0,
       updateName: false,
-      mouseOverName: false,
     }
   }
 
@@ -119,7 +118,7 @@ class EditorPage extends Component {
 
   render () {
     const { template, config } = this.props
-    const { scroll, editName, mouseOverName } = this.state
+    const { scroll } = this.state
 
     if (!template) { return this.renderEmpty() }
 
@@ -138,14 +137,7 @@ class EditorPage extends Component {
             <i className='ion-android-arrow-back' style={{ marginRight: 0 }} />
           </Button>
 
-          <span className={cx('EditorPage-bar-item', {
-            editable: true,
-            hover: mouseOverName,
-            edit: editName,
-          })}
-            onClick={this.toggleNameEdit}
-            onMouseEnter={() => this.setState({ mouseOverName: true })}
-            onMouseLeave={() => this.setState({ mouseOverName: false })}>
+          <span className='EditorPage-bar-item' onClick={this.toggleNameEdit}>
               {this.state.updateName
                 ? <input
                   ref='editName'
