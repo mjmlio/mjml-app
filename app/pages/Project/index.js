@@ -30,7 +30,7 @@ class FolderPage extends Component {
     }
   }
 
-  handlePathChange = path => this.setState({ path })
+  handlePathChange = path => this.setState({ path, activeFile: null })
   handleFileDoubleClick = p => {
     if (p.endsWith('.mjml')) {
       // console.log(`opening ${p}`)

@@ -41,7 +41,7 @@ class FileEditor extends Component {
     this.props.setPreview(null)
   }
 
-  loadContent () {
+  async loadContent () {
     const { fileName } = this.props
     const { isLoading } = this.state
 
@@ -49,13 +49,13 @@ class FileEditor extends Component {
       this.setState({ isLoading: true })
     }
 
-    fsReadFile(fileName, { encoding: 'utf8' }).then(content => {
+    try {
+      const content = await fsReadFile(fileName, { encoding: 'utf8' })
       if (!this._codeMirror) { return }
       this._codeMirror.setValue(content)
-      this.setState({
-        isLoading: false,
-      })
-    })
+      this.setState({ isLoading: false })
+    } catch (e) {} // eslint-disable-line
+
   }
 
   initEditor () {
