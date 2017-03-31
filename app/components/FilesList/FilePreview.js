@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Motion, spring } from 'react-motion'
 import { connect } from 'react-redux'
 
 @connect(state => ({
@@ -39,17 +40,27 @@ class FilePreview extends Component {
         {disablePointer && (
           <div className='FilesList--preview-overlay abs' />
         )}
-        {!preview ? (
-          null
-        ) : preview.type === 'html' && (
-          <iframe
-            src=''
-            style={{
-              overflow: 'hidden',
-            }}
-            ref={n => this._iframe = n}
-          />
-        )}
+        <Motion
+          style={{
+            op: spring(preview ? 1 : 0),
+          }}
+        >
+          {m => (
+            <div style={{ opacity: m.op }}>
+              {preview ? (
+                preview.type === 'html' ? (
+                  <iframe
+                    src=''
+                    style={{
+                      overflow: 'hidden',
+                    }}
+                    ref={n => this._iframe = n}
+                  />
+                ) : null
+              ) : null}
+            </div>
+          )}
+        </Motion>
       </div>
     )
   }
