@@ -105,6 +105,10 @@ class FilesList extends Component {
     this.props.onRemoveFile(p)
   }
 
+  handleNavigateUp = () => {
+    this.props.onPathChange(pathModule.dirname(this.props.path))
+  }
+
   refsFactory = () => {
     this._refs = {}
     return refName => node => {
@@ -224,6 +228,19 @@ class FilesList extends Component {
             onDragFinished={this.stopDrag}
           >
             <div className='rel FilesList--list'>
+              {!!pathItems.length && (
+                <button
+                  className='FilesList--file d-f ai-c'
+                  tabIndex={0}
+                  onClick={this.handleNavigateUp}
+                >
+                  <div className='fg-1 FilesList--item-name-container'>
+                    <div className='FilesList--item-name'>
+                      {'..'}
+                    </div>
+                  </div>
+                </button>
+              )}
               {files.map(f => (
                 <button
                   ref={setRef(f.name)}

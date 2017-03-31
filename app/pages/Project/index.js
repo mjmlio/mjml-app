@@ -103,7 +103,8 @@ class FolderPage extends Component {
               to='/'
               ref={n => this._btnHome = n}
             >
-              <FaHome size={20} />
+              <FaHome className='mr-5' />
+              {'Back to projects'}
             </Button>
           </div>
           <div className='d-f'>
