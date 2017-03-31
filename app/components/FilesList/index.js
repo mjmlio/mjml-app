@@ -175,7 +175,6 @@ class FilesList extends Component {
 
     return (
       <div className='fg-1 d-f fd-c'>
-        <div className='d-f ai-c fs-0 mb-10'>
 
           {/*}
           <div className='ml-10'>
@@ -215,12 +214,6 @@ class FilesList extends Component {
           </div>
           */}
 
-          {children && (
-            <div style={{ marginLeft: 'auto' }}>
-              {children}
-            </div>
-          )}
-        </div>
         <div className='rel fg-1'>
           <SplitPane
             split='vertical'

@@ -2,12 +2,11 @@
 
 .FilesList--list {
   flex: 1;
-  padding-right: 10px;
 }
 
 .FilesList--file {
   height: 40px;
-  padding: 0 10px;
+  padding: 0 10px 0 15px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -15,33 +14,19 @@
   outline: none;
   font-size: 13px;
 
-  border: 1px solid transparent;
-
-  &:first-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-  &:last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-
   &.active {
     color: $blue;
     background-color: rgba($blue, 0.1) !important;
-    border-color: rgba($blue, 0.3);
+    box-shadow: inset $blue 2px 0;
     .FilesList--file-actions {
       display: block;
     }
   }
 
-  &:nth-child(odd) {
-    background-color: rgba(black, 0.06);
+  &:hover:not(.active) {
+    background-color: rgba(black, 0.08);
   }
 
-  &:hover, &:focus {
-    border-color: $blue;
-  }
 }
 
 .FilesList--file-actions {

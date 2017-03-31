@@ -92,9 +92,9 @@ class FolderPage extends Component {
     const rootPath = this.props.location.query.path
 
     return (
-      <div className='fg-1 d-f fd-c p-10'>
+      <div className='fg-1 d-f fd-c'>
 
-        <div className='d-f flow-h-5'>
+        <div className='d-f flow-h-5 p-10'>
           <div className='fg-1'>
             <Button
               className='c-d'
@@ -129,21 +129,23 @@ class FolderPage extends Component {
           </Button>
         </div>
 
-        <FilesList
-          ref={n => this._filelist = n}
-          withPreview
-          withHome
-          rootPath={rootPath}
-          path={path}
-          activeFile={activeFile}
-          onActiveFileChange={this.handleActiveFileChange}
-          onPathChange={this.handlePathChange}
-          onFileDoubleClick={this.handleFileDoubleClick}
-          onAddClick={this.openAddModal}
-          onAddFile={this.handleAddFile}
-          onRemoveFile={this.handleRemoveFile}
-          focusHome
-        />
+        <div className='fg-1 d-f fd-c mr-10 mb-10'>
+          <FilesList
+            ref={n => this._filelist = n}
+            withPreview
+            withHome
+            rootPath={rootPath}
+            path={path}
+            activeFile={activeFile}
+            onActiveFileChange={this.handleActiveFileChange}
+            onPathChange={this.handlePathChange}
+            onFileDoubleClick={this.handleFileDoubleClick}
+            onAddClick={this.openAddModal}
+            onAddFile={this.handleAddFile}
+            onRemoveFile={this.handleRemoveFile}
+            focusHome
+          />
+        </div>
 
         <Modal
           isOpened={isSettingsModalOpened}
