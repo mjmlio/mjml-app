@@ -4,14 +4,12 @@ import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
 import FaFolder from 'react-icons/fa/folder'
-import FaPlus from 'react-icons/fa/plus'
 
 import { readDir, sortFiles } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
 
 import FileEditor from 'components/FileEditor'
 import FilePreview from './FilePreview'
-import Button from 'components/Button'
 
 import './styles.scss'
 
@@ -167,7 +165,6 @@ class FilesList extends Component {
       activeFile,
       path,
       rootPath,
-      children,
     } = this.props
 
     const setRef = this.refsFactory()

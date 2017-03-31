@@ -25,24 +25,13 @@ class FolderPage extends Component {
     isSettingsModalOpened: false,
   }
 
-  componentDidMount () {
-    this._btnHome.focus()
-    console.log(`focused`)
-  }
-
   componentDidUpdate (prevProps, prevState) {
     if (prevState.isSettingsModalOpened && !this.state.isSettingsModalOpened) {
-      console.log(`hehre`)
       this._btnSettings.focus()
     }
   }
 
   handlePathChange = path => this.setState({ path, activeFile: null })
-  handleFileDoubleClick = p => {
-    if (p.endsWith('.mjml')) {
-      // console.log(`opening ${p}`)
-    }
-  }
 
   handleClickImport = () => {
     const p = fileDialog({
@@ -107,7 +96,6 @@ class FolderPage extends Component {
               transparent
               link
               to='/'
-              ref={n => this._btnHome = n}
             >
               <FaHome className='mr-5' />
               {'Back to projects'}
@@ -124,7 +112,6 @@ class FolderPage extends Component {
             <Button
               transparent
               onClick={this.handleOpenInBrowser}
-              ref={n => this._btnSettings = n}
             >
               <FaFolderOpen style={{ marginRight: 5 }} />
               {'Open'}
@@ -146,7 +133,6 @@ class FolderPage extends Component {
             activeFile={activeFile}
             onActiveFileChange={this.handleActiveFileChange}
             onPathChange={this.handlePathChange}
-            onFileDoubleClick={this.handleFileDoubleClick}
             onAddClick={this.openAddModal}
             onAddFile={this.handleAddFile}
             onRemoveFile={this.handleRemoveFile}

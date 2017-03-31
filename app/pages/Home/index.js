@@ -54,7 +54,14 @@ class HomePage extends Component {
         })}
       >
 
-        <div className='flow-h-20 d-f ai-c jc-fe'>
+        <div className='flow-h-5 d-f ai-c jc-fe'>
+          <Button
+            ghost
+            onClick={() => addProject()}
+          >
+            <IconOpen size={20} className='mr-5' />
+            {'Open project'}
+          </Button>
           <Button
             ref={n => this._newProjectBTN = n}
             primary
@@ -62,13 +69,6 @@ class HomePage extends Component {
           >
             <IconCreate size={20} className='mr-5' />
             {'New project'}
-          </Button>
-          <Button
-            ghost
-            onClick={() => addProject()}
-          >
-            <IconOpen size={20} className='mr-5' />
-            {'Open project'}
           </Button>
         </div>
 

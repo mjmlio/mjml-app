@@ -3,6 +3,7 @@ import cx from 'classnames'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconClose from 'react-icons/md/close'
+import IconInfo from 'react-icons/md/info'
 
 import { openProject, removeProject } from 'actions/projects'
 
@@ -75,12 +76,16 @@ class ProjectsList extends Component {
         ))}
         <ConfirmModal
           isOpened={isModalOpened}
+          yepCTA='Remove from list'
+          nopCTA='Cancel'
           onCancel={this.handleCloseModal}
           onConfirm={this.handleConfirmRemove}
         >
           <h2 className='mb-20'>{'Remove project from list?'}</h2>
-          {'This will not remove the files on your disk :)'}
-          <br />
+          <div className='d-f ai-c'>
+            <IconInfo className='mr-5' size={20} />
+            {'This will not remove the files on your disk'}
+          </div>
         </ConfirmModal>
       </div>
     )

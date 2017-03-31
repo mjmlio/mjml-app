@@ -6,7 +6,8 @@
   padding: 5px;
   &.isEditing {
     .ProjectItem--preview-container {
-      transform: scale(0.88);
+      transform: scale(0.9);
+      opacity: 0.8;
     }
     .ProjectItem {
       pointer-events: none;
@@ -35,7 +36,7 @@
 }
 
 .ProjectItem--preview-container {
-  transition: 150ms ease-in-out transform;
+  transition: 150ms ease-in-out all;
   overflow: hidden;
   position: relative;
   height: 280px;
