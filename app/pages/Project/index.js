@@ -10,25 +10,22 @@ import { shell } from 'electron'
 
 import defaultMJML from 'data/defaultMJML'
 
+import { openModal } from 'reducers/modals'
+
 import { fileDialog } from 'helpers/fs'
 
 import Button from 'components/Button'
 import FilesList from 'components/FilesList'
-import Modal from 'components/Modal'
 
-@connect()
+import SettingsModal from './SettingsModal'
+
+@connect(null, {
+  openModal,
+})
 class FolderPage extends Component {
 
   state = {
     path: this.props.location.query.path,
-    isAddModalOpened: false,
-    isSettingsModalOpened: false,
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.isSettingsModalOpened && !this.state.isSettingsModalOpened) {
-      this._btnSettings.focus()
-    }
   }
 
   handlePathChange = path => this.setState({ path, activeFile: null })
@@ -73,15 +70,13 @@ class FolderPage extends Component {
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
 
-  openSettingsModal = () => this.setState({ isSettingsModalOpened: true })
-  closeSettingsModal = () => this.setState({ isSettingsModalOpened: false })
+  openSettingsModal = () => this.props.openModal('settings')
 
   render () {
 
     const {
       path,
       activeFile,
-      isSettingsModalOpened,
     } = this.state
 
     const rootPath = this.props.location.query.path
@@ -140,42 +135,7 @@ class FolderPage extends Component {
           />
         </div>
 
-        <Modal
-          isOpened={isSettingsModalOpened}
-          onClose={this.closeSettingsModal}
-        >
-          <div className='Modal--label'>
-            {'Settings'}
-          </div>
-          <div className='d-f ai-fs'>
-            <div className='fg-1 mr-10'>
-              {'content'}
-            </div>
-            <div style={{ width: 150 }}>
-              <div className='version-box t-small flow-v-10'>
-
-                <div className='d-f ai-c'>
-                  <div className='fg-1'>
-                    {'MJML App'}
-                  </div>
-                  <b className='c-white'>
-                    {__MJML_APP_VERSION__}
-                  </b>
-                </div>
-
-                <div className='d-f ai-c'>
-                  <div className='fg-1'>
-                    {'MJML'}
-                  </div>
-                  <b className='c-white'>
-                    {__MJML_VERSION__}
-                  </b>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </Modal>
+        <SettingsModal />
 
       </div>
     )
