@@ -22,10 +22,14 @@ import SettingsModal from './SettingsModal'
 @connect(null, {
   openModal,
 })
-class FolderPage extends Component {
+class ProjectPage extends Component {
 
   state = {
     path: this.props.location.query.path,
+  }
+
+  componentDidMount () {
+    this._page.focus()
   }
 
   handlePathChange = path => this.setState({ path, activeFile: null })
@@ -82,7 +86,7 @@ class FolderPage extends Component {
     const rootPath = this.props.location.query.path
 
     return (
-      <div className='fg-1 d-f fd-c'>
+      <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
         <div className='d-f flow-h-5 p-10'>
           <div className='fg-1'>
@@ -143,4 +147,4 @@ class FolderPage extends Component {
 
 }
 
-export default FolderPage
+export default ProjectPage

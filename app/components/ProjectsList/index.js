@@ -26,10 +26,7 @@ class ProjectsList extends Component {
   }
 
   componentDidMount () {
-    // focus first project
-    if (this._firstProj) {
-      this._firstProj.focus()
-    }
+    this._node.focus()
   }
 
   handleRemoveProject = path => () => this.setState({
@@ -60,12 +57,15 @@ class ProjectsList extends Component {
     } = this.state
 
     return (
-      <div className={cx('ProjectsList abs', { isEditing })}>
-        {projects.reverse().map((p, i) => (
+      <div
+        className={cx('ProjectsList abs o-n', { isEditing })}
+        ref={n => this._node = n}
+        tabIndex={0}
+      >
+        {projects.reverse().map((p) => (
           <button
             className='ProjectItem'
             key={p}
-            ref={i === 0 ? n => this._firstProj = n : undefined}
             onClick={isEditing ? undefined : () => openProject(p.get('path'))}
           >
             <div

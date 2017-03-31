@@ -13,6 +13,15 @@ import './style.scss'
 }))
 class Application extends Component {
 
+  componentDidMount () {
+    // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
+    // window.addEventListener('keydown', () => {
+    //   setTimeout(() => {
+    //     console.log(document.activeElement)
+    //   }, 100)
+    // })
+  }
+
   render () {
 
     const {
