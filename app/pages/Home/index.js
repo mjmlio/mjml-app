@@ -41,7 +41,7 @@ class HomePage extends Component {
     return (
       <div
         className={cx({
-          'fg-1 d-f fd-c p-20': hasProjects,
+          'fg-1 d-f fd-c p-10': hasProjects,
           'fg-1 z': !hasProjects,
         })}
       >

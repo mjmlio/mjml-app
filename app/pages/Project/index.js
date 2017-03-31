@@ -3,6 +3,7 @@ import rimraf from 'rimraf'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
+import FaHome from 'react-icons/md/arrow-back'
 import IconEmail from 'react-icons/md/email'
 import fs from 'fs'
 import { shell } from 'electron'
@@ -93,6 +94,41 @@ class FolderPage extends Component {
     return (
       <div className='fg-1 d-f fd-c p-10'>
 
+        <div className='d-f flow-h-5'>
+          <div className='fg-1'>
+            <Button
+              className='c-d'
+              transparent
+              link
+              to='/'
+              ref={n => this._btnHome = n}
+            >
+              <FaHome size={20} />
+            </Button>
+          </div>
+          <div className='d-f'>
+            <Button
+              transparent
+              onClick={this.handleEmail}
+            >
+              <IconEmail style={{ marginRight: 5 }} />
+              {'Send'}
+            </Button>
+            <Button
+              transparent
+              onClick={this.handleOpenInBrowser}
+              ref={n => this._btnSettings = n}
+            >
+              <FaFolderOpen style={{ marginRight: 5 }} />
+              {'Open'}
+            </Button>
+          </div>
+          <Button ghost onClick={this.openSettingsModal} ref={n => this._btnSettings = n}>
+            <FaCog style={{ marginRight: 5 }} />
+            {'Settings'}
+          </Button>
+        </div>
+
         <FilesList
           ref={n => this._filelist = n}
           withPreview
@@ -107,31 +143,7 @@ class FolderPage extends Component {
           onAddFile={this.handleAddFile}
           onRemoveFile={this.handleRemoveFile}
           focusHome
-        >
-          <div className='d-f flow-h-5'>
-            <div className='d-f'>
-              <Button
-                transparent
-                onClick={this.handleEmail}
-              >
-                <IconEmail style={{ marginRight: 5 }} />
-                {'Send'}
-              </Button>
-              <Button
-                transparent
-                onClick={this.handleOpenInBrowser}
-                ref={n => this._btnSettings = n}
-              >
-                <FaFolderOpen style={{ marginRight: 5 }} />
-                {'Open'}
-              </Button>
-            </div>
-            <Button ghost onClick={this.openSettingsModal} ref={n => this._btnSettings = n}>
-              <FaCog style={{ marginRight: 5 }} />
-              {'Settings'}
-            </Button>
-          </div>
-        </FilesList>
+        />
 
         <Modal
           isOpened={isSettingsModalOpened}

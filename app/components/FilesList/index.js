@@ -4,7 +4,6 @@ import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
 import FaFolder from 'react-icons/fa/folder'
-import FaHome from 'react-icons/md/arrow-back'
 import FaPlus from 'react-icons/fa/plus'
 
 import { readDir, sortFiles } from 'helpers/fs'
@@ -177,39 +176,8 @@ class FilesList extends Component {
     return (
       <div className='fg-1 d-f fd-c'>
         <div className='d-f ai-c fs-0 mb-10'>
-          <div className='FilesList--ariane'>
-            <Button
-              transparent
-              link
-              to='/'
-              ref={n => this._btnHome = n}
-            >
-              <FaHome />
-            </Button>
-            <Button
-              style={{
-                padding: '0 5px',
-              }}
-              transparent
-              unclickable={pathItems.length === 0}
-              onClick={this.handleClickDirectFactory(pathItems, -1)}
-            >
-              <b>
-                {rootPathItems[rootPathItems.length - 1]}
-              </b>
-            </Button>
-            {pathItems.map((item, i) => (
-              <Button
-                transparent
-                unclickable={i === pathItems.length - 1}
-                key={item}
-                onClick={this.handleClickDirectFactory(pathItems, i)}
-              >
-                {item}
-              </Button>
-            ))}
-          </div>
 
+          {/*}
           <div className='ml-10'>
             {isAdding ? (
               <form onSubmit={this.handleSubmit} className='d-f ai-c'>
@@ -245,6 +213,7 @@ class FilesList extends Component {
               </Button>
             )}
           </div>
+          */}
 
           {children && (
             <div style={{ marginLeft: 'auto' }}>

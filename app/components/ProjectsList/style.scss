@@ -19,7 +19,6 @@
 
 .ProjectItem {
   position: relative;
-  cursor: pointer;
   float: left; // i mean, wtf?
   width: 260px;
   margin-right: 20px;
@@ -60,7 +59,6 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  cursor: pointer;
   transform-origin: center center;
   animation: deleteBounce 200ms ease-in-out;
   &:hover {
