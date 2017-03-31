@@ -121,11 +121,13 @@ class FilesList extends Component {
         isLoading: false,
         files,
       })
-      if (files.length && !this._hasFocused) {
-        const indexOfIndexFile = files.findIndex(f => f.name === 'index.mjml')
-        this.props.onActiveFileChange(files[indexOfIndexFile === -1 ? 0 : indexOfIndexFile])
-        this._hasFocused = true
-      }
+      window.requestIdleCallback(() => {
+        if (files.length && !this._hasFocused) {
+          const indexOfIndexFile = files.findIndex(f => f.name === 'index.mjml')
+          this.props.onActiveFileChange(files[indexOfIndexFile === -1 ? 0 : indexOfIndexFile])
+          this._hasFocused = true
+        }
+      })
     })
   }
 
