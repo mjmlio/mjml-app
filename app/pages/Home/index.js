@@ -24,6 +24,14 @@ class HomePage extends Component {
     isEditing: false,
   }
 
+  componentDidMount () {
+    if (this.props.projects.size === 0) {
+      this._newProjectBTN.focus()
+    }
+  }
+
+  focusNew = () => this._newProjectBTN.focus()
+
   render () {
 
     const {
@@ -48,8 +56,8 @@ class HomePage extends Component {
 
         <div className='flow-h-20 d-f ai-c jc-fe'>
           <Button
+            ref={n => this._newProjectBTN = n}
             primary
-            autoFocus
             onClick={() => openModal('newProject')}
           >
             <IconCreate size={20} className='mr-5' />
@@ -66,7 +74,7 @@ class HomePage extends Component {
 
         {hasProjects && (
           <div className='fg-1 d-f fd-c'>
-            <h2 className='mt-20 d-f ai-c'>
+            <h2 className='mt-20 mb-20 d-f ai-c'>
               {'Recent projects'}
               <div className='Home--edit-thing t-small d-f ai-c'>
                 <div className='ml-10 mr-10'>

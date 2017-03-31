@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import Mortal from 'react-mortal'
 
 import './style.scss'
@@ -44,7 +45,7 @@ class Modal extends Component {
               }}
             />
             <div
-              className={`Modal--body ${className}`}
+              className={cx('Modal--body', className)}
               style={{
                 opacity: motion.opacity,
                 transform: `translate3d(0, ${motion.modalOffset}px, 0)`,

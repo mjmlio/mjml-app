@@ -2,12 +2,14 @@
 
 .ProjectsList {
   overflow: auto;
+  margin: -10px;
+  padding: 5px;
   &.isEditing {
     .ProjectItem--preview-container {
       transform: scale(0.88);
     }
     .ProjectItem {
-      cursor: default;
+      pointer-events: none;
       &:hover {
         .ProjectItem--label {
           color: $lighterGrey;
@@ -19,8 +21,10 @@
 
 .ProjectItem {
   position: relative;
+  text-align: left;
   float: left; // i mean, wtf?
-  width: 260px;
+  width: 270px;
+  padding: 5px;
   margin-right: 20px;
   margin-bottom: 40px;
   &:hover {
@@ -40,7 +44,7 @@
 
 .ProjectItem--label {
   font-size: 13px;
-  margin-top: 5px;
+  margin: 5px 0;
   cursor: default;
   white-space: nowrap;
   overflow: hidden;
@@ -48,9 +52,10 @@
 }
 
 .ProjectItem--delete-btn {
+  pointer-events: auto;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 5px;
+  top: 5px;
   background: #ca2d2d;
   z-index: 40;
   display: flex;
@@ -60,13 +65,18 @@
   width: 30px;
   height: 30px;
   transform-origin: center center;
-  animation: deleteBounce 200ms ease-in-out;
+  transition: 200ms ease-in-out all;
+  opacity: 0;
+  transform: translate3d(-5px, 5px, 0);
+  &.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
   &:hover {
-    transition: 100ms ease-in-out transform;
     background: lighten(#ca2d2d, 10);
   }
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.8);
   }
 }
 

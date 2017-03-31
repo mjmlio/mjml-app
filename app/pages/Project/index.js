@@ -27,10 +27,12 @@ class FolderPage extends Component {
 
   componentDidMount () {
     this._btnHome.focus()
+    console.log(`focused`)
   }
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.isSettingsModalOpened && !this.state.isSettingsModalOpened) {
+      console.log(`hehre`)
       this._btnSettings.focus()
     }
   }
