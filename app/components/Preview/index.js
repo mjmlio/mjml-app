@@ -20,6 +20,7 @@ class Preview extends Component {
 
   setIframeContent = html => {
     window.requestAnimationFrame(() => {
+      if (!this._iframe) { return }
       const doc = this._iframe.contentDocument
       const documentElement = doc.documentElement
       documentElement.innerHTML = html

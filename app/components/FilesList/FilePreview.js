@@ -22,6 +22,7 @@ class FilePreview extends Component {
 
   setIframeContent = content => {
     window.requestAnimationFrame(() => {
+      if (!this._iframe) { return }
       const doc = this._iframe.contentDocument
       const documentElement = doc.documentElement
       documentElement.innerHTML = content
