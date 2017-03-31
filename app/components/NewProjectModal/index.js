@@ -124,7 +124,6 @@ class NewProjectModal extends Component {
 
   handleChangeName = e => {
     const { value } = e.target
-    const { projectLocation } = this.state
     this.setState({
       projectName: value,
       projectLocStatus: value ? 'checking' : 'unset',

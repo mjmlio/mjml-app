@@ -140,6 +140,7 @@ class FolderPage extends Component {
           <h2>{'Settings'}</h2>
           <div className='d-f ai-fs'>
             <div className='fg-1 mr-10'>
+              {'content'}
             </div>
             <div style={{ width: 150 }}>
               <div className='version-box t-small flow-v-10'>

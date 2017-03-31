@@ -9,6 +9,8 @@
   },
   "globals": {
     "Promise": false,
+    "__MJML_APP_VERSION__": false,
+    "__MJML_VERSION__": false,
   },
   "rules": {
     "no-undefined": 0,
