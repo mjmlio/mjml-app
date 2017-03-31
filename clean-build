@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm -rf ./app/dist
+rm -f app/main.js
+rm -f app/main.js.map
