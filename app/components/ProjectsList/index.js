@@ -25,6 +25,13 @@ class ProjectsList extends Component {
     isModalOpened: false,
   }
 
+  componentDidMount () {
+    // focus first project
+    if (this._firstProj) {
+      this._firstProj.focus()
+    }
+  }
+
   handleRemoveProject = path => () => this.setState({
     pathToDelete: path,
     isModalOpened: true,
@@ -54,10 +61,11 @@ class ProjectsList extends Component {
 
     return (
       <div className={cx('ProjectsList abs', { isEditing })}>
-        {projects.reverse().map(p => (
+        {projects.reverse().map((p, i) => (
           <button
             className='ProjectItem'
             key={p}
+            ref={i === 0 ? n => this._firstProj = n : undefined}
             onClick={isEditing ? undefined : () => openProject(p.get('path'))}
           >
             <div

@@ -31,13 +31,13 @@
   &.ghost, &.transparent {
     color: $lighterGrey;
     &:hover, &:focus {
-      background-color: rgba(white, 0.05);
+      background-color: rgba(white, 0.1);
       color: white;
     }
   }
 
   &.ghost {
-    background-color: rgba(white, 0.03);
+    background-color: rgba(white, 0.06);
   }
 
   &.unclickable {
