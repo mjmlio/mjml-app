@@ -9,6 +9,7 @@ export default handleActions({
     return Map({
       projects: Set(payload.projects),
       editor: Map(payload.editor),
+      api: Map(payload.api),
     })
   },
 

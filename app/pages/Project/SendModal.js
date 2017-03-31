@@ -6,10 +6,13 @@ import { isModalOpened, closeModal } from 'reducers/modals'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 
-@connect(state => ({
-  isOpened: isModalOpened(state, 'send'),
-  settings: state.settings,
-}), {
+@connect(state => {
+  return {
+    isOpened: isModalOpened(state, 'send'),
+    APIKey: state.settings.getIn(['api', 'APIKey'], ''),
+    APISecret: state.settings.getIn(['api', 'APISecret'], ''),
+  }
+}, {
   closeModal,
 })
 class SendModal extends Component {
@@ -20,17 +23,21 @@ class SendModal extends Component {
   }
 
   componentWillMount () {
-    this.setAPIState(this.props.settings)
+    this.setAPIState(this.props)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.setAPIState(nextProps)
   }
 
   handleClose = () => this.props.closeModal('send')
 
   handleChangeInput = key => e => this.setState({ [key]: e.target.value })
 
-  setAPIState = settings => {
+  setAPIState = props => {
     this.setState({
-      APIKey: settings.getIn(['api', 'key'], ''),
-      APISecret: settings.getIn(['api', 'secret'], ''),
+      APIKey: props.APIKey,
+      APISecret: props.APISecret,
     })
   }
 
@@ -38,13 +45,12 @@ class SendModal extends Component {
 
     const {
       isOpened,
-      settings,
     } = this.props
 
     const {
       APIKey,
       APISecret,
-    } = this.props
+    } = this.state
 
     return (
       <Modal
