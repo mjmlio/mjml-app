@@ -182,7 +182,7 @@ class NewProjectModal extends Component {
           {step === 'name' ? (
             <div className='flow-v-20'>
               <div className='d-f ai-b'>
-                <div style={{ width: 150 }} className='fs-0'>
+                <div style={{ width: 150 }} className='fs-0 t-small'>
                   {'Project name:'}
                 </div>
                 <input
@@ -197,7 +197,7 @@ class NewProjectModal extends Component {
               </div>
 
               <div className='d-f ai-b'>
-                <div style={{ width: 150 }} className='fs-0'>
+                <div style={{ width: 150 }} className='fs-0 t-small'>
                   {'Location:'}
                 </div>
                 <div className='fg-1'>

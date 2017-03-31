@@ -18,6 +18,7 @@ import Button from 'components/Button'
 import FilesList from 'components/FilesList'
 
 import SettingsModal from './SettingsModal'
+import SendModal from './SendModal'
 
 @connect(null, {
   openModal,
@@ -75,6 +76,7 @@ class ProjectPage extends Component {
   handleActiveFileChange = activeFile => this.setState({ activeFile })
 
   openSettingsModal = () => this.props.openModal('settings')
+  openSendModal = () => this.props.openModal('send')
 
   render () {
 
@@ -103,7 +105,7 @@ class ProjectPage extends Component {
           <div className='d-f'>
             <Button
               transparent
-              onClick={this.handleEmail}
+              onClick={this.openSendModal}
             >
               <IconEmail style={{ marginRight: 5 }} />
               {'Send'}
@@ -140,6 +142,7 @@ class ProjectPage extends Component {
         </div>
 
         <SettingsModal />
+        <SendModal />
 
       </div>
     )
