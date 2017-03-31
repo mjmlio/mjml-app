@@ -68,13 +68,19 @@ input[type=text] {
 
 .Resizer {
   position: relative;
-  background: rgba(black, 0.1);
-  z-index: 4;
+  z-index: 4000;
+  border-radius: 3px;
+  &:hover {
+    background: #34343f;
+  }
+  &:active {
+    background: #42424f;
+  }
 }
 
 .Resizer.vertical {
-  width: 10px;
-  margin: 0 -5px;
+  width: 12px;
+  margin: 0 -6px;
   border-left: 1px solid rgba(255, 255, 255, 0);
   border-right: 1px solid rgba(255, 255, 255, 0);
   cursor: col-resize;
