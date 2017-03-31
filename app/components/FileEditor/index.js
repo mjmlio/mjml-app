@@ -13,7 +13,12 @@ import { setPreview } from 'actions/preview'
 
 import './styles.scss'
 
-@connect(null, {
+@connect(state => {
+  const { settings } = state
+  return {
+    wrapLines: settings.getIn(['editor', 'wrapLines'], true),
+  }
+}, {
   setPreview,
 }, null, { withRef: true })
 class FileEditor extends Component {
@@ -30,6 +35,9 @@ class FileEditor extends Component {
   componentDidUpdate (prevProps) {
     if (prevProps.fileName !== this.props.fileName) {
       this.loadContent()
+    }
+    if (prevProps.wrapLines !== this.props.wrapLines) {
+      this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
     }
   }
 
@@ -59,6 +67,11 @@ class FileEditor extends Component {
   }
 
   initEditor () {
+
+    const {
+      wrapLines,
+    } = this.props
+
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
       this._codeMirror = null
@@ -74,7 +87,7 @@ class FileEditor extends Component {
       highlightSelectionMatches: {
         wordsOnly: true,
       },
-      lineWrapping: true,
+      lineWrapping: wrapLines,
     })
     this._codeMirror.on('change', this.handleChange)
   }

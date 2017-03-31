@@ -18,3 +18,13 @@ export function cleanBadProjects (pathsToClean) {
     payload: pathsToClean,
   }
 }
+
+export function updateSettings (updater) {
+  return (dispatch) => {
+    dispatch({
+      type: 'UPDATE_SETTINGS',
+      payload: updater,
+    })
+    dispatch(saveSettings())
+  }
+}

@@ -10,6 +10,12 @@ const springConfig = {
 
 class Modal extends Component {
 
+  componentDidUpdate (prevProps) {
+    if (!prevProps.isOpened && this.props.isOpened) {
+      this._node.focus()
+    }
+  }
+
   render () {
 
     const {
@@ -45,6 +51,8 @@ class Modal extends Component {
               }}
             />
             <div
+              tabIndex={0}
+              ref={n => this._node = n}
               className={cx('Modal--body', className)}
               style={{
                 opacity: motion.opacity,

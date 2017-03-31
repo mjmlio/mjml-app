@@ -8,8 +8,11 @@ export default handleActions({
   SETTINGS_LOAD_SUCCESS: (state, { payload }) => {
     return Map({
       projects: Set(payload.projects),
+      editor: Map(payload.editor),
     })
   },
+
+  UPDATE_SETTINGS: (state, { payload: updater }) => updater(state),
 
   PROJECT_OPEN: (state, { payload: path }) => state
     .update('projects', projects => projects.remove(path).add(path)),
