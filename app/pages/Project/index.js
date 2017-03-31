@@ -151,7 +151,9 @@ class FolderPage extends Component {
           isOpened={isSettingsModalOpened}
           onClose={this.closeSettingsModal}
         >
-          <h2>{'Settings'}</h2>
+          <div className='Modal--label'>
+            {'Settings'}
+          </div>
           <div className='d-f ai-fs'>
             <div className='fg-1 mr-10'>
               {'content'}
