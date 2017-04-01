@@ -16,6 +16,7 @@ import './styles.scss'
 @connect(state => {
   const { settings } = state
   return {
+    mjmlEngine: settings.getIn(['mjml', 'engine'], 'auto'),
     wrapLines: settings.getIn(['editor', 'wrapLines'], true),
   }
 }, {
@@ -30,6 +31,12 @@ class FileEditor extends Component {
   componentDidMount () {
     this.initEditor()
     this.loadContent()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.mjmlEngine !== nextProps.mjmlEngine) {
+      this.handleChange()
+    }
   }
 
   componentDidUpdate (prevProps) {
@@ -92,11 +99,20 @@ class FileEditor extends Component {
     this._codeMirror.on('change', this.handleChange)
   }
 
-  handleChange = debounce(() => {
-    const { setPreview, fileName } = this.props
+  handleChange = debounce(async () => {
+    const {
+      setPreview,
+      fileName,
+      mjmlEngine,
+    } = this.props
     const mjml = this._codeMirror.getValue()
-    setPreview(fileName, mjml)
-    this.debounceWrite(fileName, mjml)
+    if (mjmlEngine === 'auto') {
+      setPreview(fileName, mjml)
+      this.debounceWrite(fileName, mjml)
+    } else {
+      await fsWriteFile(fileName, mjml)
+      setPreview(fileName, mjml)
+    }
   }, 200)
 
   debounceWrite = debounce((fileName, mjml) => {

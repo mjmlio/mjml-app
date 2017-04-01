@@ -11,11 +11,6 @@
     }
     .ProjectItem {
       pointer-events: none;
-      &:hover {
-        .ProjectItem--label {
-          color: $lighterGrey;
-        }
-      }
     }
   }
 }
@@ -28,11 +23,6 @@
   padding: 5px;
   margin-right: 20px;
   margin-bottom: 40px;
-  &:hover {
-    .ProjectItem--label {
-      color: white;
-    }
-  }
 }
 
 .ProjectItem--preview-container {

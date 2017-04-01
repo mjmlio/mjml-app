@@ -2,8 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import promisify from 'es6-promisify'
 import { remote } from 'electron'
-
-import mjml2html from 'helpers/mjml'
+import {
+  exec as x,
+  execFile as xFile,
+} from 'child_process'
 
 const { dialog } = remote
 
@@ -58,11 +60,6 @@ export function fileDialog (options) {
   return p || null
 }
 
-export function readMJMLFile (path) {
-  return fsReadFile(path, { encoding: 'utf8' })
-    .then(content => mjml2html(content, path))
-}
-
 export async function isValidDir (path) {
   try {
     await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
@@ -98,4 +95,37 @@ export async function createOrEmpty (location) {
   if (filesList.length > 0) {
     throw new Error('Directory not empty')
   }
+}
+
+export function exec (cmd) {
+  return new Promise((resolve) => {
+    try {
+      x(cmd, (err, stdout, stderr) => {
+        resolve({
+          err,
+          stdout,
+          stderr,
+        })
+      })
+    } catch (err) {
+      resolve({ err })
+    }
+  })
+}
+
+export function execFile (cmd, opts, stdinStream) {
+  return new Promise((resolve) => {
+    try {
+      const child = xFile(cmd, opts, (err, stdout, stderr) => {
+        resolve({
+          err,
+          stdout,
+          stderr,
+        })
+      })
+      stdinStream.pipe(child.stdin)
+    } catch (err) {
+      resolve({ err })
+    }
+  })
 }

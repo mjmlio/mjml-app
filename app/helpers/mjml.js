@@ -1,15 +1,43 @@
-import { remote } from 'electron'
+import { mjml2html } from 'mjml'
+import stream from 'stream'
 
-export default function mjml2html (mjmlContent, filePath) {
+import { execFile, exec } from 'helpers/fs'
 
-  const {
-    mjml2html: mjml2htmlService,
-  } = remote.require('../services')
+export default function (mjmlContent, filePath, mjmlPath = null) {
+  return new Promise(resolve => {
+    window.requestIdleCallback(async () => {
+      try {
+        if (mjmlPath) {
 
-  return new Promise((resolve) => {
-    mjml2htmlService(mjmlContent, filePath, (err, html) => {
-      if (err) { return resolve('') }
-      resolve(html)
+          if (!mjmlContent.trim().startsWith('<mjml>')) {
+
+            const stdinStream = new stream.Readable()
+            stdinStream.push(wrapIntoMJMLTags(mjmlContent))
+            stdinStream.push(null)
+
+            const res = await execFile(mjmlPath, ['-i', '-s'], stdinStream)
+            if (res.err) { return resolve('') }
+
+            resolve(res.stdout)
+
+          } else {
+
+            const res = await exec(`${mjmlPath} -s "${filePath}"`)
+            if (res.err) { return resolve('') }
+
+            resolve(res.stdout)
+          }
+
+        } else {
+          if (!mjmlContent.trim().startsWith('<mjml>')) {
+            mjmlContent = wrapIntoMJMLTags(mjmlContent)
+          }
+          const res = mjml2html(mjmlContent, { filePath })
+          resolve(res.html || '')
+        }
+      } catch (e) {
+        resolve('')
+      }
     })
   })
 }

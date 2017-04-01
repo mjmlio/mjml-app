@@ -35,12 +35,20 @@ b {
   font-weight: bold;
 }
 
+input {
+  cursor: text;
+}
+
 h2 {
   cursor: default;
   font-weight: bold;
   padding-bottom: 10px;
   color: rgba(white, 0.7);
   border-bottom: 5px solid rgba(white, 0.02);
+  &.secondary {
+    color: rgba($yellow, 0.7);
+    border-bottom: 5px solid rgba($yellow, 0.1);
+  }
 }
 
 input[type=text] {
@@ -59,6 +67,10 @@ input[type=text] {
   color: $grey;
   padding: 2px 8px;
   border-radius: 8px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .a {
@@ -97,6 +109,17 @@ input[type=text] {
 }
 
 .version-box {
-  background: rgba(white, 0.05);
+  background: rgba(black, 0.1);
   padding: 10px;
+}
+
+.focus {
+  cursor: default;
+  outline: none;
+  border: 1px dashed transparent;
+  border-radius: 3px;
+  padding: 5px;
+  &:focus {
+    border: 1px dashed rgba(white, 0.2);
+  }
 }

@@ -44,9 +44,7 @@ export function removeProject (p) {
 export function openProject (path) {
   return dispatch => {
     dispatch(replace(`/project?path=${path}`))
-    dispatch({ type: 'PROJECT_OPEN', payload: path })
     dispatch(loadIfNeeded(path))
-    dispatch(saveSettings())
   }
 }
 
@@ -57,6 +55,7 @@ function loadIfNeeded (path) {
     if (!proj) {
       const enriched = await loadProject(path)
       dispatch({ type: 'PROJECT_LOAD', payload: enriched })
+      dispatch(saveSettings())
     }
   }
 }
@@ -64,14 +63,14 @@ function loadIfNeeded (path) {
 // read the project directory
 // eventually find the index.mjml file inside and generate its html
 // (to have nice previews in home)
-async function loadProject (p) {
+async function loadProject (p, mjmlPath) {
   const res = { path: p }
   res.isOK = await isValidDir(p)
   if (res.isOK) {
     try {
       const indexFilePath = path.join(p, 'index.mjml')
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
-      const htmlContent = await mjml2html(mjmlContent, indexFilePath)
+      const htmlContent = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
     } catch (e) {} // eslint-disable-line
   }
@@ -86,7 +85,12 @@ export function loadProjects () {
 
     const projectsPaths = settings.get('projects')
 
-    let enriched = await Promise.all(projectsPaths.map(loadProject))
+    // eventually get the custom mjml path set in settings
+    const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'
+    const mjmlPath = mjmlManual ? settings.getIn(['mjml', 'path']) : undefined
+    const load = proj => loadProject(proj, mjmlPath)
+
+    let enriched = await Promise.all(projectsPaths.map(load))
 
     // eventually clean settings from bad projects paths
     const pathsToClean = enriched

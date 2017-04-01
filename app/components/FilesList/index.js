@@ -157,7 +157,6 @@ class FilesList extends Component {
 
     const {
       files,
-      isAdding,
       isDragging,
     } = this.state
 
@@ -178,44 +177,6 @@ class FilesList extends Component {
 
     return (
       <div className='fg-1 d-f fd-c'>
-
-          {/*}
-          <div className='ml-10'>
-            {isAdding ? (
-              <form onSubmit={this.handleSubmit} className='d-f ai-c'>
-                <input
-                  type='text'
-                  placeholder='filename'
-                  ref={n => this._inputName = n}
-                />
-                <div className='small ml-5 c-yellow'>
-                  {'.mjml'}
-                </div>
-                <div className='small ml-10 d-f ai-c flow-h-10'>
-                  <div>{' - '}</div>
-                  <a
-                    href=''
-                    className='a c-red'
-                    onClick={this.cancelAdd}
-                    tabIndex={0}
-                  >
-                    {'Cancel'}
-                  </a>
-                </div>
-              </form>
-            ) : (
-              <Button
-                ghost
-                onClick={this.toggleAdding}
-                className='c-blue'
-                ref={n => this._addBtn = n}
-              >
-                <FaPlus style={{ marginRight: 5 }} />
-                {'Add file'}
-              </Button>
-            )}
-          </div>
-          */}
 
         <div className='rel fg-1'>
           <SplitPane

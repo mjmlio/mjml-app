@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Alerts from 'components/Alerts'
 import NewProjectModal from 'components/NewProjectModal'
+import SettingsModal from 'components/SettingsModal'
 
 import Placeholder from './Placeholder'
 
@@ -10,6 +11,7 @@ import './style.scss'
 
 @connect(state => ({
   projects: state.projects,
+  settings: state.settings,
 }))
 class Application extends Component {
 
@@ -26,6 +28,7 @@ class Application extends Component {
 
     const {
       projects,
+      settings,
     } = this.props
 
     return (
@@ -34,8 +37,9 @@ class Application extends Component {
         <Placeholder show={!projects} />
         {projects && this.props.children}
 
-        <NewProjectModal />
+        {settings && <SettingsModal />}
 
+        <NewProjectModal />
         <Alerts />
 
       </div>

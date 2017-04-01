@@ -14,7 +14,6 @@ import baseConfig from './webpack.config.base'
 import pkg from './package.json'
 
 export default validate(merge(baseConfig, {
-  devtool: 'cheap-module-source-map',
 
   entry: ['babel-polyfill', './app/index'],
 

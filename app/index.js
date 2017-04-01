@@ -6,9 +6,9 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import routes from './routes'
 import configureStore from './store/configureStore'
-import loadSettings from './loadSettings'
+import { loadSettings } from './actions/settings'
 
-import { loadProjects } from 'actions/projects'
+import { loadProjects, addProject } from 'actions/projects'
 
 import { openModal } from 'reducers/modals'
 
@@ -17,6 +17,7 @@ import 'styles/utils.scss'
 
 const store = configureStore()
 const history = syncHistoryWithStore(hashHistory, store)
+const { dispatch } = store
 
 render(
   <Provider store={store}>
@@ -25,13 +26,19 @@ render(
   document.getElementById('root')
 )
 
-loadSettings()
-  .then(settings => { store.dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings }) })
-  .then(() => store.dispatch(loadProjects()))
+async function boot () {
+  await dispatch(loadSettings())
+  await dispatch(loadProjects())
+}
+
+boot()
 
 // handle menu actions
 require('electron').ipcRenderer.on('redux-command', (event, message) => {
   if (message === 'new-project') {
     store.dispatch(openModal('newProject'))
+  }
+  if (message === 'open-project') {
+    store.dispatch(addProject())
   }
 })

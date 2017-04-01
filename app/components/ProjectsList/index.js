@@ -9,6 +9,7 @@ import { openProject, removeProject } from 'actions/projects'
 
 import Preview from 'components/Preview'
 import ConfirmModal from 'components/Modal/ConfirmModal'
+import Tabbable from 'components/Tabbable'
 
 import './style.scss'
 
@@ -23,10 +24,6 @@ class ProjectsList extends Component {
   state = {
     pathToDelete: null,
     isModalOpened: false,
-  }
-
-  componentDidMount () {
-    this._node.focus()
   }
 
   handleRemoveProject = path => () => this.setState({
@@ -59,21 +56,20 @@ class ProjectsList extends Component {
     return (
       <div
         className={cx('ProjectsList abs o-n', { isEditing })}
-        ref={n => this._node = n}
-        tabIndex={0}
       >
         {projects.reverse().map((p) => (
           <button
             className='ProjectItem'
             key={p}
             onClick={isEditing ? undefined : () => openProject(p.get('path'))}
+            tabIndex={isEditing ? -1 : 0}
           >
-            <div
+            <Tabbable
               className={cx('ProjectItem--delete-btn', { visible: isEditing })}
               onClick={this.handleRemoveProject(p.get('path'))}
             >
               <IconClose color='#fff' />
-            </div>
+            </Tabbable>
             <div className='ProjectItem--preview-container'>
               <Preview scaled html={p.get('html', null)} />
             </div>
@@ -90,7 +86,7 @@ class ProjectsList extends Component {
           onConfirm={this.handleConfirmRemove}
         >
           <h2 className='mb-20'>{'Remove project from list?'}</h2>
-          <div className='d-f ai-c'>
+          <div className='d-f ai-c t-small'>
             <IconInfo className='mr-5' size={20} />
             {'This will not remove the files on your disk'}
           </div>

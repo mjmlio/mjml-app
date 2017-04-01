@@ -1,20 +1,27 @@
 import path from 'path'
 import { createAction } from 'redux-actions'
 
-import mjml2html, { wrapIntoMJMLTags } from 'helpers/mjml'
+import mjml2html from 'helpers/mjml'
 import { fsReadFile } from 'helpers/fs'
 import { updateProjectPreview } from 'actions/projects'
 
 const setPrev = createAction('SET_PREVIEW')
 
 export function setPreview (fileName, content = '') {
-  return async dispatch => {
+  return async (dispatch, getState) => {
 
     if (!fileName) { return dispatch(setPrev(null)) }
 
     const bName = path.basename(fileName)
     const fName = path.dirname(fileName)
     const ext = path.extname(fileName)
+
+    const state = getState()
+    const { settings } = state
+
+    // eventually get the custom mjml path set in settings
+    const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'
+    const mjmlPath = mjmlManual ? settings.getIn(['mjml', 'path']) : undefined
 
     switch (ext) {
     case '.html':
@@ -27,10 +34,7 @@ export function setPreview (fileName, content = '') {
       if (!content) {
         content = await fsReadFile(fileName, { encoding: 'utf8' })
       }
-      if (!content.trim().startsWith('<mjml>')) {
-        content = wrapIntoMJMLTags(content)
-      }
-      const html = await mjml2html(content, fileName)
+      const html = await mjml2html(content, fileName, mjmlPath)
       dispatch(setPrev({ type: 'html', content: html }))
       // update the preview in project
       if (bName === 'index.mjml') {

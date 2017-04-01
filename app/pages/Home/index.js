@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import IconCreate from 'react-icons/md/create-new-folder'
 import IconOpen from 'react-icons/md/file-download'
+import FaCog from 'react-icons/fa/cog'
 import { connect } from 'react-redux'
 
 import { addProject } from 'actions/projects'
@@ -32,6 +33,12 @@ class HomePage extends Component {
 
   focusNew = () => this._newProjectBTN.focus()
 
+  preventAndEdit = isEditing => e => {
+    e.stopPropagation()
+    e.preventDefault()
+    this.setState({ isEditing })
+  }
+
   render () {
 
     const {
@@ -54,14 +61,7 @@ class HomePage extends Component {
         })}
       >
 
-        <div className='flow-h-5 d-f ai-c jc-fe'>
-          <Button
-            ghost
-            onClick={() => addProject()}
-          >
-            <IconOpen size={20} className='mr-5' />
-            {'Open project'}
-          </Button>
+        <div className='flow-h-5 d-f ai-c'>
           <Button
             ref={n => this._newProjectBTN = n}
             primary
@@ -70,10 +70,22 @@ class HomePage extends Component {
             <IconCreate size={20} className='mr-5' />
             {'New project'}
           </Button>
+          <Button
+            ghost
+            onClick={() => addProject()}
+          >
+            <IconOpen size={20} className='mr-5' />
+            {'Open project'}
+          </Button>
+          <div className={cx({ 'ml-auto': hasProjects })}>
+            <Button ghost onClick={() => openModal('settings')}>
+              <FaCog />
+            </Button>
+          </div>
         </div>
 
         {hasProjects && (
-          <div className='fg-1 d-f fd-c'>
+          <div className='fg-1 d-f fd-c mt-50'>
             <h2 className='mt-20 mb-20 d-f ai-c'>
               {'Recent projects'}
               <div className='Home--edit-thing t-small d-f ai-c'>
@@ -81,13 +93,23 @@ class HomePage extends Component {
                   {'-'}
                 </div>
                 {isEditing ? (
-                  <div className='Home--edit-link c-yellow' onClick={() => this.setState({ isEditing: false })}>
+                  <a
+                    href=''
+                    tabIndex={0}
+                    className='Home--edit-link c-yellow'
+                    onClick={this.preventAndEdit(false)}
+                  >
                     {'finish'}
-                  </div>
+                  </a>
                 ) : (
-                  <div className='Home--edit-link' onClick={() => this.setState({ isEditing: true })}>
+                  <a
+                    href=''
+                    tabIndex={0}
+                    className='Home--edit-link'
+                    onClick={this.preventAndEdit(true)}
+                  >
                     {'edit'}
-                  </div>
+                  </a>
                 )}
               </div>
             </h2>

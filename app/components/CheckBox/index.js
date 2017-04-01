@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import IconUnchecked from 'react-icons/md/check-box-outline-blank'
 import IconChecked from 'react-icons/md/check-box'
 
+import './style.scss'
+
 class CheckBox extends Component {
 
   static propTypes = {
@@ -26,15 +28,15 @@ class CheckBox extends Component {
     return (
       <div
         tabIndex={0}
-        className='d-f ai-c c-d'
+        className='d-f ai-c c-d t-small focus'
         onKeyDown={this.handleKeyDown}
         onClick={() => onChange(!value)}
       >
         <div className='mr-5 z'>
           {value ? (
-            <IconChecked size={20} />
+            <IconChecked size={15} />
           ) : (
-            <IconUnchecked size={20} />
+            <IconUnchecked size={15} />
           )}
         </div>
         {children}

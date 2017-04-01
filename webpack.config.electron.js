@@ -11,7 +11,6 @@ import baseConfig from './webpack.config.base'
 import pkg from './package.json'
 
 export default validate(merge(baseConfig, {
-  devtool: 'source-map',
 
   entry: ['babel-polyfill', './app/main.development'],
 

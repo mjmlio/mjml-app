@@ -17,7 +17,6 @@ import { fileDialog } from 'helpers/fs'
 import Button from 'components/Button'
 import FilesList from 'components/FilesList'
 
-import SettingsModal from './SettingsModal'
 import SendModal from './SendModal'
 
 @connect(null, {
@@ -90,7 +89,7 @@ class ProjectPage extends Component {
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
-        <div className='d-f flow-h-5 p-10'>
+        <div className='d-f p-10'>
           <div className='fg-1'>
             <Button
               className='c-d'
@@ -119,8 +118,7 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <Button ghost onClick={this.openSettingsModal} ref={n => this._btnSettings = n}>
-            <FaCog style={{ marginRight: 5 }} />
-            {'Settings'}
+            <FaCog />
           </Button>
         </div>
 
@@ -141,7 +139,6 @@ class ProjectPage extends Component {
           />
         </div>
 
-        <SettingsModal />
         <SendModal />
 
       </div>
