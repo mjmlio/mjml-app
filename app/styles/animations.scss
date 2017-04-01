@@ -1,0 +1,27 @@
+.anim-enter-fade {
+  animation: 300ms ease-in-out enterFade;
+}
+
+@keyframes enterFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.anim-enter-fade-left {
+  animation: 200ms ease-in-out enterFadeLeft;
+}
+
+@keyframes enterFadeLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

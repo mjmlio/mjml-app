@@ -185,7 +185,7 @@ class FilesList extends Component {
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
-            <div className='rel FilesList--list'>
+            <div className='rel FilesList--list anim-enter-fade-left'>
               {!!pathItems.length && (
                 <button
                   className='FilesList--file d-f ai-c'
@@ -232,7 +232,7 @@ class FilesList extends Component {
               onDragStarted={this.startDrag}
               onDragFinished={this.stopDrag}
             >
-              <div className='d-f fd-c sticky'>
+              <div className='d-f fd-c sticky anim-enter-fade'>
                 {activeFile && activeFile.name.endsWith('.mjml') && (
                   <FileEditor
                     ref={n => this._editor = n}
