@@ -14,16 +14,16 @@
 .Modal--overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(black, 0.5);
+  background: rgba(black, 0.2);
 }
 
 .Modal--body {
   outline: none;
   padding: 20px;
-  margin-top: 80px;
+  margin-top: 120px;
   background: $bg;
   border: 1px solid #3f3f49;
-  box-shadow: rgba(black, 0.5) 0 0 15px;
+  box-shadow: rgba(black, 0.2) 0 0 60px;
   width: 600px;
   position: relative;
   z-index: 1;
