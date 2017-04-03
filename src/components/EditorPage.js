@@ -143,7 +143,7 @@ class EditorPage extends Component {
                 ? <input
                   ref='editName'
                   className='Tile-input'
-                  onBlur={this.validate}
+                  onBlur={this.validateName}
                   defaultValue={name}
                   type='text'
                   onKeyPress={this.onNameChange} />
