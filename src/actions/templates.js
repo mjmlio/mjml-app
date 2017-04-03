@@ -226,8 +226,13 @@ export const open = () => dispatch => {
     const filename = filenames[0]
     if (filename.split('.').pop() !== 'mjml') { return }
 
+    const isWin = (/^win/.test(process.platform))
+    const directorySplit = isWin ? '\\' : '/'
+    const templateName = filename.split(directorySplit).pop()
+        .split('.').shift()
+
     readFile(filename)
-      .then(content => dispatch(createNewTemplate(content)))
+      .then(content => dispatch(createNewTemplate(content, { name: templateName })))
   })
 }
 
