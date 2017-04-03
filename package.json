@@ -122,6 +122,7 @@
     "brace": "0.7.0",
     "classnames": "^2.2.3",
     "immutable": "^3.7.6",
+    "js-beautify": "^1.6.12",
     "lodash": "^4.6.1",
     "mjml": "^3.3.0",
     "mkdirp": "^0.5.1",

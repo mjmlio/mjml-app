@@ -4,6 +4,7 @@ import { push } from 'react-router-redux'
 import shortid from 'shortid'
 import { Map } from 'immutable'
 import { remote } from 'electron'
+import beautify from 'js-beautify'
 
 import { error, notify } from 'helpers/notification'
 import { emitAlert } from 'actions/alerts'
@@ -250,7 +251,9 @@ export const exportTemplate = ({ template, type }) => (dispatch, getState) => {
 
     const ext = filePath.split('.').pop()
     const name = ext !== type ? `${filePath}.${type}` : filePath
-    writeFile(name, template.get(type))
+    const content = template.get(type)
+    const output = (type === 'html') ? beautify.html(content) : content
+    writeFile(name, output)
       .then(() => notify('Saved!'))
       .catch(() => error('Not Saved!'))
 

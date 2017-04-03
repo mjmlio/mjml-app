@@ -14,6 +14,7 @@ import Mobile from 'components/Mobile'
 import Iframe from 'components/Iframe'
 import DropDown from 'components/DropDown'
 import CopyToClipboard from 'react-copy-to-clipboard'
+import beautify from 'js-beautify'
 
 import 'styles/EditorPage.scss'
 
@@ -173,7 +174,7 @@ class EditorPage extends Component {
             icon='ion-android-clipboard'
             title='Copy'>
 
-      <CopyToClipboard text={this.props.template.get('html')}>
+            <CopyToClipboard text={beautify.html(this.props.template.get('html'))}>
               <Button className='EditorPage-bar-item'>
                {'HTML'}
               </Button>
