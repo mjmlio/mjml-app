@@ -11,5 +11,6 @@
   },
   "license": "MIT",
   "dependencies": {
+    "node-mailjet": "^3.0.6"
   }
 }
