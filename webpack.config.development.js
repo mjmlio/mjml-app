@@ -78,5 +78,5 @@ export default validate(merge(baseConfig, {
    * https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
    */
   target: 'electron-renderer',
-  externals: ['mjml-core'],
+  externals: ['mjml-core', 'get-uri', 'formidable'],
 }))

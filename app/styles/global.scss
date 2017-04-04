@@ -77,6 +77,14 @@ a {
 .a {
   text-decoration: underline;
   cursor: pointer;
+  &.white {
+    &:hover {
+      color: rgba(white, 0.7);
+    }
+    &:focus, &:active {
+      color: white;
+    }
+  }
 }
 
 .Resizer {

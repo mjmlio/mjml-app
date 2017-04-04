@@ -1,3 +1,5 @@
+@import '../../styles/vars.scss';
+
 .Alerts {
   position: fixed;
   bottom: 10px;
@@ -8,14 +10,20 @@
 .Alerts--item {
   font-size: 13px;
   margin-top: 10px;
-  background: rgba(black, 0.5);
   border: 1px solid rgba(white, 0.2);
   box-shadow: rgba(black, 0.2) 0 4px 8px;
   padding: 20px;
   cursor: default;
+  border-radius: 3px;
 
   &.error {
     background: #672727;
+    color: white;
+  }
+
+  &.success {
+    background: $green-d2;
+    border: 1px solid rgba(black, 0.2);
     color: white;
   }
 }

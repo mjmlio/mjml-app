@@ -139,6 +139,7 @@
     "es6-promisify": "^5.0.0",
     "immutable": "^3.8.1",
     "mjml": "3.3.0",
+    "node-mailjet": "^3.0.6",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
