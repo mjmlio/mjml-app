@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import get from 'lodash/get'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
 import IconInfo from 'react-icons/md/info'
@@ -15,6 +16,7 @@ import Button from 'components/Button'
 
 @connect(state => {
   return {
+    content: get(state, 'preview.content', ''),
     isOpened: isModalOpened(state, 'send'),
     APIKey: state.settings.getIn(['api', 'APIKey'], ''),
     APISecret: state.settings.getIn(['api', 'APISecret'], ''),
@@ -59,6 +61,7 @@ class SendModal extends Component {
 
     const {
       addAlert,
+      content,
     } = this.props
 
     const {
@@ -70,7 +73,7 @@ class SendModal extends Component {
 
     try {
       await sendEmail({
-        content: 'coucou',
+        content,
         APIKey,
         APISecret,
         SenderEmail,

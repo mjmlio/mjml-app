@@ -1,5 +1,9 @@
 @import './vars.scss';
 
+.CodeMirror-scrollbar-filler {
+  background-color: transparent !important;
+}
+
 .cm-s-one-dark .CodeMirror, .cm-s-one-dark .CodeMirror-scroll {
   font-family: 'Source Code Pro';
   font-weight: 300;

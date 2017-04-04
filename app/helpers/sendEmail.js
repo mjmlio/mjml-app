@@ -1,4 +1,4 @@
-// import nodeMailjet from 'node-mailjet'
+import nodeMailjet from 'node-mailjet'
 
 export default async function sendEmail (opts) {
 
@@ -13,7 +13,7 @@ export default async function sendEmail (opts) {
   const mj = nodeMailjet.connect(APIKey, APISecret)
   const send = mj.post('send')
 
-  return send({
+  return send.request({
     FromEmail: SenderEmail,
     FromName: 'MJML App',
     Subject: 'MJML App test email',
