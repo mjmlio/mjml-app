@@ -1,0 +1,15 @@
+@import '../app/styles/vars.scss';
+@import '../app/styles/global.scss';
+@import '../app/styles/utils.scss';
+@import '../app/components/Button/style.scss';
+
+body {
+  background-color: #282c35;
+  padding: 20px;
+}
+
+.video-container {
+  margin: 80px 0;
+  background: $bg;
+  box-shadow: rgba(black, 0.6) 0 5px 45px;
+}
