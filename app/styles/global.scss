@@ -13,6 +13,10 @@
   -webkit-user-select: none;
 }
 
+*:focus {
+  outline: 1px solid $yellow;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }

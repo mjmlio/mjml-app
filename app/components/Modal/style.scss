@@ -18,7 +18,9 @@
 }
 
 .Modal--body {
-  outline: none;
+  &:focus {
+    outline: none;
+  }
   padding: 20px;
   margin-top: 120px;
   background: $bg;

@@ -11,10 +11,12 @@
   align-items: center;
   width: 100%;
   text-align: left;
-  outline: none;
   font-size: 13px;
   color: $almostWhite;
 
+  &:focus {
+    outline: none;
+  }
   &.active {
     color: $blue;
     background-color: rgba($blue, 0.1) !important;

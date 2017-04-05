@@ -4,6 +4,14 @@
   background-color: transparent !important;
 }
 
+.CodeMirror-gutters {
+  background: #25252f !important;
+}
+
+.CodeMirror-linenumbers {
+  background: transparent !important;
+}
+
 .cm-s-one-dark .CodeMirror, .cm-s-one-dark .CodeMirror-scroll {
   font-family: 'Source Code Pro';
   font-weight: 300;
