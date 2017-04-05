@@ -88,6 +88,7 @@ class ProjectPage extends Component {
 
   handleCopyHTML = () => {
     clipboard.writeText(this.props.preview.content)
+    this.props.addAlert('Copied!', 'success')
   }
 
   handleExportToHTML = async () => {

@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions'
 const state = []
 
 export default handleActions({
-  ALERT_ADD: (state, { payload: alert }) => [alert, ...state],
+  ALERT_ADD: (state, { payload: alert }) => [alert, ...state].slice(0, 5),
   ALERT_REMOVE: (state, { payload: id }) => state.filter(a => a.id !== id),
 }, state)
 
