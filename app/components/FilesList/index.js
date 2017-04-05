@@ -161,10 +161,13 @@ class FilesList extends Component {
     } = this.state
 
     const {
+      onRef,
       activeFile,
       path,
       rootPath,
     } = this.props
+
+    onRef(this)
 
     const setRef = this.refsFactory()
 

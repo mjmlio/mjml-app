@@ -60,6 +60,11 @@ export function fileDialog (options) {
   return p || null
 }
 
+export function saveDialog (options) {
+  const res = dialog.showSaveDialog(options)
+  return res
+}
+
 export async function isValidDir (path) {
   try {
     await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)

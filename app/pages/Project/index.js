@@ -5,22 +5,28 @@ import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
 import FaHome from 'react-icons/md/arrow-back'
 import IconEmail from 'react-icons/md/email'
+import IconCode from 'react-icons/md/code'
+import IconCopy from 'react-icons/md/content-copy'
 import fs from 'fs'
-import { shell } from 'electron'
+import { shell, clipboard } from 'electron'
 
 import defaultMJML from 'data/defaultMJML'
 
 import { openModal } from 'reducers/modals'
+import { addAlert } from 'reducers/alerts'
 
-import { fileDialog } from 'helpers/fs'
+import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
 import FilesList from 'components/FilesList'
 
 import SendModal from './SendModal'
 
-@connect(null, {
+@connect(state => ({
+  preview: state.preview,
+}), {
   openModal,
+  addAlert,
 })
 class ProjectPage extends Component {
 
@@ -56,14 +62,14 @@ class ProjectPage extends Component {
   handleAddFile = (fileName) => {
     fs.writeFile(fileName, defaultMJML, (err) => {
       if (err) { return }
-      this._filelist.getWrappedInstance().refresh()
+      this._filelist.refresh()
     })
   }
 
   handleRemoveFile = fileName => {
     rimraf(fileName, err => {
       if (err) { return }
-      this._filelist.getWrappedInstance().refresh()
+      this._filelist.refresh()
       this.setState({ activeFile: null })
     })
   }
@@ -74,10 +80,38 @@ class ProjectPage extends Component {
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
 
+  handleCopyHTML = () => {
+    clipboard.writeText(this.props.preview.content)
+  }
+
+  handleExportToHTML = async () => {
+    const p = saveDialog({
+      title: 'Export to HTML file',
+      defaultPath: this.props.location.query.path,
+      filters: [
+        { name: 'All Files', extensions: ['html'] },
+      ],
+    })
+    if (!p) { return }
+
+    const {
+      preview,
+      addAlert,
+    } = this.props
+
+    await fsWriteFile(p, preview.content)
+    addAlert('Successfully exported HTML', 'success')
+    this._filelist.refresh()
+  }
+
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
 
   render () {
+
+    const {
+      preview,
+    } = this.props
 
     const {
       path,
@@ -102,13 +136,32 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className='d-f'>
-            <Button
-              transparent
-              onClick={this.openSendModal}
-            >
-              <IconEmail style={{ marginRight: 5 }} />
-              {'Send'}
-            </Button>
+            {preview && preview.type === 'html' && [
+              <Button
+                key={'copy'}
+                transparent
+                onClick={this.handleCopyHTML}
+              >
+                <IconCopy style={{ marginRight: 5 }} />
+                {'Copy HTML'}
+              </Button>,
+              <Button
+                key={'export'}
+                transparent
+                onClick={this.handleExportToHTML}
+              >
+                <IconCode style={{ marginRight: 5 }} />
+                {'Export HTML'}
+              </Button>,
+              <Button
+                key={'send'}
+                transparent
+                onClick={this.openSendModal}
+              >
+                <IconEmail style={{ marginRight: 5 }} />
+                {'Send'}
+              </Button>,
+            ]}
             <Button
               transparent
               onClick={this.handleOpenInBrowser}
@@ -117,14 +170,19 @@ class ProjectPage extends Component {
               {'Open'}
             </Button>
           </div>
-          <Button ghost onClick={this.openSettingsModal} ref={n => this._btnSettings = n}>
+          <Button
+            className='ml-5'
+            ghost
+            onClick={this.openSettingsModal}
+            ref={n => this._btnSettings = n}
+          >
             <FaCog />
           </Button>
         </div>
 
         <div className='fg-1 d-f fd-c mr-10 mb-10'>
           <FilesList
-            ref={n => this._filelist = n}
+            onRef={n => this._filelist = n}
             withPreview
             withHome
             rootPath={rootPath}
