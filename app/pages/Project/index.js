@@ -14,6 +14,7 @@ import defaultMJML from 'data/defaultMJML'
 
 import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
+import { setPreview } from 'actions/preview'
 
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
@@ -27,6 +28,7 @@ import SendModal from './SendModal'
 }), {
   openModal,
   addAlert,
+  setPreview,
 })
 class ProjectPage extends Component {
 
@@ -36,6 +38,10 @@ class ProjectPage extends Component {
 
   componentDidMount () {
     this._page.focus()
+  }
+
+  componentWillUnmount () {
+    this.props.setPreview(null)
   }
 
   handlePathChange = path => this.setState({ path, activeFile: null })

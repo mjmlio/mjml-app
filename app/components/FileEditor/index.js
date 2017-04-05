@@ -53,7 +53,6 @@ class FileEditor extends Component {
       this._codeMirror.toTextArea()
       this._codeMirror = null
     }
-    this.props.setPreview(null)
   }
 
   async loadContent () {

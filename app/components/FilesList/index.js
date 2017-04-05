@@ -78,7 +78,11 @@ class FilesList extends Component {
     // preview will be set by the onChange on editor
     // no need to trigger it here
     if (!p.endsWith('.mjml')) {
-      this.props.setPreview(p)
+      if (p.endsWith('.html')) {
+        this.props.setPreview(p)
+      } else {
+        this.props.setPreview(null)
+      }
     }
     this.props.onActiveFileChange(f)
   }
@@ -188,43 +192,45 @@ class FilesList extends Component {
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
-            <div className='rel FilesList--list anim-enter-fade-left'>
-              {!!pathItems.length && (
-                <button
-                  className='FilesList--file d-f ai-c'
-                  tabIndex={0}
-                  onClick={this.handleNavigateUp}
-                >
-                  <div className='fg-1 FilesList--item-name-container'>
-                    <div className='FilesList--item-name'>
-                      {'..'}
+            <div className='sticky o-y-a'>
+              <div className='rel FilesList--list anim-enter-fade-left'>
+                {!!pathItems.length && (
+                  <button
+                    className='FilesList--file d-f ai-c'
+                    tabIndex={0}
+                    onClick={this.handleNavigateUp}
+                  >
+                    <div className='fg-1 FilesList--item-name-container'>
+                      <div className='FilesList--item-name'>
+                        {'..'}
+                      </div>
                     </div>
-                  </div>
-                </button>
-              )}
-              {files.map(f => (
-                <button
-                  ref={setRef(f.name)}
-                  key={f.name}
-                  className={cx('FilesList--file d-f ai-c', {
-                    active: activeFile && activeFile.name === f.name,
-                  })}
-                  tabIndex={0}
-                  onClick={this.handleClickFactory(f)}
-                  onDoubleClick={this.handleDoubleClickFactory(f)}
-                >
-                  {f.isFolder && (
-                    <div className='fs-0 pr-10'>
-                      <FaFolder />
+                  </button>
+                )}
+                {files.map(f => (
+                  <button
+                    ref={setRef(f.name)}
+                    key={f.name}
+                    className={cx('FilesList--file d-f ai-c', {
+                      active: activeFile && activeFile.name === f.name,
+                    })}
+                    tabIndex={0}
+                    onClick={this.handleClickFactory(f)}
+                    onDoubleClick={this.handleDoubleClickFactory(f)}
+                  >
+                    {f.isFolder && (
+                      <div className='fs-0 pr-10'>
+                        <FaFolder />
+                      </div>
+                    )}
+                    <div className='fg-1 FilesList--item-name-container'>
+                      <div className='FilesList--item-name'>
+                        {f.name}
+                      </div>
                     </div>
-                  )}
-                  <div className='fg-1 FilesList--item-name-container'>
-                    <div className='FilesList--item-name'>
-                      {f.name}
-                    </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                ))}
+              </div>
             </div>
             <SplitPane
               split='vertical'
