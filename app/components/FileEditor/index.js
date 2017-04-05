@@ -83,6 +83,9 @@ class FileEditor extends Component {
       this._codeMirror = null
     }
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
+      indentUnit: 2,
+      tabSize: 2,
+      indentWithTabs: false,
       mode: 'xml',
       lineNumbers: true,
       theme: 'one-dark',
