@@ -142,7 +142,7 @@ class ProjectPage extends Component {
               {'Back to projects'}
             </Button>
           </div>
-          <div className='d-f'>
+          <div className='d-f flow-h-10'>
             {preview && preview.type === 'html' && [
               <Button
                 key={'copy'}
@@ -178,7 +178,7 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <Button
-            className='ml-5'
+            className='ml-10'
             ghost
             onClick={this.openSettingsModal}
             ref={n => this._btnSettings = n}

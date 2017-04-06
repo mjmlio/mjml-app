@@ -140,6 +140,7 @@ class FilesList extends Component {
   startDrag = () => this.setState({ isDragging: true })
   stopDrag = () => {
     this.setState({ isDragging: false })
+    if (!this._editor) { return }
     const editor = this._editor.getWrappedInstance()
     editor.refresh()
     editor.focus()

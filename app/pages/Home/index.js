@@ -93,14 +93,12 @@ class HomePage extends Component {
                   {'-'}
                 </div>
                 {isEditing ? (
-                  <a
-                    href=''
-                    tabIndex={0}
-                    className='Home--edit-link c-yellow'
+                  <Button
                     onClick={this.preventAndEdit(false)}
+                    primary
                   >
                     {'finish'}
-                  </a>
+                  </Button>
                 ) : (
                   <a
                     href=''
