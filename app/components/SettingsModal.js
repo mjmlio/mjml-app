@@ -59,12 +59,8 @@ class SettingsModal extends Component {
             </div>
 
           </div>
-          <div style={{ width: 150 }}>
+          <div style={{ width: 200 }}>
             <div className='version-box t-small flow-v-10'>
-
-              <div className='d-f jc-c'>
-                <IconInfo size={30} />
-              </div>
 
               <div className='d-f ai-c'>
                 <div className='fg-1'>

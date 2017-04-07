@@ -190,10 +190,11 @@ class FilesList extends Component {
           <SplitPane
             split='vertical'
             defaultSize={180}
+            maxSize={250}
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
-            <div className='sticky o-y-a'>
+            <div className='sticky o-y-a bg-dark'>
               <div className='rel FilesList--list anim-enter-fade-left'>
                 {!!pathItems.length && (
                   <button

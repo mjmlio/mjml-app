@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import { connect } from 'react-redux'
 
 import Alerts from 'components/Alerts'
@@ -29,10 +30,18 @@ class Application extends Component {
     const {
       projects,
       settings,
+      location,
     } = this.props
 
+    const { pathname } = location
+
     return (
-      <div className='Application'>
+      <div
+        className={cx('Application', {
+          'bg-dark': pathname === '/',
+          'bg-darker': pathname === '/project',
+        })}
+      >
 
         <Placeholder show={!projects} />
         {projects && this.props.children}

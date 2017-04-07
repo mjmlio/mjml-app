@@ -27,7 +27,6 @@
   }
 
   &:hover:not(.active), &:focus:not(.active) {
-    background-color: rgba(black, 0.1);
     color: lighten($almostWhite, 20);
   }
 
@@ -42,8 +41,6 @@
 }
 
 .FilesList--preview-container {
-  background: rgba(black, 0.1);
-  border-radius: 3px;
   overflow: hidden;
 }
 

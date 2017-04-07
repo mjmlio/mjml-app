@@ -22,17 +22,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 3px;
   background: rgba(black, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 3px;
   background: rgba(black, 0.1);
 }
 
 body {
   font-family: Lato, sans-serif;
+  font-size: 14px;
   color: $lighterGrey;
 }
 
@@ -48,10 +47,6 @@ h2 {
   cursor: default;
   font-weight: bold;
   color: rgba(white, 0.7);
-  &.secondary {
-    color: rgba($yellow, 0.7);
-    border-bottom: 5px solid rgba($yellow, 0.1);
-  }
 }
 
 input[type=text] {
@@ -69,7 +64,6 @@ input[type=text] {
   background: $yellow;
   color: $grey;
   padding: 2px 8px;
-  border-radius: 8px;
 }
 
 a {
@@ -92,7 +86,6 @@ a {
 .Resizer {
   position: relative;
   z-index: 4000;
-  border-radius: 2px;
   &:hover {
     background: #34343f;
   }

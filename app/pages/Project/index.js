@@ -187,7 +187,7 @@ class ProjectPage extends Component {
           </Button>
         </div>
 
-        <div className='fg-1 d-f fd-c mr-10 mb-10'>
+        <div className='fg-1 d-f fd-c'>
           <FilesList
             onRef={n => this._filelist = n}
             withPreview

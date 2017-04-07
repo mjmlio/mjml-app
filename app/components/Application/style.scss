@@ -8,5 +8,5 @@
   display: flex;
   flex-direction: column;
 
-  background: $bg;
+  transition: 150ms linear background-color;
 }

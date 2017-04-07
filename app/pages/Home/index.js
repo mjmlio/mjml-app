@@ -86,7 +86,7 @@ class HomePage extends Component {
         </div>
 
         {hasProjects && (
-          <div className='fg-1 d-f fd-c mt-50 anim-enter-fade'>
+          <div className='fg-1 d-f fd-c anim-enter-fade'>
             <h2 className='mt-20 mb-20 d-f ai-c' style={{ height: 40 }}>
               {'Recent projects'}
               <div className='Home--edit-thing t-small d-f ai-c'>
