@@ -134,3 +134,12 @@ export function execFile (cmd, opts, stdinStream) {
     }
   })
 }
+
+export async function fileExists (p) {
+  try {
+    await fsAccess(p, fs.constants.F_OK)
+    return true
+  } catch (err) { // eslint-disable-line
+    return false
+  }
+}

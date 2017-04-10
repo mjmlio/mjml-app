@@ -7,6 +7,7 @@ import FaHome from 'react-icons/md/arrow-back'
 import IconEmail from 'react-icons/md/email'
 import IconCode from 'react-icons/md/code'
 import IconCopy from 'react-icons/md/content-copy'
+import IconAdd from 'react-icons/md/note-add'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 
@@ -22,6 +23,7 @@ import Button from 'components/Button'
 import FilesList from 'components/FilesList'
 
 import SendModal from './SendModal'
+import AddFileModal from './AddFileModal'
 
 @connect(state => ({
   preview: state.preview,
@@ -113,6 +115,7 @@ class ProjectPage extends Component {
 
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
+  openAddFileModal = () => this.props.openModal('addFile')
 
   render () {
 
@@ -131,7 +134,7 @@ class ProjectPage extends Component {
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
         <div className='d-f p-10'>
-          <div className='fg-1'>
+          <div className='fg-1 flow-h-10'>
             <Button
               className='c-d'
               transparent
@@ -140,6 +143,13 @@ class ProjectPage extends Component {
             >
               <FaHome className='mr-5' />
               {'Back to projects'}
+            </Button>
+            <Button
+              ghost
+              onClick={this.openAddFileModal}
+            >
+              <IconAdd className='mr-5' />
+              {'New file'}
             </Button>
           </div>
           <div className='d-f flow-h-10'>
@@ -205,6 +215,10 @@ class ProjectPage extends Component {
         </div>
 
         <SendModal />
+        <AddFileModal
+          rootPath={rootPath}
+          onAdd={this.handleAddFile}
+        />
 
       </div>
     )

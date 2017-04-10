@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import IconInfo from 'react-icons/md/settings'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
