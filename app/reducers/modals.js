@@ -2,9 +2,9 @@ import { handleActions } from 'redux-actions'
 
 export default handleActions({
 
-  OPEN_MODAL: (state, { payload: modalName }) => ({
+  OPEN_MODAL: (state, { payload: { modalName, modalProps } }) => ({
     ...state,
-    [modalName]: true,
+    [modalName]: modalProps,
   }),
 
   CLOSE_MODAL: (state, { payload: modalName }) => ({
@@ -15,13 +15,20 @@ export default handleActions({
 }, {})
 
 export function isModalOpened (state, modalName) {
-  return state.modals[modalName] === true
+  return !!state.modals[modalName]
 }
 
-export function openModal (modalName) {
+export function getModalProps (state, modalName) {
+  return state.modals[modalName]
+}
+
+export function openModal (modalName, modalProps = true) {
   return {
     type: 'OPEN_MODAL',
-    payload: modalName,
+    payload: {
+      modalName,
+      modalProps,
+    },
   }
 }
 

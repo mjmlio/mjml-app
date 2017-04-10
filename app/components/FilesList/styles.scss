@@ -24,12 +24,14 @@
     .FilesList--file-actions {
       display: block;
     }
+    .FilesList--item-actions {
+      display: flex;
+    }
   }
 
   &:hover:not(.active), &:focus:not(.active) {
     color: lighten($almostWhite, 20);
   }
-
 }
 
 .FilesList--file-actions {
@@ -73,4 +75,24 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.FilesList--item-actions {
+  display: none;
+  .action {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .action-remove {
+    &:hover {
+      color: $red;
+    }
+  }
 }

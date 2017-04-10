@@ -24,6 +24,7 @@ import FilesList from 'components/FilesList'
 
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
+import RemoveFileModal from './RemoveFileModal'
 
 @connect(state => ({
   preview: state.preview,
@@ -218,6 +219,10 @@ class ProjectPage extends Component {
         <AddFileModal
           rootPath={rootPath}
           onAdd={this.handleAddFile}
+        />
+        <RemoveFileModal
+          rootPath={rootPath}
+          onRemove={this.handleRemoveFile}
         />
 
       </div>

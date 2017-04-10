@@ -4,6 +4,9 @@ import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
 import FaFolder from 'react-icons/fa/folder'
+import IconClose from 'react-icons/md/close'
+
+import { openModal } from 'reducers/modals'
 
 import { readDir, sortFiles } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
@@ -15,6 +18,7 @@ import './styles.scss'
 
 @connect(null, {
   setPreview,
+  openModal,
 }, null, { withRef: true })
 class FilesList extends Component {
 
@@ -170,6 +174,7 @@ class FilesList extends Component {
       activeFile,
       path,
       rootPath,
+      openModal,
     } = this.props
 
     onRef(this)
@@ -228,6 +233,15 @@ class FilesList extends Component {
                     <div className='fg-1 FilesList--item-name-container'>
                       <div className='FilesList--item-name'>
                         {f.name}
+                      </div>
+                    </div>
+                    <div className='FilesList--item-actions'>
+                      <div
+                        tabIndex={0}
+                        onClick={() => openModal('removeFile', f)}
+                        className='action action-remove'
+                      >
+                        <IconClose />
                       </div>
                     </div>
                   </button>
