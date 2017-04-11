@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') { app.quit() }
+  app.quit()
 })
 
 const installExtensions = async () => {
@@ -159,6 +159,11 @@ app.on('ready', async () => {
   ]
 
   menu = Menu.buildFromTemplate(template)
-  mainWindow.setMenu(menu)
+
+  if (process.platform === 'darwin') {
+    Menu.setApplicationMenu(menu)
+  } else {
+    mainWindow.setMenu(menu)
+  }
 
 })
