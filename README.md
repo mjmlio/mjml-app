@@ -5,6 +5,8 @@
 	:email: The desktop app for MJML
 </p>
 
+![screenshot](screenshot.png)
+
 See [CHANGELOG.md](CHANGELOG.md) for releases details.
 
 ## Installation
