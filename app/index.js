@@ -11,6 +11,7 @@ import { loadSettings } from './actions/settings'
 import { loadProjects, addProject } from 'actions/projects'
 
 import { openModal } from 'reducers/modals'
+import { addNotif } from 'reducers/notifs'
 
 import 'styles/global.scss'
 import 'styles/utils.scss'
@@ -29,10 +30,7 @@ render(
 async function boot () {
   await dispatch(loadSettings())
   await dispatch(loadProjects())
-  // dispatch({
-  //   type: 'NOTIF_ADD',
-  //   content: 'hello',
-  // })
+  dispatch(addNotif('onuthoentheon'))
 }
 
 boot()

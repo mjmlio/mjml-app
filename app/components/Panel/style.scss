@@ -16,6 +16,6 @@
   position: fixed;
   top: 0; bottom: 0; right: 0;
   background: $bg;
-  box-shadow: rgba(black, 0.5) -3px 0 35px;
-  width: 350px;
+  border-left: 1px solid rgba(white, 0.1);
+  width: 450px;
 }

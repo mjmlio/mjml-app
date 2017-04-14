@@ -22,3 +22,16 @@
     transform: scale(1);
   }
 }
+
+.Notif {
+  background: rgba(black, 0.2);
+  border-left: 2px solid $blue;
+  padding: 30px 20px;
+  position: relative;
+}
+
+.Notif-hide {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
