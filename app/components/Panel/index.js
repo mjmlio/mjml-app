@@ -26,7 +26,7 @@ class Panel extends Component {
         isOpened={isOpened}
         onClose={onClose}
         motionStyle={(spring, isVisible) => ({
-          opacity: spring(isVisible ? 1 : 0),
+          opacity: spring(isVisible ? 1 : 0, springConfig),
           panelOffset: spring(isVisible ? 0 : 100, springConfig),
         })}
       >
