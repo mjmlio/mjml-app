@@ -1,6 +1,9 @@
 <h1 align="center">
 	MJML App
 </h1>
+
+![os](os.png)
+
 <p align="center">
 	:email: The desktop app for MJML
 </p>
