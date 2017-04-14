@@ -29,6 +29,10 @@ render(
 async function boot () {
   await dispatch(loadSettings())
   await dispatch(loadProjects())
+  // dispatch({
+  //   type: 'NOTIF_ADD',
+  //   content: 'hello',
+  // })
 }
 
 boot()

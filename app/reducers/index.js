@@ -6,6 +6,7 @@ import preview from './preview'
 import modals from './modals'
 import projects from './projects'
 import alerts from './alerts'
+import notifs from './notifs'
 
 const rootReducer = combineReducers({
   routing,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   preview,
   modals,
   alerts,
+  notifs,
   projects,
 })
 

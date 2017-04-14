@@ -6,7 +6,11 @@ import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
 
-@connect(null, {
+import './style.scss'
+
+@connect(state => ({
+  notifs: state.notifs,
+}), {
   openModal,
 })
 class NotifBtn extends Component {
@@ -15,11 +19,19 @@ class NotifBtn extends Component {
 
     const {
       openModal,
+      notifs,
     } = this.props
 
     return (
-      <Button ghost onClick={() => openModal('notifs')}>
+      <Button
+        ghost
+        onClick={() => openModal('notifs')}
+        className='r'
+      >
         <IconAlert />
+        {!!notifs.size && (
+          <div className='NotifBubble' />
+        )}
       </Button>
     )
   }

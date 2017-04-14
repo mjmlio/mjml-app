@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 
 import Mortal from 'react-mortal'
 
@@ -17,6 +18,7 @@ class Panel extends Component {
       isOpened,
       onClose,
       children,
+      className,
     } = this.props
 
     return (
@@ -44,7 +46,7 @@ class Panel extends Component {
               }}
             />
             <div
-              className='Panel--body'
+              className={cx('Panel--body', className)}
               style={{
                 transform: `translate3d(${motion.panelOffset}%, 0, 0)`,
               }}
