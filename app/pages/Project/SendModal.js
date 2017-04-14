@@ -51,7 +51,7 @@ class SendModal extends Component {
   handleClose = () => this.props.closeModal('send')
 
   handleChangeInput = key => e => {
-    this.setState({ [key]: e.target.value })
+    this.setState({ [key]: e.target.value.trim() })
     this.debounceSaveInConfig()
   }
 
