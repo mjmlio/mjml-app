@@ -2,10 +2,19 @@ import React, { Component } from 'react'
 import { Motion, spring } from 'react-motion'
 import { connect } from 'react-redux'
 
+import Button from 'components/Button'
+
 @connect(state => ({
   preview: state.preview,
 }))
 class FilePreview extends Component {
+
+  componentDidMount () {
+    const { preview } = this.props
+    if (preview && preview.type === 'html') {
+      this.setIframeContent(preview.content)
+    }
+  }
 
   componentDidUpdate (prevProps) {
     const { preview } = this.props
@@ -48,6 +57,16 @@ class FilePreview extends Component {
         >
           {m => (
             <div style={{ opacity: m.op }}>
+              <div className='FileList--preview-actions-wrapper'>
+                <div className='FileList--preview-actions'>
+                  <Button ghost className='isActive'>
+                    {'Mobile'}
+                  </Button>
+                  <Button ghost>
+                    {'Desktop'}
+                  </Button>
+                </div>
+              </div>
               {preview ? (
                 preview.type === 'html' ? (
                   <iframe

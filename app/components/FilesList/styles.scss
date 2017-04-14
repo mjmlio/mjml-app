@@ -59,6 +59,46 @@
     height: 100%;
     border: none;
   }
+  .FileList--preview-actions-wrapper {
+    transform: translate3d(0, 5px, 0);
+    opacity: 0;
+  }
+  &:hover {
+    .FileList--preview-actions-wrapper {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+.FileList--preview-actions-wrapper {
+  transition: 100ms ease-in;
+  transition-property: opacity, transform;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.FileList--preview-actions {
+  background: $bg;
+  box-shadow: rgba(black, 0.6) 0 3px 20px;
+  border-radius: 3px;
+  .Button:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  .Button:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .Button.isActive {
+    background: $blue;
+    color: white;
+  }
 }
 
 .FilesList--preview-overlay {
