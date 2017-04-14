@@ -1,16 +1,16 @@
 import { handleActions } from 'redux-actions'
-import { fromJS } from 'immutable'
+import { List, Map } from 'immutable'
 
 export default handleActions({
   NOTIF_ADD: (state, { payload: notif }) => state.push(notif),
   NOTIF_REMOVE: (state, { payload: id }) => state.filter(a => a.get('id') !== id),
-}, fromJS([]))
+}, List())
 
 let __ID__ = 0
 
 export function addNotif (content) {
   return dispatch => {
-    const notif = fromJS({
+    const notif = Map({
       id: __ID__++,
       content,
     })

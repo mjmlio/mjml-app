@@ -9,6 +9,7 @@ import configureStore from './store/configureStore'
 import { loadSettings } from './actions/settings'
 
 import { loadProjects, addProject } from 'actions/projects'
+import queryLastVersion from 'actions/queryLastVersion'
 
 import { openModal } from 'reducers/modals'
 import { addNotif } from 'reducers/notifs'
@@ -30,7 +31,7 @@ render(
 async function boot () {
   await dispatch(loadSettings())
   await dispatch(loadProjects())
-  dispatch(addNotif('onuthoentheon'))
+  dispatch(queryLastVersion())
 }
 
 boot()

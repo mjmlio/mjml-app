@@ -156,6 +156,7 @@
     "redux-actions": "^2.0.1",
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.1",
+    "semver": "^5.3.0",
     "source-map-support": "^0.4.14"
   }
 }
