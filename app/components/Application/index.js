@@ -3,6 +3,7 @@ import cx from 'classnames'
 import { connect } from 'react-redux'
 
 import Alerts from 'components/Alerts'
+import NotifsPanel from 'components/Notifs/NotifsPanel'
 import NewProjectModal from 'components/NewProjectModal'
 import SettingsModal from 'components/SettingsModal'
 
@@ -50,6 +51,7 @@ class Application extends Component {
 
         <NewProjectModal />
         <Alerts />
+        <NotifsPanel />
 
       </div>
     )

@@ -1,0 +1,21 @@
+@import '../../styles/vars.scss';
+
+.Panel {
+  position: fixed;
+  z-index: 1;
+  top: 0; bottom: 0; right: 0;
+}
+
+.Panel--overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(black, 0.6);
+}
+
+.Panel--body {
+  position: fixed;
+  top: 0; bottom: 0; right: 0;
+  background: $bg;
+  box-shadow: rgba(black, 0.5) -3px 0 35px;
+  width: 350px;
+}

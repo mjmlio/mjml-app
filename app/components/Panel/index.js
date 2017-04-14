@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
-import cx from 'classnames'
+
 import Mortal from 'react-mortal'
 
 import './style.scss'
 
 const springConfig = {
   stiffness: 300,
+  damping: 30,
 }
 
-class Modal extends Component {
-
-  componentDidUpdate (prevProps) {
-    if (!prevProps.isOpened && this.props.isOpened) {
-      this._node.focus()
-    }
-  }
+class Panel extends Component {
 
   render () {
 
@@ -22,8 +17,6 @@ class Modal extends Component {
       isOpened,
       onClose,
       children,
-      className,
-      style,
     } = this.props
 
     return (
@@ -32,18 +25,18 @@ class Modal extends Component {
         onClose={onClose}
         motionStyle={(spring, isVisible) => ({
           opacity: spring(isVisible ? 1 : 0),
-          modalOffset: spring(isVisible ? 0 : -20, springConfig),
+          panelOffset: spring(isVisible ? 0 : 100, springConfig),
         })}
       >
         {(motion, isVisible) => (
           <div
-            className='Modal'
+            className='Panel'
             style={{
               pointerEvents: isVisible ? 'auto' : 'none',
             }}
           >
             <div
-              className='Modal--overlay'
+              className='Panel--overlay'
               onClick={onClose}
               style={{
                 opacity: motion.opacity,
@@ -51,13 +44,9 @@ class Modal extends Component {
               }}
             />
             <div
-              tabIndex={0}
-              ref={n => this._node = n}
-              className={cx('Modal--body', className)}
+              className='Panel--body'
               style={{
-                opacity: motion.opacity,
-                transform: `translate3d(0, ${motion.modalOffset}px, 0)`,
-                ...(style || {}),
+                transform: `translate3d(${motion.panelOffset}%, 0, 0)`,
               }}
             >
               {children}
@@ -70,4 +59,4 @@ class Modal extends Component {
 
 }
 
-export default Modal
+export default Panel
