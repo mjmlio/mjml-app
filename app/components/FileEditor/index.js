@@ -5,6 +5,8 @@ import CodeMirror from 'codemirror'
 
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/closetag'
+import 'codemirror/addon/fold/foldcode'
+import 'codemirror/addon/fold/foldgutter'
 import 'codemirror/addon/search/match-highlighter'
 import 'codemirror/mode/xml/xml'
 
@@ -90,6 +92,8 @@ class FileEditor extends Component {
       lineNumbers: true,
       theme: 'one-dark',
       autoCloseTags: true,
+      foldGutter: true,
+      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       styleActiveLine: {
         nonEmpty: true,
       },
