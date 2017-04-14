@@ -10,15 +10,19 @@ import { openModal } from 'reducers/modals'
 
 import { readDir, sortFiles } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
+import { updateSettings } from 'actions/settings'
 
 import FileEditor from 'components/FileEditor'
 import FilePreview from './FilePreview'
 
 import './styles.scss'
 
-@connect(null, {
+@connect(state => ({
+  previewSize: state.settings.get('previewSize'),
+}), {
   setPreview,
   openModal,
+  updateSettings,
 }, null, { withRef: true })
 class FilesList extends Component {
 
@@ -115,6 +119,18 @@ class FilesList extends Component {
     this.props.onPathChange(pathModule.dirname(this.props.path))
   }
 
+  handlePreviewPanelStopDrag = (size) => {
+    this.setCurrentSize(size)
+    this.stopDrag()
+  }
+
+  setCurrentSize = size => {
+    this.props.updateSettings(settings => {
+      return settings
+        .setIn(['previewSize', 'current'], size)
+    })
+  }
+
   refsFactory = () => {
     this._refs = {}
     return refName => node => {
@@ -175,6 +191,7 @@ class FilesList extends Component {
       path,
       rootPath,
       openModal,
+      previewSize,
     } = this.props
 
     onRef(this)
@@ -249,13 +266,14 @@ class FilesList extends Component {
               </div>
             </div>
             <SplitPane
+              ref={n => this._previewSplitPane = n}
               split='vertical'
-              defaultSize={500}
-              maxSize={650}
-              minSize={300}
+              size={previewSize.get('current')}
+              maxSize={previewSize.get('desktop')}
+              minSize={previewSize.get('mobile')}
               primary='second'
               onDragStarted={this.startDrag}
-              onDragFinished={this.stopDrag}
+              onDragFinished={this.handlePreviewPanelStopDrag}
             >
               <div className='d-f fd-c sticky anim-enter-fade'>
                 {activeFile && activeFile.name.endsWith('.mjml') && (
@@ -267,7 +285,10 @@ class FilesList extends Component {
                 )}
               </div>
               <div className='sticky fs-0 ml-5 rel FilesList--preview-container'>
-                <FilePreview disablePointer={isDragging} />
+                <FilePreview
+                  disablePointer={isDragging}
+                  onSetSize={this.setCurrentSize}
+                />
               </div>
             </SplitPane>
           </SplitPane>

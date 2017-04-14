@@ -1,16 +1,21 @@
 import storage from 'electron-json-storage'
 import promisify from 'es6-promisify'
-import defaults from 'lodash/defaults'
+import defaultsDeep from 'lodash/defaultsDeep'
 
 const storageGet = promisify(storage.get)
 
 export function loadSettings () {
   return async dispatch => {
     const res = await storageGet('settings')
-    const settings = defaults(res, {
+    const settings = defaultsDeep(res, {
       editor: {},
       projects: [],
       api: {},
+      previewSize: {
+        current: 500,
+        mobile: 320,
+        desktop: 650,
+      },
     })
     try {
       dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })

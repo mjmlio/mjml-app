@@ -11,6 +11,7 @@ export default handleActions({
       editor: Map(payload.editor),
       api: Map(payload.api),
       mjml: Map(payload.mjml),
+      previewSize: Map(payload.previewSize),
     })
   },
 

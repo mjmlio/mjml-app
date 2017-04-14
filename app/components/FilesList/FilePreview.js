@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
+import cx from 'classnames'
 import { Motion, spring } from 'react-motion'
 import { connect } from 'react-redux'
 
 import Button from 'components/Button'
 
+import { updateSettings } from 'actions/settings'
+
 @connect(state => ({
   preview: state.preview,
-}))
+  previewSize: state.settings.get('previewSize'),
+}), {
+  updateSettings,
+})
 class FilePreview extends Component {
 
   componentDidMount () {
@@ -43,6 +49,8 @@ class FilePreview extends Component {
     const {
       preview,
       disablePointer,
+      previewSize,
+      onSetSize,
     } = this.props
 
     return (
@@ -59,11 +67,23 @@ class FilePreview extends Component {
             <div style={{ opacity: m.op }}>
               <div className='FileList--preview-actions-wrapper'>
                 <div className='FileList--preview-actions'>
-                  <Button ghost className='isActive'>
-                    {'Mobile'}
-                  </Button>
-                  <Button ghost>
+                  <Button
+                    ghost
+                    className={cx({
+                      isActive: previewSize.get('current') === previewSize.get('desktop'),
+                    })}
+                    onClick={() => onSetSize(previewSize.get('desktop'))}
+                  >
                     {'Desktop'}
+                  </Button>
+                  <Button
+                    ghost
+                    className={cx({
+                      isActive: previewSize.get('current') === previewSize.get('mobile'),
+                    })}
+                    onClick={() => onSetSize(previewSize.get('mobile'))}
+                  >
+                    {'Mobile'}
                   </Button>
                 </div>
               </div>
