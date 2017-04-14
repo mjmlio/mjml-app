@@ -28,7 +28,7 @@ class CheckBox extends Component {
     return (
       <div
         tabIndex={0}
-        className='d-f ai-c c-d t-small focus'
+        className='Checkbox d-f ai-c c-d t-small focus'
         onKeyDown={this.handleKeyDown}
         onClick={() => onChange(!value)}
       >
