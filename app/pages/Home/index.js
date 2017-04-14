@@ -62,7 +62,7 @@ class HomePage extends Component {
         })}
       >
 
-        <div className='flow-h-5 d-f ai-c'>
+        <div className='flow-h-10 d-f ai-c'>
           <Button
             ref={n => this._newProjectBTN = n}
             primary
