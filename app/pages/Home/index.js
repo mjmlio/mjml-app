@@ -11,6 +11,7 @@ import { openModal } from 'reducers/modals'
 
 import Button from 'components/Button'
 import ProjectsList from 'components/ProjectsList'
+import NotifBtn from 'components/Notifs/NotifBtn'
 
 import './style.scss'
 
@@ -82,6 +83,7 @@ class HomePage extends Component {
             <Button ghost onClick={() => openModal('settings')}>
               <FaCog />
             </Button>
+            <NotifBtn />
           </div>
         </div>
 

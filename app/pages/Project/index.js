@@ -21,6 +21,7 @@ import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
 import FilesList from 'components/FilesList'
+import NotifBtn from 'components/Notifs/NotifBtn'
 
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
@@ -196,6 +197,7 @@ class ProjectPage extends Component {
           >
             <FaCog />
           </Button>
+          <NotifBtn />
         </div>
 
         <div className='fg-1 d-f fd-c'>
