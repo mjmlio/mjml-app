@@ -12,7 +12,6 @@ import { loadProjects, addProject } from 'actions/projects'
 import queryLastVersion from 'actions/queryLastVersion'
 
 import { openModal } from 'reducers/modals'
-import { addNotif } from 'reducers/notifs'
 
 import 'styles/global.scss'
 import 'styles/utils.scss'
