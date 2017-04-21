@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import { Motion, spring } from 'react-motion'
 import { connect } from 'react-redux'
+import { shell } from 'electron'
 
 import Button from 'components/Button'
 
@@ -41,6 +42,16 @@ class FilePreview extends Component {
       const doc = this._iframe.contentDocument
       const documentElement = doc.documentElement
       documentElement.innerHTML = content
+      const links = [...documentElement.querySelectorAll('a')]
+      links.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault()
+          const href = link.getAttribute('href')
+          if (href) {
+            shell.openItem(href)
+          }
+        })
+      })
     })
   }
 
