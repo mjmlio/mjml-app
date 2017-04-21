@@ -1,5 +1,21 @@
 @import './vars.scss';
 
+.cm-s-one-dark .CodeMirror-dialog {
+  background: lighten($bg, 5);
+  border-bottom-color: lighten($bg, 15);
+  color: white;
+  animation: search-bounce 300ms;
+}
+
+@keyframes search-bounce {
+  0% {
+    transform: translate3d(0, -100px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .CodeMirror-scrollbar-filler {
   background-color: transparent !important;
 }
