@@ -17,7 +17,7 @@ export default validate({
       test: /\.json$/,
       loader: 'json-loader',
     }, {
-      test: [/node_modules\/react-icons\/.*\.js/], // eslint-disable-line
+      test: [/node_modules[\/\\]react-icons[\/\\].*\.js/], // eslint-disable-line
       loaders: ['babel-loader'],
     }, {
       // see https://github.com/nathanbuchar/electron-settings/issues/38#issuecomment-258727500
