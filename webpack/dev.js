@@ -1,20 +1,12 @@
-/* eslint-disable max-len */
-/**
- * Build config for development process that uses Hot-Module-Replacement
- * https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
- */
-
 import webpack from 'webpack'
-import validate from 'webpack-validator'
 import merge from 'webpack-merge'
-import baseConfig from './webpack.config.base'
+import baseConfig from './base'
 
-import pkg from './package.json'
+import pkg from '../package.json'
 
 const port = process.env.PORT || 3000
 
-export default validate(merge(baseConfig, {
-  debug: true,
+export default merge(baseConfig, {
 
   devtool: 'eval',
 
@@ -29,7 +21,7 @@ export default validate(merge(baseConfig, {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.scss$/,
         loaders: [
@@ -48,35 +40,18 @@ export default validate(merge(baseConfig, {
   },
 
   plugins: [
-    // https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
     new webpack.HotModuleReplacementPlugin(),
-
-    /**
-     * If you are using the CLI, the webpack process will not exit with an error
-     * code by enabling this plugin.
-     * https://github.com/webpack/docs/wiki/list-of-plugins#noerrorsplugin
-     */
-    new webpack.NoErrorsPlugin(),
-
-    /**
-     * Create global constants which can be configured at compile time.
-     *
-     * Useful for allowing different behaviour between development builds and
-     * release builds
-     *
-     * NODE_ENV should be production so that modules do not perform certain
-     * development checks
-     */
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
       __MJML_APP_VERSION__: JSON.stringify(pkg.version),
       __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
     }),
+   new webpack.LoaderOptionsPlugin({
+     debug: true
+   }),
   ],
 
-  /**
-   * https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-   */
   target: 'electron-renderer',
   externals: ['mjml-core', 'node-mailjet'],
-}))
+})

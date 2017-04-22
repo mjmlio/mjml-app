@@ -10,7 +10,7 @@ export default {
     filename: 'bundle-[hash].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],

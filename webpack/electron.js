@@ -1,20 +1,14 @@
-/**
- * Build config for electron 'Main Process' file
- */
-
 import webpack from 'webpack'
-import validate from 'webpack-validator'
 import merge from 'webpack-merge'
 import BabiliPlugin from 'babili-webpack-plugin'
-import baseConfig from './webpack.config.base'
+import baseConfig from './base'
 
-import pkg from './package.json'
+import pkg from '../package.json'
 
-export default validate(merge(baseConfig, {
+export default merge(baseConfig, {
 
   entry: ['babel-polyfill', './app/main.development'],
 
-  // 'main.js' in root
   output: {
     path: __dirname,
     filename: './app/main.js',
@@ -29,15 +23,6 @@ export default validate(merge(baseConfig, {
       deadcode: false,
     }),
 
-    /**
-     * Create global constants which can be configured at compile time.
-     *
-     * Useful for allowing different behaviour between development builds and
-     * release builds
-     *
-     * NODE_ENV should be production so that modules do not perform certain
-     * development checks
-     */
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -47,10 +32,6 @@ export default validate(merge(baseConfig, {
     }),
   ],
 
-  /**
-   * Set target to Electron specific node.js env.
-   * https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
-   */
   target: 'electron-main',
 
   /**
@@ -62,4 +43,4 @@ export default validate(merge(baseConfig, {
     __dirname: false,
     __filename: false,
   },
-}))
+})

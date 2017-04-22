@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconInfo from 'react-icons/md/info'

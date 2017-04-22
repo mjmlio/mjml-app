@@ -2,13 +2,13 @@
 	MJML App
 </h1>
 
-![os](os.png)
+![os](assets/os.png)
 
 <p align="center">
 	:email: The desktop app for MJML
 </p>
 
-![screenshot](screenshot.png)
+![screenshot](assets/screenshot.png)
 
 See [CHANGELOG.md](CHANGELOG.md) for releases details.
 

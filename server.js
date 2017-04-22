@@ -1,16 +1,10 @@
-/* eslint-disable no-console */
-/**
- * Setup and run the development server for Hot-Module-Replacement
- * https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
- */
-
 import express from 'express'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import { spawn } from 'child_process'
 
-import config from './webpack.config.development'
+import config from './webpack/dev'
 
 const argv = require('minimist')(process.argv.slice(2))
 

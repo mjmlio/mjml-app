@@ -1,19 +1,14 @@
-/**
- * Build config for electron 'Renderer Process' file
- */
-
 import path from 'path'
 import webpack from 'webpack'
-import validate from 'webpack-validator'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import merge from 'webpack-merge'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import BabiliPlugin from 'babili-webpack-plugin'
-import baseConfig from './webpack.config.base'
+import baseConfig from './base'
 
-import pkg from './package.json'
+import pkg from '../package.json'
 
-export default validate(merge(baseConfig, {
+export default merge(baseConfig, {
 
   entry: ['babel-polyfill', './app/index'],
 
@@ -23,7 +18,7 @@ export default validate(merge(baseConfig, {
   },
 
   module: {
-    loaders: [
+    rules: [
       // Extract all .global.css to style.css as is
       {
         test: /\.scss$/,
@@ -49,30 +44,14 @@ export default validate(merge(baseConfig, {
   },
 
   plugins: [
-    /**
-     * Assign the module and chunk ids by occurrence count
-     * Reduces total file size and is recommended
-     */
     new webpack.optimize.OccurrenceOrderPlugin(),
 
-    /**
-     * Create global constants which can be configured at compile time.
-     *
-     * Useful for allowing different behaviour between development builds and
-     * release builds
-     *
-     * NODE_ENV should be production so that modules do not perform certain
-     * development checks
-     */
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production'),
       __MJML_APP_VERSION__: JSON.stringify(pkg.version),
       __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
     }),
 
-    /**
-     * Babli is an ES6+ aware minifier based on the Babel toolchain (beta)
-     */
     new BabiliPlugin({
       // Disable deadcode until https://github.com/babel/babili/issues/385 fixed
       deadcode: false,
@@ -80,9 +59,6 @@ export default validate(merge(baseConfig, {
 
     new ExtractTextPlugin('style.css', { allChunks: true }),
 
-    /**
-     * Dynamically generate index.html page
-     */
     new HtmlWebpackPlugin({
       filename: '../app.html',
       template: 'app/app.html',
@@ -90,6 +66,5 @@ export default validate(merge(baseConfig, {
     }),
   ],
 
-  // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
   target: 'electron-renderer',
-}))
+})
