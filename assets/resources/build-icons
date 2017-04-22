@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd $DIR >/dev/null
+
+echo ">> cleaning"
+rm icons/*
+
+echo ">> creating multiple sizes"
+convert icon.png -resize '1024x1024' 'icons/1024x1024.png'
+convert icon.png -resize '128x128'   'icons/128x128.png'
+convert icon.png -resize '16x16'     'icons/16x16.png'
+convert icon.png -resize '256x256'   'icons/256x256.png'
+convert icon.png -resize '32x32'     'icons/32x32.png'
+convert icon.png -resize '48x48'     'icons/48x48.png'
+convert icon.png -resize '512x512'   'icons/512x512.png'
+
+echo ">> creating .icns icon"
+png2icns icon.icns icons/*.png
+
+echo ">> creating .ico icon"
+convert icon.png -bordercolor white -border 0 \
+  \( -clone 0 -resize 16x16 \) \
+  \( -clone 0 -resize 32x32 \) \
+  \( -clone 0 -resize 48x48 \) \
+  \( -clone 0 -resize 64x64 \) \
+  -delete 0 -alpha off -colors 256 icon.ico
+
+popd >/dev/null
