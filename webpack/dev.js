@@ -47,9 +47,9 @@ export default merge(baseConfig, {
       __MJML_APP_VERSION__: JSON.stringify(pkg.version),
       __MJML_VERSION__: JSON.stringify(pkg.dependencies.mjml),
     }),
-   new webpack.LoaderOptionsPlugin({
-     debug: true
-   }),
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+    }),
   ],
 
   target: 'electron-renderer',

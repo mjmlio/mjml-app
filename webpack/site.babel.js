@@ -1,12 +1,13 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path'
 
 const isProd = process.env.NODE_ENV === 'production'
 
 export default {
   entry: './site/index.js',
   output: {
-    path: 'dist',
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle-[hash].js',
   },
   module: {

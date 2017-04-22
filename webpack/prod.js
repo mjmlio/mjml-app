@@ -13,19 +13,18 @@ export default merge(baseConfig, {
   entry: ['babel-polyfill', './app/index'],
 
   output: {
-    path: path.join(__dirname, 'app/dist'),
+    path: path.join(__dirname, '../app/dist'),
     publicPath: '../dist/',
   },
 
   module: {
     rules: [
-      // Extract all .global.css to style.css as is
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader!sass-loader',
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader',
+        }),
       },
 
       // Fonts
@@ -57,7 +56,7 @@ export default merge(baseConfig, {
       deadcode: false,
     }),
 
-    new ExtractTextPlugin('style.css', { allChunks: true }),
+    new ExtractTextPlugin({ filename: 'style.css', allChunks: true }),
 
     new HtmlWebpackPlugin({
       filename: '../app.html',

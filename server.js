@@ -25,20 +25,20 @@ app.use(webpackHotMiddleware(compiler))
 
 const server = app.listen(PORT, 'localhost', serverError => {
   if (serverError) {
-    return console.error(serverError)
+    return console.error(serverError) // eslint-disable-line
   }
 
   if (argv['start-hot']) {
     spawn('npm', ['run', 'start-hot'], { shell: true, env: process.env, stdio: 'inherit' })
       .on('close', code => process.exit(code))
-      .on('error', spawnError => console.error(spawnError))
+      .on('error', spawnError => console.error(spawnError)) // eslint-disable-line
   }
 
-  console.log(`Listening at http://localhost:${PORT}`)
+  console.log(`Listening at http://localhost:${PORT}`) // eslint-disable-line
 })
 
 process.on('SIGTERM', () => {
-  console.log('Stopping dev server')
+  console.log('Stopping dev server') // eslint-disable-line
   wdm.close()
   server.close(() => {
     process.exit(0)

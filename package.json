@@ -4,13 +4,13 @@
   "productName": "MJML",
   "version": "2.0.0-beta3",
   "description": "The desktop app for MJML",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "clean-build": "cross-env rimraf dist && rimraf app/dist && rimraf app/main.js && rimraf app/main.js.map",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
-    "build-main": "cross-env NODE_ENV=production node -r babel-register webpack --config webpack/electron.js --progress --profile --colors",
-    "build-renderer": "cross-env NODE_ENV=production node -r babel-register webpack --config webpack/prod.js --progress --profile --colors",
+    "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/electron.js --progress --profile --colors",
+    "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/prod.js --progress --profile --colors",
     "build": "npm run build-main && npm run build-renderer",
     "start": "cross-env NODE_ENV=production electron ./app/",
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
@@ -24,9 +24,12 @@
   },
   "browserslist": "electron 1.4",
   "build": {
+    "directories": {
+      "buildResources": "assets/resources",
+      "output": "release"
+    },
     "productName": "MJML",
     "appId": "org.develar.MJML",
-    "category": "public.app-category.tools",
     "dmg": {
       "contents": [
         {
@@ -58,10 +61,6 @@
         "zip"
       ]
     }
-  },
-  "directories": {
-    "buildResources": "assets/resources",
-    "output": "release"
   },
   "bin": {
     "electron": "./node_modules/.bin/electron"

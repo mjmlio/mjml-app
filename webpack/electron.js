@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import path from 'path'
 import merge from 'webpack-merge'
 import BabiliPlugin from 'babili-webpack-plugin'
 import baseConfig from './base'
@@ -10,7 +11,7 @@ export default merge(baseConfig, {
   entry: ['babel-polyfill', './app/main.development'],
 
   output: {
-    path: __dirname,
+    path: path.join(__dirname, '..'),
     filename: './app/main.js',
   },
 
