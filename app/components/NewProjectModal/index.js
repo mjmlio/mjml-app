@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
+import isObject from 'lodash/isObject'
 import { bindActionCreators } from 'redux'
 import os from 'os'
 import path from 'path'
@@ -25,6 +26,7 @@ import {
 } from 'reducers/modals'
 
 import createFromTemplate from 'actions/createFromTemplate'
+import createFromGallery from 'actions/createFromGallery'
 
 import './style.scss'
 
@@ -38,6 +40,7 @@ const defaultState = {
   // name / template
   step: 'name',
   template: 'singleBasic',
+  isCreating: false,
 }
 
 @connect(state => ({
@@ -46,6 +49,7 @@ const defaultState = {
   closeModal: () => dispatch(closeModal('newProject')),
   ...bindActionCreators({
     createFromTemplate,
+    createFromGallery,
   }, dispatch),
 }))
 class NewProjectModal extends Component {
@@ -96,6 +100,7 @@ class NewProjectModal extends Component {
 
     const {
       createFromTemplate,
+      createFromGallery,
       closeModal,
     } = this.props
 
@@ -109,7 +114,18 @@ class NewProjectModal extends Component {
         ? path.join(projectLocation, projectName)
         : null
 
-      await createFromTemplate(fullPath, templates[this.state.template])
+      // handle from gallery
+      if (isObject(this.state.template)) {
+        const MJMLContentRes = await fetch(this.state.template.mjml)
+        const MJMLContent = await MJMLContentRes.text()
+        this.setState({ isCreating: true })
+        await createFromGallery(fullPath, MJMLContent)
+        this.setState({ isCreating: false })
+      } else {
+        // handle from our own templates
+        await createFromTemplate(fullPath, templates[this.state.template])
+      }
+
       closeModal()
     }
   }
@@ -161,6 +177,7 @@ class NewProjectModal extends Component {
       projectLocStatus,
       step,
       template,
+      isCreating,
     } = this.state
 
     const fullPath = (projectName && projectLocation)
@@ -255,6 +272,7 @@ class NewProjectModal extends Component {
               disabled={
                 (step === 'name' && (!projectName || !projectLocation || projectLocStatus !== 'valid'))
                 || (step === 'template' && !template)
+                || isCreating
               }
               primary
               onClick={this.handleNext}

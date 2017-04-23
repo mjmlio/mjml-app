@@ -16,6 +16,8 @@
 .fg-1 { flex-grow: 1; }
 .fs-0 { flex-shrink: 0; }
 
+.f-1 { flex: 1; }
+
 .fd-c { flex-direction: column; }
 
 .mb-5 { margin-bottom: 5px; }
@@ -104,7 +106,7 @@
   top: 0; left: 0; right: 0; bottom: 0;
 }
 
-.c-d { cursor: default; }
+.cu-d { cursor: default; }
 
 .o-n { outline: none; }
 

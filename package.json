@@ -143,6 +143,7 @@
     "mjml": "^3.3.2",
     "node-mailjet": "^3.0.6",
     "react": "^15.5.4",
+    "react-collapse": "^4.0.1",
     "react-dom": "^15.5.4",
     "react-icons": "^2.2.3",
     "react-mortal": "^2.2.0",
@@ -156,6 +157,7 @@
     "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.1",
     "semver": "^5.3.0",
-    "source-map-support": "^0.4.14"
+    "source-map-support": "^0.4.14",
+    "superagent-promise": "^1.1.0"
   }
 }

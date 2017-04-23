@@ -26,7 +26,11 @@ class ProjectsList extends Component {
     isModalOpened: false,
   }
 
-  handleRemoveProject = path => () => this.setState({
+  componentWillUnmount () {
+    this._isUnmounted = true
+  }
+
+  handleRemoveProject = path => () => this.safeSetState({
     pathToDelete: path,
     isModalOpened: true,
   })
@@ -36,10 +40,15 @@ class ProjectsList extends Component {
     this.handleCloseModal()
   }
 
-  handleCloseModal = () => this.setState({
+  handleCloseModal = () => this.safeSetState({
     pathToDelete: null,
     isModalOpened: false,
   })
+
+  safeSetState = (...args) => {
+    if (this._isUnmounted) { return }
+    this.setState(...args)
+  }
 
   render () {
 

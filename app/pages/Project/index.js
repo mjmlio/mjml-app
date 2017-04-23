@@ -138,7 +138,7 @@ class ProjectPage extends Component {
         <div className='d-f p-10'>
           <div className='fg-1 flow-h-10'>
             <Button
-              className='c-d'
+              className='cu-d'
               transparent
               link
               to='/'
