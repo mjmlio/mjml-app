@@ -50,17 +50,19 @@ class Modal extends Component {
                 pointerEvents: isVisible ? 'auto' : 'none',
               }}
             />
-            <div
-              tabIndex={0}
-              ref={n => this._node = n}
-              className={cx('Modal--body', className)}
-              style={{
-                opacity: motion.opacity,
-                transform: `translate3d(0, ${motion.modalOffset}px, 0)`,
-                ...(style || {}),
-              }}
-            >
-              {children}
+            <div className='Modal-box'>
+              <div
+                tabIndex={0}
+                ref={n => this._node = n}
+                className={cx('Modal--body', className)}
+                style={{
+                  opacity: motion.opacity,
+                  transform: `translate3d(0, ${motion.modalOffset}px, 0)`,
+                  ...(style || {}),
+                }}
+              >
+                {children}
+              </div>
             </div>
           </div>
         )}

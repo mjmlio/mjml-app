@@ -26,33 +26,6 @@
   }
 }
 
-.TemplateChooser--template {
-  border: 3px solid rgba(white, 0.1);
-  flex: 1;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: white;
-  font-size: 13px;
-  &:last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  &:first-child {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
-  &:hover {
-    background: rgba(white, 0.01);
-  }
-  &.active {
-    border-color: rgba($blue, 0.9);
-    background: rgba($blue, 0.1);
-  }
-}
-
 .Gallery {
   display: flex;
   flex-wrap: wrap;
@@ -75,6 +48,7 @@
 }
 
 .Gallery-Item {
+  background: rgba(black, 0.2);
   width: 168px;
   height: 200px;
   background-repeat: no-repeat;

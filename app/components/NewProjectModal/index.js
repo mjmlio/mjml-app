@@ -189,6 +189,9 @@ class NewProjectModal extends Component {
         className='NewProjectModal'
         isOpened={isOpened}
         onClose={closeModal}
+        style={{
+          width: step === 'template' ? 800 : undefined,
+        }}
       >
         <form onSubmit={this.handleSubmit}>
 

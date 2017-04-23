@@ -33,6 +33,10 @@
 }
 
 body {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   font-family: Lato, sans-serif;
   font-size: 14px;
   color: $evenLighterGrey;

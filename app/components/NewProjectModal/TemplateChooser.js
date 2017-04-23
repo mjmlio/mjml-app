@@ -34,13 +34,14 @@ class TemplateChooser extends Component {
         })
         this.handleSelectGalleryTemplate(0)
       } catch (err) {
-        console.log(err)
         this.setState({
           isFetching: false,
           isError: true,
         })
       }
 
+    } else {
+      this.props.onSelect('singleBasic')
     }
   }
 
@@ -87,18 +88,19 @@ class TemplateChooser extends Component {
         <Collapse isOpened springConfig={{ stiffness: 300, damping: 30 }}>
 
           {source === 'basic' ? (
-            <div>
+            <div className='d-f'>
               <TabItem
-                autoFocus
-                name='singleBasic'
-                template={template}
-                onSelect={onSelect}
+                onClick={() => onSelect('singleBasic')}
+                isSelected={template === 'singleBasic'}
               >
                 {'Single file, basic layout'}
               </TabItem>
 
-              <TabItem name='headerFooter' template={template} onSelect={onSelect}>
-                {'Separated header / footer'}
+              <TabItem
+                onClick={() => onSelect('headerFooter')}
+                isSelected={template === 'headerFooter'}
+              >
+                {'Header & Footer'}
               </TabItem>
             </div>
           ) : source === 'gallery' ? (
@@ -148,16 +150,29 @@ class TemplateChooser extends Component {
 
 }
 
-function TabItem ({ name, onSelect, template, children }) {
+function TabItem ({
+  onClick,
+  isSelected,
+  thumbnail,
+  children,
+}) {
   return (
     <Tabbable
-      className={cx('TemplateChooser--template', {
-        active: template === name,
+      onClick={onClick}
+      className={cx('Gallery-Item-wrapper', {
+        isSelected,
       })}
-      onClick={() => onSelect(name)}
-      tabIndex={0}
     >
-      {children}
+      <div
+        className='Gallery-Item'
+        style={{
+          backgroundImage: thumbnail ? `url(${thumbnail})` : undefined,
+        }}
+      >
+        <div className='Gallery-item-label small'>
+          {children}
+        </div>
+      </div>
     </Tabbable>
   )
 }
