@@ -17,6 +17,11 @@ h2 {
   font-weight: 200;
 }
 
+h3 {
+  font-size: 25px;
+  margin: 20px 0;
+}
+
 img {
   display: block;
 }
@@ -59,6 +64,20 @@ h1 {
 .row {
   display: flex;
   align-items: flex-start;
+  justify-content: space-around;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    .hero-img {
+      position: static;
+    }
+    .col + .col {
+      margin-left: initial;
+      margin-top: 50px;
+      img {
+        max-width: 100% !important;
+      }
+    }
+  }
 }
 
 .col + .col {
@@ -74,13 +93,13 @@ h1 {
 
 .hero-img {
   position: absolute;
-  top: 0; left: 0;
+  top: 0; left: -10px;
   width: 700px;
   display: flex;
   flex-wrap: wrap;
   img {
     border: 1px solid white;
-    margin: 10px;
+    margin: 0 10px 10px 0;
     max-width: initial !important;
   }
 }
@@ -130,4 +149,11 @@ h1 {
   background: #eeeeee;
   margin-top: 100px;
   height: 200px;
+}
+
+.heading {
+  color: #e7585c;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .9em;
 }
