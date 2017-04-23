@@ -1,3 +1,16 @@
+### 2.0.0 (2017-04-23)
+
+- New interface, full rewrite.
+- Projects are now based on file-system folders
+- Support for `mj-include` ([#65](https://github.com/mjmlio/mjml-app/issues/65))
+- Ability to use custom MJML binary for rendering
+- Resizable panels, for easier responsive work
+- Customizable breakpoints for mobile/desktop
+- Fetch official templates from source (not stored in source code)
+- Open email links in browser ([#73](https://github.com/mjmlio/mjml-app/issues/73))
+- Better alert system for notifying new version
+- ... and certainly other things
+
 ### 1.8.1 (2017-03-25)
  - Fix email sending ([#85](https://github.com/mjmlio/mjml-app/issues/85)) :mailbox:
 
