@@ -8,10 +8,12 @@
 .ai-b { align-items: baseline; }
 .ai-s { align-items: stretch; }
 .ai-fs { align-items: flex-start; }
+.ai-fe { align-items: flex-end; }
 
 .jc-fs { justify-content: flex-start; }
 .jc-fe { justify-content: flex-end; }
 .jc-c { justify-content: center; }
+.jc-sa { justify-content: space-around; }
 
 .fg-1 { flex-grow: 1; }
 .fs-0 { flex-shrink: 0; }
@@ -111,3 +113,4 @@
 .o-n { outline: none; }
 
 .ta-r { text-align: right; }
+.ta-c { text-align: center; }
