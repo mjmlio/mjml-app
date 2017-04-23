@@ -4,25 +4,23 @@
   min-height: 0;
 }
 
+.TemplateChooserTabs {
+  margin: -20px -20px 0 -20px;
+}
+
 .TemplateChooserTabs--tab {
-  border: 1px solid rgba(white, 0.1);
   text-align: center;
-  padding: 10px;
+  padding: 20px 0;
   font-weight: bold;
-  &.isActive {
-    background: $blue;
+  border-bottom: 3px solid rgba(white, 0.07);
+  outline: none !important;
+  &:hover {
     color: white;
   }
-  & + & {
-    border-left: none;
-  }
-  &:last-child {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-  &:first-child {
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+  &.isActive {
+    border-bottom-color: $blue;
+    background: rgba(black, 0.1);
+    color: white;
   }
 }
 

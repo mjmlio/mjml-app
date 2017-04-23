@@ -66,7 +66,7 @@ class TemplateChooser extends Component {
     return (
       <div className='flow-v-20'>
 
-        <div className='d-f'>
+        <div className='d-f TemplateChooserTabs'>
           <Tabbable
             onClick={() => this.handleChangeSource('basic')}
             className={cx('TemplateChooserTabs--tab f-1 cu-d', {

@@ -196,13 +196,13 @@ class NewProjectModal extends Component {
         <form onSubmit={this.handleSubmit}>
 
           <div className='Modal--label'>
-            {'New project'}
+            {step === 'name' ? 'New project' : 'Choose a template to start with'}
           </div>
 
           {step === 'name' ? (
             <div className='flow-v-20'>
               <div className='d-f ai-b'>
-                <div style={{ width: 150 }} className='fs-0 t-small'>
+                <div style={{ width: 150 }} className='fs-0'>
                   {'Project name:'}
                 </div>
                 <input
@@ -217,7 +217,7 @@ class NewProjectModal extends Component {
               </div>
 
               <div className='d-f ai-b'>
-                <div style={{ width: 150 }} className='fs-0 t-small'>
+                <div style={{ width: 150 }} className='fs-0'>
                   {'Location:'}
                 </div>
                 <div className='fg-1'>
@@ -280,10 +280,17 @@ class NewProjectModal extends Component {
               primary
               onClick={this.handleNext}
             >
-              {step === 'template' && <IconCheck className='mr-5' />}
-              {step === 'name' && 'Choose template'}
-              {step === 'template' && 'Create'}
-              {step === 'name' && <IconArrowRight className='ml-10' />}
+              {step === 'name' ? (
+                <div className='d-f ai-c'>
+                  {'Choose template'}
+                  <IconArrowRight className='ml-10' />
+                </div>
+              ) : step === 'template' ? (
+                <div className='d-f'>
+                  <IconCheck className='mr-5' />
+                  {'Create'}
+                </div>
+              ) : null}
             </Button>
             {step === 'template' && (
               <Button
