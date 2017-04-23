@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import Collapse from 'react-collapse'
 import IconChecking from 'react-icons/md/autorenew'
+import IconSimple from 'react-icons/md/note'
+import IconSeparated from 'react-icons/md/view-day'
 
 import fetchGallery from 'helpers/fetchGallery'
 
@@ -92,15 +94,17 @@ class TemplateChooser extends Component {
               <TabItem
                 onClick={() => onSelect('singleBasic')}
                 isSelected={template === 'singleBasic'}
+                label='Single file, basic layout'
               >
-                {'Single file, basic layout'}
+                <IconSimple size={80} />
               </TabItem>
 
               <TabItem
                 onClick={() => onSelect('headerFooter')}
                 isSelected={template === 'headerFooter'}
+                label='Header & Footer'
               >
-                {'Header & Footer'}
+                <IconSeparated size={80} />
               </TabItem>
             </div>
           ) : source === 'gallery' ? (
@@ -155,6 +159,7 @@ function TabItem ({
   isSelected,
   thumbnail,
   children,
+  label,
 }) {
   return (
     <Tabbable
@@ -169,8 +174,9 @@ function TabItem ({
           backgroundImage: thumbnail ? `url(${thumbnail})` : undefined,
         }}
       >
+        {children}
         <div className='Gallery-item-label small'>
-          {children}
+          {label}
         </div>
       </div>
     </Tabbable>
