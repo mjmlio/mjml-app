@@ -7,7 +7,7 @@ const isProd = process.env.NODE_ENV === 'production'
 export default {
   entry: './site/index.js',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'),
     filename: 'bundle-[hash].js',
   },
   module: {
@@ -17,8 +17,8 @@ export default {
         loaders: ['babel-loader'],
         exclude: /node_modules/,
       },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
-      { test: /\.mp4$/, loader: 'file' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
+      { test: /\.mp4$/, loader: 'file-loader' },
       isProd ? {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract(
