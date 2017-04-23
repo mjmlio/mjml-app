@@ -5,7 +5,7 @@
   position: fixed;
   z-index: 1;
   top: 0; left: 0; right: 0; bottom: 0;
-  overflow: hidden;
+  overflow-y: auto;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -22,7 +22,7 @@
     outline: none;
   }
   padding: 20px;
-  margin-top: 80px;
+  margin: 80px 0;
   background: $bg;
   box-shadow: rgba(black, 0.4) 0 10px 60px;
   width: 600px;

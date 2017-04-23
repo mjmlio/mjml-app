@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import Collapse from 'react-collapse'
 import IconChecking from 'react-icons/md/autorenew'
-import values from 'lodash/values'
 
-// import fetchTemplates from 'helpers/fetchTemplates'
+import fetchGallery from 'helpers/fetchGallery'
 
 import Tabbable from 'components/Tabbable'
-
-const githubTemplatesRoot = 'https://raw.githubusercontent.com/mjmlio/email-templates/master'
 
 class TemplateChooser extends Component {
 
@@ -21,55 +18,6 @@ class TemplateChooser extends Component {
     gallery: [],
   }
 
-  async fetchTemplates () {
-    const res = await fetch('https://api.github.com/repos/mjmlio/email-templates/git/trees/master?recursive=1')
-    const parsedRes = await res.json()
-    const { tree } = parsedRes
-    const imagesToLoad = []
-    const map = tree.reduce((map, item) => {
-
-      const { path } = item
-
-      if (!path.startsWith('templates/') && !path.startsWith('thumbnails/')) {
-        return map
-      }
-
-      const extract = (/.*\/([^.]*)\..*/).exec(path)
-      if (!extract) { return map }
-
-      const templateName = extract[1]
-      const isMJML = path.endsWith('.mjml')
-
-      if (!map[templateName]) { map[templateName] = {} }
-
-      const fullPath = `${githubTemplatesRoot}/${path}`
-
-      if (isMJML) {
-        map[templateName].mjml = fullPath
-        map[templateName].name = templateName
-      } else {
-        imagesToLoad.push(fullPath)
-        map[templateName].thumbnail = fullPath
-      }
-
-      return map
-
-    }, {})
-
-    await Promise.all(imagesToLoad.map(this.loadImage))
-
-    return values(map)
-  }
-
-  loadImage (src) {
-    return new Promise((resolve) => {
-      const img = new Image()
-      img.onload = resolve
-      img.onerror = resolve
-      img.src = src
-    })
-  }
-
   handleChangeSource = async source => {
     this.setState({ source })
     if (source === 'gallery') {
@@ -78,7 +26,7 @@ class TemplateChooser extends Component {
       this.setState({ isFetching: true })
 
       try {
-        const gallery = await this.fetchTemplates()
+        const gallery = await fetchGallery()
         this.setState({
           isFetching: false,
           isError: false,
@@ -86,6 +34,7 @@ class TemplateChooser extends Component {
         })
         this.handleSelectGalleryTemplate(0)
       } catch (err) {
+        console.log(err)
         this.setState({
           isFetching: false,
           isError: true,
