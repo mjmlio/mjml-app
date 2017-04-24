@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, shell, BrowserWindow, Menu } from 'electron'
 
 let menu
 let mainWindow = null
@@ -86,6 +86,15 @@ app.on('ready', async () => {
         click () {
           mainWindow.webContents.send('redux-command', 'open-project')
         },
+      }, {
+        type: 'separator',
+      }, {
+        label: 'Documentation',
+        click () {
+          shell.openItem('https://mjml.io/documentation/')
+        },
+      }, {
+        type: 'separator',
       }, {
         label: 'Quit',
         accelerator: 'Command+Q',
