@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import pathModule from 'path'
 import rimraf from 'rimraf'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
-import FaHome from 'react-icons/md/arrow-back'
 import IconEmail from 'react-icons/md/email'
 import IconCode from 'react-icons/md/code'
 import IconCopy from 'react-icons/md/content-copy'
@@ -23,6 +23,7 @@ import Button from 'components/Button'
 import FilesList from 'components/FilesList'
 import NotifBtn from 'components/Notifs/NotifBtn'
 
+import BackButton from './BackButton'
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
@@ -131,21 +132,14 @@ class ProjectPage extends Component {
     } = this.state
 
     const rootPath = this.props.location.query.path
+    const projectName = pathModule.basename(rootPath)
 
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
         <div className='d-f p-10'>
           <div className='fg-1 flow-h-10'>
-            <Button
-              className='cu-d'
-              transparent
-              link
-              to='/'
-            >
-              <FaHome className='mr-5' />
-              {'Back to projects'}
-            </Button>
+            <BackButton projectName={projectName} />
             <Button
               ghost
               onClick={this.openAddFileModal}

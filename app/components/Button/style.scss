@@ -1,6 +1,7 @@
 @import '../../styles/vars.scss';
 
 .Button {
+  overflow: hidden;
   text-decoration: none;
   -webkit-user-select: none;
   display: inline-flex;
