@@ -14,6 +14,15 @@
   font-size: 13px;
   color: $almostWhite;
 
+  &.renaming {
+    padding: 0 0 0 5px;
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+  }
+
   &:focus {
     outline: none;
   }

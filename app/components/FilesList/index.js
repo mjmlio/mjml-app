@@ -5,10 +5,11 @@ import pathModule from 'path'
 import SplitPane from 'react-split-pane'
 import FaFolder from 'react-icons/fa/folder'
 import IconClose from 'react-icons/md/close'
+import IconEdit from 'react-icons/md/mode-edit'
 
 import { openModal } from 'reducers/modals'
 
-import { readDir, sortFiles } from 'helpers/fs'
+import { readDir, sortFiles, fsRename } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
 import { updateSettings } from 'actions/settings'
 
@@ -16,6 +17,18 @@ import FileEditor from 'components/FileEditor'
 import FilePreview from './FilePreview'
 
 import './styles.scss'
+
+function renameFile (path, oldName, newName, files) {
+  if (oldName === newName) { return }
+  const filesWithoutOld = files.filter(f => f.name !== oldName)
+  const fileExists = filesWithoutOld.some(f => f.name === newName)
+  if (fileExists) {
+    throw new Error('File already exists')
+  }
+  const oldFullName = pathModule.join(path, oldName)
+  const newFullName = pathModule.join(path, newName)
+  return fsRename(oldFullName, newFullName)
+}
 
 @connect(state => ({
   previewSize: state.settings.get('previewSize'),
@@ -33,6 +46,8 @@ class FilesList extends Component {
     preview: null,
     editingFile: null,
     isDragging: false,
+    renamedFile: null,
+    newName: '',
   }
 
   componentWillMount () {
@@ -52,6 +67,9 @@ class FilesList extends Component {
     }
     if (this.state.files.length > prevState.files.length && this._lastCreated) {
       this._refs[this._lastCreated].focus()
+    }
+    if (!prevState.renamedFile && this.state.renamedFile) {
+      this._renameInput.select()
     }
   }
 
@@ -95,13 +113,6 @@ class FilesList extends Component {
     this.props.onActiveFileChange(f)
   }
 
-  handleDoubleClickFactory = f => () => {
-    if (!this.props.onFileDoubleClick) { return }
-    if (f.isFolder) { return }
-    const p = pathModule.join(this.props.path, f.name)
-    return this.props.onFileDoubleClick(p)
-  }
-
   handleClickDirectFactory = (items, i) => () => {
     const sub = items.slice(0, i + 1)
     const relativePath = sub.join(pathModule.sep)
@@ -122,6 +133,48 @@ class FilesList extends Component {
   handlePreviewPanelStopDrag = (size) => {
     this.setCurrentSize(size)
     this.stopDrag()
+  }
+
+  handleChangeNewName = e => {
+    this.setState({ newName: e.target.value })
+  }
+
+  handleCancelRename = () => this.setState({
+    renamedFile: null,
+    newName: '',
+  })
+
+  handleRenameInputKeyDown = async e => {
+    switch (e.which) { // eslint-disable-line
+    case 27:
+      this.handleCancelRename()
+      break
+    case 13:
+      try {
+        const { path } = this.props
+        const {
+          newName,
+          renamedFile,
+          files,
+        } = this.state
+        await renameFile(
+          path,
+          renamedFile.name,
+          newName,
+          files,
+        )
+        const newFile = { name: newName, isFolder: false }
+        const newFiles = files.map(f => {
+          if (f === renamedFile) { return newFile }
+          return f
+        })
+        sortFiles(newFiles)
+        this.setState({ files: newFiles })
+        this.props.onActiveFileChange(newFile)
+        this.handleCancelRename()
+      } catch (e) {} // eslint-disable-line
+      break
+    }
   }
 
   setCurrentSize = size => {
@@ -183,6 +236,8 @@ class FilesList extends Component {
     const {
       files,
       isDragging,
+      renamedFile,
+      newName,
     } = this.state
 
     const {
@@ -231,7 +286,22 @@ class FilesList extends Component {
                     </div>
                   </button>
                 )}
-                {files.map(f => (
+                {files.map(f => renamedFile === f ? (
+                  <div
+                    key={f.name}
+                    className='FilesList--file renaming active'
+                  >
+                    <input
+                      ref={n => this._renameInput = n}
+                      autoFocus
+                      type='text'
+                      value={newName}
+                      onKeyDown={this.handleRenameInputKeyDown}
+                      onChange={this.handleChangeNewName}
+                      onBlur={this.handleCancelRename}
+                    />
+                  </div>
+                ) : (
                   <button
                     ref={setRef(f.name)}
                     key={f.name}
@@ -240,7 +310,6 @@ class FilesList extends Component {
                     })}
                     tabIndex={0}
                     onClick={this.handleClickFactory(f)}
-                    onDoubleClick={this.handleDoubleClickFactory(f)}
                   >
                     {f.isFolder && (
                       <div className='fs-0 pr-10'>
@@ -253,6 +322,16 @@ class FilesList extends Component {
                       </div>
                     </div>
                     <div className='FilesList--item-actions'>
+                      <div
+                        tabIndex={0}
+                        onClick={() => this.setState({
+                          renamedFile: f,
+                          newName: f.name,
+                        })}
+                        className='action action-rename'
+                      >
+                        <IconEdit />
+                      </div>
                       <div
                         tabIndex={0}
                         onClick={() => openModal('removeFile', f)}

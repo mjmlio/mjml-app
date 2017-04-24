@@ -10,6 +10,7 @@ import {
 const { dialog } = remote
 
 export const fsReadDir = promisify(fs.readdir)
+export const fsRename = promisify(fs.rename)
 export const fsReadFile = promisify(fs.readFile)
 export const fsWriteFile = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
