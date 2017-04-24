@@ -37,8 +37,10 @@ class FileEditor extends Component {
   }
 
   componentDidMount () {
-    this.initEditor()
-    this.loadContent()
+    window.requestIdleCallback(() => {
+      this.initEditor()
+      this.loadContent()
+    })
   }
 
   componentWillReceiveProps (nextProps) {
