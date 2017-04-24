@@ -12,6 +12,7 @@ import {
   fsReadFile,
   fsAccess,
   isValidDir,
+  rimraf,
 } from 'helpers/fs'
 
 import mjml2html from 'helpers/mjml'
@@ -34,10 +35,13 @@ export function addProject (p) {
   }
 }
 
-export function removeProject (p) {
+export function removeProject (p, shouldDeleteFolder = false) {
   return async dispatch => {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
+    if (shouldDeleteFolder) {
+      rimraf(p)
+    }
   }
 }
 

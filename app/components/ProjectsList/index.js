@@ -3,10 +3,10 @@ import cx from 'classnames'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconClose from 'react-icons/md/close'
-import IconInfo from 'react-icons/md/info'
 
 import { openProject, removeProject } from 'actions/projects'
 
+import CheckBox from 'components/CheckBox'
 import Preview from 'components/Preview'
 import ConfirmModal from 'components/Modal/ConfirmModal'
 import Tabbable from 'components/Tabbable'
@@ -24,6 +24,7 @@ class ProjectsList extends Component {
   state = {
     pathToDelete: null,
     isModalOpened: false,
+    shouldDeleteFolder: false,
   }
 
   componentWillUnmount () {
@@ -36,7 +37,8 @@ class ProjectsList extends Component {
   })
 
   handleConfirmRemove = () => {
-    this.props.removeProject(this.state.pathToDelete)
+    const { pathToDelete, shouldDeleteFolder } = this.state
+    this.props.removeProject(pathToDelete, shouldDeleteFolder)
     this.handleCloseModal()
   }
 
@@ -44,6 +46,8 @@ class ProjectsList extends Component {
     pathToDelete: null,
     isModalOpened: false,
   })
+
+  handleChangeShouldDelete = shouldDeleteFolder => this.setState({ shouldDeleteFolder })
 
   safeSetState = (...args) => {
     if (this._isUnmounted) { return }
@@ -60,6 +64,7 @@ class ProjectsList extends Component {
 
     const {
       isModalOpened,
+      shouldDeleteFolder,
     } = this.state
 
     return (
@@ -89,16 +94,15 @@ class ProjectsList extends Component {
         ))}
         <ConfirmModal
           isOpened={isModalOpened}
-          yepCTA='Remove from list'
+          yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}
           nopCTA='Cancel'
           onCancel={this.handleCloseModal}
           onConfirm={this.handleConfirmRemove}
         >
           <h2 className='mb-20'>{'Remove project from list?'}</h2>
-          <div className='d-f ai-c t-small'>
-            <IconInfo className='mr-5' size={20} />
-            {'This will not remove the files on your disk'}
-          </div>
+          <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
+            {'Also remove folder and files from disk'}
+          </CheckBox>
         </ConfirmModal>
       </div>
     )

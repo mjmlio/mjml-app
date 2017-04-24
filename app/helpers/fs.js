@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import promisify from 'es6-promisify'
 import { remote } from 'electron'
+import rimrafModule from 'rimraf'
 import {
   exec as x,
   execFile as xFile,
@@ -16,6 +17,7 @@ export const fsWriteFile = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
 export const fsMkdir = promisify(fs.mkdir)
+export const rimraf = promisify(rimrafModule)
 
 function getFileInfoFactory (p) {
   return async name => {
