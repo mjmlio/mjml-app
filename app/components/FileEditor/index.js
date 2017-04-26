@@ -75,6 +75,7 @@ class FileEditor extends Component {
       const content = await fsReadFile(fileName, { encoding: 'utf8' })
       if (!this._codeMirror) { return }
       this._codeMirror.setValue(content)
+      this._codeMirror.clearHistory()
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line
 
