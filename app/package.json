@@ -1,6 +1,6 @@
 {
   "name": "mjml-app",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "productName": "MJML",
   "description": "The desktop app for MJML",
   "main": "./main.js",
