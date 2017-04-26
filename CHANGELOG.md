@@ -1,3 +1,7 @@
+### 2.0.1 (2017-04-26)
+
+- [FIX] Reset Codemirror history when switching file
+
 ### 2.0.0 (2017-04-23)
 
 - New interface, full rewrite.
