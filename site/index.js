@@ -27,6 +27,11 @@ const dlLinux = document.getElementById('dl-linux')
 const dlWin = document.getElementById('dl-win')
 const dlOSX = document.getElementById('dl-osx')
 
+// windows being windows... always shitty, even on links.
+if (os === 'windows') {
+  dlGeneral.setAttribute('href', 'http://mjml-app.sigsev.io/download/win_64')
+}
+
 dlGeneral.addEventListener('click', createTracking(os))
 dlLinux.addEventListener('click', createTracking('linux'))
 dlWin.addEventListener('click', createTracking('windows'))
