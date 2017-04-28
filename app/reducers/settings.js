@@ -31,6 +31,12 @@ export default handleActions({
   PROJECT_REMOVE: (state, { payload: path }) => state
     .update('projects', projects => projects.filter(p => p !== path)),
 
+  PROJECT_RENAME: (state, { payload: { oldPath, newPath } }) => state
+    .update('projects', projects => projects.map(p => {
+      if (p !== oldPath) { return p }
+      return newPath
+    })),
+
   PROJECTS_REMOVE: (state, { payload: paths }) => state
     .update('projects', projects => projects.filter(p => paths.indexOf(p) === -1)),
 

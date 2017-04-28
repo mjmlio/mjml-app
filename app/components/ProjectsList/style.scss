@@ -11,18 +11,24 @@
   text-align: left;
   float: left; // i mean, wtf?
   width: 270px;
-  padding: 5px;
   margin-right: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   &:hover {
     .ProjectItem--delete-btn {
       opacity: 1;
     }
+    .ProjectItem--edit-btn {
+      display: block;
+    }
   }
 }
 
+.ProjectItem--preview-container-wrapper {
+  padding: 5px;
+}
+
 .ProjectItem--preview-container {
-  transition: 150ms ease-in-out all;
+  display: block;
   overflow: hidden;
   position: relative;
   height: 280px;
@@ -61,7 +67,9 @@
   }
 }
 
-@keyframes deleteBounce {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+.ProjectItem--edit-btn {
+  display: none;
+  &:hover {
+    color: white;
+  }
 }

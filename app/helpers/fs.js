@@ -78,6 +78,18 @@ export async function isValidDir (path) {
   return stats.isDirectory()
 }
 
+export async function alreadyExists (location) {
+  try {
+    await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return false
+    }
+    return true
+  }
+  return true
+}
+
 export async function isEmptyOrDontExist (location) {
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)

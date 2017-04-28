@@ -11,6 +11,7 @@ import {
   fileDialog,
   fsReadFile,
   fsAccess,
+  fsRename,
   isValidDir,
   rimraf,
 } from 'helpers/fs'
@@ -123,5 +124,16 @@ export function updateProjectPreview (p, html) {
       path: p,
       html,
     },
+  }
+}
+
+export function renameProject (oldPath, newPath) {
+  return async (dispatch) => {
+    await fsRename(oldPath, newPath)
+    dispatch({
+      type: 'PROJECT_RENAME',
+      payload: { oldPath, newPath },
+    })
+    dispatch(saveSettings())
   }
 }

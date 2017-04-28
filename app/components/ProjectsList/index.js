@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconClose from 'react-icons/md/close'
+import IconEdit from 'react-icons/md/mode-edit'
 
-import { openProject, removeProject } from 'actions/projects'
+import {
+  openProject,
+  removeProject,
+  renameProject,
+} from 'actions/projects'
 
 import CheckBox from 'components/CheckBox'
 import Preview from 'components/Preview'
 import ConfirmModal from 'components/Modal/ConfirmModal'
 import Tabbable from 'components/Tabbable'
+
+import RenameModal from './RenameModal'
 
 import './style.scss'
 
@@ -17,12 +24,14 @@ import './style.scss'
 }), {
   openProject,
   removeProject,
+  renameProject,
 })
 class ProjectsList extends Component {
 
   state = {
-    pathToDelete: null,
-    isModalOpened: false,
+    activePath: null,
+    isDeleteModalOpened: false,
+    isRenameModalOpened: false,
     shouldDeleteFolder: false,
   }
 
@@ -34,23 +43,42 @@ class ProjectsList extends Component {
     e.preventDefault()
     e.stopPropagation()
     this.safeSetState({
-      pathToDelete: path,
-      isModalOpened: true,
+      activePath: path,
+      isDeleteModalOpened: true,
+    })
+  }
+
+  handleEditProjectName = path => e => {
+    e.preventDefault()
+    e.stopPropagation()
+    this.safeSetState({
+      activePath: path,
+      isRenameModalOpened: true,
     })
   }
 
   handleConfirmRemove = () => {
-    const { pathToDelete, shouldDeleteFolder } = this.state
-    this.props.removeProject(pathToDelete, shouldDeleteFolder)
-    this.handleCloseModal()
+    const { activePath, shouldDeleteFolder } = this.state
+    this.props.removeProject(activePath, shouldDeleteFolder)
+    this.handleCloseDeleteModal()
   }
 
-  handleCloseModal = () => this.safeSetState({
-    pathToDelete: null,
-    isModalOpened: false,
+  handleCloseDeleteModal = () => this.safeSetState({
+    activePath: null,
+    isDeleteModalOpened: false,
   })
 
   handleChangeShouldDelete = shouldDeleteFolder => this.setState({ shouldDeleteFolder })
+
+  handleCloseRenameModal = () => this.safeSetState({
+    activePath: null,
+    isRenameModalOpened: false,
+  })
+
+  handleRename = newPath => {
+    this.props.renameProject(this.state.activePath, newPath)
+    this.handleCloseRenameModal()
+  }
 
   safeSetState = (...args) => {
     if (this._isUnmounted) { return }
@@ -65,18 +93,18 @@ class ProjectsList extends Component {
     } = this.props
 
     const {
-      isModalOpened,
+      isDeleteModalOpened,
+      isRenameModalOpened,
       shouldDeleteFolder,
+      activePath,
     } = this.state
 
     return (
       <div className='ProjectsList abs o-n'>
         {projects.reverse().map((p) => (
-          <button
+          <div
             className='ProjectItem'
             key={p}
-            onClick={() => openProject(p.get('path'))}
-            tabIndex={0}
           >
             <Tabbable
               className='ProjectItem--delete-btn'
@@ -84,19 +112,32 @@ class ProjectsList extends Component {
             >
               <IconClose color='#fff' />
             </Tabbable>
-            <div className='ProjectItem--preview-container'>
-              <Preview scaled html={p.get('html', null)} />
+            <Tabbable
+              onClick={() => openProject(p.get('path'))}
+              className='ProjectItem--preview-container-wrapper'
+            >
+              <div className='ProjectItem--preview-container'>
+                <Preview scaled html={p.get('html', null)} />
+              </div>
+            </Tabbable>
+            <div className='d-f ai-b pl-5 pr-5'>
+              <div className='ProjectItem--label'>
+                {path.basename(p.get('path'))}
+              </div>
+              <button
+                className='ProjectItem--edit-btn ml-5 pl-5 pr-5'
+                onClick={this.handleEditProjectName(p.get('path'))}
+              >
+                <IconEdit />
+              </button>
             </div>
-            <div className='ProjectItem--label'>
-              {path.basename(p.get('path'))}
-            </div>
-          </button>
+          </div>
         ))}
         <ConfirmModal
-          isOpened={isModalOpened}
+          isOpened={isDeleteModalOpened}
           yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}
           nopCTA='Cancel'
-          onCancel={this.handleCloseModal}
+          onCancel={this.handleCloseDeleteModal}
           onConfirm={this.handleConfirmRemove}
         >
           <h2 className='mb-20'>{'Remove project from list?'}</h2>
@@ -104,6 +145,12 @@ class ProjectsList extends Component {
             {'Also remove folder and files from disk'}
           </CheckBox>
         </ConfirmModal>
+        <RenameModal
+          isOpened={isRenameModalOpened}
+          path={activePath}
+          onCancel={this.handleCloseRenameModal}
+          onConfirm={this.handleRename}
+        />
       </div>
     )
   }

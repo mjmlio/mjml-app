@@ -15,5 +15,11 @@ export default handleActions({
   PROJECT_REMOVE: (state, { payload: path }) => {
     return state.filter(p => p.get('path') !== path)
   },
+  PROJECT_RENAME: (state, { payload: { oldPath, newPath } }) => {
+    return state.map(p => {
+      if (p.get('path') !== oldPath) { return p }
+      return p.set('path', newPath)
+    })
+  },
 
 }, null)

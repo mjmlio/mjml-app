@@ -26,6 +26,7 @@ class ConfirmModal extends Component {
       nopCTA,
       onConfirm,
       onCancel,
+      isConfirmDisabled,
       className,
       children,
       ...props
@@ -42,6 +43,7 @@ class ConfirmModal extends Component {
           <Button
             primary
             onClick={onConfirm}
+            disabled={isConfirmDisabled}
           >
             {yepCTA}
           </Button>
