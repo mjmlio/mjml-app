@@ -8,6 +8,7 @@ export function loadSettings () {
   return async dispatch => {
     const res = await storageGet('settings')
     const settings = defaultsDeep(res, {
+      lastOpenedFolder: null,
       editor: {},
       projects: [],
       api: {},
@@ -56,5 +57,13 @@ export function updateSettings (updater) {
       payload: updater,
     })
     dispatch(saveSettings())
+  }
+}
+
+export function saveLastOpenedFolder (path) {
+  return (dispatch) => {
+    dispatch(updateSettings(settings => {
+      return settings.set('lastOpenedFolder', path)
+    }))
   }
 }

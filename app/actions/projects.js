@@ -1,10 +1,12 @@
 import fs from 'fs'
+import os from 'os'
 import path from 'path'
 import { replace } from 'react-router-redux'
 
 import {
   saveSettings,
   cleanBadProjects,
+  saveLastOpenedFolder,
 } from 'actions/settings'
 
 import {
@@ -18,10 +20,14 @@ import {
 
 import mjml2html from 'helpers/mjml'
 
+const HOME_DIR = os.homedir()
+
 export function addProject (p) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     if (!p) {
+      const state = getState()
       p = fileDialog({
+        defaultPath: state.settings.get('lastOpenedFolder') || HOME_DIR,
         properties: [
           'openDirectory',
           'createDirectory',
@@ -32,6 +38,7 @@ export function addProject (p) {
 
     await fsAccess(p, fs.constants.R_OK | fs.constants.W_OK)
 
+    dispatch(saveLastOpenedFolder(p))
     dispatch(openProject(p))
   }
 }

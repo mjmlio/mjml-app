@@ -45,6 +45,7 @@ const defaultState = {
 
 @connect(state => ({
   isOpened: isModalOpened(state, 'newProject'),
+  lastOpenedFolder: state.settings.get('lastOpenedFolder'),
 }), dispatch => ({
   closeModal: () => dispatch(closeModal('newProject')),
   ...bindActionCreators({
@@ -57,6 +58,11 @@ class NewProjectModal extends Component {
   state = defaultState
 
   componentWillReceiveProps (nextProps) {
+    if (!this.props.isOpened && nextProps.isOpened) {
+      this.setState({
+        projectLocation: this.props.lastOpenedFolder || HOME_DIR,
+      })
+    }
     if (this.props.isOpened && !nextProps.isOpened) {
 
       // prevent flashing the resetted content
@@ -80,7 +86,9 @@ class NewProjectModal extends Component {
   }
 
   handleBrowse = () => {
+    const { lastOpenedFolder } = this.props
     const p = fileDialog({
+      defaultPath: lastOpenedFolder || undefined,
       properties: [
         'openDirectory',
         'createDirectory',

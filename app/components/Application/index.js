@@ -48,8 +48,8 @@ class Application extends Component {
         {projects && this.props.children}
 
         {settings && <SettingsModal />}
+        {settings && <NewProjectModal />}
 
-        <NewProjectModal />
         <Alerts />
         <NotifsPanel />
 

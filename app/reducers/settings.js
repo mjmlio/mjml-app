@@ -7,6 +7,7 @@ export default handleActions({
 
   SETTINGS_LOAD_SUCCESS: (state, { payload }) => {
     return Map({
+      lastOpenedFolder: payload.lastOpenedFolder,
       projects: List(payload.projects),
       editor: Map(payload.editor),
       api: Map(payload.api),
