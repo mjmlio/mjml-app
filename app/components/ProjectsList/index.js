@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import cx from 'classnames'
 import path from 'path'
 import { connect } from 'react-redux'
 import IconClose from 'react-icons/md/close'
@@ -31,10 +30,14 @@ class ProjectsList extends Component {
     this._isUnmounted = true
   }
 
-  handleRemoveProject = path => () => this.safeSetState({
-    pathToDelete: path,
-    isModalOpened: true,
-  })
+  handleRemoveProject = path => e => {
+    e.preventDefault()
+    e.stopPropagation()
+    this.safeSetState({
+      pathToDelete: path,
+      isModalOpened: true,
+    })
+  }
 
   handleConfirmRemove = () => {
     const { pathToDelete, shouldDeleteFolder } = this.state
@@ -58,7 +61,6 @@ class ProjectsList extends Component {
 
     const {
       openProject,
-      isEditing,
       projects,
     } = this.props
 
@@ -68,18 +70,16 @@ class ProjectsList extends Component {
     } = this.state
 
     return (
-      <div
-        className={cx('ProjectsList abs o-n', { isEditing })}
-      >
+      <div className='ProjectsList abs o-n'>
         {projects.reverse().map((p) => (
           <button
             className='ProjectItem'
             key={p}
-            onClick={isEditing ? undefined : () => openProject(p.get('path'))}
-            tabIndex={isEditing ? -1 : 0}
+            onClick={() => openProject(p.get('path'))}
+            tabIndex={0}
           >
             <Tabbable
-              className={cx('ProjectItem--delete-btn', { visible: isEditing })}
+              className='ProjectItem--delete-btn'
               onClick={this.handleRemoveProject(p.get('path'))}
             >
               <IconClose color='#fff' />

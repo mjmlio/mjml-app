@@ -4,15 +4,6 @@
   overflow: auto;
   margin: -10px;
   padding: 5px;
-  &.isEditing {
-    .ProjectItem--preview-container {
-      transform: scale(0.9);
-      opacity: 0.8;
-    }
-    .ProjectItem {
-      pointer-events: none;
-    }
-  }
 }
 
 .ProjectItem {
@@ -23,6 +14,11 @@
   padding: 5px;
   margin-right: 20px;
   margin-bottom: 40px;
+  &:hover {
+    .ProjectItem--delete-btn {
+      opacity: 1;
+    }
+  }
 }
 
 .ProjectItem--preview-container {
@@ -45,8 +41,8 @@
 .ProjectItem--delete-btn {
   pointer-events: auto;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: -3px;
+  top: -3px;
   background: #ca2d2d;
   z-index: 40;
   display: flex;
@@ -55,14 +51,8 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  transform-origin: center center;
   transition: 200ms ease-in-out all;
   opacity: 0;
-  transform: translate3d(-5px, 5px, 0);
-  &.visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
   &:hover {
     background: lighten(#ca2d2d, 10);
   }
