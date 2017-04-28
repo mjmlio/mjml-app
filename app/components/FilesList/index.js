@@ -267,6 +267,7 @@ class FilesList extends Component {
           <SplitPane
             split='vertical'
             defaultSize={180}
+            minSize={2}
             maxSize={250}
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
