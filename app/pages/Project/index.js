@@ -86,7 +86,11 @@ class ProjectPage extends Component {
   }
 
   handleOpenInBrowser = () => {
-    shell.openItem(this.state.path)
+    if (process.platform === 'darwin') {
+      shell.showItemInFolder(this.state.path)
+    } else {
+      shell.openItem(this.state.path)
+    }
   }
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
