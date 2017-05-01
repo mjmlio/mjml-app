@@ -1,3 +1,13 @@
+### 2.0.1 (2017-05-01)
+
+- Link to online documentation in app menu ([#109](https://github.com/mjmlio/mjml-app/issues/109))
+- Display project name in project view ([#108](https://github.com/mjmlio/mjml-app/issues/108))
+- Ability to rename file inside project ([#104](https://github.com/mjmlio/mjml-app/issues/104))
+- Ability to rename projects and option to remove them from fs when remove from list ([#103](https://github.com/mjmlio/mjml-app/issues/103))
+- Ability to hide file list on project view ([#105](https://github.com/mjmlio/mjml-app/issues/105))
+- On OSX, ensure opened Finder is on top when opening project ([#106](https://github.com/mjmlio/mjml-app/issues/106))
+- Remember last created project destination ([#107](https://github.com/mjmlio/mjml-app/issues/107))
+
 ### 2.0.1 (2017-04-26)
 
 - [FIX] Reset Codemirror history when switching file
