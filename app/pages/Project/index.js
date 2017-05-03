@@ -4,12 +4,13 @@ import rimraf from 'rimraf'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
-import IconEmail from 'react-icons/md/email'
-import IconCode from 'react-icons/md/code'
 import IconCopy from 'react-icons/md/content-copy'
+import IconCode from 'react-icons/md/code'
+import IconCamera from 'react-icons/md/camera-alt'
+import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import fs from 'fs'
-import { shell, clipboard } from 'electron'
+import { shell, clipboard, remote } from 'electron'
 
 import defaultMJML from 'data/defaultMJML'
 
@@ -30,6 +31,7 @@ import RemoveFileModal from './RemoveFileModal'
 
 @connect(state => ({
   preview: state.preview,
+  previewSize: state.settings.get('previewSize'),
 }), {
   openModal,
   addAlert,
@@ -119,6 +121,39 @@ class ProjectPage extends Component {
     addAlert('Successfully exported HTML', 'success')
     this._filelist.refresh()
   }
+  
+  handleScreenshot = async () => {
+    const previewWidth = this.props.previewSize._root.entries[0][1]
+    const windowSize = remote.getCurrentWindow().getSize()
+    console.log(window)
+    const takeScreenshot = () => {
+      return new Promise((resolve, reject) => {
+        remote.getCurrentWindow().capturePage({x: windowSize[0] - previewWidth + 6, y: 60, width: previewWidth, height: windowSize[1] - 60}, function handleCapture (img) {
+          resolve(img.toPng())
+        })
+      })
+    }
+    
+    const p = saveDialog({
+      title: 'Save a screenshot',
+      defaultPath: this.props.location.query.path,
+      filters: [
+        { name: 'All Files', extensions: ['png', 'jpg'] },
+      ],
+    })
+    
+    if (!p) { return }
+
+    const {
+      preview,
+      addAlert,
+    } = this.props
+  
+    let screenshot = await takeScreenshot()
+    await fsWriteFile(p, screenshot)
+    addAlert('Successfully saved a screenshot', 'success')
+    this._filelist.refresh()
+  }
 
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
@@ -169,6 +204,14 @@ class ProjectPage extends Component {
               >
                 <IconCode style={{ marginRight: 5 }} />
                 {'Export HTML'}
+              </Button>,
+              <Button
+                key={'screenshot'}
+                transparent
+                onClick={this.handleScreenshot}
+              >
+                <IconCamera style={{ marginRight: 5 }} />
+                {'Screenshot'}
               </Button>,
               <Button
                 key={'send'}
