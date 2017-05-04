@@ -36,6 +36,12 @@ class FileEditor extends Component {
     isLoading: true,
   }
 
+  componentWillMount () {
+    // used to store different histories, for ability to restore
+    // it when switching to another file then switching back
+    this._historyCache = {}
+  }
+
   componentDidMount () {
     window.requestIdleCallback(() => {
       this.initEditor()
@@ -51,6 +57,8 @@ class FileEditor extends Component {
 
   componentDidUpdate (prevProps) {
     if (prevProps.fileName !== this.props.fileName) {
+      // backup history
+      this._historyCache[prevProps.fileName] = this._codeMirror.getHistory()
       this.loadContent()
     }
     if (prevProps.wrapLines !== this.props.wrapLines) {
@@ -77,7 +85,12 @@ class FileEditor extends Component {
       const content = await fsReadFile(fileName, { encoding: 'utf8' })
       if (!this._codeMirror) { return }
       this._codeMirror.setValue(content)
-      this._codeMirror.clearHistory()
+      // load history if exists, else, clear it.
+      if (this._historyCache[fileName]) {
+        this._codeMirror.setHistory(this._historyCache[fileName])
+      } else {
+        this._codeMirror.clearHistory()
+      }
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line
 
