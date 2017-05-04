@@ -29,6 +29,8 @@ import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
+import takeScreenshot from 'helpers/takeScreenshot'
+
 @connect(state => ({
   preview: state.preview,
   previewSize: state.settings.get('previewSize'),
@@ -114,6 +116,7 @@ class ProjectPage extends Component {
 
     const {
       preview,
+      previewSize,
       addAlert,
     } = this.props
 
@@ -123,35 +126,29 @@ class ProjectPage extends Component {
   }
   
   handleScreenshot = async () => {
-    const previewWidth = this.props.previewSize._root.entries[0][1]
-    const windowSize = remote.getCurrentWindow().getSize()
-    console.log(window)
-    const takeScreenshot = () => {
-      return new Promise((resolve, reject) => {
-        remote.getCurrentWindow().capturePage({x: windowSize[0] - previewWidth + 6, y: 60, width: previewWidth, height: windowSize[1] - 60}, function handleCapture (img) {
-          resolve(img.toPng())
-        })
-      })
-    }
-    
-    const p = saveDialog({
-      title: 'Save a screenshot',
-      defaultPath: this.props.location.query.path,
-      filters: [
-        { name: 'All Files', extensions: ['png', 'jpg'] },
-      ],
-    })
-    
-    if (!p) { return }
-
     const {
       preview,
+      previewSize,
       addAlert,
+      location,
     } = this.props
+    
+    let filename = this.state.activeFile.name
+    const i = filename.lastIndexOf('.')
+    if (i != -1) {
+      filename = filename.substr(0, i)
+    }
   
-    let screenshot = await takeScreenshot()
-    await fsWriteFile(p, screenshot)
-    addAlert('Successfully saved a screenshot', 'success')
+    const [mobileWidth, desktopWidth] = [previewSize._root.entries[1][1], previewSize._root.entries[2][1]]
+
+    console.log(preview)
+    const mobileScreenshot = await takeScreenshot(preview.content, mobileWidth)
+    const desktopScreenshot = await takeScreenshot(preview.content, desktopWidth)
+
+    await fsWriteFile(`${location.query.path}/${filename}-mobile.png`, mobileScreenshot)
+    await fsWriteFile(`${location.query.path}/${filename}-desktop.png`, desktopScreenshot)
+    
+    addAlert('Successfully saved mobile and desktop screenshots', 'success')
     this._filelist.refresh()
   }
 
