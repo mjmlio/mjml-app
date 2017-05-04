@@ -7,18 +7,21 @@ export default async function takeScreenshot (html, deviceWidth) {
       show: false
     })
     
-    win.loadURL(`data:text/html, ${encodeURIComponent(html)}`)
+    console.log(html)
+    
+    win.loadURL(`data:text/html, ${html}`)
     
     win.webContents.on('did-finish-load', () => {
       // Window is not fully loaded after this event, hence setTimeout()...
+      win.webContents.executeJavaScript(`document.querySelector('body').getBoundingClientRect().height`, (height) => {
+        win.setSize(deviceWidth, height)
+      })
       setTimeout(() => {
-        win.webContents.executeJavaScript(`document.querySelector('body').getBoundingClientRect().height`, function (result) {
-          console.log(result)
-        })
         win.webContents.capturePage(function handleCapture (img) {
-            resolve(img.toPng())
-        }) 
-      }, 100)
+          win.close()
+          resolve(img.toPng())
+        })
+      }, 500)
     })
   })
 }

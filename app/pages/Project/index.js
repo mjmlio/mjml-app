@@ -133,17 +133,11 @@ class ProjectPage extends Component {
       location,
     } = this.props
     
-    let filename = this.state.activeFile.name
-    const i = filename.lastIndexOf('.')
-    if (i != -1) {
-      filename = filename.substr(0, i)
-    }
+    const filename = pathModule.basename(this.state.activeFile.name, `.mjml`) 
   
-    const [mobileWidth, desktopWidth] = [previewSize._root.entries[1][1], previewSize._root.entries[2][1]]
+    const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
 
-    console.log(preview)
-    const mobileScreenshot = await takeScreenshot(preview.content, mobileWidth)
-    const desktopScreenshot = await takeScreenshot(preview.content, desktopWidth)
+    const [mobileScreenshot, desktopScreenshot] = await Promise.all([takeScreenshot(preview.content, mobileWidth), takeScreenshot(preview.content, desktopWidth)])
 
     await fsWriteFile(`${location.query.path}/${filename}-mobile.png`, mobileScreenshot)
     await fsWriteFile(`${location.query.path}/${filename}-desktop.png`, desktopScreenshot)
