@@ -12,7 +12,9 @@ export default async function takeScreenshot (html, deviceWidth) {
     win.webContents.on('did-finish-load', () => {
       // Window is not fully loaded after this event, hence setTimeout()...
       setTimeout(() => {
-        console.log(win.webContents)
+        win.webContents.executeJavaScript(`document.querySelector('body').getBoundingClientRect().height`, function (result) {
+          console.log(result)
+        })
         win.webContents.capturePage(function handleCapture (img) {
             resolve(img.toPng())
         }) 
