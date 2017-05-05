@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
+import IconBeautify from 'react-icons/md/autorenew'
 import CodeMirror from 'codemirror'
 
 import 'codemirror/addon/selection/active-line'
@@ -15,10 +16,12 @@ import 'codemirror/addon/dialog/dialog'
 import 'codemirror/addon/scroll/annotatescrollbar'
 import 'codemirror/addon/search/matchesonscrollbar'
 import 'codemirror/mode/xml/xml'
+import 'helpers/codemirror-util-autoformat'
 
 import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
+import Button from 'components/Button'
 
 import './styles.scss'
 
@@ -162,6 +165,13 @@ class FileEditor extends Component {
     }
   }, 200)
 
+  handleBeautify = () => {
+    const totalLines = this._codeMirror.lineCount()
+    const totalChars = this._codeMirror.getTextArea().value.length
+    this._codeMirror.autoFormatRange({ line: 0, ch: 0 }, { line: totalLines, ch: totalChars })
+    this._codeMirror.setCursor({ line: 0, ch: 0 })
+  }
+
   debounceWrite = debounce((fileName, mjml) => {
     fsWriteFile(fileName, mjml)
   }, 500)
@@ -191,6 +201,17 @@ class FileEditor extends Component {
           pointerEvents: disablePointer ? 'none' : 'auto',
         }}
       >
+        <div className='FileEditor--actions'>
+          <Button
+            ghost
+            className='r'
+            data-balloon='Beautify MJML'
+            data-balloon-pos='down'
+            onClick={this.handleBeautify}
+          >
+            <IconBeautify />
+          </Button>
+        </div>
         {isLoading && (
           <div className='sticky z FileEditor--loader'>
             {'...'}

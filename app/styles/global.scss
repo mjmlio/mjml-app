@@ -1,8 +1,15 @@
 @import "~codemirror/addon/dialog/dialog.css";
 @import "~codemirror/addon/search/matchesonscrollbar.css";
+@import "~balloon-css/balloon.css";
 
 @import "./vars.scss";
 @import "./animations.scss";
+
+[data-balloon]:before,
+[data-balloon]:after {
+  transition: none !important;
+  color: $evenLighterGrey;
+}
 
 *, *:before, *:after {
   box-sizing: border-box;

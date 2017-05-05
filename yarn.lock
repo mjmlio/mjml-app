@@ -1352,6 +1352,10 @@ balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
 
+balloon-css@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/balloon-css/-/balloon-css-0.4.0.tgz#0d6edf8bf595f16b21ef88a6a676caa5a418b955"
+
 base64-js@1.1.2, base64-js@^1.0.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
