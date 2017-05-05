@@ -29,7 +29,7 @@ class CheckBox extends Component {
     return (
       <div
         tabIndex={0}
-        className='Checkbox d-f ai-c cu-d t-small focus'
+        className='Checkbox d-f ai-fs cu-d t-small focus'
         onKeyDown={this.handleKeyDown}
         onClick={() => onChange(!value)}
       >
@@ -40,7 +40,9 @@ class CheckBox extends Component {
             <IconUnchecked size={15} />
           )}
         </div>
-        {children}
+        <div>
+          {children}
+        </div>
       </div>
     )
   }

@@ -68,6 +68,8 @@ class SettingsModal extends Component {
     } = this.state
 
     const editorWrapLines = settings.getIn(['editor', 'wrapLines'], true)
+    const autoFold = settings.getIn(['editor', 'autoFold'], false)
+    const foldLevel = settings.getIn(['editor', 'foldLevel'], 1)
 
     return (
       <Modal
@@ -91,6 +93,26 @@ class SettingsModal extends Component {
               <div className='flow-v-10'>
                 <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
                   {'Wrap lines'}
+                </CheckBox>
+                <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
+                  <div>
+                    {'Auto fold lines when opening file'}
+                  </div>
+                  <div className='mt-5'>
+                    {'Fold level:'}
+                    <input
+                      className='ml-5'
+                      type='number'
+                      min={1}
+                      style={{ width: 80 }}
+                      value={foldLevel}
+                      onClick={e => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                      }}
+                      onChange={e => this.changeEditorSetting('foldLevel')(Number(e.target.value))}
+                    />
+                  </div>
                 </CheckBox>
               </div>
             </div>

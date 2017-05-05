@@ -16,6 +16,7 @@ import 'codemirror/addon/scroll/annotatescrollbar'
 import 'codemirror/addon/search/matchesonscrollbar'
 import 'codemirror/mode/xml/xml'
 
+import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
 
@@ -26,6 +27,8 @@ import './styles.scss'
   return {
     mjmlEngine: settings.getIn(['mjml', 'engine'], 'auto'),
     wrapLines: settings.getIn(['editor', 'wrapLines'], true),
+    autoFold: settings.getIn(['editor', 'autoFold']),
+    foldLevel: settings.getIn(['editor', 'foldLevel']),
   }
 }, {
   setPreview,
@@ -64,6 +67,12 @@ class FileEditor extends Component {
     if (prevProps.wrapLines !== this.props.wrapLines) {
       this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
     }
+    if (
+      (!prevProps.autoFold && this.props.autoFold)
+      || (this.props.autoFold && (this.props.foldLevel !== prevProps.foldLevel))
+    ) {
+      foldByLevel(this._codeMirror, this.props.foldLevel)
+    }
   }
 
   componentWillUnmount () {
@@ -74,7 +83,13 @@ class FileEditor extends Component {
   }
 
   async loadContent () {
-    const { fileName } = this.props
+
+    const {
+      fileName,
+      autoFold,
+      foldLevel,
+    } = this.props
+
     const { isLoading } = this.state
 
     if (!isLoading) {
@@ -90,6 +105,10 @@ class FileEditor extends Component {
         this._codeMirror.setHistory(this._historyCache[fileName])
       } else {
         this._codeMirror.clearHistory()
+      }
+      // fold lines on mjml files, based on settings
+      if (autoFold && fileName.endsWith('.mjml')) {
+        foldByLevel(this._codeMirror, foldLevel)
       }
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line

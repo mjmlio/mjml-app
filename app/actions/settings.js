@@ -9,7 +9,11 @@ export function loadSettings () {
     const res = await storageGet('settings')
     const settings = defaultsDeep(res, {
       lastOpenedFolder: null,
-      editor: {},
+      editor: {
+        wrapLines: true,
+        autoFold: false,
+        foldLevel: 1,
+      },
       projects: [],
       api: {},
       previewSize: {
