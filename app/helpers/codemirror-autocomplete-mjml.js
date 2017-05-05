@@ -30,7 +30,7 @@ const tags = {
   'mj-table': {},
   'mj-text': {},
   'mj-wrapper': {},
-};
+}
 
 export function completeAfter(cm, pred) {
   var cur = cm.getCursor();
