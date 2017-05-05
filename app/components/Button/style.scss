@@ -41,3 +41,43 @@
     pointer-events: none;
   }
 }
+
+.ButtonDropdown--dropdown {
+  position: absolute;
+  top: 100%; right: 0;
+  margin-top: 2px;
+  background: $bg-light;
+  box-shadow: rgba(black, 0.2) 0 15px 100px;
+  z-index: 1;
+}
+
+.ButtonDropdown--dropdown-item {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  user-select: none;
+  cursor: default;
+  &:hover {
+    color: white;
+    background: rgba(white, 0.05);
+  }
+
+  &.isActive {
+    background: $blue;
+    color: white;
+  }
+
+  & + & {
+    border-top: 1px solid rgba(black, 0.3);
+  }
+}
+
+.ButtonDropdown--dropdown-item-icon {
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.ButtonDropdown--dropdown-item-title {
+  white-space: pre;
+}

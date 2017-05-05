@@ -4,9 +4,10 @@ import rimraf from 'rimraf'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
-import IconEmail from 'react-icons/md/email'
-import IconCode from 'react-icons/md/code'
 import IconCopy from 'react-icons/md/content-copy'
+import IconCode from 'react-icons/md/code'
+import IconCamera from 'react-icons/md/camera-alt'
+import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
@@ -20,6 +21,7 @@ import { setPreview } from 'actions/preview'
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
+import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FilesList from 'components/FilesList'
 import NotifBtn from 'components/Notifs/NotifBtn'
 
@@ -28,8 +30,11 @@ import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
+import takeScreenshot from 'helpers/takeScreenshot'
+
 @connect(state => ({
   preview: state.preview,
+  previewSize: state.settings.get('previewSize'),
 }), {
   openModal,
   addAlert,
@@ -120,6 +125,32 @@ class ProjectPage extends Component {
     this._filelist.refresh()
   }
 
+  handleScreenshot = async () => {
+    const {
+      preview,
+      previewSize,
+      addAlert,
+      location,
+    } = this.props
+
+    const filename = pathModule.basename(this.state.activeFile.name, '.mjml')
+
+    const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
+
+    const [mobileScreenshot, desktopScreenshot] = await Promise.all([
+      takeScreenshot(preview.content, mobileWidth),
+      takeScreenshot(preview.content, desktopWidth),
+    ])
+
+    await Promise.all([
+      fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
+      fsWriteFile(pathModule.join(location.query.path, `${filename}-desktop.png`), desktopScreenshot),
+    ])
+
+    addAlert('Successfully saved mobile and desktop screenshots', 'success')
+    this._filelist.refresh()
+  }
+
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
@@ -153,23 +184,14 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className='d-f flow-h-10'>
+            <Button
+              transparent
+              onClick={this.handleOpenInBrowser}
+            >
+              <FaFolderOpen style={{ marginRight: 5 }} />
+              {'Open'}
+            </Button>
             {preview && preview.type === 'html' && [
-              <Button
-                key={'copy'}
-                transparent
-                onClick={this.handleCopyHTML}
-              >
-                <IconCopy style={{ marginRight: 5 }} />
-                {'Copy HTML'}
-              </Button>,
-              <Button
-                key={'export'}
-                transparent
-                onClick={this.handleExportToHTML}
-              >
-                <IconCode style={{ marginRight: 5 }} />
-                {'Export HTML'}
-              </Button>,
               <Button
                 key={'send'}
                 transparent
@@ -178,14 +200,32 @@ class ProjectPage extends Component {
                 <IconEmail style={{ marginRight: 5 }} />
                 {'Send'}
               </Button>,
+              <ButtonDropdown
+                ghost
+                key={'export'}
+                dropdownWidth={300}
+                actions={[
+                  {
+                    icon: <IconCopy />,
+                    label: 'Copy HTML',
+                    desc: 'Copy the result HTML to clipboard',
+                    onClick: this.handleCopyHTML,
+                  },
+                  {
+                    icon: <IconCode />,
+                    label: 'Export to HTML file',
+                    desc: 'Save the result HTML file to disk',
+                    onClick: this.handleExportToHTML,
+                  },
+                  {
+                    icon: <IconCamera />,
+                    label: 'Screenshot',
+                    desc: 'Save a screeshot of mobile & desktop result',
+                    onClick: this.handleScreenshot,
+                  },
+                ]}
+              />,
             ]}
-            <Button
-              transparent
-              onClick={this.handleOpenInBrowser}
-            >
-              <FaFolderOpen style={{ marginRight: 5 }} />
-              {'Open'}
-            </Button>
           </div>
           <Button
             className='ml-10'
