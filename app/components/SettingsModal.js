@@ -92,7 +92,13 @@ class SettingsModal extends Component {
                 <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
                   {'Wrap lines'}
                 </CheckBox>
+              </div>
+            </div>
 
+            <div>
+              <h2 className='secondary mb-10'>{'Preview'}</h2>
+
+              <div className='flow-v-10'>
                 <div className='d-f ai-c flow-h-5'>
                   <IconMobile size={20} />
                   <input
@@ -121,7 +127,6 @@ class SettingsModal extends Component {
                   </span>
                 </div>
               </div>
-
             </div>
 
           </div>
