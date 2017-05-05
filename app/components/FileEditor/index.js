@@ -149,15 +149,15 @@ class FileEditor extends Component {
       },
       lineWrapping: wrapLines,
       extraKeys: {
-        "'<'": completeAfter,
-        "'/'": completeIfAfterLt,
-        "' '": completeIfInTag,
-        "'='": completeIfInTag,
-        "Ctrl-Space": "autocomplete"
+        '"<"': completeAfter,
+        '"/"': completeIfAfterLt,
+        '" "': completeIfInTag,
+        '"="': completeIfInTag,
+        'Ctrl-Space': 'autocomplete',
       },
       hintOptions: {
-        schemaInfo: autocompleteTags
-      }
+        schemaInfo: autocompleteTags,
+      },
     })
     this._codeMirror.on('change', this.handleChange)
   }
