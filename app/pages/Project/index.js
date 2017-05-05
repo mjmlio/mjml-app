@@ -139,8 +139,10 @@ class ProjectPage extends Component {
 
     const [mobileScreenshot, desktopScreenshot] = await Promise.all([takeScreenshot(preview.content, mobileWidth), takeScreenshot(preview.content, desktopWidth)])
 
-    await fsWriteFile(`${location.query.path}/${filename}-mobile.png`, mobileScreenshot)
-    await fsWriteFile(`${location.query.path}/${filename}-desktop.png`, desktopScreenshot)
+    await Promise.all([
+      fsWriteFile(pathModule.join(location.query.path,`${filename}-mobile.png`), mobileScreenshot),
+      fsWriteFile(pathModule.join(location.query.path,`${filename}-desktop.png`), desktopScreenshot)
+    ])
     
     addAlert('Successfully saved mobile and desktop screenshots', 'success')
     this._filelist.refresh()
