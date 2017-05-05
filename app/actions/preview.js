@@ -30,6 +30,11 @@ export function setPreview (fileName, content = '') {
       }
       dispatch(setPrev({ type: 'html', content }))
       break
+    case '.jpg':
+    case '.png':
+    case '.gif':
+      dispatch(setPrev({ type: 'image', content: fileName }))
+      break
     case '.mjml':
       if (!content) {
         content = await fsReadFile(fileName, { encoding: 'utf8' })

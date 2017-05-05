@@ -107,6 +107,8 @@ class FilePreview extends Component {
                     }}
                     ref={n => this._iframe = n}
                   />
+                ) : preview.type === 'image' ? (
+                  <img src={preview.content} />
                 ) : null
               ) : null}
             </div>

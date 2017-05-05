@@ -18,6 +18,13 @@ import FilePreview from './FilePreview'
 
 import './styles.scss'
 
+const HANDLED_EXTENSIONS = [
+  '.html',
+  '.png',
+  '.jpg',
+  '.gif',
+]
+
 function renameFile (path, oldName, newName, files) {
   if (oldName === newName) { return }
   const filesWithoutOld = files.filter(f => f.name !== oldName)
@@ -104,11 +111,7 @@ class FilesList extends Component {
     // preview will be set by the onChange on editor
     // no need to trigger it here
     if (!p.endsWith('.mjml')) {
-      if (p.endsWith('.html')) {
-        this.props.setPreview(p)
-      } else {
-        this.props.setPreview(null)
-      }
+      this.props.setPreview(p)
     }
     this.props.onActiveFileChange(f)
   }
