@@ -10,7 +10,7 @@ import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import fs from 'fs'
-import { shell, clipboard, remote } from 'electron'
+import { shell, clipboard } from 'electron'
 
 import defaultMJML from 'data/defaultMJML'
 
@@ -116,7 +116,6 @@ class ProjectPage extends Component {
 
     const {
       preview,
-      previewSize,
       addAlert,
     } = this.props
 
@@ -124,7 +123,7 @@ class ProjectPage extends Component {
     addAlert('Successfully exported HTML', 'success')
     this._filelist.refresh()
   }
-  
+
   handleScreenshot = async () => {
     const {
       preview,
@@ -132,18 +131,18 @@ class ProjectPage extends Component {
       addAlert,
       location,
     } = this.props
-    
-    const filename = pathModule.basename(this.state.activeFile.name, `.mjml`) 
-  
+
+    const filename = pathModule.basename(this.state.activeFile.name, '.mjml')
+
     const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
 
     const [mobileScreenshot, desktopScreenshot] = await Promise.all([takeScreenshot(preview.content, mobileWidth), takeScreenshot(preview.content, desktopWidth)])
 
     await Promise.all([
-      fsWriteFile(pathModule.join(location.query.path,`${filename}-mobile.png`), mobileScreenshot),
-      fsWriteFile(pathModule.join(location.query.path,`${filename}-desktop.png`), desktopScreenshot)
+      fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
+      fsWriteFile(pathModule.join(location.query.path, `${filename}-desktop.png`), desktopScreenshot),
     ])
-    
+
     addAlert('Successfully saved mobile and desktop screenshots', 'success')
     this._filelist.refresh()
   }
