@@ -1,13 +1,22 @@
 import { remote } from 'electron'
+import path from 'path'
+import os from 'os'
+
+import { fsWriteFile } from 'helpers/fs'
+
+const TMP_DIR = os.tmpdir()
 
 export default async function takeScreenshot (html, deviceWidth) {
-  return new Promise(resolve => {
+  return new Promise(async resolve => {
     const win = new remote.BrowserWindow({
       width: deviceWidth,
       show: false,
     })
 
-    win.loadURL(`data:text/html, ${html}`)
+    const tmpFileName = path.join(TMP_DIR, 'tpm-mjml-preview.html')
+    await fsWriteFile(tmpFileName, html)
+
+    win.loadURL(`file://${tmpFileName}`)
 
     win.webContents.on('did-finish-load', () => {
       // Window is not fully loaded after this event, hence setTimeout()...
