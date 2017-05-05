@@ -21,6 +21,7 @@ import { setPreview } from 'actions/preview'
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
+import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FilesList from 'components/FilesList'
 import NotifBtn from 'components/Notifs/NotifBtn'
 
@@ -136,7 +137,10 @@ class ProjectPage extends Component {
 
     const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
 
-    const [mobileScreenshot, desktopScreenshot] = await Promise.all([takeScreenshot(preview.content, mobileWidth), takeScreenshot(preview.content, desktopWidth)])
+    const [mobileScreenshot, desktopScreenshot] = await Promise.all([
+      takeScreenshot(preview.content, mobileWidth),
+      takeScreenshot(preview.content, desktopWidth),
+    ])
 
     await Promise.all([
       fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
@@ -180,31 +184,14 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className='d-f flow-h-10'>
+            <Button
+              transparent
+              onClick={this.handleOpenInBrowser}
+            >
+              <FaFolderOpen style={{ marginRight: 5 }} />
+              {'Open'}
+            </Button>
             {preview && preview.type === 'html' && [
-              <Button
-                key={'copy'}
-                transparent
-                onClick={this.handleCopyHTML}
-              >
-                <IconCopy style={{ marginRight: 5 }} />
-                {'Copy HTML'}
-              </Button>,
-              <Button
-                key={'export'}
-                transparent
-                onClick={this.handleExportToHTML}
-              >
-                <IconCode style={{ marginRight: 5 }} />
-                {'Export HTML'}
-              </Button>,
-              <Button
-                key={'screenshot'}
-                transparent
-                onClick={this.handleScreenshot}
-              >
-                <IconCamera style={{ marginRight: 5 }} />
-                {'Screenshot'}
-              </Button>,
               <Button
                 key={'send'}
                 transparent
@@ -213,14 +200,32 @@ class ProjectPage extends Component {
                 <IconEmail style={{ marginRight: 5 }} />
                 {'Send'}
               </Button>,
+              <ButtonDropdown
+                ghost
+                key={'export'}
+                dropdownWidth={300}
+                actions={[
+                  {
+                    icon: <IconCopy />,
+                    label: 'Copy HTML',
+                    desc: 'Copy the result HTML to clipboard',
+                    onClick: this.handleCopyHTML,
+                  },
+                  {
+                    icon: <IconCode />,
+                    label: 'Export to HTML file',
+                    desc: 'Save the result HTML file to disk',
+                    onClick: this.handleExportToHTML,
+                  },
+                  {
+                    icon: <IconCamera />,
+                    label: 'Screenshot',
+                    desc: 'Save a screeshot of mobile & desktop result',
+                    onClick: this.handleScreenshot,
+                  },
+                ]}
+              />,
             ]}
-            <Button
-              transparent
-              onClick={this.handleOpenInBrowser}
-            >
-              <FaFolderOpen style={{ marginRight: 5 }} />
-              {'Open'}
-            </Button>
           </div>
           <Button
             className='ml-10'
