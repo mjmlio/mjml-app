@@ -1,4 +1,5 @@
 @import "~codemirror/lib/codemirror.css";
+@import "~codemirror/addon/hint/show-hint.css";
 @import "../../styles/one-dark.scss";
 @import "../../styles/vars.scss";
 
@@ -20,6 +21,21 @@
       pointer-events: auto;
     }
   }
+}
+
+.CodeMirror-hints {
+  border: none;
+  background: $bg;
+}
+
+.CodeMirror-hint {
+  color: $almostWhite;
+  padding: 5px;
+}
+
+li.CodeMirror-hint-active {
+  background-color: rgba($blue, 0.1) !important;
+  color: $blue;
 }
 
 .FileEditor--loader {

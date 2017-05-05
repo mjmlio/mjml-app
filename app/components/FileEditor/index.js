@@ -16,7 +16,10 @@ import 'codemirror/addon/dialog/dialog'
 import 'codemirror/addon/scroll/annotatescrollbar'
 import 'codemirror/addon/search/matchesonscrollbar'
 import 'codemirror/mode/xml/xml'
+import 'codemirror/addon/hint/show-hint'
+import 'codemirror/addon/hint/xml-hint'
 import 'helpers/codemirror-util-autoformat'
+import { autocompleteTags, completeAfter, completeIfAfterLt, completeIfInTag } from 'helpers/codemirror-autocomplete-mjml'
 
 import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
@@ -145,6 +148,16 @@ class FileEditor extends Component {
         wordsOnly: true,
       },
       lineWrapping: wrapLines,
+      extraKeys: {
+        "'<'": completeAfter,
+        "'/'": completeIfAfterLt,
+        "' '": completeIfInTag,
+        "'='": completeIfInTag,
+        "Ctrl-Space": "autocomplete"
+      },
+      hintOptions: {
+        schemaInfo: autocompleteTags
+      }
     })
     this._codeMirror.on('change', this.handleChange)
   }
