@@ -3,19 +3,17 @@ import CodeMirror from 'codemirror'
 
 const tags = {
   'mj-accordion': {},
+  'mj-attributes': {},
   'mj-body': {},
   'mj-button': {},
   'mj-carousel': {},
-  'mj-cli': {},
   'mj-column': {},
   'mj-container': {},
   'mj-core': {},
   'mj-divider': {},
+  'mj-font': {},
   'mj-group': {},
-  'mj-head-attributes': {},
-  'mj-head-font': {},
-  'mj-head-style': {},
-  'mj-head-title': {},
+  'mj-head': {},
   'mj-hero': {},
   'mj-html': {},
   'mj-image': {},
@@ -27,8 +25,10 @@ const tags = {
   'mj-section': {},
   'mj-social': {},
   'mj-spacer': {},
+  'mj-style': {},
   'mj-table': {},
   'mj-text': {},
+  'mj-title': {},
   'mj-wrapper': {},
 }
 
