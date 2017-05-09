@@ -153,11 +153,11 @@ class FileEditor extends Component {
         "'/'": completeIfAfterLt,
         "' '": completeIfInTag,
         "'='": completeIfInTag,
-        'Ctrl-Space': 'autocomplete'
+        'Ctrl-Space': 'autocomplete',
       },
       hintOptions: {
-        schemaInfo: autocompleteTags
-      }
+        schemaInfo: autocompleteTags,
+      },
     })
     this._codeMirror.on('change', this.handleChange)
   }

@@ -1,35 +1,40 @@
 /* eslint-disable */
 import CodeMirror from 'codemirror'
 
-const tags = {
+const tags = { 
   'mj-accordion': {},
-  'mj-attributes': {},
-  'mj-body': {},
+  'mj-accordion-element': {},
+  'mj-accordion-title': {},
+  'mj-accordion-text': {},
   'mj-button': {},
   'mj-carousel': {},
+  'mj-carousel-image': {},
   'mj-column': {},
   'mj-container': {},
-  'mj-core': {},
   'mj-divider': {},
-  'mj-font': {},
   'mj-group': {},
-  'mj-head': {},
+  'mj-attributes': {},
+  'mj-font': {},
+  'mj-style': {},
+  'mj-title': {},
   'mj-hero': {},
+  'mj-hero-content': {},
   'mj-html': {},
   'mj-image': {},
   'mj-invoice': {},
+  'mj-invoice-item': {},
   'mj-list': {},
   'mj-location': {},
   'mj-navbar': {},
+  'mj-inline-links': {},
+  'mj-link': {},
   'mj-raw': {},
   'mj-section': {},
   'mj-social': {},
   'mj-spacer': {},
-  'mj-style': {},
   'mj-table': {},
   'mj-text': {},
-  'mj-title': {},
-  'mj-wrapper': {},
+  'mj-wrapper': {} 
 }
 
 export function completeAfter(cm, pred) {
