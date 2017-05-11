@@ -64,7 +64,7 @@ class HomePage extends Component {
             <IconOpen size={20} className='mr-5' />
             {'Open project'}
           </Button>
-          <div className={cx({ 'ml-auto': hasProjects })}>
+          <div className={cx('d-f', { 'ml-auto': hasProjects })}>
             <Button ghost onClick={() => openModal('settings')}>
               <FaCog />
             </Button>
