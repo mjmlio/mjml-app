@@ -149,11 +149,13 @@ class FileEditor extends Component {
       },
       lineWrapping: wrapLines,
       extraKeys: {
+        /* eslint-disable quotes */
         "'<'": completeAfter,
         "'/'": completeIfAfterLt,
         "' '": completeIfInTag,
         "'='": completeIfInTag,
         'Ctrl-Space': 'autocomplete',
+        /* eslint-enable quotes */
       },
       hintOptions: {
         schemaInfo: autocompleteTags,

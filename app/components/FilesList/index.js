@@ -18,13 +18,6 @@ import FilePreview from './FilePreview'
 
 import './styles.scss'
 
-const HANDLED_EXTENSIONS = [
-  '.html',
-  '.png',
-  '.jpg',
-  '.gif',
-]
-
 function renameFile (path, oldName, newName, files) {
   if (oldName === newName) { return }
   const filesWithoutOld = files.filter(f => f.name !== oldName)
