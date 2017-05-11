@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import path from 'path'
 import { connect } from 'react-redux'
-import IconClose from 'react-icons/md/close'
-import IconEdit from 'react-icons/md/mode-edit'
 
 import {
   openProject,
@@ -11,11 +8,10 @@ import {
 } from 'actions/projects'
 
 import CheckBox from 'components/CheckBox'
-import Preview from 'components/Preview'
 import ConfirmModal from 'components/Modal/ConfirmModal'
-import Tabbable from 'components/Tabbable'
 
 import RenameModal from './RenameModal'
+import ProjectItem from './ProjectItem'
 
 import './style.scss'
 
@@ -102,36 +98,13 @@ class ProjectsList extends Component {
     return (
       <div className='ProjectsList abs o-n'>
         {projects.reverse().map((p) => (
-          <div
-            className='ProjectItem'
+          <ProjectItem
             key={p}
-          >
-            <Tabbable
-              className='ProjectItem--delete-btn'
-              onClick={this.handleRemoveProject(p.get('path'))}
-            >
-              <IconClose color='#fff' />
-            </Tabbable>
-            <Tabbable
-              onClick={() => openProject(p.get('path'))}
-              className='ProjectItem--preview-container-wrapper'
-            >
-              <div className='ProjectItem--preview-container'>
-                <Preview scaled html={p.get('html', null)} />
-              </div>
-            </Tabbable>
-            <div className='d-f ai-b pl-5 pr-5'>
-              <div className='ProjectItem--label'>
-                {path.basename(p.get('path'))}
-              </div>
-              <button
-                className='ProjectItem--edit-btn ml-5 pl-5 pr-5'
-                onClick={this.handleEditProjectName(p.get('path'))}
-              >
-                <IconEdit />
-              </button>
-            </div>
-          </div>
+            p={p}
+            onRemove={this.handleRemoveProject(p.get('path'))}
+            onOpen={() => openProject(p.get('path'))}
+            onEditName={this.handleEditProjectName(p.get('path'))}
+          />
         ))}
         <ConfirmModal
           isOpened={isDeleteModalOpened}

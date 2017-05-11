@@ -57,7 +57,8 @@
   border-radius: 50%;
   width: 30px;
   height: 30px;
-  transition: 200ms ease-in-out all;
+  transition: 200ms ease-in-out;
+  transition-property: background, transform;
   opacity: 0;
   &:hover {
     background: lighten(#ca2d2d, 10);
