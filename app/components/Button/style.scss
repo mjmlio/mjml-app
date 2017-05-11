@@ -25,6 +25,10 @@
     }
   }
 
+  &:focus {
+    z-index: 1;
+  }
+
   &.ghost, &.transparent {
     color: $lighterGrey;
     &:hover, &:focus {

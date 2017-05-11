@@ -172,7 +172,7 @@ class ProjectPage extends Component {
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
-        <div className='d-f p-10'>
+        <div className='d-f p-10 r' style={{ zIndex: 2 }}>
           <div className='fg-1 flow-h-10'>
             <BackButton projectName={projectName} />
             <Button
@@ -238,7 +238,7 @@ class ProjectPage extends Component {
           <NotifBtn />
         </div>
 
-        <div className='fg-1 d-f fd-c'>
+        <div className='fg-1 d-f fd-c r' style={{ zIndex: 1 }}>
           <FilesList
             onRef={n => this._filelist = n}
             withPreview
