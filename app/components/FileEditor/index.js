@@ -5,6 +5,7 @@ import CodeMirror from 'codemirror'
 
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/closetag'
+import 'codemirror/addon/edit/matchtags'
 import 'codemirror/addon/fold/foldcode'
 import 'codemirror/addon/fold/foldgutter'
 import 'codemirror/addon/search/match-highlighter'
@@ -130,6 +131,7 @@ class FileEditor extends Component {
       this._codeMirror = null
     }
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
+      matchTags: { bothTags: true },
       indentUnit: 2,
       tabSize: 2,
       indentWithTabs: false,
