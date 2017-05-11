@@ -210,9 +210,8 @@ class FilesList extends Component {
   stopDrag = () => {
     this.setState({ isDragging: false })
     if (!this._editor) { return }
-    const editor = this._editor.getWrappedInstance()
-    editor.refresh()
-    editor.focus()
+    this._editor.refresh()
+    this._editor.focus()
   }
 
   toggleAdding = e => {
@@ -238,6 +237,7 @@ class FilesList extends Component {
 
     const {
       onRef,
+      onEditorRef,
       activeFile,
       path,
       rootPath,
@@ -354,7 +354,10 @@ class FilesList extends Component {
               <div className='d-f fd-c sticky anim-enter-fade'>
                 {activeFile && activeFile.name.endsWith('.mjml') && (
                   <FileEditor
-                    ref={n => this._editor = n}
+                    onRef={n => {
+                      this._editor = n
+                      onEditorRef(n)
+                    }}
                     fileName={fullActiveFile}
                     disablePointer={isDragging}
                   />

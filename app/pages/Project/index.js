@@ -9,6 +9,7 @@ import IconCode from 'react-icons/md/code'
 import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
+import IconBeautify from 'react-icons/md/autorenew'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 
@@ -53,6 +54,8 @@ class ProjectPage extends Component {
   componentWillUnmount () {
     this.props.setPreview(null)
   }
+
+  handleBeautify = () => this._editor.beautify()
 
   handlePathChange = path => this.setState({ path, activeFile: null })
 
@@ -186,6 +189,13 @@ class ProjectPage extends Component {
           <div className='d-f flow-h-10'>
             <Button
               transparent
+              onClick={this.handleBeautify}
+            >
+              <IconBeautify style={{ marginRight: 5 }} />
+              {'Beautify'}
+            </Button>
+            <Button
+              transparent
               onClick={this.handleOpenInBrowser}
             >
               <FaFolderOpen style={{ marginRight: 5 }} />
@@ -241,6 +251,7 @@ class ProjectPage extends Component {
         <div className='fg-1 d-f fd-c r' style={{ zIndex: 1 }}>
           <FilesList
             onRef={n => this._filelist = n}
+            onEditorRef={n => this._editor = n}
             withPreview
             withHome
             rootPath={rootPath}

@@ -15,12 +15,6 @@
       font-size: 14px;
     }
   }
-  &:hover {
-    .FileEditor--actions {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
 }
 
 .CodeMirror-hints {
@@ -40,12 +34,4 @@ li.CodeMirror-hint-active {
 
 .FileEditor--loader {
   background: $bg;
-}
-
-.FileEditor--actions {
-  position: absolute;
-  top: 10px; right: 10px;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
 }
