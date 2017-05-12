@@ -1,4 +1,13 @@
-### 2.0.1 (2017-05-01)
+### 2.2.0 (2017-05-12)
+
+- Export desktop & mobile view to image ([#120](https://github.com/mjmlio/mjml-app/issues/120))
+- Option to automatically fold lines based on indentation level ([#117](https://github.com/mjmlio/mjml-app/issues/117))
+- Option to highlight matching tags ([#116](https://github.com/mjmlio/mjml-app/issues/116))
+- Button to beautify MJML ([#96](https://github.com/mjmlio/mjml-app/issues/96))
+- Keep history by file when switching file
+- Preview images directly in app (to be improved)
+
+### 2.1.0 (2017-05-01)
 
 - Link to online documentation in app menu ([#109](https://github.com/mjmlio/mjml-app/issues/109))
 - Display project name in project view ([#108](https://github.com/mjmlio/mjml-app/issues/108))
