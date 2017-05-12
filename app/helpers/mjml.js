@@ -1,4 +1,5 @@
 import { mjml2html } from 'mjml'
+import path from 'path'
 import stream from 'stream'
 
 import { execFile, exec } from 'helpers/fs'
@@ -32,7 +33,7 @@ export default function (mjmlContent, filePath, mjmlPath = null) {
           if (!mjmlContent.trim().startsWith('<mjml>')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
-          const res = mjml2html(mjmlContent, { filePath })
+          const res = mjml2html(mjmlContent, { filePath, cwd: path.dirname(filePath) })
           resolve(res.html || '')
         }
       } catch (e) {
