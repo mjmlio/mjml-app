@@ -45,6 +45,7 @@ class ProjectPage extends Component {
 
   state = {
     path: this.props.location.query.path,
+    activeFile: null,
   }
 
   componentDidMount () {
@@ -171,6 +172,7 @@ class ProjectPage extends Component {
 
     const rootPath = this.props.location.query.path
     const projectName = pathModule.basename(rootPath)
+    const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
 
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
@@ -187,13 +189,16 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className='d-f flow-h-10'>
-            <Button
-              transparent
-              onClick={this.handleBeautify}
-            >
-              <IconBeautify style={{ marginRight: 5 }} />
-              {'Beautify'}
-            </Button>
+            {isMJMLFile && [
+              <Button
+                key='beautify'
+                transparent
+                onClick={this.handleBeautify}
+              >
+                <IconBeautify style={{ marginRight: 5 }} />
+                {'Beautify'}
+              </Button>,
+            ]}
             <Button
               transparent
               onClick={this.handleOpenInBrowser}
