@@ -156,7 +156,7 @@ class SendModal extends Component {
                     <br />
                     <span>{'Using API Key '}<b>{APIKey.substr(0, 15)}</b>{'...'}</span>
                     <br />
-                    <a className='a c-blue t-small' onClick={this.handleOpenInfos}>{'Edit informations'}</a>
+                    <a href="" className='a c-blue t-small' onClick={this.handleOpenInfos}>{'Edit informations'}</a>
                   </div>
                 </div>
               </div>
