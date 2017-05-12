@@ -34,6 +34,7 @@ import './styles.scss'
     wrapLines: settings.getIn(['editor', 'wrapLines'], true),
     autoFold: settings.getIn(['editor', 'autoFold']),
     foldLevel: settings.getIn(['editor', 'foldLevel']),
+    highlightTag: settings.getIn(['editor', 'highlightTag']),
   }
 }, {
   setPreview,
@@ -71,6 +72,9 @@ class FileEditor extends Component {
     }
     if (prevProps.wrapLines !== this.props.wrapLines) {
       this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
+    }
+    if (prevProps.highlightTag !== this.props.highlightTag) {
+      this._codeMirror.setOption('matchTags', this.props.highlightTag ? { bothTags: true } : undefined)
     }
     if (
       (!prevProps.autoFold && this.props.autoFold)
@@ -124,6 +128,7 @@ class FileEditor extends Component {
 
     const {
       wrapLines,
+      highlightTag,
     } = this.props
 
     if (this._codeMirror) {
@@ -131,7 +136,7 @@ class FileEditor extends Component {
       this._codeMirror = null
     }
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
-      matchTags: { bothTags: true },
+      matchTags: highlightTag ? { bothTags: true } : undefined,
       indentUnit: 2,
       tabSize: 2,
       indentWithTabs: false,

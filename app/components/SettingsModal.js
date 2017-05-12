@@ -68,6 +68,7 @@ class SettingsModal extends Component {
     } = this.state
 
     const editorWrapLines = settings.getIn(['editor', 'wrapLines'], true)
+    const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
     const autoFold = settings.getIn(['editor', 'autoFold'], false)
     const foldLevel = settings.getIn(['editor', 'foldLevel'], 1)
 
@@ -93,6 +94,9 @@ class SettingsModal extends Component {
               <div className='flow-v-10'>
                 <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
                   {'Wrap lines'}
+                </CheckBox>
+                <CheckBox value={editorHightlightTag} onChange={this.changeEditorSetting('highlightTag')}>
+                  {'Highlight matching tag'}
                 </CheckBox>
                 <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
                   <div>

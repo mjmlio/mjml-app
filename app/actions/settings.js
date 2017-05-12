@@ -13,6 +13,7 @@ export function loadSettings () {
         wrapLines: true,
         autoFold: false,
         foldLevel: 1,
+        highlightTag: false,
       },
       projects: [],
       api: {},
