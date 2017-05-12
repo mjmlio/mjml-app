@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Collapse from 'react-collapse'
 import get from 'lodash/get'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
 import IconInfo from 'react-icons/md/info'
 import { shell } from 'electron'
+
+import IconCheck from 'react-icons/md/check-circle'
 
 import sendEmail from 'helpers/sendEmail'
 
@@ -35,6 +38,7 @@ class SendModal extends Component {
     APISecret: '',
     SenderEmail: '',
     TargetEmail: '',
+    isInfosOpened: false,
   }
 
   componentWillMount () {
@@ -46,6 +50,12 @@ class SendModal extends Component {
     if (didOpened) {
       this.setAPIState(nextProps)
     }
+  }
+
+  handleOpenInfos = e => {
+    e.preventDefault()
+    e.stopPropagation()
+    this.setState({ isInfosOpened: true })
   }
 
   handleClose = () => this.props.closeModal('send')
@@ -92,6 +102,7 @@ class SendModal extends Component {
       APISecret: props.APISecret,
       SenderEmail: props.SenderEmail,
       TargetEmail: props.TargetEmail,
+      isInfosOpened: (!props.APIKey || !props.APISecret || !props.SenderEmail),
     })
   }
 
@@ -116,6 +127,7 @@ class SendModal extends Component {
       APISecret,
       SenderEmail,
       TargetEmail,
+      isInfosOpened,
     } = this.state
 
     const isValid = !!APIKey && !!APISecret && !!SenderEmail && !!TargetEmail
@@ -130,31 +142,82 @@ class SendModal extends Component {
         </div>
 
         <form className='flow-v-20' onSubmit={this.handleSubmit}>
-          <div className='d-f ai-b'>
-            <div style={{ width: 150 }} className='fs-0 t-small'>
-              {'Mailjet API Key:'}
-            </div>
-            <input
-              ref={n => this._firstInput = n}
-              className='fg-1'
-              value={APIKey}
-              onChange={this.handleChangeInput('APIKey')}
-              placeholder='Mailjet API Key'
-              type='text'
-            />
-          </div>
 
-          <div className='d-f ai-b'>
-            <div style={{ width: 150 }} className='fs-0 t-small'>
-              {'Mailjet API Secret:'}
-            </div>
-            <input
-              className='fg-1'
-              value={APISecret}
-              onChange={this.handleChangeInput('APISecret')}
-              placeholder='Mailjet API Secret'
-              type='text'
-            />
+          <div>
+            <Collapse isOpened={!isInfosOpened} springConfig={{ stiffness: 300, damping: 30 }}>
+              <div className='d-f ai-c'>
+                <div style={{ width: 150 }} className='fs-0 t-small'>
+                  {'Mailjet infos:'}
+                </div>
+                <div className='d-f ai-c'>
+                  <IconCheck size={20} className='mr-10' />
+                  <div className='mr-10 t-small'>
+                    <span>{'Sending from '}<b>{SenderEmail}</b></span>
+                    <br />
+                    <span>{'Using API Key '}<b>{APIKey.substr(0, 15)}</b>{'...'}</span>
+                    <br />
+                    <a className='a c-blue t-small' onClick={this.handleOpenInfos}>{'Edit informations'}</a>
+                  </div>
+                </div>
+              </div>
+            </Collapse>
+
+            <Collapse isOpened={isInfosOpened} springConfig={{ stiffness: 300, damping: 30 }}>
+              <div className='flow-v-20'>
+                <div className='d-f ai-b'>
+                  <div style={{ width: 150 }} className='fs-0 t-small'>
+                    {'Mailjet API Key:'}
+                  </div>
+                  <input
+                    ref={n => this._firstInput = n}
+                    className='fg-1'
+                    value={APIKey}
+                    onChange={this.handleChangeInput('APIKey')}
+                    placeholder='Mailjet API Key'
+                    type='text'
+                  />
+                </div>
+
+                <div className='d-f ai-b'>
+                  <div style={{ width: 150 }} className='fs-0 t-small'>
+                    {'Mailjet API Secret:'}
+                  </div>
+                  <input
+                    className='fg-1'
+                    value={APISecret}
+                    onChange={this.handleChangeInput('APISecret')}
+                    placeholder='Mailjet API Secret'
+                    type='text'
+                  />
+                </div>
+
+                <div className='d-f ai-b'>
+                  <div style={{ width: 150 }} className='fs-0 t-small'>
+                    {'Sender Email:'}
+                  </div>
+                  <div className='d-f fd-c fg-1'>
+                    <input
+                      value={SenderEmail}
+                      onChange={this.handleChangeInput('SenderEmail')}
+                      placeholder='Sender Email'
+                      type='text'
+                    />
+                    <div className='t-small mt-10 ta-r d-f ai-c flow-h-5'>
+                      <IconInfo />
+                      <div>
+                        {'Must be a verified sender. '}
+                      </div>
+                      <div
+                        className='a white'
+                        onClick={() => shell.openExternal('https://app.mailjet.com/account/sender')}
+                      >
+                        {'Learn more'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Collapse>
           </div>
 
           <div className='d-f ai-b'>
@@ -168,32 +231,6 @@ class SendModal extends Component {
               placeholder='Target Email'
               type='text'
             />
-          </div>
-
-          <div className='d-f ai-b'>
-            <div style={{ width: 150 }} className='fs-0 t-small'>
-              {'Sender Email:'}
-            </div>
-            <div className='d-f fd-c fg-1'>
-              <input
-                value={SenderEmail}
-                onChange={this.handleChangeInput('SenderEmail')}
-                placeholder='Sender Email'
-                type='text'
-              />
-              <div className='t-small mt-10 ta-r d-f ai-c flow-h-5'>
-                <IconInfo />
-                <div>
-                  {'Must be a verified sender. '}
-                </div>
-                <div
-                  className='a white'
-                  onClick={() => shell.openExternal('https://app.mailjet.com/account/sender')}
-                >
-                  {'Learn more'}
-                </div>
-              </div>
-            </div>
           </div>
           <input type='submit' style={{ display: 'none' }} />
         </form>
