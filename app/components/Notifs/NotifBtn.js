@@ -26,7 +26,7 @@ class NotifBtn extends Component {
       <Button
         ghost
         onClick={() => openModal('notifs')}
-        className='r'
+        className='r o-v'
       >
         <IconAlert />
         {!!notifs.size && (
