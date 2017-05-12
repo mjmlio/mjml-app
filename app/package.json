@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mjml-core": "~3.3.2",
+    "mjml-core": "3.3.2",
     "node-mailjet": "^3.0.6"
   }
 }
