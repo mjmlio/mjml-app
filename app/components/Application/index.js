@@ -51,9 +51,9 @@ class Application extends Component {
         {settings && <SettingsModal />}
         {settings && <NewProjectModal />}
 
-        <Alerts />
         <NotifsPanel />
         <ErrorModal />
+        <Alerts />
 
       </div>
     )

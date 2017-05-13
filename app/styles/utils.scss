@@ -115,3 +115,10 @@
 
 .ta-r { text-align: right; }
 .ta-c { text-align: center; }
+
+.us-t {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.ff-m { font-family: monospace; }

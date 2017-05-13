@@ -1,9 +1,11 @@
+@import "~react-select/dist/react-select.min.css";
 @import "~codemirror/addon/dialog/dialog.css";
 @import "~codemirror/addon/search/matchesonscrollbar.css";
 @import "~balloon-css/balloon.css";
 
 @import "./vars.scss";
 @import "./animations.scss";
+@import "./select.scss";
 
 [data-balloon]:before,
 [data-balloon]:after {
@@ -149,4 +151,9 @@ a {
   &:focus {
     border: 1px dashed rgba(white, 0.2);
   }
+}
+
+.brand {
+  background: rgba(white, 0.05);
+  padding: 20px;
 }

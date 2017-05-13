@@ -7,20 +7,19 @@ export default async function sendEmail (opts) {
     APIKey,
     APISecret,
     SenderEmail,
-    TargetEmail,
+    TargetEmails,
   } = opts
 
   const mj = nodeMailjet.connect(APIKey, APISecret)
   const send = mj.post('send')
+  const Recipients = TargetEmails.map(t => ({ Email: t }))
 
   return send.request({
     FromEmail: SenderEmail,
     FromName: 'MJML App',
     Subject: 'MJML App test email',
     'Html-part': content,
-    Recipients: [
-      { Email: TargetEmail },
-    ],
+    Recipients,
   })
 
 }

@@ -1,6 +1,7 @@
 import storage from 'electron-json-storage'
 import promisify from 'es6-promisify'
 import defaultsDeep from 'lodash/defaultsDeep'
+import omit from 'lodash/omit'
 
 const storageGet = promisify(storage.get)
 
@@ -23,6 +24,13 @@ export function loadSettings () {
         desktop: 650,
       },
     })
+
+    // clean old format for TargetEmails
+    if (settings.api.TargetEmail) {
+      const updatedApiSettings = omit(settings.api, 'TargetEmail')
+      settings.api = updatedApiSettings
+    }
+
     try {
       dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })
     } catch (e) {
