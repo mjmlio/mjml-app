@@ -76,6 +76,9 @@ class MailjetInfos extends Component {
             <div className='flow-v-20'>
               <div className='d-f ai-b'>
                 <div style={{ width: 150 }} className='fs-0 t-small'>
+                  {!APIKey && (
+                    <span className='red-star'>{'*'}</span>
+                  )}
                   {'Mailjet API Key:'}
                 </div>
                 <input
@@ -90,6 +93,9 @@ class MailjetInfos extends Component {
 
               <div className='d-f ai-b'>
                 <div style={{ width: 150 }} className='fs-0 t-small'>
+                  {!APISecret && (
+                    <span className='red-star'>{'*'}</span>
+                  )}
                   {'Mailjet API Secret:'}
                 </div>
                 <input
@@ -103,6 +109,9 @@ class MailjetInfos extends Component {
 
               <div className='d-f ai-b'>
                 <div style={{ width: 150 }} className='fs-0 t-small'>
+                  {!SenderEmail && (
+                    <span className='red-star'>{'*'}</span>
+                  )}
                   {'Sender Email:'}
                 </div>
                 <div className='d-f fd-c fg-1'>

@@ -137,11 +137,6 @@ a {
   100% { transform: rotate(360deg); }
 }
 
-.version-box {
-  background: rgba(black, 0.1);
-  padding: 10px;
-}
-
 .focus {
   cursor: default;
   outline: none;
@@ -161,4 +156,9 @@ a {
 .settings-group {
   border: 1px solid rgba(white, 0.05);
   padding: 20px;
+}
+
+.red-star {
+  color: $red;
+  margin-right: 5px;
 }
