@@ -37,6 +37,9 @@ boot()
 
 // handle menu actions
 require('electron').ipcRenderer.on('redux-command', (event, message) => {
+  if (message === 'about') {
+    store.dispatch(openModal('about'))
+  }
   if (message === 'new-project') {
     store.dispatch(openModal('newProject'))
   }

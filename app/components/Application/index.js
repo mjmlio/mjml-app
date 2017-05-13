@@ -7,6 +7,7 @@ import NotifsPanel from 'components/Notifs/NotifsPanel'
 import NewProjectModal from 'components/NewProjectModal'
 import SettingsModal from 'components/SettingsModal'
 import ErrorModal from 'components/ErrorModal'
+import AboutModal from 'components/AboutModal'
 
 import Placeholder from './Placeholder'
 
@@ -53,6 +54,7 @@ class Application extends Component {
 
         <NotifsPanel />
         <ErrorModal />
+        <AboutModal />
         <Alerts />
 
       </div>

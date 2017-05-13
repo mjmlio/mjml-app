@@ -89,6 +89,11 @@ app.on('ready', async () => {
       }, {
         type: 'separator',
       }, {
+        label: 'About',
+        click () {
+          mainWindow.webContents.send('redux-command', 'about')
+        },
+      }, {
         label: 'Documentation',
         click () {
           shell.openItem('https://mjml.io/documentation/')
