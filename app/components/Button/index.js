@@ -23,6 +23,7 @@ class Button extends Component {
       className,
       children,
       disabled,
+      small,
       ...props
     } = this.props
 
@@ -31,6 +32,7 @@ class Button extends Component {
       ghost,
       unclickable,
       transparent,
+      small,
     })
 
     return React.createElement(link ? Link : unclickable ? 'div' : 'button', {

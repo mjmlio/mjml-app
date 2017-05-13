@@ -7,6 +7,7 @@ import modals from './modals'
 import projects from './projects'
 import alerts from './alerts'
 import notifs from './notifs'
+import error from './error'
 
 const rootReducer = combineReducers({
   routing,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   alerts,
   notifs,
   projects,
+  error,
 })
 
 export default rootReducer

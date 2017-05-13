@@ -11,8 +11,15 @@
   padding: 0 10px;
   border: 1px solid transparent;
 
+  &.small {
+    font-size: 11px;
+    padding: 0 5px;
+    height: 30px;
+  }
+
   &.primary {
     background: $blue;
+    font-weight: bold;
     color: white;
     &:hover:not(:disabled), &:focus:not(:disabled) {
       background: lighten($blue, 2);

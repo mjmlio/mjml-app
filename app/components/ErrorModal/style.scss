@@ -1,0 +1,20 @@
+@import '../../styles/vars.scss';
+
+.ErrorModal {
+  z-index: 999999999; // :p
+
+  pre {
+    -webkit-user-select: text;
+    border: 2px solid rgba($red, 0.5);
+    padding: 10px;
+    font-family: monospace;
+    max-height: 350px;
+    overflow: auto;
+    color: $red;
+  }
+}
+
+.ErrorModal--copy-btn {
+  position: absolute;
+  top: 4px; right: 4px;
+}
