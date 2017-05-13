@@ -27,7 +27,7 @@ class BackButton extends Component {
 
     return (
       <Button
-        className='cu-d'
+        className='cu-d ellipsis'
         transparent
         link
         to='/'
@@ -39,7 +39,13 @@ class BackButton extends Component {
         <div className='r d-f ai-c' style={{ height: '100%' }}>
           <Motion style={{ y: spring(isOver ? -30 : 0, springConfig) }}>
             {m => (
-              <b style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>
+              <b
+                className='ellipsis'
+                style={{
+                  transform: `translate3d(0, ${m.y}px, 0)`,
+                  maxWidth: 250,
+                }}
+              >
                 {projectName}
               </b>
             )}
