@@ -5,6 +5,7 @@ import { routerMiddleware, push } from 'react-router-redux'
 import { createLogger } from 'redux-logger'
 
 import rootReducer from 'reducers'
+import catchErrorsMiddleware from 'middlewares/catch-errors'
 
 const actionCreators = {
   push,
@@ -26,8 +27,16 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   })
   : compose
 /* eslint-enable no-underscore-dangle */
+
+const middlewares = [
+  catchErrorsMiddleware,
+  thunk,
+  router,
+  logger,
+]
+
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk, router, logger)
+  applyMiddleware(...middlewares)
 )
 
 export default function configureStore (initialState) {

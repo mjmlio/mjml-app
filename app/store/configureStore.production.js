@@ -4,10 +4,17 @@ import { hashHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 
 import rootReducer from 'reducers'
+import catchErrorsMiddleware from 'middlewares/catch-errors'
 
 const router = routerMiddleware(hashHistory)
 
-const enhancer = applyMiddleware(thunk, router)
+const middlewares = [
+  catchErrorsMiddleware,
+  thunk,
+  router,
+]
+
+const enhancer = applyMiddleware(...middlewares)
 
 export default function configureStore (initialState) {
   return createStore(rootReducer, initialState, enhancer); // eslint-disable-line
