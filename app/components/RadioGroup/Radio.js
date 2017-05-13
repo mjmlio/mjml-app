@@ -21,7 +21,7 @@ class Radio extends Component {
 
     return (
       <div
-        className='d-f ai-fs t-small focus'
+        className='d-f ai-fs t-small focus Radio'
         tabIndex={0}
         onKeyDown={isActive ? undefined : this.handleKeyDown}
         onClick={isActive ? undefined : () => onChange(value)}

@@ -80,105 +80,79 @@ class SettingsModal extends Component {
         <div className='Modal--label'>
           {'Settings'}
         </div>
-        <div className='d-f ai-fs'>
-          <div className='fg-1 mr-20 flow-v-20'>
-
-            <div>
-              <h2 className='secondary mb-10'>{'MJML'}</h2>
-              <MJMLEngine />
-            </div>
-
-            <div>
-              <h2 className='secondary mb-10'>{'Editor'}</h2>
-
-              <div className='flow-v-10'>
-                <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
-                  {'Wrap lines'}
-                </CheckBox>
-                <CheckBox value={editorHightlightTag} onChange={this.changeEditorSetting('highlightTag')}>
-                  {'Highlight matching tag'}
-                </CheckBox>
-                <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
-                  <div>
-                    {'Auto fold lines when opening file'}
-                  </div>
-                  <div className='mt-5'>
-                    {'Fold level:'}
-                    <input
-                      className='ml-5'
-                      type='number'
-                      min={1}
-                      style={{ width: 80 }}
-                      value={foldLevel}
-                      onClick={e => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                      }}
-                      onChange={e => this.changeEditorSetting('foldLevel')(Number(e.target.value))}
-                    />
-                  </div>
-                </CheckBox>
-              </div>
-            </div>
-
-            <div>
-              <h2 className='secondary mb-10'>{'Preview'}</h2>
-
-              <div className='flow-v-10'>
-                <div className='d-f ai-c flow-h-5'>
-                  <IconMobile size={20} />
-                  <input
-                    type='number'
-                    min={200}
-                    style={{ width: 80 }}
-                    value={sizes.mobile}
-                    onChange={e => this.handleChangeSize('mobile', e.target.value)}
-                  />
-                  <span>
-                    {'Mobile size'}
-                  </span>
-                </div>
-
-                <div className='d-f ai-c flow-h-5'>
-                  <IconDesktop size={20} />
-                  <input
-                    type='number'
-                    min={200}
-                    style={{ width: 80 }}
-                    value={sizes.desktop}
-                    onChange={e => this.handleChangeSize('desktop', e.target.value)}
-                  />
-                  <span>
-                    {'Desktop size'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
+        <div className='flow-v-20'>
+          <div className='settings-group'>
+            <h2 className='secondary mb-10'>{'MJML'}</h2>
+            <MJMLEngine />
           </div>
-          <div style={{ width: 200 }}>
-            <div className='version-box t-small flow-v-10'>
 
-              <div className='d-f ai-c'>
-                <div className='fg-1'>
-                  {'MJML App'}
+          <div className='settings-group'>
+            <h2 className='secondary mb-10'>{'Editor'}</h2>
+
+            <div className='flow-v-10'>
+              <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
+                {'Wrap lines'}
+              </CheckBox>
+              <CheckBox value={editorHightlightTag} onChange={this.changeEditorSetting('highlightTag')}>
+                {'Highlight matching tag'}
+              </CheckBox>
+              <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
+                <div>
+                  {'Auto fold lines when opening file'}
                 </div>
-                <b className='c-white'>
-                  {__MJML_APP_VERSION__}
-                </b>
-              </div>
-
-              <div className='d-f ai-c'>
-                <div className='fg-1'>
-                  {'MJML'}
+                <div className='mt-5'>
+                  {'Fold level:'}
+                  <input
+                    className='ml-5'
+                    type='number'
+                    min={1}
+                    style={{ width: 80 }}
+                    value={foldLevel}
+                    onClick={e => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                    }}
+                    onChange={e => this.changeEditorSetting('foldLevel')(Number(e.target.value))}
+                  />
                 </div>
-                <b className='c-white'>
-                  {__MJML_VERSION__}
-                </b>
-              </div>
-
+              </CheckBox>
             </div>
           </div>
+
+          <div className='settings-group'>
+            <h2 className='secondary mb-10'>{'Preview'}</h2>
+
+            <div className='flow-v-10'>
+              <div className='d-f ai-c flow-h-5'>
+                <IconMobile size={20} />
+                <input
+                  type='number'
+                  min={200}
+                  style={{ width: 80 }}
+                  value={sizes.mobile}
+                  onChange={e => this.handleChangeSize('mobile', e.target.value)}
+                />
+                <span>
+                  {'Mobile size'}
+                </span>
+              </div>
+
+              <div className='d-f ai-c flow-h-5'>
+                <IconDesktop size={20} />
+                <input
+                  type='number'
+                  min={200}
+                  style={{ width: 80 }}
+                  value={sizes.desktop}
+                  onChange={e => this.handleChangeSize('desktop', e.target.value)}
+                />
+                <span>
+                  {'Desktop size'}
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </Modal>
     )
