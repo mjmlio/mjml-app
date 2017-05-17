@@ -100,8 +100,20 @@ app.on('ready', async () => {
         },
       }, {
         type: 'separator',
+      }, {  
+        label: 'Hide MJML', 
+        accelerator: 'Command+H', 
+        selector: 'hide:' 
+      }, { 
+        label: 'Hide Others', 
+        accelerator: 'Command+Shift+H',
+        selector: 'hideOtherApplications:' 
+      }, { 
+        label: 'Show All', selector: 'unhideAllApplications:'          
       }, {
-        label: 'Quit',
+        type: 'separator',
+      }, {
+        label: 'Quit MJML',
         accelerator: 'Command+Q',
         click () {
           app.quit()
