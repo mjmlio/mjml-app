@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { shell } from 'electron'
 
 import {
   isModalOpened,
@@ -8,7 +7,6 @@ import {
 } from 'reducers/modals'
 
 import Modal from 'components/Modal'
-import Button from 'components/Button'
 
 @connect(state => ({
   isOpened: isModalOpened(state, 'about'),
