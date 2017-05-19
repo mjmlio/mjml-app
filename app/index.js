@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import { ipcRenderer } from 'electron'
 
 import routes from './routes'
 import configureStore from './store/configureStore'
@@ -36,7 +37,7 @@ async function boot () {
 boot()
 
 // handle menu actions
-require('electron').ipcRenderer.on('redux-command', (event, message) => {
+ipcRenderer.on('redux-command', (event, message) => {
   if (message === 'about') {
     store.dispatch(openModal('about'))
   }
