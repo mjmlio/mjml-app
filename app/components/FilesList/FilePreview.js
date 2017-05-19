@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import { Motion, spring } from 'react-motion'
 import { connect } from 'react-redux'
-import { shell } from 'electron'
 
 import Button from 'components/Button'
+import Iframe from 'components/Iframe'
 
 import { updateSettings } from 'actions/settings'
 
@@ -15,45 +15,6 @@ import { updateSettings } from 'actions/settings'
   updateSettings,
 })
 class FilePreview extends Component {
-
-  componentDidMount () {
-    const { preview } = this.props
-    if (preview && preview.type === 'html') {
-      this.setIframeContent(preview.content)
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    const { preview } = this.props
-    if (prevProps.preview !== preview) {
-      if (preview && preview.type === 'html') {
-        this.setIframeContent(preview.content)
-      }
-    }
-  }
-
-  componentWillUnmount () {
-    this._unmounted = true
-  }
-
-  setIframeContent = content => {
-    window.requestAnimationFrame(() => {
-      if (!this._iframe) { return }
-      const doc = this._iframe.contentDocument
-      const documentElement = doc.documentElement
-      documentElement.innerHTML = content
-      const links = [...documentElement.querySelectorAll('a')]
-      links.forEach(link => {
-        link.addEventListener('click', e => {
-          e.preventDefault()
-          const href = link.getAttribute('href')
-          if (href) {
-            shell.openItem(href)
-          }
-        })
-      })
-    })
-  }
 
   render () {
 
@@ -100,13 +61,7 @@ class FilePreview extends Component {
               </div>
               {preview ? (
                 preview.type === 'html' ? (
-                  <iframe
-                    src=''
-                    style={{
-                      overflow: 'hidden',
-                    }}
-                    ref={n => this._iframe = n}
-                  />
+                  <Iframe value={preview.content} openLinks />
                 ) : preview.type === 'image' ? (
                   <img src={preview.content} />
                 ) : null
