@@ -13,7 +13,11 @@ import IconError from 'react-icons/md/error'
 
 import * as templates from 'templates'
 
-import { fileDialog, isEmptyOrDontExist } from 'helpers/fs'
+import {
+  fileDialog,
+  isEmptyOrDontExist,
+  alreadyExists,
+} from 'helpers/fs'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
@@ -161,6 +165,14 @@ class NewProjectModal extends Component {
     }
   }
 
+  handleChangeProjectLocation = v => {
+    this.setState({
+      projectLocation: v,
+      projectLocStatus: 'checking',
+    })
+    this.debounceCheckName()
+  }
+
   debounceCheckName = debounce(async () => {
     const { projectLocation, projectName } = this.state
     if (!projectName) {
@@ -171,8 +183,11 @@ class NewProjectModal extends Component {
     }
     const full = path.join(projectLocation, projectName)
     const locOK = await isEmptyOrDontExist(full)
+    const parentOK = await alreadyExists(projectLocation)
     this.setState({
-      projectLocStatus: locOK ? 'valid' : 'invalid',
+      projectLocStatus: parentOK
+        ? (locOK ? 'valid' : 'invalid')
+        : 'parent-invalid',
     })
   }, 250)
 
@@ -237,7 +252,7 @@ class NewProjectModal extends Component {
                     <input
                       className='fg-1'
                       value={projectLocation}
-                      onChange={e => this.setState({ projectLocation: e.target.value })}
+                      onChange={e => this.handleChangeProjectLocation(e.target.value)}
                       placeholder='Location'
                       type='text'
                     />
@@ -263,6 +278,12 @@ class NewProjectModal extends Component {
                     <div className='t-small mt-10 c-green'>
                       <IconCheck className='mr-5' />
                       {'Location is OK'}
+                    </div>
+                  )}
+                  {projectLocStatus === 'parent-invalid' && (
+                    <div className='t-small mt-10 c-red'>
+                      <IconError className='mr-5' />
+                      {'Parent directory does\'t exist'}
                     </div>
                   )}
                   {projectLocStatus === 'invalid' && (
