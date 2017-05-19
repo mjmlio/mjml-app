@@ -39,7 +39,11 @@ export function setPreview (fileName, content = '') {
       if (!content) {
         content = await fsReadFile(fileName, { encoding: 'utf8' })
       }
-      const html = await mjml2html(content, fileName, mjmlPath)
+      const renderOpts = {
+        minify: settings.getIn(['mjml', 'minify']),
+      }
+
+      const html = await mjml2html(content, fileName, mjmlPath, renderOpts)
       dispatch(setPrev({ type: 'html', content: html }))
       // update the preview in project
       if (bName === 'index.mjml') {

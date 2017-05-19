@@ -31,6 +31,7 @@ import './styles.scss'
   const { settings } = state
   return {
     mjmlEngine: settings.getIn(['mjml', 'engine'], 'auto'),
+    minify: settings.getIn(['mjml', 'minify'], false),
     wrapLines: settings.getIn(['editor', 'wrapLines'], true),
     autoFold: settings.getIn(['editor', 'autoFold']),
     foldLevel: settings.getIn(['editor', 'foldLevel']),
@@ -60,6 +61,9 @@ class FileEditor extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.mjmlEngine !== nextProps.mjmlEngine) {
+      this.handleChange()
+    }
+    if (this.props.minify !== nextProps.minify) {
       this.handleChange()
     }
   }

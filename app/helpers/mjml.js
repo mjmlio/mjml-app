@@ -4,7 +4,7 @@ import stream from 'stream'
 
 import { execFile, exec } from 'helpers/fs'
 
-export default function (mjmlContent, filePath, mjmlPath = null) {
+export default function (mjmlContent, filePath, mjmlPath = null, options = {}) {
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
       try {
@@ -16,14 +16,25 @@ export default function (mjmlContent, filePath, mjmlPath = null) {
             stdinStream.push(wrapIntoMJMLTags(mjmlContent))
             stdinStream.push(null)
 
-            const res = await execFile(mjmlPath, ['-i', '-s'], stdinStream)
+            const args = [
+              '-i',
+              '-s',
+              ...options.minify ? ['-m'] : [],
+            ]
+
+            const res = await execFile(mjmlPath, args, stdinStream)
             if (res.err) { return resolve('') }
 
             resolve(res.stdout)
 
           } else {
 
-            const res = await exec(`${mjmlPath} -s "${filePath}"`)
+            const args = [
+              '-s',
+              ...options.minify ? ['-m'] : [],
+            ]
+
+            const res = await exec(`${mjmlPath} ${args.join(' ')} "${filePath}"`)
             if (res.err) { return resolve('') }
 
             resolve(res.stdout)
@@ -33,7 +44,12 @@ export default function (mjmlContent, filePath, mjmlPath = null) {
           if (!mjmlContent.trim().startsWith('<mjml>')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
-          const res = mjml2html(mjmlContent, { filePath, cwd: path.dirname(filePath) })
+          const mjmlOptions = {
+            filePath,
+            cwd: path.dirname(filePath),
+            minify: !!options.minify,
+          }
+          const res = mjml2html(mjmlContent, mjmlOptions)
           resolve(res.html || '')
         }
       } catch (e) {

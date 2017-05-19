@@ -16,6 +16,9 @@ export function loadSettings () {
         foldLevel: 1,
         highlightTag: false,
       },
+      mjml: {
+        minify: false,
+      },
       projects: [],
       api: {},
       previewSize: {

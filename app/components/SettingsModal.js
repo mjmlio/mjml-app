@@ -56,6 +56,10 @@ class SettingsModal extends Component {
     this.props.updateSettings(settings => settings.setIn(['editor', key], val))
   }
 
+  changeMJMLSetting = key => val => {
+    this.props.updateSettings(settings => settings.setIn(['mjml', key], val))
+  }
+
   render () {
 
     const {
@@ -71,6 +75,7 @@ class SettingsModal extends Component {
     const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
     const autoFold = settings.getIn(['editor', 'autoFold'], false)
     const foldLevel = settings.getIn(['editor', 'foldLevel'], 1)
+    const minifyOutput = settings.getIn(['mjml', 'minify'], false)
 
     return (
       <Modal
@@ -84,6 +89,15 @@ class SettingsModal extends Component {
           <div className='settings-group'>
             <h2 className='secondary mb-10'>{'MJML'}</h2>
             <MJMLEngine />
+
+            <CheckBox
+              className='mt-10'
+              value={minifyOutput}
+              onChange={this.changeMJMLSetting('minify')}
+            >
+              {'Minify HTML output'}
+            </CheckBox>
+
           </div>
 
           <div className='settings-group'>
