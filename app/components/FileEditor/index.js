@@ -130,6 +130,8 @@ class FileEditor extends Component {
 
   initEditor () {
 
+    if (!this._textarea) { return }
+
     const {
       wrapLines,
       highlightTag,
