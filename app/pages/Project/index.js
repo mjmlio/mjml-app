@@ -12,6 +12,7 @@ import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
+import beautifyJS from 'js-beautify'
 
 import defaultMJML from 'data/defaultMJML'
 
@@ -105,7 +106,8 @@ class ProjectPage extends Component {
   handleActiveFileChange = activeFile => this.setState({ activeFile })
 
   handleCopyHTML = () => {
-    clipboard.writeText(this.props.preview.content)
+    const htmlContent = beautifyJS.html(this.props.preview.content)
+    clipboard.writeText(htmlContent)
     this.props.addAlert('Copied!', 'success')
   }
 
@@ -123,8 +125,9 @@ class ProjectPage extends Component {
       preview,
       addAlert,
     } = this.props
+    const htmlContent = beautifyJS.html(preview.content)
 
-    await fsWriteFile(p, preview.content)
+    await fsWriteFile(p, htmlContent)
     addAlert('Successfully exported HTML', 'success')
     this._filelist.refresh()
   }
