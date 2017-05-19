@@ -23,6 +23,7 @@ class FilePreview extends Component {
       disablePointer,
       previewSize,
       onSetSize,
+      iframeBase,
     } = this.props
 
     return (
@@ -61,7 +62,11 @@ class FilePreview extends Component {
               </div>
               {preview ? (
                 preview.type === 'html' ? (
-                  <Iframe value={preview.content} openLinks />
+                  <Iframe
+                    base={iframeBase}
+                    value={preview.content}
+                    openLinks
+                  />
                 ) : preview.type === 'image' ? (
                   <img src={preview.content} />
                 ) : null

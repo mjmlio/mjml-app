@@ -38,7 +38,11 @@ class ProjectItem extends Component {
           className='ProjectItem--preview-container-wrapper'
         >
           <div className='ProjectItem--preview-container'>
-            <Preview scaled html={p.get('html', null)} />
+            <Preview
+              scaled
+              html={p.get('html', null)}
+              iframeBase={p.get('path')}
+            />
           </div>
         </Tabbable>
         <div className='d-f ai-b pl-5 pr-5'>

@@ -8,12 +8,14 @@ class Iframe extends Component {
     scrolling: PropTypes.bool,
     value: PropTypes.string,
     openLinks: PropTypes.bool,
+    base: PropTypes.string,
   }
 
   static defaultProps = {
     scrolling: true,
     openLinks: false,
     value: '',
+    base: '',
   }
 
   componentDidMount () {
@@ -27,12 +29,18 @@ class Iframe extends Component {
   }
 
   setIframeContent = value => {
-    const { openLinks } = this.props
+
+    const {
+      openLinks,
+      base,
+    } = this.props
+
     window.requestAnimationFrame(() => {
       if (!this._iframe) { return }
       const doc = this._iframe.contentDocument
       const documentElement = doc.documentElement
       documentElement.innerHTML = value
+
       if (openLinks) {
         const links = [...documentElement.querySelectorAll('a')]
         links.forEach(link => {
@@ -45,6 +53,17 @@ class Iframe extends Component {
           })
         })
       }
+
+      if (base) {
+        const images = [...documentElement.querySelectorAll('img')]
+        images.forEach(img => {
+          const imgSrc = img.getAttribute('src')
+          if (!imgSrc.startsWith('http')) {
+            img.setAttribute('src', `file://${base}/${imgSrc}`)
+          }
+        })
+      }
+
     })
   }
 

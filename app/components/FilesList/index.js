@@ -370,6 +370,7 @@ class FilesList extends Component {
                 <FilePreview
                   disablePointer={isDragging}
                   onSetSize={this.setCurrentSize}
+                  iframeBase={path}
                 />
               </div>
             </SplitPane>

@@ -13,12 +13,17 @@ class Preview extends Component {
     const {
       html,
       scaled,
+      iframeBase,
     } = this.props
 
     return (
       <div className={cx('Preview abs', { scaled })}>
         {html ? (
-          <Iframe scrolling={false} value={html} />
+          <Iframe
+            scrolling={false}
+            value={html}
+            base={iframeBase}
+          />
         ) : (
           <div className='abs z'>
             <IconEmpty size={50} />
