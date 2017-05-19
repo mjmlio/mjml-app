@@ -27,6 +27,7 @@ import {
 
 import createFromTemplate from 'actions/createFromTemplate'
 import createFromGallery from 'actions/createFromGallery'
+import { saveLastOpenedFolder } from 'actions/settings'
 
 import './style.scss'
 
@@ -51,6 +52,7 @@ const defaultState = {
   ...bindActionCreators({
     createFromTemplate,
     createFromGallery,
+    saveLastOpenedFolder,
   }, dispatch),
 }))
 class NewProjectModal extends Component {
@@ -110,6 +112,7 @@ class NewProjectModal extends Component {
       createFromTemplate,
       createFromGallery,
       closeModal,
+      saveLastOpenedFolder,
     } = this.props
 
     if (step === 'name') {
@@ -132,6 +135,7 @@ class NewProjectModal extends Component {
       } else {
         // handle from our own templates
         await createFromTemplate(fullPath, templates[this.state.template])
+        saveLastOpenedFolder(projectLocation)
       }
 
       closeModal()
