@@ -100,18 +100,6 @@ app.on('ready', async () => {
         },
       }, {
         type: 'separator',
-      }, {  
-        label: 'Hide MJML', 
-        accelerator: 'Command+H', 
-        selector: 'hide:' 
-      }, { 
-        label: 'Hide Others', 
-        accelerator: 'Command+Shift+H',
-        selector: 'hideOtherApplications:' 
-      }, { 
-        label: 'Show All', selector: 'unhideAllApplications:'          
-      }, {
-        type: 'separator',
       }, {
         label: 'Quit MJML',
         accelerator: 'Command+Q',
@@ -140,19 +128,13 @@ app.on('ready', async () => {
       }],
     }, {
       label: 'View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
+      submenu: [{
         label: 'Reload',
         accelerator: 'Command+R',
         click () {
           mainWindow.webContents.reload()
         },
       }, {
-        label: 'Toggle Full Screen',
-        accelerator: 'Ctrl+Command+F',
-        click () {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
-        },
-      }] : [{
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click () {
@@ -172,14 +154,15 @@ app.on('ready', async () => {
         accelerator: 'Command+M',
         selector: 'performMiniaturize:',
       }, {
-        label: 'Close',
-        accelerator: 'Command+W',
-        selector: 'performClose:',
+        label: 'Hide MJML',
+        accelerator: 'Command+H',
+        selector: 'hide:',
       }, {
-        type: 'separator',
+        label: 'Hide Others',
+        accelerator: 'Command+Shift+H',
+        selector: 'hideOtherApplications:',
       }, {
-        label: 'Bring All to Front',
-        selector: 'arrangeInFront:',
+        label: 'Show All', selector: 'unhideAllApplications:',
       }],
     },
   ]
