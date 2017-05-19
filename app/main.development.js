@@ -50,6 +50,10 @@ app.on('ready', async () => {
     height: 728,
   })
 
+  app.on('browser-window-focus', () => {
+    mainWindow.webContents.send('browser-window-focus', true)
+  })
+
   mainWindow.loadURL(`file://${__dirname}/app.html`)
 
   mainWindow.webContents.on('did-finish-load', () => {
