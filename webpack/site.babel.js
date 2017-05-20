@@ -21,10 +21,10 @@ export default {
       { test: /\.mp4$/, loader: 'file-loader' },
       isProd ? {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader!sass-loader',
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader!sass-loader',
+        }),
       } : {
         test: /\.scss$/,
         loaders: [
@@ -36,6 +36,7 @@ export default {
     ],
   },
   plugins: [
+    ...isProd ? [new ExtractTextPlugin('styles-[hash].css')] : [],
     new HtmlWebpackPlugin({
       template: './site/template.html',
     }),

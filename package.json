@@ -16,7 +16,7 @@
     "start-hot": "cross-env HOT=1 NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.development",
     "dev": "npm run hot-server -- --start-hot",
     "site": "webpack-dev-server --config webpack/site.babel.js --content-base site",
-    "build:site": "webpack --config webpack/site.babel.js && cp -r site/assets dist",
+    "build:site": "NODE_ENV=production webpack --config webpack/site.babel.js && cp -r site/assets dist",
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64",
     "package-linux": "npm run build && build --linux",
