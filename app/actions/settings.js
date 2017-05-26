@@ -21,7 +21,13 @@ export function loadSettings () {
         beautify: false,
       },
       projects: [],
-      api: {},
+      api: {
+        APIKey: '',
+        APISecret: '',
+        SenderEmail: '',
+        TargetEmails: [],
+        LastEmails: [],
+      },
       previewSize: {
         current: 500,
         mobile: 320,
@@ -35,12 +41,7 @@ export function loadSettings () {
       settings.api = updatedApiSettings
     }
 
-    try {
-      dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })
-    } catch (e) {
-      dispatch({ type: 'SETTINGS_RESET' })
-      dispatch(saveSettings())
-    }
+    dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })
   }
 }
 
@@ -82,5 +83,12 @@ export function saveLastOpenedFolder (path) {
     dispatch(updateSettings(settings => {
       return settings.set('lastOpenedFolder', path)
     }))
+  }
+}
+
+export function addToLastUsedEmails (emails) {
+  return {
+    type: 'ADD_TO_LAST_USED_EMAILS',
+    payload: emails,
   }
 }

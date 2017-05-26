@@ -11,7 +11,7 @@ import sendEmail from 'helpers/sendEmail'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
-import { updateSettings } from 'actions/settings'
+import { updateSettings, addToLastUsedEmails } from 'actions/settings'
 
 import MailjetInfos from 'components/MailjetInfos'
 import Modal from 'components/Modal'
@@ -20,6 +20,7 @@ import Button from 'components/Button'
 @connect(state => {
   const SenderEmail = state.settings.getIn(['api', 'SenderEmail'], '')
   const TargetEmails = state.settings.getIn(['api', 'TargetEmails'], [])
+  const LastEmails = state.settings.getIn(['api', 'LastEmails'], [])
   return {
     content: get(state, 'preview.content', ''),
     isOpened: isModalOpened(state, 'send'),
@@ -30,12 +31,14 @@ import Button from 'components/Button'
     emails: uniq([
       ...SenderEmail ? [SenderEmail] : [],
       ...TargetEmails,
+      ...LastEmails,
     ]).map(email => ({ label: email, value: email })),
   }
 }, {
   addAlert,
   closeModal,
   updateSettings,
+  addToLastUsedEmails,
 })
 class SendModal extends Component {
 
@@ -66,7 +69,9 @@ class SendModal extends Component {
   }
 
   handleChangeTargetEmails = value => {
-    this.setState({ TargetEmails: value.map(v => v.value) })
+    const emails = value.map(v => v.value)
+    this.props.addToLastUsedEmails(emails)
+    this.setState({ TargetEmails: emails })
     this.debounceSaveInConfig()
   }
 

@@ -1,5 +1,6 @@
 import { handleActions } from 'redux-actions'
 import { Map, List } from 'immutable'
+import uniq from 'lodash/uniq'
 
 const state = null
 
@@ -16,13 +17,17 @@ export default handleActions({
     })
   },
 
-  SETTINGS_RESET: () => Map({
-    projects: List(),
-    editor: Map(),
-    api: Map(),
-  }),
-
   UPDATE_SETTINGS: (state, { payload: updater }) => updater(state),
+
+  ADD_TO_LAST_USED_EMAILS: (state, { payload: emails }) => {
+    const lastEmails = uniq([
+      ...state.getIn(['api', 'LastEmails']),
+      ...emails,
+    ])
+    // console.log(lastEmails)
+    // return state.setIn(['api', 'LastEmails'], [])
+    return state.setIn(['api', 'LastEmails'], lastEmails)
+  },
 
   PROJECT_LOAD: (state, { payload: { path } }) => state.update('projects', p => {
     if (p.find(p => p === path)) { return state }
