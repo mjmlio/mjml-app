@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Portal from 'react-portal'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 import Steack from 'react-steack'
@@ -23,20 +24,22 @@ class Alerts extends Component {
     } = this.props
 
     return (
-      <div className='Alerts'>
-        <Steack reverse>
-          {alerts.map(a => (
-            <div
-              key={a.id}
-              onClick={() => removeAlert(a.id)}
-              className={cx('Alerts--item', a.type)}
-            >
-              {a.type === 'error' && (<IconError className='mr-10' size={30} />)}
-              {a.message}
-            </div>
-          ))}
-        </Steack>
-      </div>
+      <Portal isOpened>
+        <div className='Alerts'>
+          <Steack reverse>
+            {alerts.map(a => (
+              <div
+                key={a.id}
+                onClick={() => removeAlert(a.id)}
+                className={cx('Alerts--item', a.type)}
+              >
+                {a.type === 'error' && (<IconError className='mr-10' size={30} />)}
+                {a.message}
+              </div>
+            ))}
+          </Steack>
+        </div>
+      </Portal>
     )
   }
 
