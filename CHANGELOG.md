@@ -1,3 +1,14 @@
+### 2.3.0 (2017-05-26)
+
+- Send email to multiple targets ([#126](https://github.com/mjmlio/mjml-app/issues/126))
+- Keep track of recent sent emails targets ([#125](https://github.com/mjmlio/mjml-app/issues/125))
+- Compact view for API informations ([#127](https://github.com/mjmlio/mjml-app/issues/127))
+- Option to minify HTML output ([#133](https://github.com/mjmlio/mjml-app/issues/133))
+- Option to beautify HTML output ([#137](https://github.com/mjmlio/mjml-app/pull/137))
+- Hide app with Cmd+H ([#131](https://github.com/mjmlio/mjml-app/issues/131))
+- Refresh file list on app focus ([#135](https://github.com/mjmlio/mjml-app/issues/135))
+- Display local images using relative path ([#134](https://github.com/mjmlio/mjml-app/issues/134))
+
 ### 2.2.0 (2017-05-12)
 
 - Export desktop & mobile view to image ([#120](https://github.com/mjmlio/mjml-app/issues/120))
