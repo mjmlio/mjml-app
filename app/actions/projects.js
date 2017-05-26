@@ -44,7 +44,7 @@ export function addProject (p) {
 }
 
 export function removeProject (p, shouldDeleteFolder = false) {
-  return async dispatch => {
+  return dispatch => {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
     if (shouldDeleteFolder) {

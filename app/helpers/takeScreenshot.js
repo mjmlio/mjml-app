@@ -6,7 +6,7 @@ import { fsWriteFile } from 'helpers/fs'
 
 const TMP_DIR = os.tmpdir()
 
-export default async function takeScreenshot (html, deviceWidth) {
+export default function takeScreenshot (html, deviceWidth) {
   return new Promise(async resolve => {
     const win = new remote.BrowserWindow({
       width: deviceWidth,

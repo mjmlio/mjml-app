@@ -35,14 +35,22 @@ class Button extends Component {
       small,
     })
 
-    return React.createElement(link ? Link : unclickable ? 'div' : 'button', {
+    const p = {
       className: cn,
       disabled,
       tabIndex: unclickable ? undefined : 0,
-      children,
       ...props,
       ref: n => this._wrapped = n,
-    })
+    }
+
+    const el = link
+      ? Link
+      : (unclickable
+        ? 'div'
+        : 'button'
+      )
+
+    return React.createElement(el, p, children)
   }
 
 }

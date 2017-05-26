@@ -1,6 +1,6 @@
 import nodeMailjet from 'node-mailjet'
 
-export default async function sendEmail (opts) {
+export default function sendEmail (opts) {
 
   const {
     content,
