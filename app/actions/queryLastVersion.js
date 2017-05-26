@@ -1,4 +1,5 @@
 import React from 'react'
+import os from 'os'
 import semver from 'semver'
 import IconStar from 'react-icons/md/star'
 import IconDownload from 'react-icons/md/file-download'
@@ -7,6 +8,16 @@ import { shell } from 'electron'
 import { addNotif } from 'reducers/notifs'
 
 import Button from 'components/Button'
+
+function getDownloadURL () {
+  switch (os.platform()) {
+    case 'darwin':
+      return 'http://mjml-app.sigsev.io/download/osx'
+    case 'win32':
+      return 'http://mjml-app.sigsev.io/download/win_64'
+  }
+  return 'http://mjml-app.sigsev.io/download'
+}
 
 export default function queryLastVersion () {
   return async dispatch => {
@@ -29,7 +40,7 @@ export default function queryLastVersion () {
             primary
             className='mt-20'
             onClick={() => {
-              shell.openItem('http://mjml-app.sigsev.io/download')
+              shell.openItem(getDownloadURL())
             }}
           >
             <IconDownload className='mr-5' />

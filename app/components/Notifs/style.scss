@@ -6,9 +6,9 @@
   border-radius: 50%;
   background: $red;
   position: absolute;
-  top: -5px;
-  right: -5px;
-  animation: bubb 3s infinite;
+  top: -3px;
+  right: -3px;
+  animation: bubb 2s infinite;
 }
 
 @keyframes bubb {
@@ -16,7 +16,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.3);
   }
   100% {
     transform: scale(1);
