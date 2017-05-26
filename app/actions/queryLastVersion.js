@@ -11,12 +11,13 @@ import Button from 'components/Button'
 
 function getDownloadURL () {
   switch (os.platform()) {
-    case 'darwin':
-      return 'http://mjml-app.sigsev.io/download/osx'
-    case 'win32':
-      return 'http://mjml-app.sigsev.io/download/win_64'
+  case 'darwin':
+    return 'http://mjml-app.sigsev.io/download/osx'
+  case 'win32':
+    return 'http://mjml-app.sigsev.io/download/win_64'
+  default:
+    return 'http://mjml-app.sigsev.io/download'
   }
-  return 'http://mjml-app.sigsev.io/download'
 }
 
 export default function queryLastVersion () {
