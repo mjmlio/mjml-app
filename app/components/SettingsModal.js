@@ -84,6 +84,7 @@ class SettingsModal extends Component {
     const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
     const autoFold = settings.getIn(['editor', 'autoFold'], false)
     const foldLevel = settings.getIn(['editor', 'foldLevel'], 1)
+    const editorLightTheme = settings.getIn(['editor', 'lightTheme'], false)
     const minifyOutput = settings.getIn(['mjml', 'minify'], false)
     const beautifyOutput = settings.getIn(['mjml', 'beautify'], false)
 
@@ -122,7 +123,10 @@ class SettingsModal extends Component {
           <div className='settings-group'>
             <h2 className='secondary mb-10'>{'Editor'}</h2>
 
-            <div className='flow-v-10'>
+            <div>
+              <CheckBox value={editorLightTheme} onChange={this.changeEditorSetting('lightTheme')}>
+                {'Use high-contrast theme'}
+              </CheckBox>
               <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
                 {'Wrap lines'}
               </CheckBox>

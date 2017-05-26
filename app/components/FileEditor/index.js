@@ -36,6 +36,7 @@ import './styles.scss'
     autoFold: settings.getIn(['editor', 'autoFold']),
     foldLevel: settings.getIn(['editor', 'foldLevel']),
     highlightTag: settings.getIn(['editor', 'highlightTag']),
+    lightTheme: settings.getIn(['editor', 'lightTheme'], false),
   }
 }, {
   setPreview,
@@ -86,6 +87,9 @@ class FileEditor extends Component {
     ) {
       foldByLevel(this._codeMirror, this.props.foldLevel)
     }
+    if (prevProps.lightTheme !== this.props.lightTheme) {
+      this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
+    }
   }
 
   componentWillUnmount () {
@@ -135,6 +139,7 @@ class FileEditor extends Component {
     const {
       wrapLines,
       highlightTag,
+      lightTheme,
     } = this.props
 
     if (this._codeMirror) {
@@ -148,7 +153,7 @@ class FileEditor extends Component {
       indentWithTabs: false,
       mode: 'xml',
       lineNumbers: true,
-      theme: 'one-dark',
+      theme: lightTheme ? 'neo' : 'one-dark',
       autoCloseTags: true,
       foldGutter: true,
       gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],

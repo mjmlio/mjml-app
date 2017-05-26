@@ -15,6 +15,7 @@ export function loadSettings () {
         autoFold: false,
         foldLevel: 1,
         highlightTag: false,
+        lightTheme: false,
       },
       mjml: {
         minify: false,
