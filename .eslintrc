@@ -16,6 +16,7 @@
     "no-undefined": 0,
     "no-unused-expressions": 0,
     "no-case-declarations": 0,
+    "id-length": 0,
   },
   "plugins": [
     "react"

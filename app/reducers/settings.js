@@ -29,6 +29,12 @@ export default handleActions({
     return state.setIn(['api', 'LastEmails'], lastEmails)
   },
 
+  REMOVE_FROM_LAST_USED_EMAILS: (state, { payload: email }) => {
+    return state.updateIn(['api', 'LastEmails'], lastEmails => {
+      return lastEmails.filter(e => e !== email)
+    })
+  },
+
   PROJECT_LOAD: (state, { payload: { path } }) => state.update('projects', p => {
     if (p.find(p => p === path)) { return state }
     return p.unshift(path)

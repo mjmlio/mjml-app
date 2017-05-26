@@ -92,3 +92,10 @@ export function addToLastUsedEmails (emails) {
     payload: emails,
   }
 }
+
+export function removeFromLastUsedEmails (email) {
+  return {
+    type: 'REMOVE_FROM_LAST_USED_EMAILS',
+    payload: email,
+  }
+}

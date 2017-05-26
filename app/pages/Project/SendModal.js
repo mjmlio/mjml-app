@@ -11,7 +11,11 @@ import sendEmail from 'helpers/sendEmail'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
-import { updateSettings, addToLastUsedEmails } from 'actions/settings'
+import {
+  updateSettings,
+  addToLastUsedEmails,
+  removeFromLastUsedEmails,
+} from 'actions/settings'
 
 import MailjetInfos from 'components/MailjetInfos'
 import Modal from 'components/Modal'
@@ -39,6 +43,7 @@ import Button from 'components/Button'
   closeModal,
   updateSettings,
   addToLastUsedEmails,
+  removeFromLastUsedEmails,
 })
 class SendModal extends Component {
 
@@ -106,6 +111,14 @@ class SendModal extends Component {
     }
   }
 
+  handleRemoveLastEmail = email => {
+    this.props.removeFromLastUsedEmails(email)
+    this.setState({
+      emails: this.state.emails.filter(e => e.value !== email),
+      TargetEmails: this.state.TargetEmails.filter(e => e !== email),
+    })
+  }
+
   setAPIState = props => {
     this.setState({
       APIKey: props.APIKey,
@@ -124,6 +137,28 @@ class SendModal extends Component {
         .setIn(['api', 'TargetEmails'], this.state.TargetEmails)
     })
   }, 1e3)
+
+  renderOption = ({ value }) => {
+    const isInEmails = this.state.emails.find(e => e.value === value)
+    const isRemovable = isInEmails && value !== this.props.SenderEmail
+    return (
+      <div className='d-f ai-c'>
+        {value}
+        {isRemovable && (
+          <div
+            className='ml-auto'
+            onMouseDown={e => {
+              e.preventDefault()
+              e.stopPropagation()
+              this.handleRemoveLastEmail(value)
+            }}
+          >
+            {'remove'}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   render () {
 
@@ -166,11 +201,13 @@ class SendModal extends Component {
               {':'}
             </div>
             <Select
+              ref={n => this._select = n}
               className='SelectDark'
               multi
               style={{ width: 556 }}
               value={TargetEmails}
               options={emails}
+              optionRenderer={this.renderOption}
               onChange={this.handleChangeTargetEmails}
               promptTextCreator={e => <span><IconAdd className='mr-5' />{'Add '}<b>{e}</b></span>}
             />
