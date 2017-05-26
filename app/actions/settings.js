@@ -18,6 +18,7 @@ export function loadSettings () {
       },
       mjml: {
         minify: false,
+        beautify: false,
       },
       projects: [],
       api: {},

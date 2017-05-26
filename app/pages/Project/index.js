@@ -37,6 +37,7 @@ import takeScreenshot from 'helpers/takeScreenshot'
 @connect(state => ({
   preview: state.preview,
   previewSize: state.settings.get('previewSize'),
+  beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
 }), {
   openModal,
   addAlert,
@@ -106,7 +107,7 @@ class ProjectPage extends Component {
   handleActiveFileChange = activeFile => this.setState({ activeFile })
 
   handleCopyHTML = () => {
-    const htmlContent = beautifyJS.html(this.props.preview.content)
+    const htmlContent = this.getHTMLOutput()
     clipboard.writeText(htmlContent)
     this.props.addAlert('Copied!', 'success')
   }
@@ -122,10 +123,10 @@ class ProjectPage extends Component {
     if (!p) { return }
 
     const {
-      preview,
       addAlert,
     } = this.props
-    const htmlContent = beautifyJS.html(preview.content)
+
+    const htmlContent = this.getHTMLOutput()
 
     await fsWriteFile(p, htmlContent)
     addAlert('Successfully exported HTML', 'success')
@@ -161,6 +162,13 @@ class ProjectPage extends Component {
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
+
+  getHTMLOutput () {
+    const { preview, beautifyOutput } = this.props
+    return beautifyOutput
+      ? beautifyJS.html(preview.content)
+      : preview.content
+  }
 
   render () {
 
