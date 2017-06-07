@@ -27,6 +27,11 @@ export default function buildMenu (mainWindow) {
           shell.openItem('https://mjml.io/documentation/')
         },
       }, {
+        label: 'Browser Editor',
+        click () {
+          shell.openItem('https://mjml.io/try-it-live')
+        },
+      }, {
         type: 'separator',
       }, {
         label: 'Quit MJML',
