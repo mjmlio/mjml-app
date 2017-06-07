@@ -1,6 +1,7 @@
 @import "~codemirror/lib/codemirror.css";
 @import "~codemirror/theme/neo.css";
 @import "~codemirror/addon/hint/show-hint.css";
+@import "~codemirror/addon/lint/lint.css";
 @import "../../styles/one-dark.scss";
 @import "../../styles/vars.scss";
 
@@ -39,4 +40,17 @@ li.CodeMirror-hint-active {
 
 .FileEditor--loader {
   background: $bg;
+}
+
+.CodeMirror-lint-tooltip {
+  background: $bg-light;
+  border: none;
+  box-shadow: rgba(black, 0.2) 0 3px 18px;
+  color: white;
+  padding: 10px;
+}
+
+.CodeMirror-lint-message-error {
+  background-image: none;
+  padding-left: 0;
 }

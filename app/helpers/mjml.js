@@ -23,9 +23,9 @@ export default function (mjmlContent, filePath, mjmlPath = null, options = {}) {
             ]
 
             const res = await execFile(mjmlPath, args, stdinStream)
-            if (res.err) { return resolve('') }
+            if (res.err) { return resolve({ html: '', errors: [] }) }
 
-            resolve(res.stdout)
+            resolve({ html: res.stdout, errors: [] })
 
           } else {
 
@@ -35,9 +35,9 @@ export default function (mjmlContent, filePath, mjmlPath = null, options = {}) {
             ]
 
             const res = await exec(`${mjmlPath} ${args.join(' ')} "${filePath}"`)
-            if (res.err) { return resolve('') }
+            if (res.err) { return resolve({ html: '', errors: [] }) }
 
-            resolve(res.stdout)
+            resolve({ html: res.stdout, errors: [] })
           }
 
         } else {
@@ -50,10 +50,10 @@ export default function (mjmlContent, filePath, mjmlPath = null, options = {}) {
             minify: !!options.minify,
           }
           const res = mjml2html(mjmlContent, mjmlOptions)
-          resolve(res.html || '')
+          resolve({ html: res.html || '', errors: res.errors || [] })
         }
       } catch (e) {
-        resolve('')
+        resolve({ html: '', errors: [] })
       }
     })
   })

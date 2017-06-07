@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
+import get from 'lodash/get'
 import CodeMirror from 'codemirror'
 
 import 'codemirror/addon/selection/active-line'
@@ -18,6 +19,7 @@ import 'codemirror/addon/search/matchesonscrollbar'
 import 'codemirror/mode/xml/xml'
 import 'codemirror/addon/hint/show-hint'
 import 'codemirror/addon/hint/xml-hint'
+import 'codemirror/addon/lint/lint'
 import 'helpers/codemirror-util-autoformat'
 import { autocompleteTags, completeAfter, completeIfAfterLt, completeIfInTag } from 'helpers/codemirror-autocomplete-mjml'
 
@@ -28,7 +30,7 @@ import { setPreview } from 'actions/preview'
 import './styles.scss'
 
 @connect(state => {
-  const { settings } = state
+  const { settings, preview } = state
   return {
     mjmlEngine: settings.getIn(['mjml', 'engine'], 'auto'),
     minify: settings.getIn(['mjml', 'minify'], false),
@@ -37,6 +39,7 @@ import './styles.scss'
     foldLevel: settings.getIn(['editor', 'foldLevel']),
     highlightTag: settings.getIn(['editor', 'highlightTag']),
     lightTheme: settings.getIn(['editor', 'lightTheme'], false),
+    errors: get(preview, 'errors', []),
   }
 }, {
   setPreview,
@@ -156,7 +159,7 @@ class FileEditor extends Component {
       theme: lightTheme ? 'neo' : 'one-dark',
       autoCloseTags: true,
       foldGutter: true,
-      gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
       styleActiveLine: {
         nonEmpty: true,
       },
@@ -176,8 +179,19 @@ class FileEditor extends Component {
       hintOptions: {
         schemaInfo: autocompleteTags,
       },
+      lint: this.handleValidate,
     })
     this._codeMirror.on('change', this.handleChange)
+  }
+
+  handleValidate = () => {
+    const { errors } = this.props
+    return errors.map(err => ({
+      message: err.message,
+      severity: 'error',
+      from: CodeMirror.Pos(err.line - 1, 1),
+      to: CodeMirror.Pos(err.line - 1, 1),
+    }))
   }
 
   handleChange = debounce(async () => {

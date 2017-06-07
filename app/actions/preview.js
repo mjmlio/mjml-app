@@ -43,8 +43,8 @@ export function setPreview (fileName, content = '') {
         minify: settings.getIn(['mjml', 'minify']),
       }
 
-      const html = await mjml2html(content, fileName, mjmlPath, renderOpts)
-      dispatch(setPrev({ type: 'html', content: html }))
+      const { html, errors } = await mjml2html(content, fileName, mjmlPath, renderOpts)
+      dispatch(setPrev({ type: 'html', content: html, errors }))
       // update the preview in project
       if (bName === 'index.mjml') {
         dispatch(updateProjectPreview(fName, html))

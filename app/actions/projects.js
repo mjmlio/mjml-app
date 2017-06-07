@@ -82,7 +82,7 @@ async function loadProject (p, mjmlPath) {
     try {
       const indexFilePath = path.join(p, 'index.mjml')
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
-      const htmlContent = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
+      const { html: htmlContent } = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
     } catch (e) {} // eslint-disable-line
   }
