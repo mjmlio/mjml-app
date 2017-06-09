@@ -4,6 +4,7 @@ export default function sendEmail (opts) {
 
   const {
     content,
+    Subject,
     APIKey,
     APISecret,
     SenderEmail,
@@ -17,7 +18,7 @@ export default function sendEmail (opts) {
   return send.request({
     FromEmail: SenderEmail,
     FromName: 'MJML App',
-    Subject: 'MJML App test email',
+    Subject,
     'Html-part': content,
     Recipients,
   })

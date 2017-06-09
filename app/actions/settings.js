@@ -23,6 +23,7 @@ export function loadSettings () {
       },
       projects: [],
       api: {
+        Subject: 'MJML App test email',
         APIKey: '',
         APISecret: '',
         SenderEmail: '',

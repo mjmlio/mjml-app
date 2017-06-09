@@ -25,11 +25,13 @@ import Button from 'components/Button'
   const SenderEmail = state.settings.getIn(['api', 'SenderEmail'], '')
   const TargetEmails = state.settings.getIn(['api', 'TargetEmails'], [])
   const LastEmails = state.settings.getIn(['api', 'LastEmails'], [])
+  const Subject = state.settings.getIn(['api', 'Subject'], '')
   return {
     content: get(state, 'preview.content', ''),
     isOpened: isModalOpened(state, 'send'),
     APIKey: state.settings.getIn(['api', 'APIKey'], ''),
     APISecret: state.settings.getIn(['api', 'APISecret'], ''),
+    Subject,
     SenderEmail,
     TargetEmails,
     emails: uniq([
@@ -49,6 +51,7 @@ class SendModal extends Component {
 
   state = {
     emails: this.props.emails,
+    Subject: '',
     APIKey: '',
     APISecret: '',
     SenderEmail: '',
@@ -90,6 +93,7 @@ class SendModal extends Component {
     } = this.props
 
     const {
+      Subject,
       APIKey,
       APISecret,
       SenderEmail,
@@ -99,6 +103,7 @@ class SendModal extends Component {
     try {
       await sendEmail({
         content,
+        Subject,
         APIKey,
         APISecret,
         SenderEmail,
@@ -121,6 +126,7 @@ class SendModal extends Component {
 
   setAPIState = props => {
     this.setState({
+      Subject: props.Subject,
       APIKey: props.APIKey,
       APISecret: props.APISecret,
       SenderEmail: props.SenderEmail,
@@ -131,6 +137,7 @@ class SendModal extends Component {
   debounceSaveInConfig = debounce(() => {
     this.props.updateSettings(settings => {
       return settings
+        .setIn(['api', 'Subject'], this.state.Subject)
         .setIn(['api', 'APIKey'], this.state.APIKey)
         .setIn(['api', 'APISecret'], this.state.APISecret)
         .setIn(['api', 'SenderEmail'], this.state.SenderEmail)
@@ -168,13 +175,14 @@ class SendModal extends Component {
 
     const {
       emails,
+      Subject,
       APIKey,
       APISecret,
       SenderEmail,
       TargetEmails,
     } = this.state
 
-    const isValid = !!APIKey && !!APISecret && !!SenderEmail && !!TargetEmails.length
+    const isValid = !!APIKey && !!APISecret && !!SenderEmail && !!TargetEmails.length && !!Subject
 
     return (
       <Modal
@@ -185,7 +193,7 @@ class SendModal extends Component {
           {'Send'}
         </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="flow-v-20">
 
           <MailjetInfos
             APIKey={APIKey}
@@ -194,7 +202,20 @@ class SendModal extends Component {
             onChange={this.handleChangeInfo}
           />
 
-          <div className='flow-v-10 mt-20 d-f fd-c ai-fs jc-fs'>
+          <div className='flow-v-10'>
+            <div className='t-small'>
+              {'Subject'}
+            </div>
+            <input
+              style={{ width: '100%' }}
+              value={Subject}
+              onChange={e => this.handleChangeInfo('Subject', e.target.value)}
+              placeholder='Subject'
+              type='text'
+            />
+          </div>
+
+          <div className='flow-v-10'>
             <div className='t-small'>
               {'Target Emails'}
               {!!TargetEmails.length && ` (${TargetEmails.length})`}
