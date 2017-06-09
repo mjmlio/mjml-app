@@ -4,6 +4,7 @@ import CodeMirror from 'codemirror'
 const tags = {
     "mj-accordion": {
         "attrs": {
+            "css-class": null,
             "container-background-color": null,
             "border": null,
             "font-family": null,
@@ -19,8 +20,7 @@ const tags = {
             "padding-left": null,
             "padding-right": null,
             "padding-top": null,
-            "padding": null,
-            "css-class": null
+            "padding": null
         }
     },
     "mj-accordion-element": {
@@ -76,18 +76,16 @@ const tags = {
             "border-right": null,
             "border-top": null,
             "border-radius": null,
-            "box-shadow": null,
             "font-style": null,
             "font-size": null,
             "font-weight": null,
             "font-family": null,
             "color": null,
-            "line-height": null,
-            "text-align": null,
             "text-decoration": null,
             "text-transform": null,
             "align": null,
             "vertical-align": null,
+            "line-height": null,
             "href": null,
             "rel": null,
             "inner-padding": null,
@@ -145,9 +143,9 @@ const tags = {
     },
     "mj-container": {
         "attrs": {
-            "css-class": null,
             "width": null,
-            "background-color": null
+            "background-color": null,
+            "css-class": null
         }
     },
     "mj-divider": {
