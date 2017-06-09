@@ -22,9 +22,14 @@ function getDownloadURL () {
 
 export default function queryLastVersion () {
   return async dispatch => {
-    const res = await fetch('https://api.github.com/repos/mjmlio/mjml-app/releases/latest')
-    const parsed = await res.json()
-    const lastTag = parsed.tag_name
+    let lastTag = '0.0.0'
+    try {
+      const res = await fetch('https://api.github.com/repos/mjmlio/mjml-app/releases/latest')
+      const parsed = await res.json()
+      if (parsed.tag_name) {
+        lastTag = parsed.tag_name
+      }
+    } catch (e) {} // eslint-disable-line
     const isCurrentOutdated = semver.lt(__MJML_APP_VERSION__, lastTag)
     if (isCurrentOutdated) {
       dispatch(addNotif(
