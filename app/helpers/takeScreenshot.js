@@ -21,7 +21,7 @@ export default function takeScreenshot (html, deviceWidth) {
     win.webContents.on('did-finish-load', () => {
       // Window is not fully loaded after this event, hence setTimeout()...
       win.webContents.executeJavaScript('document.querySelector(\'body\').getBoundingClientRect().height', (height) => {
-        win.setSize(deviceWidth, height)
+        win.setSize(deviceWidth, height + 50)
         setTimeout(() => {
           win.webContents.capturePage((img) => { // eslint-disable-line
             win.close()
