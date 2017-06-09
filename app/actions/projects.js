@@ -144,3 +144,16 @@ export function renameProject (oldPath, newPath) {
     dispatch(saveSettings())
   }
 }
+
+export function dropFile (filePath) {
+  return async dispatch => {
+    console.log(`nth`)
+  }
+}
+
+if (module.hot) {
+  module.hot.accept(() => {
+    delete require.cache[require.resolve('./projects')]
+    require('./projects')
+  })
+}

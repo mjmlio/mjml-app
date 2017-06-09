@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 
+import { dropFile } from 'actions/projects'
+
 import Alerts from 'components/Alerts'
 import NotifsPanel from 'components/Notifs/NotifsPanel'
 import NewProjectModal from 'components/NewProjectModal'
@@ -17,7 +19,9 @@ import './style.scss'
 @connect(state => ({
   projects: state.projects,
   settings: state.settings,
-}))
+}), {
+  dropFile,
+})
 class Application extends Component {
 
   state = {
@@ -40,7 +44,8 @@ class Application extends Component {
   handleDrop = e => {
     e.preventDefault()
     this.handleDragLeave()
-    console.log(e.dataTransfer.files[0].path)
+    const fileName = e.dataTransfer.files[0].path
+    this.props.dropFile(fileName)
   }
 
   handleDragOver = e => {
