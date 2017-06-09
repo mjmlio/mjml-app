@@ -1,3 +1,13 @@
+### 2.4.0 (2017-06-09)
+
+- MJML 3.3.3
+- Sync autocomplete attributes with MJML 3.3.3 - @ngarnier
+- Add Try-it-live link to the menu - @MateuszDabrowski
+- Alternative high contrast theme ([#136](https://github.com/mjmlio/mjml-app/issues/136))
+- Display syntax errors directly in editor ([#142](https://github.com/mjmlio/mjml-app/issues/142))
+- Customize `Subject` field when sending email ([#139](https://github.com/mjmlio/mjml-app/issues/139))
+- Prevent scrollbars on screenshots ([#120](https://github.com/mjmlio/mjml-app/issues/120))
+
 ### 2.3.0 (2017-05-26)
 
 - Send email to multiple targets ([#126](https://github.com/mjmlio/mjml-app/issues/126))
