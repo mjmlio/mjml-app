@@ -193,7 +193,7 @@ class SendModal extends Component {
           {'Send'}
         </div>
 
-        <form onSubmit={this.handleSubmit} className="flow-v-20">
+        <form onSubmit={this.handleSubmit} className='flow-v-20'>
 
           <MailjetInfos
             APIKey={APIKey}
