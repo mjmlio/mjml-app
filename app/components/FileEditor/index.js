@@ -150,6 +150,7 @@ class FileEditor extends Component {
       this._codeMirror = null
     }
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
+      dragDrop: false,
       matchTags: highlightTag ? { bothTags: true } : undefined,
       indentUnit: 2,
       tabSize: 2,

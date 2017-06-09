@@ -10,6 +10,7 @@ import ErrorModal from 'components/ErrorModal'
 import AboutModal from 'components/AboutModal'
 
 import Placeholder from './Placeholder'
+import DropFile from './DropFile'
 
 import './style.scss'
 
@@ -18,6 +19,10 @@ import './style.scss'
   settings: state.settings,
 }))
 class Application extends Component {
+
+  state = {
+    isOver: false,
+  }
 
   componentDidMount () {
     // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
@@ -28,6 +33,21 @@ class Application extends Component {
     // })
   }
 
+  handleDragLeave = () => {
+    this.setState({ isOver: false })
+  }
+
+  handleDrop = e => {
+    e.preventDefault()
+    this.handleDragLeave()
+    console.log(e.dataTransfer.files[0].path)
+  }
+
+  handleDragOver = e => {
+    e.preventDefault()
+    if (!this.state.isOver) { this.setState({ isOver: true }) }
+  }
+
   render () {
 
     const {
@@ -36,6 +56,10 @@ class Application extends Component {
       location,
     } = this.props
 
+    const {
+      isOver,
+    } = this.state
+
     const { pathname } = location
 
     return (
@@ -43,8 +67,17 @@ class Application extends Component {
         className={cx('Application', {
           'bg-dark': pathname === '/',
           'bg-darker': pathname === '/project',
+          isOver,
         })}
+        onDragOver={this.handleDragOver}
       >
+
+        <DropFile
+          onDragOver={this.handleDragOver}
+          onDragLeave={this.handleDragLeave}
+          onDrop={this.handleDrop}
+          isVisible={isOver}
+        />
 
         <Placeholder show={!projects} />
         {projects && this.props.children}
