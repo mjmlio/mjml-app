@@ -24,12 +24,12 @@ export default function buildMenu (mainWindow) {
       }, {
         label: 'Documentation',
         click () {
-          shell.openItem('https://mjml.io/documentation/')
+          shell.openExternal('https://mjml.io/documentation/')
         },
       }, {
         label: 'Browser Editor',
         click () {
-          shell.openItem('https://mjml.io/try-it-live')
+          shell.openExternal('https://mjml.io/try-it-live')
         },
       }, {
         type: 'separator',

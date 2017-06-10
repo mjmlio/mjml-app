@@ -78,7 +78,7 @@ class ErrorModal extends Component {
           <pre>{stack}</pre>
         </div>
         <div className='d-f ai-c jc-c'>
-          <Button primary onClick={() => shell.openItem('https://github.com/mjmlio/mjml-app/issues')}>
+          <Button primary onClick={() => shell.openExternal('https://github.com/mjmlio/mjml-app/issues')}>
             <IconOpen className='mr-5' />
             {'Open the issues page'}
           </Button>

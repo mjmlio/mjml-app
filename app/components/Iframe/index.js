@@ -48,7 +48,7 @@ class Iframe extends Component {
             e.preventDefault()
             const href = link.getAttribute('href')
             if (href) {
-              shell.openItem(href)
+              shell.openExternal(href)
             }
           })
         })

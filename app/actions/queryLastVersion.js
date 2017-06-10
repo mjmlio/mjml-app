@@ -41,7 +41,7 @@ export default function queryLastVersion () {
             primary
             className='mt-20'
             onClick={() => {
-              shell.openItem(getDownloadURL())
+              shell.openExternal(getDownloadURL())
             }}
           >
             <IconDownload className='mr-5' />
