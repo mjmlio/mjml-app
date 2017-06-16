@@ -146,8 +146,11 @@ export function renameProject (oldPath, newPath) {
 }
 
 export function dropFile (filePath) {
-  return async dispatch => {
-    console.log(`nth`)
+  return dispatch => {
+    const ext = path.extname(filePath)
+    if (ext !== '.mjml') { return }
+    const dir = path.dirname(filePath)
+    dispatch(openProject(dir))
   }
 }
 

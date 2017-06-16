@@ -42,7 +42,7 @@ class DropFile extends Component {
                 />
               </div>
               <div style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>
-                <b className='c-white'>{'Drop your file, to create a project.'}</b>
+                {'Drop here'}
               </div>
             </div>
           </div>

@@ -26,6 +26,6 @@
 
 .DropFile--border {
   position: absolute;
-  top: 20px; left: 20px; right: 20px; bottom: 20px;
-  border: 2px dashed $lighterGrey;
+  top: 0px; left: 0px; right: 0px; bottom: 0px;
+  border: 50px solid rgba($lighterGrey, 0.2);
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import os from 'os'
 
 import {
   openProject,
@@ -14,6 +15,8 @@ import RenameModal from './RenameModal'
 import ProjectItem from './ProjectItem'
 
 import './style.scss'
+
+const HOME_DIR = os.homedir()
 
 @connect(state => ({
   projects: state.projects,
@@ -55,7 +58,9 @@ class ProjectsList extends Component {
 
   handleConfirmRemove = () => {
     const { activePath, shouldDeleteFolder } = this.state
-    this.props.removeProject(activePath, shouldDeleteFolder)
+    const { removeProject } = this.props
+    const isHome = activePath === HOME_DIR
+    removeProject(activePath, isHome ? false : shouldDeleteFolder)
     this.handleCloseDeleteModal()
   }
 
@@ -95,6 +100,8 @@ class ProjectsList extends Component {
       activePath,
     } = this.state
 
+    const isHome = activePath === HOME_DIR
+
     return (
       <div className='ProjectsList abs o-n'>
         {projects.reverse().map((p) => (
@@ -114,9 +121,11 @@ class ProjectsList extends Component {
           onConfirm={this.handleConfirmRemove}
         >
           <h2 className='mb-20'>{'Remove project from list?'}</h2>
-          <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
-            {'Also remove folder and files from disk'}
-          </CheckBox>
+          {!isHome && (
+            <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
+              {'Also remove folder and files from disk'}
+            </CheckBox>
+          )}
         </ConfirmModal>
         <RenameModal
           isOpened={isRenameModalOpened}
