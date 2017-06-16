@@ -8,6 +8,8 @@ import {
   renameProject,
 } from 'actions/projects'
 
+import { toggleSelectProject } from 'reducers/selectedProjects'
+
 import CheckBox from 'components/CheckBox'
 import ConfirmModal from 'components/Modal/ConfirmModal'
 
@@ -20,10 +22,12 @@ const HOME_DIR = os.homedir()
 
 @connect(state => ({
   projects: state.projects,
+  selectedProjects: state.selectedProjects,
 }), {
   openProject,
   removeProject,
   renameProject,
+  toggleSelectProject,
 })
 class ProjectsList extends Component {
 
@@ -91,6 +95,8 @@ class ProjectsList extends Component {
     const {
       openProject,
       projects,
+      selectedProjects,
+      toggleSelectProject,
     } = this.props
 
     const {
@@ -104,15 +110,20 @@ class ProjectsList extends Component {
 
     return (
       <div className='ProjectsList abs o-n'>
-        {projects.reverse().map((p) => (
-          <ProjectItem
-            key={p}
-            p={p}
-            onRemove={this.handleRemoveProject(p.get('path'))}
-            onOpen={() => openProject(p.get('path'))}
-            onEditName={this.handleEditProjectName(p.get('path'))}
-          />
-        ))}
+        {projects.reverse().map((p) => {
+          const projectPath = p.get('path')
+          return (
+            <ProjectItem
+              key={p}
+              p={p}
+              isSelected={selectedProjects.indexOf(projectPath) > -1}
+              onToggleSelect={() => toggleSelectProject(projectPath)}
+              onRemove={this.handleRemoveProject(projectPath)}
+              onOpen={() => openProject(projectPath)}
+              onEditName={this.handleEditProjectName(projectPath)}
+            />
+          )
+        })}
         <ConfirmModal
           isOpened={isDeleteModalOpened}
           yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}

@@ -80,6 +80,14 @@ export function updateSettings (updater) {
   }
 }
 
+export function saveLastExportedFolder (path) {
+  return (dispatch) => {
+    dispatch(updateSettings(settings => {
+      return settings.set('lastExportedFolder', path)
+    }))
+  }
+}
+
 export function saveLastOpenedFolder (path) {
   return (dispatch) => {
     dispatch(updateSettings(settings => {

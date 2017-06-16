@@ -14,7 +14,7 @@
   margin-right: 20px;
   margin-bottom: 30px;
   &:hover {
-    .ProjectItem--delete-btn {
+    .ProjectItem--action-btn {
       opacity: 1;
     }
     .ProjectItem--edit-btn {
@@ -44,27 +44,41 @@
   text-overflow: ellipsis;
 }
 
-.ProjectItem--delete-btn {
+.ProjectItem--action-btn {
   pointer-events: auto;
   position: absolute;
-  right: -3px;
   top: -3px;
-  background: #ca2d2d;
   z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   transition: 200ms ease-in-out;
   transition-property: background, transform;
   opacity: 0;
+  box-shadow: rgba(black, 0.2) 0 3px 8px;
+  &:active {
+    transform: scale(0.8);
+  }
+}
+
+.ProjectItem--delete-btn {
+  right: -3px;
+  background: #ca2d2d;
   &:hover {
     background: lighten(#ca2d2d, 10);
   }
-  &:active {
-    transform: scale(0.8);
+}
+
+.ProjectItem--select-btn {
+  left: -3px;
+  background: white;
+  &.isActive {
+    opacity: 1;
+    background: $blue;
+    color: white;
   }
 }
 

@@ -1,7 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, createElement } from 'react'
+import cx from 'classnames'
 import path from 'path'
 import IconClose from 'react-icons/md/close'
 import IconEdit from 'react-icons/md/mode-edit'
+import IconUnselected from 'react-icons/md/radio-button-unchecked'
+import IconSelected from 'react-icons/md/check'
 
 import Tabbable from 'components/Tabbable'
 import Preview from 'components/Preview'
@@ -20,6 +23,8 @@ class ProjectItem extends Component {
       onRemove,
       onOpen,
       onEditName,
+      onToggleSelect,
+      isSelected,
       p,
     } = this.props
 
@@ -58,8 +63,19 @@ class ProjectItem extends Component {
           </button>
         </div>
         <Tabbable
+          disabled={!isOver && !isSelected}
+          className={cx('ProjectItem--action-btn ProjectItem--select-btn', {
+            isActive: isSelected,
+          })}
+          onClick={onToggleSelect}
+        >
+          {createElement(isSelected ? IconSelected : IconUnselected, {
+            size: 20,
+          })}
+        </Tabbable>
+        <Tabbable
           disabled={!isOver}
-          className='ProjectItem--delete-btn'
+          className='ProjectItem--action-btn ProjectItem--delete-btn'
           onClick={onRemove}
         >
           <IconClose color='#fff' />

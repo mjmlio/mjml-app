@@ -2,11 +2,13 @@ import fs from 'fs'
 import os from 'os'
 import path from 'path'
 import { replace } from 'react-router-redux'
+import kebabCase from 'lodash/kebabCase'
 
 import {
   saveSettings,
   cleanBadProjects,
   saveLastOpenedFolder,
+  saveLastExportedFolder,
 } from 'actions/settings'
 
 import {
@@ -14,6 +16,7 @@ import {
   fsReadFile,
   fsAccess,
   fsRename,
+  fsWriteFile,
   isValidDir,
   rimraf,
 } from 'helpers/fs'
@@ -151,6 +154,32 @@ export function dropFile (filePath) {
     if (ext !== '.mjml') { return }
     const dir = path.dirname(filePath)
     dispatch(openProject(dir))
+  }
+}
+
+export function exportSelectedProjectsToHTML () {
+  return (dispatch, getState) => {
+    const state = getState()
+    const projectsToExport = state.projects
+      .filter(p => state.selectedProjects.find(path => path === p.get('path')))
+      .filter(p => p.get('html'))
+    if (projectsToExport.size === 0) { return }
+
+    const targetPath = fileDialog({
+      defaultPath: state.settings.get('lastExportedFolder') || HOME_DIR,
+      properties: [
+        'openDirectory',
+        'createDirectory',
+      ],
+    })
+    if (!targetPath) { return }
+    projectsToExport.forEach(async p => {
+      const projBaseName = path.basename(p.get('path'))
+      const projSafeName = `${kebabCase(projBaseName)}.html`
+      const filePath = path.join(targetPath, projSafeName)
+      await fsWriteFile(filePath, p.get('html'))
+    })
+    dispatch(saveLastExportedFolder(targetPath))
   }
 }
 
