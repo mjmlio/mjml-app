@@ -202,7 +202,13 @@ class FilesList extends Component {
       window.requestIdleCallback(() => {
         if (files.length && !this._hasFocused) {
           const indexOfIndexFile = files.findIndex(f => f.name === 'index.mjml')
-          this.props.onActiveFileChange(files[indexOfIndexFile === -1 ? 0 : indexOfIndexFile])
+          const indexOfFirstMJMLFile = files.findIndex(f => f.name.endsWith('.mjml'))
+          const activeIndex = indexOfIndexFile > -1
+            ? indexOfIndexFile
+            : indexOfFirstMJMLFile > -1
+            ? indexOfFirstMJMLFile
+            : 0
+          this.props.onActiveFileChange(files[activeIndex])
           this._hasFocused = true
         }
       })
