@@ -1,6 +1,7 @@
 import React, {
   PureComponent,
   Children,
+  createElement,
 } from 'react'
 import cx from 'classnames'
 
@@ -31,7 +32,7 @@ class TabsVertical extends PureComponent {
     return (
       <div className='TabsVertical sticky'>
         <div className='TabsVertical--Tabs'>
-          {titles.map((title, i) => (
+          {childs.map(({ props: { title, icon } }, i) => (
             <div
               key={title}
               className={cx('TabsVertical--Tab', {
@@ -39,6 +40,9 @@ class TabsVertical extends PureComponent {
               })}
               onClick={() => this.handleSetTab(i)}
             >
+              {!!icon && createElement(icon, {
+                className: 'mr-10',
+              })}
               {title}
             </div>
           ))}
