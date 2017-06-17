@@ -21,15 +21,18 @@ export const rimraf = promisify(rimrafModule)
 
 function getFileInfoFactory (p) {
   return async name => {
+    const fullPath = path.resolve(p, name)
     try {
-      const stats = await fsStat(path.resolve(p, name))
+      const stats = await fsStat(fullPath)
       return {
         name,
+        path: fullPath,
         isFolder: stats.isDirectory(),
       }
     } catch (err) {
       return {
         name,
+        path: fullPath,
         isFolder: false,
       }
     }

@@ -124,6 +124,7 @@
 .ff-m { font-family: monospace; }
 
 .ellipsis {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
