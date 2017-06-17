@@ -8,6 +8,13 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+
+  &.withUI > .Modal-box > .Modal--body {
+    margin: 100px 0;
+    border: 2px solid rgba(white, 0.07);
+    width: 600px;
+    padding: 20px;
+  }
 }
 
 .Modal--overlay {
@@ -27,12 +34,8 @@
   &:focus {
     outline: none;
   }
-  margin: 100px 0;
-  padding: 20px;
   background: $bg;
   box-shadow: rgba(black, 0.2) 0 15px 100px;
-  border: 2px solid rgba(white, 0.07);
-  width: 600px;
   position: relative;
   z-index: 1;
 }

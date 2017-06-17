@@ -24,6 +24,7 @@ class Modal extends Component {
       children,
       className,
       style,
+      noUI,
     } = this.props
 
     return (
@@ -37,7 +38,9 @@ class Modal extends Component {
       >
         {(motion, isVisible) => (
           <div
-            className='Modal'
+            className={cx('Modal', {
+              withUI: !noUI,
+            })}
             style={{
               pointerEvents: isVisible ? 'auto' : 'none',
             }}
