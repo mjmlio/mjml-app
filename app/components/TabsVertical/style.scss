@@ -1,0 +1,39 @@
+.TabsVertical {
+  display: flex;
+}
+
+.TabsVertical--Tabs {
+  width: 200px;
+  margin-right: 10px;
+  border-right: 3px solid rgba(white, 0.1);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.TabsVertical--Tab {
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background: rgba(white, 0.03);
+  }
+
+  &:active {
+    background: rgba(black, 0.07);
+    color: white;
+  }
+
+  &.isActive {
+    background: rgba(white, 0.1);
+    color: white;
+    font-weight: bold;
+    cursor: default;
+  }
+}
+
+.TabsVertical--View {
+  flex-grow: 1;
+}
