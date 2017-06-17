@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import pathModule from 'path'
-import trash from 'trash'
+import rimraf from 'rimraf'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -24,7 +24,7 @@ import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
-import FilesList from 'components/FilesList'
+import FileExplorer from 'components/FileExplorer'
 import NotifBtn from 'components/Notifs/NotifBtn'
 
 import BackButton from './BackButton'
@@ -34,29 +34,27 @@ import RemoveFileModal from './RemoveFileModal'
 
 import takeScreenshot from 'helpers/takeScreenshot'
 
-@connect(
-  state => ({
-    preview: state.preview,
-    previewSize: state.settings.get('previewSize'),
-    beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
-  }),
-  {
-    openModal,
-    addAlert,
-    setPreview,
-  },
-)
+@connect(state => ({
+  preview: state.preview,
+  previewSize: state.settings.get('previewSize'),
+  beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+}), {
+  openModal,
+  addAlert,
+  setPreview,
+})
 class ProjectPage extends Component {
+
   state = {
     path: this.props.location.query.path,
     activeFile: null,
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this._page.focus()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.props.setPreview(null)
   }
 
@@ -67,35 +65,35 @@ class ProjectPage extends Component {
   handleClickImport = () => {
     const p = fileDialog({
       defaultPath: this.props.location.query.path,
-      properties: ['openFile'],
-      filters: [{ name: 'All Files', extensions: ['mjml'] }],
+      properties: [
+        'openFile',
+      ],
+      filters: [
+        { name: 'All Files', extensions: ['mjml'] },
+      ],
     })
 
-    if (!p) {
-      return
-    }
+    if (!p) { return }
 
     fs.readFile(p, { encoding: 'utf8' }, (err, res) => {
-      if (err) {
-        return
-      }
+      if (err) { return }
       this._content = res
     })
   }
 
-  handleAddFile = fileName => {
-    fs.writeFile(fileName, defaultMJML, err => {
-      if (err) {
-        return
-      }
+  handleAddFile = (fileName) => {
+    fs.writeFile(fileName, defaultMJML, (err) => {
+      if (err) { return }
       this._filelist.refresh()
     })
   }
 
-  handleRemoveFile = async fileName => {
-    await trash(fileName)
-    this._filelist.refresh()
-    this.setState({ activeFile: null })
+  handleRemoveFile = fileName => {
+    rimraf(fileName, err => {
+      if (err) { return }
+      this._filelist.refresh()
+      this.setState({ activeFile: null })
+    })
   }
 
   handleOpenInBrowser = () => {
@@ -118,13 +116,15 @@ class ProjectPage extends Component {
     const p = saveDialog({
       title: 'Export to HTML file',
       defaultPath: this.props.location.query.path,
-      filters: [{ name: 'All Files', extensions: ['html'] }],
+      filters: [
+        { name: 'All Files', extensions: ['html'] },
+      ],
     })
-    if (!p) {
-      return
-    }
+    if (!p) { return }
 
-    const { addAlert } = this.props
+    const {
+      addAlert,
+    } = this.props
 
     const htmlContent = this.getHTMLOutput()
 
@@ -134,7 +134,12 @@ class ProjectPage extends Component {
   }
 
   handleScreenshot = async () => {
-    const { preview, previewSize, addAlert, location } = this.props
+    const {
+      preview,
+      previewSize,
+      addAlert,
+      location,
+    } = this.props
 
     const filename = pathModule.basename(this.state.activeFile.name, '.mjml')
 
@@ -147,10 +152,7 @@ class ProjectPage extends Component {
 
     await Promise.all([
       fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
-      fsWriteFile(
-        pathModule.join(location.query.path, `${filename}-desktop.png`),
-        desktopScreenshot,
-      ),
+      fsWriteFile(pathModule.join(location.query.path, `${filename}-desktop.png`), desktopScreenshot),
     ])
 
     addAlert('Successfully saved mobile and desktop screenshots', 'success')
@@ -161,109 +163,124 @@ class ProjectPage extends Component {
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
 
-  getHTMLOutput() {
+  getHTMLOutput () {
     const { preview, beautifyOutput } = this.props
-    return beautifyOutput ? beautifyJS.html(preview.content) : preview.content
+    return beautifyOutput
+      ? beautifyJS.html(preview.content)
+      : preview.content
   }
 
-  render() {
-    const { preview } = this.props
+  render () {
 
-    const { path, activeFile } = this.state
+    const {
+      preview,
+    } = this.props
+
+    const {
+      path,
+      activeFile,
+    } = this.state
 
     const rootPath = this.props.location.query.path
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
 
     return (
-      <div className="fg-1 d-f fd-c o-n" tabIndex={0} ref={n => (this._page = n)}>
-        <div className="d-f p-10 r" style={{ zIndex: 2 }}>
-          <div className="fg-1 flow-h-10">
+      <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
+
+        <div className='d-f p-10 r' style={{ zIndex: 2 }}>
+          <div className='fg-1 flow-h-10'>
             <BackButton projectName={projectName} />
-            <Button ghost onClick={this.openAddFileModal}>
-              <IconAdd className="mr-5" />
+            <Button
+              ghost
+              onClick={this.openAddFileModal}
+            >
+              <IconAdd className='mr-5' />
               {'New file'}
             </Button>
           </div>
-          <div className="d-f flow-h-10">
+          <div className='d-f flow-h-10'>
             {isMJMLFile && [
-              <Button key="beautify" transparent onClick={this.handleBeautify}>
+              <Button
+                key='beautify'
+                transparent
+                onClick={this.handleBeautify}
+              >
                 <IconBeautify style={{ marginRight: 5 }} />
                 {'Beautify'}
               </Button>,
             ]}
-            <Button transparent onClick={this.handleOpenInBrowser}>
+            <Button
+              transparent
+              onClick={this.handleOpenInBrowser}
+            >
               <FaFolderOpen style={{ marginRight: 5 }} />
               {'Open'}
             </Button>
-            {preview &&
-              preview.type === 'html' && [
-                <Button key={'send'} transparent onClick={this.openSendModal}>
-                  <IconEmail style={{ marginRight: 5 }} />
-                  {'Send'}
-                </Button>,
-                <ButtonDropdown
-                  ghost
-                  key={'export'}
-                  dropdownWidth={300}
-                  actions={[
-                    {
-                      icon: <IconCopy />,
-                      label: 'Copy HTML',
-                      desc: 'Copy the result HTML to clipboard',
-                      onClick: this.handleCopyHTML,
-                    },
-                    {
-                      icon: <IconCode />,
-                      label: 'Export to HTML file',
-                      desc: 'Save the result HTML file to disk',
-                      onClick: this.handleExportToHTML,
-                    },
-                    {
-                      icon: <IconCamera />,
-                      label: 'Screenshot',
-                      desc: 'Save a screeshot of mobile & desktop result',
-                      onClick: this.handleScreenshot,
-                    },
-                  ]}
-                />,
-              ]}
+            {preview && preview.type === 'html' && [
+              <Button
+                key={'send'}
+                transparent
+                onClick={this.openSendModal}
+              >
+                <IconEmail style={{ marginRight: 5 }} />
+                {'Send'}
+              </Button>,
+              <ButtonDropdown
+                ghost
+                key={'export'}
+                dropdownWidth={300}
+                actions={[
+                  {
+                    icon: <IconCopy />,
+                    label: 'Copy HTML',
+                    desc: 'Copy the result HTML to clipboard',
+                    onClick: this.handleCopyHTML,
+                  },
+                  {
+                    icon: <IconCode />,
+                    label: 'Export to HTML file',
+                    desc: 'Save the result HTML file to disk',
+                    onClick: this.handleExportToHTML,
+                  },
+                  {
+                    icon: <IconCamera />,
+                    label: 'Screenshot',
+                    desc: 'Save a screeshot of mobile & desktop result',
+                    onClick: this.handleScreenshot,
+                  },
+                ]}
+              />,
+            ]}
           </div>
           <Button
-            className="ml-10"
+            className='ml-10'
             ghost
             onClick={this.openSettingsModal}
-            ref={n => (this._btnSettings = n)}
+            ref={n => this._btnSettings = n}
           >
             <FaCog />
           </Button>
           <NotifBtn />
         </div>
 
-        <div className="fg-1 d-f fd-c r" style={{ zIndex: 1 }}>
-          <FilesList
-            onRef={n => (this._filelist = n)}
-            onEditorRef={n => (this._editor = n)}
-            withPreview
-            withHome
-            rootPath={rootPath}
-            path={path}
-            activeFile={activeFile}
-            onActiveFileChange={this.handleActiveFileChange}
-            onPathChange={this.handlePathChange}
-            onAddClick={this.openAddModal}
-            onAddFile={this.handleAddFile}
-            onRemoveFile={this.handleRemoveFile}
-            focusHome
-          />
+        <div className='fg-1 d-f r' style={{ zIndex: 1 }}>
+          <div className='r' style={{ width: 200 }}>
+            <FileExplorer
+              base={rootPath}
+              onFileClick={p => console.log(`you clicked on ${p}`)}
+            />
+          </div>
         </div>
 
         <SendModal />
         <AddFileModal rootPath={rootPath} onAdd={this.handleAddFile} />
         <RemoveFileModal rootPath={rootPath} onRemove={this.handleRemoveFile} />
+
       </div>
     )
   }
+
 }
 
 export default ProjectPage
