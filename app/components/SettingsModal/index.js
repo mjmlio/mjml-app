@@ -3,14 +3,22 @@ import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
 import IconMobile from 'react-icons/md/phone-android'
 import IconDesktop from 'react-icons/md/desktop-windows'
+import IconClose from 'react-icons/md/close'
+import IconMJMLEngine from 'react-icons/md/settings-applications'
+import IconEditor from 'react-icons/md/format-align-left'
+import IconPreview from 'react-icons/md/important-devices'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
 
 import Modal from 'components/Modal'
+import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
+import TabsVertical, { TabItem } from 'components/TabsVertical'
 
 import MJMLEngine from 'components/MJMLEngine'
+
+import './style.scss'
 
 @connect(state => ({
   isOpened: isModalOpened(state, 'settings'),
@@ -90,40 +98,41 @@ class SettingsModal extends Component {
 
     return (
       <Modal
+        noUI
         isOpened={isOpened}
         onClose={this.handleClose}
+        className='SettingsModal p-10 d-f fd-c'
       >
-        <div className='Modal--label'>
-          {'Settings'}
+        <div className='d-f ai-c mb-20'>
+          <Button transparent onClick={this.handleClose} className='ml-auto'>
+            <IconClose />
+          </Button>
         </div>
-        <div className='flow-v-20'>
-          <div className='settings-group'>
-            <h2 className='secondary mb-10'>{'MJML'}</h2>
-            <MJMLEngine />
 
-            <div className='mt-10'>
-              {'Output:'}
-            </div>
-            <CheckBox
-              className='mt-10'
-              value={minifyOutput}
-              onChange={this.changeMJMLSetting('minify')}
-            >
-              {'Minify HTML output'}
-            </CheckBox>
-            <CheckBox
-              value={beautifyOutput}
-              onChange={this.changeMJMLSetting('beautify')}
-            >
-              {'Beautify HTML output'}
-            </CheckBox>
+        <div className='fg-1 mb-20 r'>
+          <TabsVertical>
 
-          </div>
+            <TabItem title='MJML' icon={IconMJMLEngine}>
+              <MJMLEngine />
+              <div className='mt-10'>
+                {'Output:'}
+              </div>
+              <CheckBox
+                className='mt-10'
+                value={minifyOutput}
+                onChange={this.changeMJMLSetting('minify')}
+              >
+                {'Minify HTML output'}
+              </CheckBox>
+              <CheckBox
+                value={beautifyOutput}
+                onChange={this.changeMJMLSetting('beautify')}
+              >
+                {'Beautify HTML output'}
+              </CheckBox>
+            </TabItem>
 
-          <div className='settings-group'>
-            <h2 className='secondary mb-10'>{'Editor'}</h2>
-
-            <div>
+            <TabItem title='Editor' icon={IconEditor}>
               <CheckBox value={editorLightTheme} onChange={this.changeEditorSetting('lightTheme')}>
                 {'Use high-contrast theme'}
               </CheckBox>
@@ -153,13 +162,10 @@ class SettingsModal extends Component {
                   />
                 </div>
               </CheckBox>
-            </div>
-          </div>
+            </TabItem>
 
-          <div className='settings-group'>
-            <h2 className='secondary mb-10'>{'Preview'}</h2>
+            <TabItem title='Preview' className='flow-v-10' icon={IconPreview}>
 
-            <div className='flow-v-10'>
               <div className='d-f ai-c flow-h-5'>
                 <IconMobile size={20} />
                 <input
@@ -187,10 +193,12 @@ class SettingsModal extends Component {
                   {'Desktop size'}
                 </span>
               </div>
-            </div>
-          </div>
 
+            </TabItem>
+
+          </TabsVertical>
         </div>
+
       </Modal>
     )
   }
