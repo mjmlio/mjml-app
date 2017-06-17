@@ -77,6 +77,10 @@ class MJMLEngine extends Component {
     }
   }
 
+  componentWillUnmount () {
+    this._unmounted = true
+  }
+
   handleChangeEngine = mjmlEngine => {
     this.setState({ mjmlEngine })
     this.debounceSaveSettings()
@@ -116,6 +120,7 @@ class MJMLEngine extends Component {
     const { mjmlPath } = this.state
     if (!mjmlPath) { return this.setState({ pathStatus: 'unset' }) }
     const version = await getMJMLVersion(mjmlPath)
+    if (this._unmounted) { return }
     this.setState({
       pathStatus: version ? 'valid' : 'invalid',
       mjmlVersion: version,
