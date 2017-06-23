@@ -3,8 +3,8 @@
 .FileTabs {
   flex-shrink: 0;
   display: flex;
-  border-bottom: 1px solid rgba(white, 0.07);
   margin-left: -1px;
+  background: $bg-even-darker;
 }
 
 .FileTab {
@@ -17,7 +17,6 @@
   cursor: default;
   outline: none !important;
   position: relative;
-  border: 1px solid transparent;
   font-size: 13px;
 
   .FileTab--close-icon {
@@ -25,27 +24,22 @@
     pointer-events: none;
   }
 
-  &:focus {
-    color: white;
-  }
-
   &:hover {
-    background: rgba(white, 0.03);
+    background: rgba($bg-darker, 0.5);
 
     .FileTab--close-icon {
-      opacity: 1;
+      opacity: 0.5;
       pointer-events: auto;
+      &:active {
+        opacity: 1;
+      }
     }
   }
 
-  &:active {
-    color: white;
-  }
-
   &.isActive {
-    background: linear-gradient(0deg, rgba(white, 0.05), rgba(white, 0.1));
-    border-color: rgba(black, 0.2);
-    box-shadow: inset $blue 3px 0;
+    // background: linear-gradient(0deg, rgba(white, 0.05), rgba(white, 0.1));
+    background: $bg-darker;
+    box-shadow: inset $blue 0 3px;
     color: white;
   }
 }
@@ -57,6 +51,7 @@
   justify-content: center;
   position: absolute;
   top: 2px; right: 0; bottom: 2px;
+  outline: none !important;
   &:hover {
     color: white;
   }

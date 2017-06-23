@@ -1,0 +1,54 @@
+@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/theme/neo.css";
+@import "~codemirror/addon/hint/show-hint.css";
+@import "~codemirror/addon/lint/lint.css";
+@import "../../styles/one-dark.scss";
+@import "../../styles/vars.scss";
+
+.CodeEditor {
+  .CodeMirror {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    height: 100%;
+    .CodeMirror-scroll {
+      font-family: monospace;
+      font-size: 14px;
+    }
+  }
+  .cm-s-one-dark .CodeMirror-matchingbracket, .cm-s-one-dark .CodeMirror-matchingtag {
+    color: #ef8a92 !important;
+    border-bottom-color: rgba($blue, 0.8) !important;
+  }
+}
+
+.CodeMirror-hints {
+  border: none;
+  background: $bg;
+}
+
+.CodeMirror-hint {
+  color: $almostWhite;
+  padding: 5px;
+}
+
+li.CodeMirror-hint-active {
+  background-color: rgba($blue, 0.1) !important;
+  color: $blue;
+}
+
+.CodeEditor--loader {
+  background: $bg;
+}
+
+.CodeMirror-lint-tooltip {
+  background: $bg-light;
+  border: none;
+  box-shadow: rgba(black, 0.2) 0 3px 18px;
+  color: white;
+  padding: 10px;
+}
+
+.CodeMirror-lint-message-error {
+  background-image: none;
+  padding-left: 0;
+}

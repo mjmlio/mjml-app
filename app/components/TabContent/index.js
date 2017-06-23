@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
+import path from 'path'
 import { connect } from 'react-redux'
+import SplitPane from 'react-split-pane'
+
+import CodeEditor from 'components/CodeEditor'
 
 import './style.scss'
 
@@ -8,17 +12,53 @@ import './style.scss'
 }))
 class TabContent extends Component {
 
-  renderTab () {
-
-    const {
-      currentTab,
-    } = this.props
-
+  renderUnhandled (ext) {
     return (
-      <div>
-        onetuhoen
+      <div className='sticky z' style={{ opacity: 0.5 }}>
+        {`Files with extension ${ext} are not handled.`}
       </div>
     )
+  }
+
+  renderMJML (tab) {
+    return (
+      <SplitPane
+        className='sticky'
+        split='vertical'
+        primary='second'
+        minSize={300}
+      >
+        <CodeEditor
+          filePath={tab.get('path')}
+          onChange={v => {
+            // console.log(`changed to ${v}`)
+          }}
+        />
+        <div>
+          b
+        </div>
+      </SplitPane>
+    )
+  }
+
+  renderImage (tab) {
+    return (
+      <div className='sticky z'>
+        <img className='TabContent--img' src={tab.get('path')} />
+      </div>
+    )
+  }
+
+  renderTab (tab) {
+    const ext = path.extname(tab.get('name'))
+
+    switch (ext) {
+      case '.mjml': return this.renderMJML(tab)
+      case '.png':
+      case '.jpg':
+        return this.renderImage(tab)
+      default: return this.renderUnhandled(ext)
+    }
   }
 
   render () {
@@ -29,7 +69,7 @@ class TabContent extends Component {
 
     return (
       <div className='TabContent sticky'>
-        {currentTab ? this.renderTab() : (
+        {currentTab ? this.renderTab(currentTab) : (
           <div className='sticky z TabContent-empty'>
             {'Nothing selected.'}
           </div>

@@ -1,7 +1,14 @@
+@import '../../styles/vars.scss';
+
 .TabContent {
 }
 
 .TabContent-empty {
   font-size: 30px;
   opacity: 0.5;
+}
+
+.TabContent--img {
+  box-shadow: rgba(black, 0.1) 0 15px 25px;
+  border: 2px solid $bg;
 }

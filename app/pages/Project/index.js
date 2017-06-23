@@ -13,6 +13,7 @@ import IconBeautify from 'react-icons/md/autorenew'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 import beautifyJS from 'js-beautify'
+import SplitPane from 'react-split-pane'
 
 import defaultMJML from 'data/defaultMJML'
 
@@ -196,8 +197,19 @@ class ProjectPage extends Component {
 
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
-
+        <SplitPane className='fg-1 r' defaultSize={200} minSize={0}>
+          <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
+          <div className='sticky fg-1 d-f fd-c'>
+            <FileTabs />
+            <div className='fg-1 r'>
+              <TabContent />
+            </div>
+          </div>
+        </SplitPane>
         {/*
+        <div className='fg-1 d-f fd-c'>
+        </div>
+
         <div className='d-f p-10 r' style={{ zIndex: 2 }}>
           <div className='fg-1 flow-h-10'>
             <BackButton projectName={projectName} />
@@ -274,20 +286,6 @@ class ProjectPage extends Component {
           <NotifBtn />
         </div>
         */}
-
-        <div className='fg-1 d-f' style={{ zIndex: 1 }}>
-
-          <div className='r fs-0 Project-FileExplorer'>
-            <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
-          </div>
-          <div className='fg-1 d-f fd-c'>
-            <FileTabs />
-            <div className='fg-1 r'>
-              <TabContent />
-            </div>
-          </div>
-
-        </div>
 
         <SendModal />
         <AddFileModal rootPath={rootPath} onAdd={this.handleAddFile} />
