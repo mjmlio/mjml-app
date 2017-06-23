@@ -62,6 +62,27 @@ class Iframe extends Component {
             img.setAttribute('src', `file://${base}/${imgSrc}`)
           }
         })
+        
+        const tables = [...documentElement.querySelectorAll('table')]
+        tables.forEach(table => {
+          if (table.getAttribute('background')) {
+            const tableBackground = table.getAttribute('background')
+            if (tableBackground && !tableBackground.startsWith('http')) {
+              table.setAttribute('background', `file://${base}/${tableBackground}`)
+            }
+          }
+        })
+        
+        const tds = [...documentElement.querySelectorAll('td')]
+        tds.forEach(td => {
+          if (td.getAttribute('background')) {
+            const tdBackground = td.getAttribute('background')
+            if (tdBackground && !tdBackground.startsWith('http')) {
+              let tdStyle = td.getAttribute('style').replace(tdBackground, `file://${base}/${tdBackground}`)
+              td.setAttribute('style', tdStyle)
+            }
+          }
+        })
       }
 
     })
