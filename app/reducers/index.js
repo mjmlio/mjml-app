@@ -9,6 +9,7 @@ import alerts from './alerts'
 import notifs from './notifs'
 import error from './error'
 import selectedProjects from './selectedProjects'
+import tabs from './tabs'
 
 const rootReducer = combineReducers({
   routing,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   projects,
   error,
   selectedProjects,
+  tabs,
 })
 
 export default rootReducer

@@ -19,9 +19,11 @@ import defaultMJML from 'data/defaultMJML'
 import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
 import { setPreview } from 'actions/preview'
+import { openTab } from 'reducers/tabs'
 
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
+import FileTabs from 'components/FileTabs'
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FileExplorer from 'components/FileExplorer'
@@ -38,10 +40,12 @@ import takeScreenshot from 'helpers/takeScreenshot'
   preview: state.preview,
   previewSize: state.settings.get('previewSize'),
   beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+  tabs: state.tabs,
 }), {
   openModal,
   addAlert,
   setPreview,
+  openTab,
 })
 class ProjectPage extends Component {
 
@@ -174,6 +178,8 @@ class ProjectPage extends Component {
 
     const {
       preview,
+      openTab,
+      tabs,
     } = this.props
 
     const {
@@ -267,12 +273,14 @@ class ProjectPage extends Component {
         */}
 
         <div className='fg-1 d-f' style={{ zIndex: 1 }}>
-          <div className='r' style={{ width: 250, background: 'rgba(0, 0, 0, 0.1)' }}>
-            <FileExplorer
-              base={rootPath}
-              onFileClick={p => console.log(`you clicked on ${p}`)}
-            />
+
+          <div className='r fs-0' style={{ width: 250, background: 'rgba(0, 0, 0, 0.1)' }}>
+            <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
           </div>
+          <div className='fg-1'>
+            <FileTabs />
+          </div>
+
         </div>
 
         <SendModal />
