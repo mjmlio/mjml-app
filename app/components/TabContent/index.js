@@ -4,12 +4,17 @@ import { connect } from 'react-redux'
 import SplitPane from 'react-split-pane'
 
 import CodeEditor from 'components/CodeEditor'
+import TabIframe from 'components/TabIframe'
+
+import { setTabValue } from 'reducers/tabs'
 
 import './style.scss'
 
 @connect(state => ({
   currentTab: state.tabs.find(t => t.get('isFocused')) || null,
-}))
+}), {
+  setTabValue,
+})
 class TabContent extends Component {
 
   renderUnhandled (ext) {
@@ -30,13 +35,9 @@ class TabContent extends Component {
       >
         <CodeEditor
           filePath={tab.get('path')}
-          onChange={v => {
-            // console.log(`changed to ${v}`)
-          }}
+          onChange={v => this.props.setTabValue(v)}
         />
-        <div>
-          b
-        </div>
+        <TabIframe tab={tab} />
       </SplitPane>
     )
   }

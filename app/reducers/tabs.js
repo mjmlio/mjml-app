@@ -43,8 +43,14 @@ export default handleActions({
     state = state.remove(indexToRemove)
     return state
   },
+  TAB_SET_VALUE: (state, { payload: { filePath, value } }) => {
+    const indexToUpdate = state.findIndex(t => t.get('path') === filePath)
+    if (indexToUpdate === -1) { return state }
+    return state.setIn([indexToUpdate, 'value'], value)
+  },
 }, state)
 
 export const openTab = createAction('TAB_OPEN')
 export const focusTab = createAction('TAB_FOCUS')
 export const closeTab = createAction('TAB_CLOSE')
+export const setTabValue = createAction('TAB_SET_VALUE')
