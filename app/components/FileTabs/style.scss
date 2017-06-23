@@ -1,6 +1,7 @@
 @import '../../styles/vars.scss';
 
 .FileTabs {
+  flex-shrink: 0;
   display: flex;
   border-bottom: 1px solid rgba(white, 0.07);
   margin-left: -1px;

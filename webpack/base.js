@@ -15,7 +15,10 @@ export default {
         loader: 'json-loader',
       },
       {
-        test: [/node_modules[\/\\]react-icons[\/\\].*\.js/], // eslint-disable-line
+        test: [
+          /node_modules[\/\\]react-icons[\/\\].*\.js/,
+          /node_modules[\/\\]mailjet-icons[\/\\].*\.js/,
+        ], // eslint-disable-line
         loaders: ['babel-loader'],
       },
       {

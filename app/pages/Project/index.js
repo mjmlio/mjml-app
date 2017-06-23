@@ -24,6 +24,7 @@ import { openTab } from 'reducers/tabs'
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import FileTabs from 'components/FileTabs'
+import TabContent from 'components/TabContent'
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FileExplorer from 'components/FileExplorer'
@@ -279,8 +280,11 @@ class ProjectPage extends Component {
           <div className='r fs-0 Project-FileExplorer'>
             <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
           </div>
-          <div className='fg-1'>
+          <div className='fg-1 d-f fd-c'>
             <FileTabs />
+            <div className='fg-1 r'>
+              <TabContent />
+            </div>
           </div>
 
         </div>

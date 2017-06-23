@@ -5,6 +5,7 @@ import IconFolder from 'react-icons/md/folder'
 import IconFile from 'react-icons/md/insert-drive-file'
 import IconFolderClosed from 'react-icons/md/keyboard-arrow-right'
 import IconFolderOpen from 'react-icons/md/keyboard-arrow-down'
+import IconMJML from 'mailjet-icons/react/mjml'
 
 import Tabbable from 'components/Tabbable'
 
@@ -106,7 +107,13 @@ class FileItem extends Component {
           {isFolder && (isOpened ? <IconFolderOpen /> : <IconFolderClosed />)}
           <div className='z fs-0' style={{ width: 20, marginRight: 2 }}>
             {isFolder && <IconFolder />}
-            {!isFolder && <IconFile />}
+            {!isFolder && (
+              filePath.endsWith('.mjml') ? (
+                <IconMJML />
+              ) : (
+                <IconFile />
+              )
+            )}
           </div>
           <div className='fg-1 ellipsis'>
             {fileName}
