@@ -27,7 +27,6 @@ class TabsVertical extends PureComponent {
 
     const childs = Children.toArray(children)
     const tabToDisplay = childs[index]
-    const titles = childs.map(ch => ch.props.title)
 
     return (
       <div className='TabsVertical sticky'>

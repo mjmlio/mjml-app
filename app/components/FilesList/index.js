@@ -206,8 +206,8 @@ class FilesList extends Component {
           const activeIndex = indexOfIndexFile > -1
             ? indexOfIndexFile
             : indexOfFirstMJMLFile > -1
-            ? indexOfFirstMJMLFile
-            : 0
+              ? indexOfFirstMJMLFile
+              : 0
           this.props.onActiveFileChange(files[activeIndex])
           this._hasFocused = true
         }

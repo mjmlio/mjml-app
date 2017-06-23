@@ -126,7 +126,7 @@ export default function FileExplorer (props) {
   const {
     base,
     onFileClick,
-    ...p,
+    ...p
   } = props
   return (
     <div className='FileExplorer sticky' {...p}>
