@@ -188,6 +188,7 @@ class ProjectPage extends Component {
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
 
+        {/*
         <div className='d-f p-10 r' style={{ zIndex: 2 }}>
           <div className='fg-1 flow-h-10'>
             <BackButton projectName={projectName} />
@@ -263,9 +264,10 @@ class ProjectPage extends Component {
           </Button>
           <NotifBtn />
         </div>
+        */}
 
-        <div className='fg-1 d-f r' style={{ zIndex: 1 }}>
-          <div className='r' style={{ width: 200 }}>
+        <div className='fg-1 d-f' style={{ zIndex: 1 }}>
+          <div className='r' style={{ width: 250, background: 'rgba(0, 0, 0, 0.1)' }}>
             <FileExplorer
               base={rootPath}
               onFileClick={p => console.log(`you clicked on ${p}`)}
