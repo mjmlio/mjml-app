@@ -31,7 +31,10 @@ export default handleActions({
     const indexToRemove = state.findIndex(t => t.get('path') === filePath)
     if (!indexToRemove === -1) { return state }
     if (state.getIn([indexToRemove, 'isFocused']) === true) {
-      const indexToFocus = state.size > 1 ? indexToRemove === 0 ? 1 : indexToRemove - 1 : -1
+
+      // LOL
+      const indexToFocus = state.size > 1 ? indexToRemove === 0 ? 1 : indexToRemove === state.size - 1 ? indexToRemove - 1 : indexToRemove + 1 : -1
+
       state = state.map(t => t.set('isFocused', false))
       if (indexToFocus > -1) {
         state = state.setIn([indexToFocus, 'isFocused'], true)
