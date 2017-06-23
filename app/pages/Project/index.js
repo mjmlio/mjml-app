@@ -36,6 +36,8 @@ import RemoveFileModal from './RemoveFileModal'
 
 import takeScreenshot from 'helpers/takeScreenshot'
 
+import './style.scss'
+
 @connect(state => ({
   preview: state.preview,
   previewSize: state.settings.get('previewSize'),
@@ -274,7 +276,7 @@ class ProjectPage extends Component {
 
         <div className='fg-1 d-f' style={{ zIndex: 1 }}>
 
-          <div className='r fs-0' style={{ width: 250, background: 'rgba(0, 0, 0, 0.1)' }}>
+          <div className='r fs-0 Project-FileExplorer'>
             <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
           </div>
           <div className='fg-1'>

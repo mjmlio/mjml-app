@@ -2,7 +2,8 @@
 
 .FileTabs {
   display: flex;
-  border-bottom: 1px solid $grey;
+  border-bottom: 1px solid rgba(white, 0.07);
+  margin-left: -1px;
 }
 
 .FileTab {
@@ -15,6 +16,8 @@
   cursor: default;
   outline: none !important;
   position: relative;
+  border: 1px solid transparent;
+  font-size: 13px;
 
   .FileTab--close-icon {
     opacity: 0;
@@ -26,7 +29,7 @@
   }
 
   &:hover {
-    background: rgba(white, 0.05);
+    background: rgba(white, 0.03);
 
     .FileTab--close-icon {
       opacity: 1;
@@ -39,7 +42,8 @@
   }
 
   &.isActive {
-    background: rgba(white, 0.1);
+    background: linear-gradient(0deg, rgba(white, 0.05), rgba(white, 0.1));
+    border-color: rgba(black, 0.2);
     box-shadow: inset $blue 3px 0;
     color: white;
   }
