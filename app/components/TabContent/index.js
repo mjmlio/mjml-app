@@ -5,6 +5,7 @@ import SplitPane from 'react-split-pane'
 
 import CodeEditor from 'components/CodeEditor'
 import TabIframe from 'components/TabIframe'
+import Button from 'components/Button'
 
 import { setTabValue } from 'reducers/tabs'
 
@@ -54,11 +55,11 @@ class TabContent extends Component {
     const ext = path.extname(tab.get('name'))
 
     switch (ext) {
-      case '.mjml': return this.renderMJML(tab)
-      case '.png':
-      case '.jpg':
-        return this.renderImage(tab)
-      default: return this.renderUnhandled(ext)
+    case '.mjml': return this.renderMJML(tab)
+    case '.png':
+    case '.jpg':
+      return this.renderImage(tab)
+    default: return this.renderUnhandled(ext)
     }
   }
 
@@ -72,7 +73,14 @@ class TabContent extends Component {
       <div className='TabContent sticky'>
         {currentTab ? this.renderTab(currentTab) : (
           <div className='sticky z TabContent-empty'>
-            {'Nothing selected.'}
+            <div style={{ opacity: 0.5 }}>
+              {'Nothing selected.'}
+            </div>
+            <div className='mt-20'>
+              <Button link to='/' primary>
+                {'Back to home'}
+              </Button>
+            </div>
           </div>
         )}
       </div>
