@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Collapse } from 'react-collapse'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { fromJS } from 'immutable'
@@ -155,10 +154,10 @@ class FileItem extends Component {
             </div>
           )}
           <div className='z fs-0' style={{ width: 20, marginRight: 2 }}>
-            {isFolder && <IconFolder />}
+            {isFolder && <IconFolder opacity={0.6} color='#3470df' />}
             {!isFolder && (
               filePath.endsWith('.mjml') ? (
-                <IconMJML />
+                <IconMJML color='#f06451' size={12} />
               ) : isImage ? (
                 <IconImage />
               ) : (
@@ -171,15 +170,13 @@ class FileItem extends Component {
           </div>
         </Tabbable>
 
-        {isFolder && (
-          <Collapse isOpened={isOpened} springConfig={{ stiffness: 300, damping: 30 }}>
-            <FileTree
-              focusedFilePath={focusedFilePath}
-              nesting={nesting + 1}
-              base={filePath}
-              onFileClick={onFileClick}
-            />
-          </Collapse>
+        {isFolder && isOpened && (
+          <FileTree
+            focusedFilePath={focusedFilePath}
+            nesting={nesting + 1}
+            base={filePath}
+            onFileClick={onFileClick}
+          />
         )}
 
       </div>
