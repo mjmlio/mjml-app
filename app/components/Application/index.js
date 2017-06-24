@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import get from 'lodash/get'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 
@@ -16,21 +17,19 @@ import DropFile from './DropFile'
 
 import './style.scss'
 
-@connect(
-  state => ({
-    projects: state.projects,
-    settings: state.settings,
-  }),
-  {
-    dropFile,
-  },
-)
+@connect(state => ({
+  projects: state.projects,
+  settings: state.settings,
+}), {
+  dropFile,
+})
 class Application extends Component {
+
   state = {
     isOver: false,
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
     // window.addEventListener('keydown', () => {
     //   setTimeout(() => {
@@ -46,36 +45,36 @@ class Application extends Component {
   handleDrop = e => {
     e.preventDefault()
     this.handleDragLeave()
-    if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
-      return
-    }
-    const fileName = e.dataTransfer.files[0].path
+    const fileName = get(e, 'dataTransfer.files[0].path')
+    if (!fileName) { return }
     this.props.dropFile(fileName)
   }
 
   handleDragOver = e => {
     e.preventDefault()
-    if (!this.state.isOver) {
-      this.setState({ isOver: true })
-    }
+    if (!this.state.isOver) { this.setState({ isOver: true }) }
   }
 
-  render() {
-    const { projects, settings, location } = this.props
+  render () {
 
-    const { isOver } = this.state
+    const {
+      projects,
+      settings,
+      location,
+    } = this.props
+
+    const {
+      isOver,
+    } = this.state
 
     const { pathname } = location
 
     return (
       <div
-        className={cx('Application', {
-          'bg-dark': pathname === '/',
-          'bg-darker': pathname === '/project',
-          isOver,
-        })}
+        className='Application'
         onDragOver={this.handleDragOver}
       >
+
         <DropFile
           onDragOver={this.handleDragOver}
           onDragLeave={this.handleDragLeave}
@@ -93,9 +92,11 @@ class Application extends Component {
         <ErrorModal />
         <AboutModal />
         <Alerts />
+
       </div>
     )
   }
+
 }
 
 export default Application

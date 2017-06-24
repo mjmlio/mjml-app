@@ -143,17 +143,17 @@ class FileItem extends Component {
             isActive: filePath === focusedFilePath,
           })}
           style={{
-            paddingLeft: nesting * 20,
+            paddingLeft: nesting * 20 + 5,
           }}
           onClick={isFolder ? this.handleToggle : undefined}
           onDoubleClick={isFolder ? undefined : this.handleSelect}
         >
           {isFolder && (
-            <div className='z fs-0' style={{ width: 20 }}>
+            <div className='z fs-0' style={{ width: 15 }}>
               {isOpened ? <IconFolderOpen /> : <IconFolderClosed />}
             </div>
           )}
-          <div className='z fs-0' style={{ width: 20, marginRight: 2 }}>
+          <div className='z fs-0' style={{ width: 15, marginRight: 2 }}>
             {isFolder && <IconFolder opacity={0.6} color='#3470df' />}
             {!isFolder && (
               filePath.endsWith('.mjml') ? (

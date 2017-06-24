@@ -202,19 +202,12 @@ class ProjectPage extends Component {
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
         <SplitPane defaultSize={200} minSize={0}>
-          <div className='sticky d-f fd-c' style={{ background: 'rgba(0, 0, 0, 0.1)' }}>
-            <div className='z' style={{ height: 40, paddingTop: 2 }}>
-              <BackButton projectName={projectName} />
-            </div>
-            <div className='fg-1 r'>
-              <FileExplorer
-                base={rootPath}
-                onFileClick={p => openTab(p)}
-                focusedFilePath={focusedFilePath}
-              />
-            </div>
-          </div>
-          <div className='sticky fg-1 d-f fd-c'>
+          <FileExplorer
+            base={rootPath}
+            onFileClick={p => openTab(p)}
+            focusedFilePath={focusedFilePath}
+          />
+          <div className='sticky fg-1 d-f fd-c bg-darker'>
             <FileTabs />
             <div className='fg-1 r'>
               <TabContent />

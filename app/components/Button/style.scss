@@ -46,6 +46,9 @@
       background-color: #3a3a43;
       color: white;
     }
+    &:active {
+      background-color: darken(#3a3a43, 2);
+    }
   }
 
   &.ghost {

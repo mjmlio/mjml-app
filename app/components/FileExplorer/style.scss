@@ -2,7 +2,6 @@
 
 .FileExplorer {
   overflow: auto;
-  padding: 2px;
 }
 
 .FileTree-item-label {
@@ -11,7 +10,7 @@
     color: white;
   }
   &.isActive {
-    background: rgba(white, 0.1);
+    background: rgba(black, 0.1);
     color: white;
   }
 }

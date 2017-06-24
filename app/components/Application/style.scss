@@ -7,11 +7,10 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
+  background-color: $bg;
 
   display: flex;
   flex-direction: column;
-
-  transition: 150ms linear background-color;
 }
 
 .DropFile {
