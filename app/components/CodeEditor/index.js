@@ -186,7 +186,8 @@ class CodeEditor extends Component {
     }))
   }
 
-  handleChange = debounce(async () => {
+  handleChange = debounce(() => {
+    if (!this._codeMirror) { return }
     const {
       onChange,
     } = this.props

@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import "../../styles/vars.scss";
 
 .FileExplorer {
   overflow: auto;
@@ -7,10 +7,12 @@
 }
 
 .FileTree-item-label {
-  &:hover,
-  &:active,
-  &:focus,
+  outline: none !important;
+  &:hover, &:active {
+    color: white;
+  }
   &.isActive {
+    background: rgba(white, 0.1);
     color: white;
   }
 }

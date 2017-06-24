@@ -40,12 +40,16 @@ import takeScreenshot from 'helpers/takeScreenshot'
 
 import './style.scss'
 
-@connect(state => ({
-  preview: state.preview,
-  previewSize: state.settings.get('previewSize'),
-  beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
-  tabs: state.tabs,
-}), {
+@connect(state => {
+  const focusedTab = state.tabs.find(t => t.get('isFocused'))
+  return {
+    preview: state.preview,
+    previewSize: state.settings.get('previewSize'),
+    beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+    tabs: state.tabs,
+    focusedFilePath: focusedTab ? focusedTab.get('path') : null,
+  }
+}, {
   openModal,
   addAlert,
   setPreview,
@@ -183,7 +187,7 @@ class ProjectPage extends Component {
     const {
       preview,
       openTab,
-      tabs,
+      focusedFilePath,
     } = this.props
 
     const {
@@ -198,7 +202,11 @@ class ProjectPage extends Component {
     return (
       <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
         <SplitPane className='fg-1 r' defaultSize={200} minSize={0}>
-          <FileExplorer base={rootPath} onFileClick={p => openTab(p)} />
+          <FileExplorer
+            base={rootPath}
+            onFileClick={p => openTab(p)}
+            focusedFilePath={focusedFilePath}
+          />
           <div className='sticky fg-1 d-f fd-c'>
             <FileTabs />
             <div className='fg-1 r'>

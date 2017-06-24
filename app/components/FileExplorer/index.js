@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { fromJS } from 'immutable'
 import IconFolder from 'react-icons/md/folder'
@@ -6,6 +7,7 @@ import IconFile from 'react-icons/md/insert-drive-file'
 import IconFolderClosed from 'react-icons/md/keyboard-arrow-right'
 import IconFolderOpen from 'react-icons/md/keyboard-arrow-down'
 import IconMJML from 'mailjet-icons/react/mjml'
+import IconImage from 'react-icons/md/photo'
 
 import Tabbable from 'components/Tabbable'
 
@@ -23,6 +25,15 @@ async function fetchDir (path) {
 }
 
 class FileTree extends Component {
+
+  static propTypes = {
+    nesting: PropTypes.number,
+    focusedFilePath: PropTypes.string,
+  }
+
+  static defaultProps = {
+    nesting: 0,
+  }
 
   state = {
     files: fromJS([]),
@@ -43,7 +54,9 @@ class FileTree extends Component {
   render () {
 
     const {
+      focusedFilePath,
       onFileClick,
+      nesting,
     } = this.props
 
     const {
@@ -54,6 +67,8 @@ class FileTree extends Component {
       <div>
         {files.map(file => (
           <FileItem
+            focusedFilePath={focusedFilePath}
+            nesting={nesting}
             key={file.get('path')}
             file={file}
             onFileClick={onFileClick}
@@ -71,6 +86,26 @@ class FileItem extends Component {
     isOpened: false,
   }
 
+  componentWillReceiveProps (nextProps) {
+
+    const {
+      file,
+      focusedFilePath,
+    } = nextProps
+
+    const {
+      isOpened,
+    } = this.state
+
+    const isFolder = file.get('isFolder')
+    const filePath = file.get('path')
+
+    // open folder when focusing file in nested folder
+    if (focusedFilePath && isFolder && !isOpened && focusedFilePath.startsWith(filePath)) {
+      this.setState({ isOpened: true })
+    }
+  }
+
   handleToggle = () => {
     this.setState({ isOpened: !this.state.isOpened })
   }
@@ -85,6 +120,8 @@ class FileItem extends Component {
     const {
       file,
       onFileClick,
+      nesting,
+      focusedFilePath,
     } = this.props
 
     const {
@@ -94,22 +131,36 @@ class FileItem extends Component {
     const filePath = file.get('path')
     const fileName = file.get('name')
     const isFolder = file.get('isFolder')
+    const isImage =
+      filePath.endsWith('.jpg')
+      || filePath.endsWith('.png')
+      || filePath.endsWith('.gif')
+
     return (
-      <div key={filePath}>
+      <div>
 
         <Tabbable
           className={cx('d-f ai-c p-5 cu-d FileTree-item-label', {
-            isActive: isOpened,
+            isActive: filePath === focusedFilePath,
           })}
+          style={{
+            paddingLeft: nesting * 20,
+          }}
           onClick={isFolder ? this.handleToggle : undefined}
           onDoubleClick={isFolder ? undefined : this.handleSelect}
         >
-          {isFolder && (isOpened ? <IconFolderOpen /> : <IconFolderClosed />)}
+          {isFolder && (
+            <div className='z fs-0' style={{ width: 20 }}>
+              {isOpened ? <IconFolderOpen /> : <IconFolderClosed />}
+            </div>
+          )}
           <div className='z fs-0' style={{ width: 20, marginRight: 2 }}>
             {isFolder && <IconFolder />}
             {!isFolder && (
               filePath.endsWith('.mjml') ? (
                 <IconMJML />
+              ) : isImage ? (
+                <IconImage />
               ) : (
                 <IconFile />
               )
@@ -121,12 +172,12 @@ class FileItem extends Component {
         </Tabbable>
 
         {isOpened && (
-          <div style={{ marginLeft: 30 }}>
-            <FileTree
-              base={filePath}
-              onFileClick={onFileClick}
-            />
-          </div>
+          <FileTree
+            focusedFilePath={focusedFilePath}
+            nesting={nesting + 1}
+            base={filePath}
+            onFileClick={onFileClick}
+          />
         )}
 
       </div>
@@ -136,14 +187,20 @@ class FileItem extends Component {
 }
 
 export default function FileExplorer (props) {
+
   const {
     base,
     onFileClick,
-    ...p
+    focusedFilePath,
   } = props
+
   return (
-    <div className='FileExplorer sticky' {...p}>
-      <FileTree base={base} onFileClick={onFileClick} />
+    <div className='FileExplorer sticky'>
+      <FileTree
+        base={base}
+        onFileClick={onFileClick}
+        focusedFilePath={focusedFilePath}
+      />
     </div>
   )
 }
