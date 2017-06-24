@@ -27,25 +27,28 @@ class FileTabs extends Component {
 
     return (
       <div className='FileTabs'>
-        {tabs.map(t => (
-          <Tabbable
-            className={cx('FileTab', {
-              isActive: t.get('isFocused'),
-            })}
-            onClick={() => focusTab(t.get('path'))}
-            key={t.get('path')}
-          >
-            <div className='ellipsis'>
-              {t.get('name')}
-            </div>
+        {tabs.map(t => {
+          const isFocused = t.get('isFocused')
+          return (
             <Tabbable
-              className='FileTab--close-icon'
-              onClick={() => closeTab(t.get('path'))}
+              className={cx('FileTab', {
+                isActive: isFocused,
+              })}
+              onClick={isFocused ? undefined : () => focusTab(t.get('path'))}
+              key={t.get('path')}
             >
-              <IconClose />
+              <div className='ellipsis'>
+                {t.get('name')}
+              </div>
+              <Tabbable
+                className='FileTab--close-icon'
+                onClick={() => closeTab(t.get('path'))}
+              >
+                <IconClose />
+              </Tabbable>
             </Tabbable>
-          </Tabbable>
-        ))}
+          )
+        })}
       </div>
     )
   }
