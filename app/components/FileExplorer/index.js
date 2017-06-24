@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Collapse } from 'react-collapse'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { fromJS } from 'immutable'
@@ -131,8 +132,7 @@ class FileItem extends Component {
     const filePath = file.get('path')
     const fileName = file.get('name')
     const isFolder = file.get('isFolder')
-    const isImage =
-      filePath.endsWith('.jpg')
+    const isImage = filePath.endsWith('.jpg')
       || filePath.endsWith('.png')
       || filePath.endsWith('.gif')
 
@@ -171,13 +171,15 @@ class FileItem extends Component {
           </div>
         </Tabbable>
 
-        {isOpened && (
-          <FileTree
-            focusedFilePath={focusedFilePath}
-            nesting={nesting + 1}
-            base={filePath}
-            onFileClick={onFileClick}
-          />
+        {isFolder && (
+          <Collapse isOpened={isOpened} springConfig={{ stiffness: 300, damping: 30 }}>
+            <FileTree
+              focusedFilePath={focusedFilePath}
+              nesting={nesting + 1}
+              base={filePath}
+              onFileClick={onFileClick}
+            />
+          </Collapse>
         )}
 
       </div>
