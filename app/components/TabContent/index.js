@@ -44,10 +44,17 @@ class TabContent extends Component {
   }
 
   renderImage (tab) {
+    const imgUrl = `url(file://${tab.get('path')})`
     return (
-      <div className='sticky z'>
-        <img className='TabContent--img' src={tab.get('path')} />
-      </div>
+      <div
+        className='sticky'
+        style={{
+          backgroundSize: 'contain',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundImage: encodeURI(imgUrl),
+        }}
+      />
     )
   }
 

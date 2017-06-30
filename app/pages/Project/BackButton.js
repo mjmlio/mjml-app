@@ -27,7 +27,7 @@ class BackButton extends Component {
 
     return (
       <Button
-        className='cu-d ellipsis sticky o-n'
+        className='cu-d ellipsis o-n'
         transparent
         link
         to='/'
