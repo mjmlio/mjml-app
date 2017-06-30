@@ -35,6 +35,7 @@ import BackButton from './BackButton'
 import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
+import ProjectToolbar from './ProjectToolbar'
 
 import takeScreenshot from 'helpers/takeScreenshot'
 
@@ -96,6 +97,7 @@ class ProjectPage extends Component {
   handleAddFile = (fileName) => {
     fs.writeFile(fileName, defaultMJML, (err) => {
       if (err) { return }
+      console.log(`notehnt`)
       this._filelist.refresh()
     })
   }
@@ -182,6 +184,10 @@ class ProjectPage extends Component {
       : preview.content
   }
 
+  refreshFiles = () => {
+    this._explorer.refresh()
+  }
+
   render () {
 
     const {
@@ -200,105 +206,35 @@ class ProjectPage extends Component {
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
 
     return (
-      <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
-        <SplitPane defaultSize={200} minSize={0}>
-          <FileExplorer
-            base={rootPath}
-            onFileClick={p => openTab(p)}
-            focusedFilePath={focusedFilePath}
-          />
-          <div className='sticky fg-1 d-f fd-c bg-darker'>
-            <FileTabs />
-            <div className='fg-1 r'>
-              <TabContent />
+      <div className='fg-1 d-f fd-c'>
+
+        <ProjectToolbar
+          projectName={projectName}
+          projectPath={rootPath}
+          activeFile={activeFile}
+          onFilesRefresh={this.refreshFiles}
+        />
+
+        <div className='fg-1 d-f fd-c o-n' tabIndex={0} ref={n => this._page = n}>
+          <SplitPane defaultSize={200} minSize={0}>
+            <FileExplorer
+              setRef={n => this._explorer = n}
+              base={rootPath}
+              onFileClick={p => openTab(p)}
+              focusedFilePath={focusedFilePath}
+            />
+            <div className='sticky fg-1 d-f fd-c bg-darker'>
+              <FileTabs />
+              <div className='fg-1 r'>
+                <TabContent />
+              </div>
             </div>
-          </div>
-        </SplitPane>
-        {/*
-        <div className='fg-1 d-f fd-c'>
+          </SplitPane>
+
+          <SendModal />
+          <RemoveFileModal rootPath={rootPath} onRemove={this.handleRemoveFile} />
+
         </div>
-
-        <div className='d-f p-10 r' style={{ zIndex: 2 }}>
-          <div className='fg-1 flow-h-10'>
-            <BackButton projectName={projectName} />
-            <Button
-              ghost
-              onClick={this.openAddFileModal}
-            >
-              <IconAdd className='mr-5' />
-              {'New file'}
-            </Button>
-          </div>
-          <div className='d-f flow-h-10'>
-            {isMJMLFile && [
-              <Button
-                key='beautify'
-                transparent
-                onClick={this.handleBeautify}
-              >
-                <IconBeautify style={{ marginRight: 5 }} />
-                {'Beautify'}
-              </Button>,
-            ]}
-            <Button
-              transparent
-              onClick={this.handleOpenInBrowser}
-            >
-              <FaFolderOpen style={{ marginRight: 5 }} />
-              {'Open'}
-            </Button>
-            {preview && preview.type === 'html' && [
-              <Button
-                key={'send'}
-                transparent
-                onClick={this.openSendModal}
-              >
-                <IconEmail style={{ marginRight: 5 }} />
-                {'Send'}
-              </Button>,
-              <ButtonDropdown
-                ghost
-                key={'export'}
-                dropdownWidth={300}
-                actions={[
-                  {
-                    icon: <IconCopy />,
-                    label: 'Copy HTML',
-                    desc: 'Copy the result HTML to clipboard',
-                    onClick: this.handleCopyHTML,
-                  },
-                  {
-                    icon: <IconCode />,
-                    label: 'Export to HTML file',
-                    desc: 'Save the result HTML file to disk',
-                    onClick: this.handleExportToHTML,
-                  },
-                  {
-                    icon: <IconCamera />,
-                    label: 'Screenshot',
-                    desc: 'Save a screeshot of mobile & desktop result',
-                    onClick: this.handleScreenshot,
-                  },
-                ]}
-              />,
-            ]}
-          </div>
-          <Button
-            className='ml-10'
-            ghost
-            onClick={this.openSettingsModal}
-            ref={n => this._btnSettings = n}
-          >
-            <FaCog />
-          </Button>
-          <NotifBtn />
-        </div>
-        */}
-
-        <SendModal />
-        <AddFileModal rootPath={rootPath} onAdd={this.handleAddFile} />
-        <RemoveFileModal rootPath={rootPath} onRemove={this.handleRemoveFile} />
-
       </div>
     )
   }

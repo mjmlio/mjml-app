@@ -122,6 +122,7 @@ class FileItem extends Component {
       onFileClick,
       nesting,
       focusedFilePath,
+      setRef,
     } = this.props
 
     const {
@@ -134,6 +135,8 @@ class FileItem extends Component {
     const isImage = filePath.endsWith('.jpg')
       || filePath.endsWith('.png')
       || filePath.endsWith('.gif')
+
+    setRef && setRef(this)
 
     return (
       <div>
@@ -185,21 +188,32 @@ class FileItem extends Component {
 
 }
 
-export default function FileExplorer (props) {
+class FileExplorer extends Component {
 
-  const {
-    base,
-    onFileClick,
-    focusedFilePath,
-  } = props
+  refresh = () => this._fileTree.refreshFiles()
 
-  return (
-    <div className='FileExplorer sticky'>
-      <FileTree
-        base={base}
-        onFileClick={onFileClick}
-        focusedFilePath={focusedFilePath}
-      />
-    </div>
-  )
+  render () {
+    const {
+      base,
+      onFileClick,
+      focusedFilePath,
+      setRef,
+    } = this.props
+
+    setRef(this)
+
+    return (
+      <div className='FileExplorer sticky'>
+        <FileTree
+          setRef={n => this._fileTree = n}
+          base={base}
+          onFileClick={onFileClick}
+          focusedFilePath={focusedFilePath}
+        />
+      </div>
+    )
+  }
+
 }
+
+export default FileExplorer
