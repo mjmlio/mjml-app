@@ -1,3 +1,10 @@
+### 2.5.0 (2017-07-28)
+
+- Paste multiple target emails in the send modal ([#164](https://github.com/mjmlio/mjml-app/issues/164))
+- Export multiple emails to HTML ([#154](https://github.com/mjmlio/mjml-app/issues/154))
+- Open file with drag & drop ([#143](https://github.com/mjmlio/mjml-app/issues/143))
+- Fix Documentation link in menu ([#146](https://github.com/mjmlio/mjml-app/issues/146))
+
 ### 2.4.0 (2017-06-09)
 
 - MJML 3.3.3
