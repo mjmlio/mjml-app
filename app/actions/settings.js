@@ -104,8 +104,11 @@ export function addToLastUsedEmails (emails) {
 }
 
 export function removeFromLastUsedEmails (email) {
-  return {
-    type: 'REMOVE_FROM_LAST_USED_EMAILS',
-    payload: email,
+  return dispatch => {
+    dispatch({
+      type: 'REMOVE_FROM_LAST_USED_EMAILS',
+      payload: email,
+    })
+    dispatch(saveSettings())
   }
 }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
 import { Creatable as Select } from 'react-select'
 import uniq from 'lodash/uniq'
+import uniqBy from 'lodash/uniqBy'
 
 import IconAdd from 'react-icons/md/add'
 
@@ -81,6 +82,18 @@ class SendModal extends Component {
     this.props.addToLastUsedEmails(emails)
     this.setState({ TargetEmails: emails })
     this.debounceSaveInConfig()
+  }
+
+  handleAddMultipleEmails = emailsToAdd => {
+    const { emails } = this.state
+    emailsToAdd = emailsToAdd.map(v => ({ label: v, value: v }))
+    this.setState({
+      emails: uniqBy([
+        ...emails,
+        ...emailsToAdd,
+      ], e => e.value),
+    })
+    this.handleChangeTargetEmails(emailsToAdd)
   }
 
   handleSubmit = async e => {
@@ -230,6 +243,24 @@ class SendModal extends Component {
               options={emails}
               optionRenderer={this.renderOption}
               onChange={this.handleChangeTargetEmails}
+              inputProps={{
+                onPaste: e => {
+                  e.preventDefault()
+                  const clipboard = e.clipboardData.getData('Text')
+                  if (!clipboard) {
+                    return
+                  }
+                  const pasted = clipboard
+                    .split(/[\s,;]+/)
+                    .map(v => v.trim())
+                    .filter(v => v)
+                  const values = uniq([
+                    ...TargetEmails,
+                    ...pasted,
+                  ])
+                  this.handleAddMultipleEmails(values)
+                },
+              }}
               promptTextCreator={e => <span><IconAdd className='mr-5' />{'Add '}<b>{e}</b></span>}
             />
           </div>
