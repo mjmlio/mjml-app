@@ -1,14 +1,11 @@
 import path from 'path'
 
-import {
-  createOrEmpty,
-  fsWriteFile,
-} from 'helpers/fs'
+import { createOrEmpty, fsWriteFile } from 'helpers/fs'
 
 import { openProject } from 'actions/projects'
 import { addAlert } from 'reducers/alerts'
 
-export default function createFromTemplate (location, template) {
+export default function createFromTemplate(location, template) {
   return async dispatch => {
     try {
       await createOrEmpty(location)

@@ -10,53 +10,35 @@ import Tabbable from 'components/Tabbable'
 import Preview from 'components/Preview'
 
 class ProjectItem extends Component {
-
   state = {
     isOver: false,
   }
 
   setOver = isOver => () => this.setState({ isOver })
 
-  render () {
+  render() {
+    const { onRemove, onOpen, onEditName, onToggleSelect, isSelected, p } = this.props
 
-    const {
-      onRemove,
-      onOpen,
-      onEditName,
-      onToggleSelect,
-      isSelected,
-      p,
-    } = this.props
-
-    const {
-      isOver,
-    } = this.state
+    const { isOver } = this.state
 
     return (
       <div
-        className='ProjectItem'
+        className="ProjectItem"
         onMouseOver={this.setOver(true)}
         onMouseOut={this.setOver(false)}
       >
-        <Tabbable
-          onClick={onOpen}
-          className='ProjectItem--preview-container-wrapper'
-        >
-          <div className='ProjectItem--preview-container'>
-            <Preview
-              scaled
-              html={p.get('html', null)}
-              iframeBase={p.get('path')}
-            />
+        <Tabbable onClick={onOpen} className="ProjectItem--preview-container-wrapper">
+          <div className="ProjectItem--preview-container">
+            <Preview scaled html={p.get('html', null)} iframeBase={p.get('path')} />
           </div>
         </Tabbable>
-        <div className='d-f ai-b pl-5 pr-5'>
-          <div className='ProjectItem--label'>
+        <div className="d-f ai-b pl-5 pr-5">
+          <div className="ProjectItem--label">
             {path.basename(p.get('path'))}
           </div>
           <button
             disabled={!isOver}
-            className='ProjectItem--edit-btn ml-5 pl-5 pr-5'
+            className="ProjectItem--edit-btn ml-5 pl-5 pr-5"
             onClick={onEditName}
           >
             <IconEdit />
@@ -75,15 +57,14 @@ class ProjectItem extends Component {
         </Tabbable>
         <Tabbable
           disabled={!isOver}
-          className='ProjectItem--action-btn ProjectItem--delete-btn'
+          className="ProjectItem--action-btn ProjectItem--delete-btn"
           onClick={onRemove}
         >
-          <IconClose color='#fff' />
+          <IconClose color="#fff" />
         </Tabbable>
       </div>
     )
   }
-
 }
 
 export default ProjectItem

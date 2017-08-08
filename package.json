@@ -8,6 +8,7 @@
   "scripts": {
     "clean-build": "cross-env rimraf dist && rimraf app/dist && rimraf app/main.js && rimraf app/main.js.map",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
+    "prettier": "prettier --print-width 100 --single-quote --trailing-comma all --no-semi --write \"{app,webpack,site}/**/*.?(js|?(s)css|json)\"",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/prod.js --progress --profile --colors",
@@ -109,6 +110,7 @@
     "electron-builder": "^19.19.1",
     "electron-devtools-installer": "^2.2.0",
     "eslint": "^4.4.1",
+    "eslint-config-prettier": "^2.3.0",
     "eslint-config-zavatta": "^6.0.1",
     "eslint-config-zavatta-react": "^2.2.2",
     "eslint-formatter-pretty": "^1.1.0",
@@ -121,6 +123,7 @@
     "json-loader": "^0.5.7",
     "minimist": "^1.2.0",
     "node-sass": "^4.5.3",
+    "prettier": "^1.5.3",
     "react-addons-test-utils": "^15.6.0",
     "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.6",

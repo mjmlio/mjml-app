@@ -7,7 +7,6 @@ import IconChecked from 'react-icons/md/check-box'
 import './style.scss'
 
 class CheckBox extends Component {
-
   static propTypes = {
     value: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -19,14 +18,8 @@ class CheckBox extends Component {
     }
   }
 
-  render () {
-
-    const {
-      value,
-      onChange,
-      children,
-      className,
-    } = this.props
+  render() {
+    const { value, onChange, children, className } = this.props
 
     return (
       <div
@@ -35,12 +28,8 @@ class CheckBox extends Component {
         onKeyDown={this.handleKeyDown}
         onClick={() => onChange(!value)}
       >
-        <div className='mr-5 z'>
-          {value ? (
-            <IconChecked size={15} />
-          ) : (
-            <IconUnchecked size={15} />
-          )}
+        <div className="mr-5 z">
+          {value ? <IconChecked size={15} /> : <IconUnchecked size={15} />}
         </div>
         <div>
           {children}
@@ -48,7 +37,6 @@ class CheckBox extends Component {
       </div>
     )
   }
-
 }
 
 export default CheckBox

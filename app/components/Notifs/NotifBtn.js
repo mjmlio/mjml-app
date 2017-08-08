@@ -8,34 +8,25 @@ import Button from 'components/Button'
 
 import './style.scss'
 
-@connect(state => ({
-  notifs: state.notifs,
-}), {
-  openModal,
-})
+@connect(
+  state => ({
+    notifs: state.notifs,
+  }),
+  {
+    openModal,
+  },
+)
 class NotifBtn extends Component {
-
-  render () {
-
-    const {
-      openModal,
-      notifs,
-    } = this.props
+  render() {
+    const { openModal, notifs } = this.props
 
     return (
-      <Button
-        ghost
-        onClick={() => openModal('notifs')}
-        className='r o-v'
-      >
+      <Button ghost onClick={() => openModal('notifs')} className="r o-v">
         <IconAlert />
-        {!!notifs.size && (
-          <div className='NotifBubble' />
-        )}
+        {!!notifs.size && <div className="NotifBubble" />}
       </Button>
     )
   }
-
 }
 
 export default NotifBtn

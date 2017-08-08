@@ -1,14 +1,11 @@
 import path from 'path'
 
-import {
-  createOrEmpty,
-  fsWriteFile,
-} from 'helpers/fs'
+import { createOrEmpty, fsWriteFile } from 'helpers/fs'
 
 import { openProject } from 'actions/projects'
 import { addAlert } from 'reducers/alerts'
 
-export default function createFromGallery (location, MJMLContent) {
+export default function createFromGallery(location, MJMLContent) {
   return async dispatch => {
     try {
       await createOrEmpty(location)

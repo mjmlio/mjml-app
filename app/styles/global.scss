@@ -13,7 +13,9 @@
   color: $evenLighterGrey;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -72,8 +74,7 @@ h2 {
 }
 
 input[type=text],
-input[type=number]
-{
+input[type=number] {
   border: 2px solid rgba(white, 0.1);
   background-color: rgba(black, 0.1);
   padding: 10px;
@@ -102,7 +103,8 @@ a {
     &:hover {
       color: rgba(white, 0.7);
     }
-    &:focus, &:active {
+    &:focus,
+    &:active {
       color: white;
     }
   }
@@ -133,8 +135,12 @@ a {
 }
 
 @keyframes rotate {
-  0% { transform: rotate(0); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .focus {

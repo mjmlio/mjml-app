@@ -2,11 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import os from 'os'
 
-import {
-  openProject,
-  removeProject,
-  renameProject,
-} from 'actions/projects'
+import { openProject, removeProject, renameProject } from 'actions/projects'
 
 import { toggleSelectProject } from 'reducers/selectedProjects'
 
@@ -20,17 +16,19 @@ import './style.scss'
 
 const HOME_DIR = os.homedir()
 
-@connect(state => ({
-  projects: state.projects,
-  selectedProjects: state.selectedProjects,
-}), {
-  openProject,
-  removeProject,
-  renameProject,
-  toggleSelectProject,
-})
+@connect(
+  state => ({
+    projects: state.projects,
+    selectedProjects: state.selectedProjects,
+  }),
+  {
+    openProject,
+    removeProject,
+    renameProject,
+    toggleSelectProject,
+  },
+)
 class ProjectsList extends Component {
-
   state = {
     activePath: null,
     isDeleteModalOpened: false,
@@ -38,7 +36,7 @@ class ProjectsList extends Component {
     shouldDeleteFolder: false,
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this._isUnmounted = true
   }
 
@@ -68,17 +66,19 @@ class ProjectsList extends Component {
     this.handleCloseDeleteModal()
   }
 
-  handleCloseDeleteModal = () => this.safeSetState({
-    activePath: null,
-    isDeleteModalOpened: false,
-  })
+  handleCloseDeleteModal = () =>
+    this.safeSetState({
+      activePath: null,
+      isDeleteModalOpened: false,
+    })
 
   handleChangeShouldDelete = shouldDeleteFolder => this.setState({ shouldDeleteFolder })
 
-  handleCloseRenameModal = () => this.safeSetState({
-    activePath: null,
-    isRenameModalOpened: false,
-  })
+  handleCloseRenameModal = () =>
+    this.safeSetState({
+      activePath: null,
+      isRenameModalOpened: false,
+    })
 
   handleRename = newPath => {
     this.props.renameProject(this.state.activePath, newPath)
@@ -86,31 +86,22 @@ class ProjectsList extends Component {
   }
 
   safeSetState = (...args) => {
-    if (this._isUnmounted) { return }
+    if (this._isUnmounted) {
+      return
+    }
     this.setState(...args)
   }
 
-  render () {
+  render() {
+    const { openProject, projects, selectedProjects, toggleSelectProject } = this.props
 
-    const {
-      openProject,
-      projects,
-      selectedProjects,
-      toggleSelectProject,
-    } = this.props
-
-    const {
-      isDeleteModalOpened,
-      isRenameModalOpened,
-      shouldDeleteFolder,
-      activePath,
-    } = this.state
+    const { isDeleteModalOpened, isRenameModalOpened, shouldDeleteFolder, activePath } = this.state
 
     const isHome = activePath === HOME_DIR
 
     return (
-      <div className='ProjectsList abs o-n'>
-        {projects.reverse().map((p) => {
+      <div className="ProjectsList abs o-n">
+        {projects.reverse().map(p => {
           const projectPath = p.get('path')
           return (
             <ProjectItem
@@ -127,16 +118,17 @@ class ProjectsList extends Component {
         <ConfirmModal
           isOpened={isDeleteModalOpened}
           yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}
-          nopCTA='Cancel'
+          nopCTA="Cancel"
           onCancel={this.handleCloseDeleteModal}
           onConfirm={this.handleConfirmRemove}
         >
-          <h2 className='mb-20'>{'Remove project from list?'}</h2>
-          {!isHome && (
+          <h2 className="mb-20">
+            {'Remove project from list?'}
+          </h2>
+          {!isHome &&
             <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
               {'Also remove folder and files from disk'}
-            </CheckBox>
-          )}
+            </CheckBox>}
         </ConfirmModal>
         <RenameModal
           isOpened={isRenameModalOpened}
@@ -147,7 +139,6 @@ class ProjectsList extends Component {
       </div>
     )
   }
-
 }
 
 export default ProjectsList

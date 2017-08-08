@@ -12,44 +12,42 @@ import sendEmail from 'helpers/sendEmail'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
-import {
-  updateSettings,
-  addToLastUsedEmails,
-  removeFromLastUsedEmails,
-} from 'actions/settings'
+import { updateSettings, addToLastUsedEmails, removeFromLastUsedEmails } from 'actions/settings'
 
 import MailjetInfos from 'components/MailjetInfos'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 
-@connect(state => {
-  const SenderEmail = state.settings.getIn(['api', 'SenderEmail'], '')
-  const TargetEmails = state.settings.getIn(['api', 'TargetEmails'], [])
-  const LastEmails = state.settings.getIn(['api', 'LastEmails'], [])
-  const Subject = state.settings.getIn(['api', 'Subject'], '')
-  return {
-    content: get(state, 'preview.content', ''),
-    isOpened: isModalOpened(state, 'send'),
-    APIKey: state.settings.getIn(['api', 'APIKey'], ''),
-    APISecret: state.settings.getIn(['api', 'APISecret'], ''),
-    Subject,
-    SenderEmail,
-    TargetEmails,
-    emails: uniq([
-      ...SenderEmail ? [SenderEmail] : [],
-      ...TargetEmails,
-      ...LastEmails,
-    ]).map(email => ({ label: email, value: email })),
-  }
-}, {
-  addAlert,
-  closeModal,
-  updateSettings,
-  addToLastUsedEmails,
-  removeFromLastUsedEmails,
-})
+@connect(
+  state => {
+    const SenderEmail = state.settings.getIn(['api', 'SenderEmail'], '')
+    const TargetEmails = state.settings.getIn(['api', 'TargetEmails'], [])
+    const LastEmails = state.settings.getIn(['api', 'LastEmails'], [])
+    const Subject = state.settings.getIn(['api', 'Subject'], '')
+    return {
+      content: get(state, 'preview.content', ''),
+      isOpened: isModalOpened(state, 'send'),
+      APIKey: state.settings.getIn(['api', 'APIKey'], ''),
+      APISecret: state.settings.getIn(['api', 'APISecret'], ''),
+      Subject,
+      SenderEmail,
+      TargetEmails,
+      emails: uniq([
+        ...(SenderEmail ? [SenderEmail] : []),
+        ...TargetEmails,
+        ...LastEmails,
+      ]).map(email => ({ label: email, value: email })),
+    }
+  },
+  {
+    addAlert,
+    closeModal,
+    updateSettings,
+    addToLastUsedEmails,
+    removeFromLastUsedEmails,
+  },
+)
 class SendModal extends Component {
-
   state = {
     emails: this.props.emails,
     Subject: '',
@@ -59,11 +57,11 @@ class SendModal extends Component {
     TargetEmails: [],
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.setAPIState(this.props)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     const didOpened = !this.props.isOpened && nextProps.isOpened
     if (didOpened) {
       this.setAPIState(nextProps)
@@ -88,10 +86,7 @@ class SendModal extends Component {
     const { emails } = this.state
     emailsToAdd = emailsToAdd.map(v => ({ label: v, value: v }))
     this.setState({
-      emails: uniqBy([
-        ...emails,
-        ...emailsToAdd,
-      ], e => e.value),
+      emails: uniqBy([...emails, ...emailsToAdd], e => e.value),
     })
     this.handleChangeTargetEmails(emailsToAdd)
   }
@@ -100,18 +95,9 @@ class SendModal extends Component {
     e.stopPropagation()
     e.preventDefault()
 
-    const {
-      addAlert,
-      content,
-    } = this.props
+    const { addAlert, content } = this.props
 
-    const {
-      Subject,
-      APIKey,
-      APISecret,
-      SenderEmail,
-      TargetEmails,
-    } = this.state
+    const { Subject, APIKey, APISecret, SenderEmail, TargetEmails } = this.state
 
     try {
       await sendEmail({
@@ -124,7 +110,8 @@ class SendModal extends Component {
       })
       window.requestIdleCallback(() => addAlert('Mail has been sent', 'success'))
       window.requestIdleCallback(this.handleClose)
-    } catch (e) { // eslint-disable-line
+    } catch (err) {
+      // eslint-disable-line
       addAlert('Something went wrong', 'error')
     }
   }
@@ -162,11 +149,11 @@ class SendModal extends Component {
     const isInEmails = this.state.emails.find(e => e.value === value)
     const isRemovable = isInEmails && value !== this.props.SenderEmail
     return (
-      <div className='d-f ai-c'>
+      <div className="d-f ai-c">
         {value}
-        {isRemovable && (
+        {isRemovable &&
           <div
-            className='ml-auto'
+            className="ml-auto"
             onMouseDown={e => {
               e.preventDefault()
               e.stopPropagation()
@@ -174,40 +161,25 @@ class SendModal extends Component {
             }}
           >
             {'remove'}
-          </div>
-        )}
+          </div>}
       </div>
     )
   }
 
-  render () {
+  render() {
+    const { isOpened } = this.props
 
-    const {
-      isOpened,
-    } = this.props
-
-    const {
-      emails,
-      Subject,
-      APIKey,
-      APISecret,
-      SenderEmail,
-      TargetEmails,
-    } = this.state
+    const { emails, Subject, APIKey, APISecret, SenderEmail, TargetEmails } = this.state
 
     const isValid = !!APIKey && !!APISecret && !!SenderEmail && !!TargetEmails.length && !!Subject
 
     return (
-      <Modal
-        isOpened={isOpened}
-        onClose={this.handleClose}
-      >
-        <div className='Modal--label'>
+      <Modal isOpened={isOpened} onClose={this.handleClose}>
+        <div className="Modal--label">
           {'Send'}
         </div>
 
-        <form onSubmit={this.handleSubmit} className='flow-v-20'>
-
+        <form onSubmit={this.handleSubmit} className="flow-v-20">
           <MailjetInfos
             APIKey={APIKey}
             APISecret={APISecret}
@@ -215,28 +187,28 @@ class SendModal extends Component {
             onChange={this.handleChangeInfo}
           />
 
-          <div className='flow-v-10'>
-            <div className='t-small'>
+          <div className="flow-v-10">
+            <div className="t-small">
               {'Subject'}
             </div>
             <input
               style={{ width: '100%' }}
               value={Subject}
               onChange={e => this.handleChangeInfo('Subject', e.target.value)}
-              placeholder='Subject'
-              type='text'
+              placeholder="Subject"
+              type="text"
             />
           </div>
 
-          <div className='flow-v-10'>
-            <div className='t-small'>
+          <div className="flow-v-10">
+            <div className="t-small">
               {'Target Emails'}
               {!!TargetEmails.length && ` (${TargetEmails.length})`}
               {':'}
             </div>
             <Select
-              ref={n => this._select = n}
-              className='SelectDark'
+              ref={n => (this._select = n)}
+              className="SelectDark"
               multi
               style={{ width: 556 }}
               value={TargetEmails}
@@ -250,43 +222,36 @@ class SendModal extends Component {
                   if (!clipboard) {
                     return
                   }
-                  const pasted = clipboard
-                    .split(/[\s,;]+/)
-                    .map(v => v.trim())
-                    .filter(v => v)
-                  const values = uniq([
-                    ...TargetEmails,
-                    ...pasted,
-                  ])
+                  const pasted = clipboard.split(/[\s,;]+/).map(v => v.trim()).filter(v => v)
+                  const values = uniq([...TargetEmails, ...pasted])
                   this.handleAddMultipleEmails(values)
                 },
               }}
-              promptTextCreator={e => <span><IconAdd className='mr-5' />{'Add '}<b>{e}</b></span>}
+              promptTextCreator={e =>
+                <span>
+                  <IconAdd className="mr-5" />
+                  {'Add '}
+                  <b>
+                    {e}
+                  </b>
+                </span>}
             />
           </div>
 
-          <input type='submit' style={{ display: 'none' }} />
+          <input type="submit" style={{ display: 'none' }} />
         </form>
 
-        <div className='ModalFooter'>
-          <Button
-            primary
-            onClick={this.handleSubmit}
-            disabled={!isValid}
-          >
+        <div className="ModalFooter">
+          <Button primary onClick={this.handleSubmit} disabled={!isValid}>
             {'Send'}
           </Button>
-          <Button
-            transparent
-            onClick={this.handleClose}
-          >
+          <Button transparent onClick={this.handleClose}>
             {'Cancel'}
           </Button>
         </div>
       </Modal>
     )
   }
-
 }
 
 export default SendModal

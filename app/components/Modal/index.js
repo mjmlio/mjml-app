@@ -9,23 +9,14 @@ const springConfig = {
 }
 
 class Modal extends Component {
-
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (!prevProps.isOpened && this.props.isOpened) {
       this._node.focus()
     }
   }
 
-  render () {
-
-    const {
-      isOpened,
-      onClose,
-      children,
-      className,
-      style,
-      noUI,
-    } = this.props
+  render() {
+    const { isOpened, onClose, children, className, style, noUI } = this.props
 
     return (
       <Mortal
@@ -36,7 +27,7 @@ class Modal extends Component {
           modalOffset: spring(isVisible ? 0 : -20, springConfig),
         })}
       >
-        {(motion, isVisible) => (
+        {(motion, isVisible) =>
           <div
             className={cx('Modal', {
               withUI: !noUI,
@@ -46,17 +37,17 @@ class Modal extends Component {
             }}
           >
             <div
-              className='Modal--overlay'
+              className="Modal--overlay"
               onClick={onClose}
               style={{
                 opacity: motion.opacity,
                 pointerEvents: isVisible ? 'auto' : 'none',
               }}
             />
-            <div className='Modal-box'>
+            <div className="Modal-box">
               <div
                 tabIndex={0}
-                ref={n => this._node = n}
+                ref={n => (this._node = n)}
                 className={cx('Modal--body', className)}
                 style={{
                   opacity: motion.opacity,
@@ -67,12 +58,10 @@ class Modal extends Component {
                 {children}
               </div>
             </div>
-          </div>
-        )}
+          </div>}
       </Mortal>
     )
   }
-
 }
 
 export default Modal

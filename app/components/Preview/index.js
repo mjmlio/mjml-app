@@ -7,32 +7,19 @@ import Iframe from 'components/Iframe'
 import './style.scss'
 
 class Preview extends Component {
-
-  render () {
-
-    const {
-      html,
-      scaled,
-      iframeBase,
-    } = this.props
+  render() {
+    const { html, scaled, iframeBase } = this.props
 
     return (
       <div className={cx('Preview abs', { scaled })}>
-        {html ? (
-          <Iframe
-            scrolling={false}
-            value={html}
-            base={iframeBase}
-          />
-        ) : (
-          <div className='abs z'>
-            <IconEmpty size={50} />
-          </div>
-        )}
+        {html
+          ? <Iframe scrolling={false} value={html} base={iframeBase} />
+          : <div className="abs z">
+              <IconEmpty size={50} />
+            </div>}
       </div>
     )
   }
-
 }
 
 export default Preview

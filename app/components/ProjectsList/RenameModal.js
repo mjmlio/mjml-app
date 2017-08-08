@@ -10,7 +10,6 @@ import { alreadyExists } from 'helpers/fs'
 import ConfirmModal from 'components/Modal/ConfirmModal'
 
 class RenameModal extends Component {
-
   state = {
     newName: '',
     oldName: '',
@@ -18,7 +17,7 @@ class RenameModal extends Component {
     projectLocStatus: 'unset',
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.isOpened && !this.props.isOpened) {
       this.setState({
         newName: pathModule.basename(nextProps.path),
@@ -27,31 +26,27 @@ class RenameModal extends Component {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (this.props.isOpened && !prevProps.isOpened) {
       this._inputName.focus()
     }
   }
 
-  handleConfirm = (e) => {
+  handleConfirm = e => {
     e && e.preventDefault()
 
-    const {
-      newName,
-      projectLocStatus,
-    } = this.state
+    const { newName, projectLocStatus } = this.state
 
-    if (projectLocStatus !== 'valid') { return }
+    if (projectLocStatus !== 'valid') {
+      return
+    }
 
-    const {
-      path,
-    } = this.props
+    const { path } = this.props
 
     const dir = path ? pathModule.dirname(path) : null
-    const fullPath = (newName && dir) ? pathModule.join(dir, newName) : null
+    const fullPath = newName && dir ? pathModule.join(dir, newName) : null
 
     this.props.onConfirm(fullPath)
-
   }
 
   handleChangeNewName = e => {
@@ -81,80 +76,65 @@ class RenameModal extends Component {
     })
   }, 250)
 
-  render () {
+  render() {
+    const { isOpened, onCancel, path } = this.props
 
-    const {
-      isOpened,
-      onCancel,
-      path,
-    } = this.props
-
-    const {
-      newName,
-      oldName,
-      projectLocStatus,
-    } = this.state
+    const { newName, oldName, projectLocStatus } = this.state
 
     const hasChanged = newName !== oldName
     const dir = path ? pathModule.dirname(path) : null
-    const fullPath = (newName && dir) ? pathModule.join(dir, newName) : null
+    const fullPath = newName && dir ? pathModule.join(dir, newName) : null
 
     return (
       <ConfirmModal
         isOpened={isOpened}
         yepCTA={'Rename project'}
-        nopCTA='Cancel'
+        nopCTA="Cancel"
         onCancel={onCancel}
         onConfirm={this.handleConfirm}
-        isConfirmDisabled={
-          !hasChanged
-          || !newName
-          || projectLocStatus !== 'valid'
-        }
+        isConfirmDisabled={!hasChanged || !newName || projectLocStatus !== 'valid'}
       >
         <form onSubmit={this.handleConfirm}>
-          <h2 className='mb-20'>{'Rename project'}</h2>
-          <div className='flow-v-20'>
-            <div className='d-f ai-b'>
-              <div style={{ width: 150 }} className='fs-0'>
+          <h2 className="mb-20">
+            {'Rename project'}
+          </h2>
+          <div className="flow-v-20">
+            <div className="d-f ai-b">
+              <div style={{ width: 150 }} className="fs-0">
                 {'New name:'}
               </div>
-              <div className='fg-1'>
+              <div className="fg-1">
                 <input
                   style={{ width: '100%' }}
-                  ref={n => this._inputName = n}
-                  className='fg-1'
+                  ref={n => (this._inputName = n)}
+                  className="fg-1"
                   value={newName}
                   onChange={this.handleChangeNewName}
-                  placeholder='New name'
-                  type='text'
+                  placeholder="New name"
+                  type="text"
                 />
-                {fullPath && (
-                  <div className='mt-10 t-small'>
+                {fullPath &&
+                  <div className="mt-10 t-small">
                     {'Project will be renamed to: '}
-                    <b className='c-white wb-ba'>
+                    <b className="c-white wb-ba">
                       {fullPath}
                     </b>
-                  </div>
-                )}
-                {projectLocStatus === 'checking' && (
-                  <div className='t-small mt-10'>
-                    <IconChecking className='rotating mr-5' />
+                  </div>}
+                {projectLocStatus === 'checking' &&
+                  <div className="t-small mt-10">
+                    <IconChecking className="rotating mr-5" />
                     {'Checking...'}
-                  </div>
-                )}
-                {projectLocStatus === 'valid' && (
-                  <div className='t-small mt-10 c-green'>
-                    <IconCheck className='mr-5' />
+                  </div>}
+                {projectLocStatus === 'valid' &&
+                  <div className="t-small mt-10 c-green">
+                    <IconCheck className="mr-5" />
                     {'Location is OK'}
-                  </div>
-                )}
-                {projectLocStatus === 'invalid' && (
-                  <div className='t-small mt-10 c-red'>
-                    <IconError className='mr-5' />
+                  </div>}
+                {projectLocStatus === 'invalid' &&
+                  <div className="t-small mt-10 c-red">
+                    <IconError className="mr-5" />
                     {'Directory exists and is not empty'}
-                  </div>
-                )}
+                  </div>}
               </div>
             </div>
           </div>
@@ -162,7 +142,6 @@ class RenameModal extends Component {
       </ConfirmModal>
     )
   }
-
 }
 
 export default RenameModal

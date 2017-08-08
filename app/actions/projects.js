@@ -25,18 +25,17 @@ import mjml2html from 'helpers/mjml'
 
 const HOME_DIR = os.homedir()
 
-export function addProject (p) {
+export function addProject(p) {
   return async (dispatch, getState) => {
     if (!p) {
       const state = getState()
       p = fileDialog({
         defaultPath: state.settings.get('lastOpenedFolder') || HOME_DIR,
-        properties: [
-          'openDirectory',
-          'createDirectory',
-        ],
+        properties: ['openDirectory', 'createDirectory'],
       })
-      if (!p) { return }
+      if (!p) {
+        return
+      }
     }
 
     await fsAccess(p, fs.constants.R_OK | fs.constants.W_OK)
@@ -46,7 +45,7 @@ export function addProject (p) {
   }
 }
 
-export function removeProject (p, shouldDeleteFolder = false) {
+export function removeProject(p, shouldDeleteFolder = false) {
   return dispatch => {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
@@ -56,14 +55,14 @@ export function removeProject (p, shouldDeleteFolder = false) {
   }
 }
 
-export function openProject (path) {
+export function openProject(path) {
   return dispatch => {
     dispatch(replace(`/project?path=${path}`))
     dispatch(loadIfNeeded(path))
   }
 }
 
-function loadIfNeeded (path) {
+function loadIfNeeded(path) {
   return async (dispatch, getState) => {
     const state = getState()
     const proj = state.projects.find(p => p.get('path') === path)
@@ -78,7 +77,7 @@ function loadIfNeeded (path) {
 // read the project directory
 // eventually find the index.mjml file inside and generate its html
 // (to have nice previews in home)
-async function loadProject (p, mjmlPath) {
+async function loadProject(p, mjmlPath) {
   const res = { path: p }
   res.isOK = await isValidDir(p)
   if (res.isOK) {
@@ -92,9 +91,8 @@ async function loadProject (p, mjmlPath) {
   return res
 }
 
-export function loadProjects () {
+export function loadProjects() {
   return async (dispatch, getState) => {
-
     const state = getState()
     const { settings } = state
 
@@ -108,9 +106,7 @@ export function loadProjects () {
     let enriched = await Promise.all(projectsPaths.map(load))
 
     // eventually clean settings from bad projects paths
-    const pathsToClean = enriched
-      .filter(e => !e.isOK)
-      .map(e => e.path)
+    const pathsToClean = enriched.filter(e => !e.isOK).map(e => e.path)
 
     if (pathsToClean.length > 0) {
       dispatch(cleanBadProjects(pathsToClean))
@@ -123,11 +119,10 @@ export function loadProjects () {
       type: 'PROJECTS_LOAD',
       payload: enriched,
     })
-
   }
 }
 
-export function updateProjectPreview (p, html) {
+export function updateProjectPreview(p, html) {
   return {
     type: 'PROJECT_UPDATE_PREVIEW',
     payload: {
@@ -137,8 +132,8 @@ export function updateProjectPreview (p, html) {
   }
 }
 
-export function renameProject (oldPath, newPath) {
-  return async (dispatch) => {
+export function renameProject(oldPath, newPath) {
+  return async dispatch => {
     await fsRename(oldPath, newPath)
     dispatch({
       type: 'PROJECT_RENAME',
@@ -148,31 +143,34 @@ export function renameProject (oldPath, newPath) {
   }
 }
 
-export function dropFile (filePath) {
+export function dropFile(filePath) {
   return dispatch => {
     const ext = path.extname(filePath)
-    if (ext !== '.mjml') { return }
+    if (ext !== '.mjml') {
+      return
+    }
     const dir = path.dirname(filePath)
     dispatch(openProject(dir))
   }
 }
 
-export function exportSelectedProjectsToHTML () {
+export function exportSelectedProjectsToHTML() {
   return (dispatch, getState) => {
     const state = getState()
     const projectsToExport = state.projects
       .filter(p => state.selectedProjects.find(path => path === p.get('path')))
       .filter(p => p.get('html'))
-    if (projectsToExport.size === 0) { return }
+    if (projectsToExport.size === 0) {
+      return
+    }
 
     const targetPath = fileDialog({
       defaultPath: state.settings.get('lastExportedFolder') || HOME_DIR,
-      properties: [
-        'openDirectory',
-        'createDirectory',
-      ],
+      properties: ['openDirectory', 'createDirectory'],
     })
-    if (!targetPath) { return }
+    if (!targetPath) {
+      return
+    }
     projectsToExport.forEach(async p => {
       const projBaseName = path.basename(p.get('path'))
       const projSafeName = `${kebabCase(projBaseName)}.html`

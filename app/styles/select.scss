@@ -1,7 +1,6 @@
 @import './vars.scss';
 
 .SelectDark.Select {
-
   .Select-control {
     background-color: rgba(black, 0.1);
     border: 2px solid rgba(white, 0.1);
@@ -86,5 +85,4 @@
       border-color: rgba($blue, 0.6);
     }
   }
-
 }

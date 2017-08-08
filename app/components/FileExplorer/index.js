@@ -5,26 +5,22 @@ import IconFolder from 'react-icons/md/folder'
 
 import Tabbable from 'components/Tabbable'
 
-import {
-  readDir,
-  sortFiles,
-} from 'helpers/fs'
+import { readDir, sortFiles } from 'helpers/fs'
 
 import './style.scss'
 
-async function fetchDir (path) {
+async function fetchDir(path) {
   const files = await readDir(path)
   sortFiles(files)
   return fromJS(files)
 }
 
 class FileTree extends Component {
-
   state = {
     files: fromJS([]),
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.requestIdleCallback(this.refreshFiles)
   }
 
@@ -36,33 +32,22 @@ class FileTree extends Component {
 
   safeSetState = (...args) => this.setState(...args)
 
-  render () {
+  render() {
+    const { onFileClick } = this.props
 
-    const {
-      onFileClick,
-    } = this.props
-
-    const {
-      files,
-    } = this.state
+    const { files } = this.state
 
     return (
       <div>
-        {files.map(file => (
-          <FileItem
-            key={file.get('path')}
-            file={file}
-            onFileClick={onFileClick}
-          />
-        ))}
+        {files.map(file =>
+          <FileItem key={file.get('path')} file={file} onFileClick={onFileClick} />,
+        )}
       </div>
     )
   }
-
 }
 
 class FileItem extends Component {
-
   state = {
     isOpened: false,
   }
@@ -76,60 +61,43 @@ class FileItem extends Component {
     onFileClick(file.get('path'))
   }
 
-  render () {
+  render() {
+    const { file, onFileClick } = this.props
 
-    const {
-      file,
-      onFileClick,
-    } = this.props
-
-    const {
-      isOpened,
-    } = this.state
+    const { isOpened } = this.state
 
     const filePath = file.get('path')
     const fileName = file.get('name')
     const isFolder = file.get('isFolder')
     return (
       <div key={filePath}>
-
         <Tabbable
           className={cx('d-f ai-c p-5 cu-d FileTree-item-label', {
             isActive: isOpened,
           })}
           onClick={isFolder ? this.handleToggle : this.handleSelect}
         >
-          <div className='z fs-0'>
-            {isFolder && <IconFolder className='mr-5' />}
+          <div className="z fs-0">
+            {isFolder && <IconFolder className="mr-5" />}
           </div>
-          <div className='fg-1 ellipsis'>
+          <div className="fg-1 ellipsis">
             {fileName}
           </div>
         </Tabbable>
 
-        {isOpened && (
-          <div className='ml-10'>
-            <FileTree
-              base={filePath}
-              onFileClick={onFileClick}
-            />
-          </div>
-        )}
-
+        {isOpened &&
+          <div className="ml-10">
+            <FileTree base={filePath} onFileClick={onFileClick} />
+          </div>}
       </div>
     )
   }
-
 }
 
-export default function FileExplorer (props) {
-  const {
-    base,
-    onFileClick,
-    ...p
-  } = props
+export default function FileExplorer(props) {
+  const { base, onFileClick, ...p } = props
   return (
-    <div className='FileExplorer sticky' {...p}>
+    <div className="FileExplorer sticky" {...p}>
       <FileTree base={base} onFileClick={onFileClick} />
     </div>
   )

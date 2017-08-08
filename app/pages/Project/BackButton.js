@@ -7,7 +7,6 @@ import Button from 'components/Button'
 const springConfig = { stiffness: 290 }
 
 class BackButton extends Component {
-
   state = {
     isOver: false,
   }
@@ -15,55 +14,47 @@ class BackButton extends Component {
   handleMouseEnter = () => this.setState({ isOver: true })
   handleMouseLeave = () => this.setState({ isOver: false })
 
-  render () {
+  render() {
+    const { projectName } = this.props
 
-    const {
-      projectName,
-    } = this.props
-
-    const {
-      isOver,
-    } = this.state
+    const { isOver } = this.state
 
     return (
       <Button
-        className='cu-d ellipsis'
+        className="cu-d ellipsis"
         transparent
         link
-        to='/'
+        to="/"
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={{ minWidth: 76 }}
       >
-        <FaHome className='mr-5' />
-        <div className='r d-f ai-c' style={{ height: '100%' }}>
+        <FaHome className="mr-5" />
+        <div className="r d-f ai-c" style={{ height: '100%' }}>
           <Motion style={{ y: spring(isOver ? -30 : 0, springConfig) }}>
-            {m => (
+            {m =>
               <b
-                className='ellipsis'
+                className="ellipsis"
                 style={{
                   transform: `translate3d(0, ${m.y}px, 0)`,
                   maxWidth: 250,
                 }}
               >
                 {projectName}
-              </b>
-            )}
+              </b>}
           </Motion>
-          <div className='sticky d-f ai-c'>
+          <div className="sticky d-f ai-c">
             <Motion style={{ y: spring(isOver ? 0 : 30, springConfig) }}>
-              {m => (
+              {m =>
                 <b style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>
                   {'Back'}
-                </b>
-              )}
+                </b>}
             </Motion>
           </div>
         </div>
       </Button>
     )
   }
-
 }
 
 export default BackButton

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { shell } from 'electron'
 
 class Iframe extends Component {
-
   static propTypes = {
     scrolling: PropTypes.bool,
     value: PropTypes.string,
@@ -18,25 +17,23 @@ class Iframe extends Component {
     base: '',
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setIframeContent(this.props.value)
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.value !== this.props.value) {
       this.setIframeContent(this.props.value)
     }
   }
 
   setIframeContent = value => {
-
-    const {
-      openLinks,
-      base,
-    } = this.props
+    const { openLinks, base } = this.props
 
     window.requestAnimationFrame(() => {
-      if (!this._iframe) { return }
+      if (!this._iframe) {
+        return
+      }
       const doc = this._iframe.contentDocument
       const documentElement = doc.documentElement
       documentElement.innerHTML = value
@@ -63,25 +60,20 @@ class Iframe extends Component {
           }
         })
       }
-
     })
   }
 
-  render () {
-
-    const {
-      scrolling,
-    } = this.props
+  render() {
+    const { scrolling } = this.props
 
     return (
       <iframe
         tabIndex={-1}
         scrolling={scrolling ? undefined : 'no'}
-        ref={n => this._iframe = n}
+        ref={n => (this._iframe = n)}
       />
     )
   }
-
 }
 
 export default Iframe

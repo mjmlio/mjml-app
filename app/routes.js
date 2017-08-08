@@ -7,8 +7,8 @@ import HomePage from 'pages/Home'
 import ProjectPage from 'pages/Project'
 
 export default (
-  <Route path='/' component={Application}>
+  <Route path="/" component={Application}>
     <IndexRoute component={HomePage} />
-    <Route path='/project' component={ProjectPage} />
+    <Route path="/project" component={ProjectPage} />
   </Route>
 )

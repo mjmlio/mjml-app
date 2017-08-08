@@ -1,28 +1,29 @@
 import { handleActions } from 'redux-actions'
 
-export default handleActions({
+export default handleActions(
+  {
+    OPEN_MODAL: (state, { payload: { modalName, modalProps } }) => ({
+      ...state,
+      [modalName]: modalProps,
+    }),
 
-  OPEN_MODAL: (state, { payload: { modalName, modalProps } }) => ({
-    ...state,
-    [modalName]: modalProps,
-  }),
+    CLOSE_MODAL: (state, { payload: modalName }) => ({
+      ...state,
+      [modalName]: false,
+    }),
+  },
+  {},
+)
 
-  CLOSE_MODAL: (state, { payload: modalName }) => ({
-    ...state,
-    [modalName]: false,
-  }),
-
-}, {})
-
-export function isModalOpened (state, modalName) {
+export function isModalOpened(state, modalName) {
   return !!state.modals[modalName]
 }
 
-export function getModalProps (state, modalName) {
+export function getModalProps(state, modalName) {
   return state.modals[modalName]
 }
 
-export function openModal (modalName, modalProps = true) {
+export function openModal(modalName, modalProps = true) {
   return {
     type: 'OPEN_MODAL',
     payload: {
@@ -32,7 +33,7 @@ export function openModal (modalName, modalProps = true) {
   }
 }
 
-export function closeModal (modalName) {
+export function closeModal(modalName) {
   return {
     type: 'CLOSE_MODAL',
     payload: modalName,

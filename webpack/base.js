@@ -34,9 +34,7 @@ export default {
     libraryTarget: 'commonjs2',
   },
 
-  plugins: [
-    new webpack.IgnorePlugin(/vertx/),
-  ],
+  plugins: [new webpack.IgnorePlugin(/vertx/)],
 
   externals: Object.keys(externals || {}),
 }

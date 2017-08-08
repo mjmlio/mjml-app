@@ -8,16 +8,18 @@ import { isModalOpened, getModalProps, closeModal } from 'reducers/modals'
 
 import ConfirmModal from 'components/Modal/ConfirmModal'
 
-@connect(state => {
-  return {
-    isOpened: isModalOpened(state, 'removeFile'),
-    modalProps: getModalProps(state, 'removeFile'),
-  }
-}, {
-  closeModal,
-})
+@connect(
+  state => {
+    return {
+      isOpened: isModalOpened(state, 'removeFile'),
+      modalProps: getModalProps(state, 'removeFile'),
+    }
+  },
+  {
+    closeModal,
+  },
+)
 class RemoveFileModal extends Component {
-
   static propTypes = {
     rootPath: PropTypes.string.isRequired,
     onRemove: PropTypes.func.isRequired,
@@ -25,39 +27,32 @@ class RemoveFileModal extends Component {
 
   handleClose = () => this.props.closeModal('removeFile')
 
-  render () {
+  render() {
+    const { isOpened, onRemove, rootPath, modalProps: file } = this.props
 
-    const {
-      isOpened,
-      onRemove,
-      rootPath,
-      modalProps: file,
-    } = this.props
-
-    const full = file
-      ? path.join(rootPath, file.name)
-      : ''
+    const full = file ? path.join(rootPath, file.name) : ''
 
     return (
       <ConfirmModal
         isOpened={isOpened}
-        yepCTA='Remove file'
-        nopCTA='Cancel'
+        yepCTA="Remove file"
+        nopCTA="Cancel"
         onCancel={this.handleClose}
         onConfirm={() => {
           onRemove(full)
           window.requestIdleCallback(this.handleClose)
         }}
       >
-        <h2 className='mb-20'>{'Remove file?'}</h2>
-        <div className='d-f ai-c t-small'>
-          <IconInfo className='mr-5' size={20} />
-          {'This can\'t be undone.'}
+        <h2 className="mb-20">
+          {'Remove file?'}
+        </h2>
+        <div className="d-f ai-c t-small">
+          <IconInfo className="mr-5" size={20} />
+          {"This can't be undone."}
         </div>
       </ConfirmModal>
     )
   }
-
 }
 
 export default RemoveFileModal

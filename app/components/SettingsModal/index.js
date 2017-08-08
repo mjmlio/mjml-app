@@ -20,17 +20,19 @@ import MJMLEngine from 'components/MJMLEngine'
 
 import './style.scss'
 
-@connect(state => ({
-  isOpened: isModalOpened(state, 'settings'),
-  mobileSize: state.settings.getIn(['previewSize', 'mobile']),
-  desktopSize: state.settings.getIn(['previewSize', 'desktop']),
-  settings: state.settings,
-}), {
-  closeModal,
-  updateSettings,
-})
+@connect(
+  state => ({
+    isOpened: isModalOpened(state, 'settings'),
+    mobileSize: state.settings.getIn(['previewSize', 'mobile']),
+    desktopSize: state.settings.getIn(['previewSize', 'desktop']),
+    settings: state.settings,
+  }),
+  {
+    closeModal,
+    updateSettings,
+  },
+)
 class SettingsModal extends Component {
-
   state = {
     sizes: {
       mobile: this.props.mobileSize,
@@ -77,16 +79,10 @@ class SettingsModal extends Component {
     })
   }
 
-  render () {
+  render() {
+    const { isOpened, settings } = this.props
 
-    const {
-      isOpened,
-      settings,
-    } = this.props
-
-    const {
-      sizes,
-    } = this.state
+    const { sizes } = this.state
 
     const editorWrapLines = settings.getIn(['editor', 'wrapLines'], true)
     const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
@@ -101,56 +97,55 @@ class SettingsModal extends Component {
         noUI
         isOpened={isOpened}
         onClose={this.handleClose}
-        className='SettingsModal p-10 d-f fd-c'
+        className="SettingsModal p-10 d-f fd-c"
       >
-        <div className='d-f ai-c mb-20'>
-          <Button transparent onClick={this.handleClose} className='ml-auto'>
+        <div className="d-f ai-c mb-20">
+          <Button transparent onClick={this.handleClose} className="ml-auto">
             <IconClose />
           </Button>
         </div>
 
-        <div className='fg-1 mb-20 r'>
+        <div className="fg-1 mb-20 r">
           <TabsVertical>
-
-            <TabItem title='MJML' icon={IconMJMLEngine}>
+            <TabItem title="MJML" icon={IconMJMLEngine}>
               <MJMLEngine />
-              <div className='mt-10'>
+              <div className="mt-10">
                 {'Output:'}
               </div>
               <CheckBox
-                className='mt-10'
+                className="mt-10"
                 value={minifyOutput}
                 onChange={this.changeMJMLSetting('minify')}
               >
                 {'Minify HTML output'}
               </CheckBox>
-              <CheckBox
-                value={beautifyOutput}
-                onChange={this.changeMJMLSetting('beautify')}
-              >
+              <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
               </CheckBox>
             </TabItem>
 
-            <TabItem title='Editor' icon={IconEditor}>
+            <TabItem title="Editor" icon={IconEditor}>
               <CheckBox value={editorLightTheme} onChange={this.changeEditorSetting('lightTheme')}>
                 {'Use high-contrast theme'}
               </CheckBox>
               <CheckBox value={editorWrapLines} onChange={this.changeEditorSetting('wrapLines')}>
                 {'Wrap lines'}
               </CheckBox>
-              <CheckBox value={editorHightlightTag} onChange={this.changeEditorSetting('highlightTag')}>
+              <CheckBox
+                value={editorHightlightTag}
+                onChange={this.changeEditorSetting('highlightTag')}
+              >
                 {'Highlight matching tag'}
               </CheckBox>
               <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
                 <div>
                   {'Auto fold lines when opening file'}
                 </div>
-                <div className='mt-5'>
+                <div className="mt-5">
                   {'Fold level:'}
                   <input
-                    className='ml-5'
-                    type='number'
+                    className="ml-5"
+                    type="number"
                     min={1}
                     style={{ width: 80 }}
                     value={foldLevel}
@@ -164,12 +159,11 @@ class SettingsModal extends Component {
               </CheckBox>
             </TabItem>
 
-            <TabItem title='Preview' className='flow-v-10' icon={IconPreview}>
-
-              <div className='d-f ai-c flow-h-5'>
+            <TabItem title="Preview" className="flow-v-10" icon={IconPreview}>
+              <div className="d-f ai-c flow-h-5">
                 <IconMobile size={20} />
                 <input
-                  type='number'
+                  type="number"
                   min={200}
                   style={{ width: 80 }}
                   value={sizes.mobile}
@@ -180,10 +174,10 @@ class SettingsModal extends Component {
                 </span>
               </div>
 
-              <div className='d-f ai-c flow-h-5'>
+              <div className="d-f ai-c flow-h-5">
                 <IconDesktop size={20} />
                 <input
-                  type='number'
+                  type="number"
                   min={200}
                   style={{ width: 80 }}
                   value={sizes.desktop}
@@ -193,16 +187,12 @@ class SettingsModal extends Component {
                   {'Desktop size'}
                 </span>
               </div>
-
             </TabItem>
-
           </TabsVertical>
         </div>
-
       </Modal>
     )
   }
-
 }
 
 export default SettingsModal

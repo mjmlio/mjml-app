@@ -16,19 +16,21 @@ import DropFile from './DropFile'
 
 import './style.scss'
 
-@connect(state => ({
-  projects: state.projects,
-  settings: state.settings,
-}), {
-  dropFile,
-})
+@connect(
+  state => ({
+    projects: state.projects,
+    settings: state.settings,
+  }),
+  {
+    dropFile,
+  },
+)
 class Application extends Component {
-
   state = {
     isOver: false,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
     // window.addEventListener('keydown', () => {
     //   setTimeout(() => {
@@ -50,20 +52,15 @@ class Application extends Component {
 
   handleDragOver = e => {
     e.preventDefault()
-    if (!this.state.isOver) { this.setState({ isOver: true }) }
+    if (!this.state.isOver) {
+      this.setState({ isOver: true })
+    }
   }
 
-  render () {
+  render() {
+    const { projects, settings, location } = this.props
 
-    const {
-      projects,
-      settings,
-      location,
-    } = this.props
-
-    const {
-      isOver,
-    } = this.state
+    const { isOver } = this.state
 
     const { pathname } = location
 
@@ -76,7 +73,6 @@ class Application extends Component {
         })}
         onDragOver={this.handleDragOver}
       >
-
         <DropFile
           onDragOver={this.handleDragOver}
           onDragLeave={this.handleDragLeave}
@@ -94,11 +90,9 @@ class Application extends Component {
         <ErrorModal />
         <AboutModal />
         <Alerts />
-
       </div>
     )
   }
-
 }
 
 export default Application

@@ -5,7 +5,7 @@ import omit from 'lodash/omit'
 
 const storageGet = promisify(storage.get)
 
-export function loadSettings () {
+export function loadSettings() {
   return async dispatch => {
     const res = await storageGet('settings')
     const settings = defaultsDeep(res, {
@@ -47,7 +47,7 @@ export function loadSettings () {
   }
 }
 
-export function saveSettings () {
+export function saveSettings() {
   return (dispatch, getState) => {
     // prevent blocking the main thread
     // for no reason
@@ -63,15 +63,15 @@ export function saveSettings () {
   }
 }
 
-export function cleanBadProjects (pathsToClean) {
+export function cleanBadProjects(pathsToClean) {
   return {
     type: 'PROJECTS_REMOVE',
     payload: pathsToClean,
   }
 }
 
-export function updateSettings (updater) {
-  return (dispatch) => {
+export function updateSettings(updater) {
+  return dispatch => {
     dispatch({
       type: 'UPDATE_SETTINGS',
       payload: updater,
@@ -80,30 +80,34 @@ export function updateSettings (updater) {
   }
 }
 
-export function saveLastExportedFolder (path) {
-  return (dispatch) => {
-    dispatch(updateSettings(settings => {
-      return settings.set('lastExportedFolder', path)
-    }))
+export function saveLastExportedFolder(path) {
+  return dispatch => {
+    dispatch(
+      updateSettings(settings => {
+        return settings.set('lastExportedFolder', path)
+      }),
+    )
   }
 }
 
-export function saveLastOpenedFolder (path) {
-  return (dispatch) => {
-    dispatch(updateSettings(settings => {
-      return settings.set('lastOpenedFolder', path)
-    }))
+export function saveLastOpenedFolder(path) {
+  return dispatch => {
+    dispatch(
+      updateSettings(settings => {
+        return settings.set('lastOpenedFolder', path)
+      }),
+    )
   }
 }
 
-export function addToLastUsedEmails (emails) {
+export function addToLastUsedEmails(emails) {
   return {
     type: 'ADD_TO_LAST_USED_EMAILS',
     payload: emails,
   }
 }
 
-export function removeFromLastUsedEmails (email) {
+export function removeFromLastUsedEmails(email) {
   return dispatch => {
     dispatch({
       type: 'REMOVE_FROM_LAST_USED_EMAILS',

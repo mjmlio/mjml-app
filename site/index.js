@@ -10,15 +10,13 @@ if (navigator.appVersion.indexOf('Win') !== -1) {
   os = 'osx'
 }
 
-const osLabel = ({ windows: 'Windows', osx: 'Mac', linux: 'Linux' })[os]
+const osLabel = { windows: 'Windows', osx: 'Mac', linux: 'Linux' }[os]
 
-fetch(REL_URL)
-  .then(res => res.json())
-  .then(res => {
-    const lastVersion = res[0]
-    document.getElementById('dl-btn-label').innerHTML = `&nbsp;- ${lastVersion.tag_name}`
-    document.getElementById('dl-dl-dl').innerHTML = `Download for ${osLabel}`
-  })
+fetch(REL_URL).then(res => res.json()).then(res => {
+  const lastVersion = res[0]
+  document.getElementById('dl-btn-label').innerHTML = `&nbsp;- ${lastVersion.tag_name}`
+  document.getElementById('dl-dl-dl').innerHTML = `Download for ${osLabel}`
+})
 
 // tracking
 
@@ -37,9 +35,10 @@ dlLinux.addEventListener('click', createTracking('linux'))
 dlWin.addEventListener('click', createTracking('windows'))
 dlOSX.addEventListener('click', createTracking('osx'))
 
-function createTracking (os) {
-  return function () {
-    dataLayer.push({ // eslint-disable-line
+function createTracking(os) {
+  return function() {
+    dataLayer.push({
+      // eslint-disable-line
       eventValue: 'mjmlApp-Downloaded',
       event: 'mjml-app',
       button: os,

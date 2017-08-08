@@ -8,14 +8,10 @@ import catchErrorsMiddleware from 'middlewares/catch-errors'
 
 const router = routerMiddleware(hashHistory)
 
-const middlewares = [
-  catchErrorsMiddleware,
-  thunk,
-  router,
-]
+const middlewares = [catchErrorsMiddleware, thunk, router]
 
 const enhancer = applyMiddleware(...middlewares)
 
-export default function configureStore (initialState) {
-  return createStore(rootReducer, initialState, enhancer); // eslint-disable-line
+export default function configureStore(initialState) {
+  return createStore(rootReducer, initialState, enhancer) // eslint-disable-line
 }

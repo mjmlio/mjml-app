@@ -6,15 +6,9 @@ import IconOpen from 'react-icons/md/file-download'
 import FaCog from 'react-icons/fa/cog'
 import { connect } from 'react-redux'
 
-import {
-  addProject,
-  exportSelectedProjectsToHTML,
-} from 'actions/projects'
+import { addProject, exportSelectedProjectsToHTML } from 'actions/projects'
 import { openModal } from 'reducers/modals'
-import {
-  selectAllProjects,
-  unselectAllProjects,
-} from 'reducers/selectedProjects'
+import { selectAllProjects, unselectAllProjects } from 'reducers/selectedProjects'
 
 import Button from 'components/Button'
 import ProjectsList from 'components/ProjectsList'
@@ -22,19 +16,21 @@ import NotifBtn from 'components/Notifs/NotifBtn'
 
 import './style.scss'
 
-@connect(state => ({
-  projects: state.settings.get('projects'),
-  selectedProjects: state.selectedProjects,
-}), {
-  addProject,
-  openModal,
-  selectAllProjects,
-  unselectAllProjects,
-  exportSelectedProjectsToHTML,
-})
+@connect(
+  state => ({
+    projects: state.settings.get('projects'),
+    selectedProjects: state.selectedProjects,
+  }),
+  {
+    addProject,
+    openModal,
+    selectAllProjects,
+    unselectAllProjects,
+    exportSelectedProjectsToHTML,
+  },
+)
 class HomePage extends Component {
-
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.projects.size === 0) {
       this._newProjectBTN.focus()
     }
@@ -47,8 +43,7 @@ class HomePage extends Component {
 
   focusNew = () => this._newProjectBTN.focus()
 
-  render () {
-
+  render() {
     const {
       addProject,
       openModal,
@@ -68,21 +63,17 @@ class HomePage extends Component {
           'fg-1 z': !hasProjects,
         })}
       >
-
-        <div className='flow-h-10 d-f ai-c'>
+        <div className="flow-h-10 d-f ai-c">
           <Button
-            ref={n => this._newProjectBTN = n}
+            ref={n => (this._newProjectBTN = n)}
             primary
             onClick={() => openModal('newProject')}
           >
-            <IconCreate size={20} className='mr-5' />
+            <IconCreate size={20} className="mr-5" />
             {'New project'}
           </Button>
-          <Button
-            ghost
-            onClick={() => addProject()}
-          >
-            <IconOpen size={20} className='mr-5' />
+          <Button ghost onClick={() => addProject()}>
+            <IconOpen size={20} className="mr-5" />
             {'Open project'}
           </Button>
           <div className={cx('d-f', { 'ml-auto': hasProjects })}>
@@ -93,28 +84,29 @@ class HomePage extends Component {
           </div>
         </div>
 
-        {hasProjects && (
-          <div className='fg-1 d-f fd-c anim-enter-fade'>
+        {hasProjects &&
+          <div className="fg-1 d-f fd-c anim-enter-fade">
             <Collapse isOpened={hasSelectedProjects} springConfig={{ stiffness: 300, damping: 30 }}>
-              <div className='p-v-20' style={{ paddingTop: 30 }}>
-                <span onClick={selectAllProjects} className='a'>{'Select all'}</span>
+              <div className="p-v-20" style={{ paddingTop: 30 }}>
+                <span onClick={selectAllProjects} className="a">
+                  {'Select all'}
+                </span>
                 {' - '}
-                <span onClick={unselectAllProjects} className='a'>{'Unselect all'}</span>
-                <Button className='ml-10' primary onClick={this.handleExportSelected}>
+                <span onClick={unselectAllProjects} className="a">
+                  {'Unselect all'}
+                </span>
+                <Button className="ml-10" primary onClick={this.handleExportSelected}>
                   {`Export selected to HTML (${selectedProjects.length})`}
                 </Button>
               </div>
             </Collapse>
-            <div className='fg-1 r mt-20'>
+            <div className="fg-1 r mt-20">
               <ProjectsList />
             </div>
-          </div>
-        )}
-
+          </div>}
       </div>
     )
   }
-
 }
 
 export default HomePage

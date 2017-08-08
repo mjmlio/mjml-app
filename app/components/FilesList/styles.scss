@@ -38,7 +38,8 @@
     }
   }
 
-  &:hover:not(.active), &:focus:not(.active) {
+  &:hover:not(.active),
+  &:focus:not(.active) {
     color: lighten($almostWhite, 20);
   }
 }
@@ -63,7 +64,8 @@
   iframe {
     background: white;
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
@@ -114,7 +116,9 @@
   z-index: 999;
 }
 
-.rel { position: relative; }
+.rel {
+  position: relative;
+}
 
 .FilesList--item-name-container {
   min-width: 0;

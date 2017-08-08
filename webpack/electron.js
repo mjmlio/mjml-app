@@ -7,7 +7,6 @@ import baseConfig from './base'
 import pkg from '../package.json'
 
 export default merge(baseConfig, {
-
   entry: ['babel-polyfill', './app/main.development'],
 
   output: {

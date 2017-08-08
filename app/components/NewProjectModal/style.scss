@@ -37,7 +37,8 @@
   outline: none !important;
   opacity: 0.5;
   transition: 150ms opacity;
-  &:focus, &.isSelected {
+  &:focus,
+  &.isSelected {
     border-color: $blue;
   }
   &.isSelected {
@@ -59,7 +60,8 @@
 
 .Gallery-item-label {
   position: absolute;
-  bottom: 0; left: 0;
+  bottom: 0;
+  left: 0;
   background: $blue;
   color: white;
   padding: 5px;

@@ -25,10 +25,10 @@ render(
   <Provider store={store}>
     <Router history={history} routes={routes} />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 )
 
-async function boot () {
+async function boot() {
   await dispatch(loadSettings())
   await dispatch(loadProjects())
   dispatch(queryLastVersion())

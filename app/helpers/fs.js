@@ -3,10 +3,7 @@ import path from 'path'
 import promisify from 'es6-promisify'
 import { remote } from 'electron'
 import rimrafModule from 'rimraf'
-import {
-  exec as x,
-  execFile as xFile,
-} from 'child_process'
+import { exec as x, execFile as xFile } from 'child_process'
 
 const { dialog } = remote
 
@@ -19,7 +16,7 @@ export const fsStat = promisify(fs.stat)
 export const fsMkdir = promisify(fs.mkdir)
 export const rimraf = promisify(rimrafModule)
 
-function getFileInfoFactory (p) {
+function getFileInfoFactory(p) {
   return async name => {
     const fullPath = path.resolve(p, name)
     try {
@@ -39,19 +36,27 @@ function getFileInfoFactory (p) {
   }
 }
 
-export function sortFiles (files) {
+export function sortFiles(files) {
   files.sort((a, b) => {
-    if (a.isFolder && !b.isFolder) { return -1 }
-    if (!a.isFolder && b.isFolder) { return 1 }
+    if (a.isFolder && !b.isFolder) {
+      return -1
+    }
+    if (!a.isFolder && b.isFolder) {
+      return 1
+    }
     const aName = a.name.toLowerCase()
     const bName = b.name.toLowerCase()
-    if (aName < bName) { return -1 }
-    if (aName > bName) { return 1 }
+    if (aName < bName) {
+      return -1
+    }
+    if (aName > bName) {
+      return 1
+    }
     return 0
   })
 }
 
-export async function readDir (p) {
+export async function readDir(p) {
   const filesList = await fsReadDir(p)
   const filtered = filesList.filter(f => !f.startsWith('.'))
   const getFileInfo = getFileInfoFactory(p)
@@ -59,19 +64,21 @@ export async function readDir (p) {
   return enriched
 }
 
-export function fileDialog (options) {
+export function fileDialog(options) {
   const res = dialog.showOpenDialog(options)
-  if (!res || !res.length) { return null }
+  if (!res || !res.length) {
+    return null
+  }
   const p = res[0]
   return p || null
 }
 
-export function saveDialog (options) {
+export function saveDialog(options) {
   const res = dialog.showSaveDialog(options)
   return res
 }
 
-export async function isValidDir (path) {
+export async function isValidDir(path) {
   try {
     await fsAccess(path, fs.constants.R_OK | fs.constants.W_OK)
   } catch (e) {
@@ -81,7 +88,7 @@ export async function isValidDir (path) {
   return stats.isDirectory()
 }
 
-export async function alreadyExists (location) {
+export async function alreadyExists(location) {
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
   } catch (err) {
@@ -93,7 +100,7 @@ export async function alreadyExists (location) {
   return true
 }
 
-export async function isEmptyOrDontExist (location) {
+export async function isEmptyOrDontExist(location) {
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
   } catch (err) {
@@ -106,7 +113,7 @@ export async function isEmptyOrDontExist (location) {
   return filesList.length === 0
 }
 
-export async function createOrEmpty (location) {
+export async function createOrEmpty(location) {
   try {
     await fsAccess(location, fs.constants.R_OK | fs.constants.W_OK)
   } catch (err) {
@@ -120,8 +127,8 @@ export async function createOrEmpty (location) {
   }
 }
 
-export function exec (cmd) {
-  return new Promise((resolve) => {
+export function exec(cmd) {
+  return new Promise(resolve => {
     try {
       x(cmd, (err, stdout, stderr) => {
         resolve({
@@ -136,8 +143,8 @@ export function exec (cmd) {
   })
 }
 
-export function execFile (cmd, opts, stdinStream) {
-  return new Promise((resolve) => {
+export function execFile(cmd, opts, stdinStream) {
+  return new Promise(resolve => {
     try {
       const child = xFile(cmd, opts, (err, stdout, stderr) => {
         resolve({
@@ -153,11 +160,12 @@ export function execFile (cmd, opts, stdinStream) {
   })
 }
 
-export async function fileExists (p) {
+export async function fileExists(p) {
   try {
     await fsAccess(p, fs.constants.F_OK)
     return true
-  } catch (err) { // eslint-disable-line
+  } catch (err) {
+    // eslint-disable-line
     return false
   }
 }

@@ -6,14 +6,12 @@ import cx from 'classnames'
 import './style.scss'
 
 class Button extends Component {
-
   focus = () => {
     const n = findDOMNode(this._wrapped)
     n.focus()
   }
 
-  render () {
-
+  render() {
     const {
       link,
       primary,
@@ -40,19 +38,13 @@ class Button extends Component {
       disabled,
       tabIndex: unclickable ? undefined : 0,
       ...props,
-      ref: n => this._wrapped = n,
+      ref: n => (this._wrapped = n),
     }
 
-    const el = link
-      ? Link
-      : (unclickable
-        ? 'div'
-        : 'button'
-      )
+    const el = link ? Link : unclickable ? 'div' : 'button'
 
     return React.createElement(el, p, children)
   }
-
 }
 
 export default Button

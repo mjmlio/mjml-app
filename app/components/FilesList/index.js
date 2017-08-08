@@ -19,8 +19,10 @@ import FilePreview from './FilePreview'
 
 import './styles.scss'
 
-function renameFile (path, oldName, newName, files) {
-  if (oldName === newName) { return }
+function renameFile(path, oldName, newName, files) {
+  if (oldName === newName) {
+    return
+  }
   const filesWithoutOld = files.filter(f => f.name !== oldName)
   const fileExists = filesWithoutOld.some(f => f.name === newName)
   if (fileExists) {
@@ -31,15 +33,19 @@ function renameFile (path, oldName, newName, files) {
   return fsRename(oldFullName, newFullName)
 }
 
-@connect(state => ({
-  previewSize: state.settings.get('previewSize'),
-}), {
-  setPreview,
-  openModal,
-  updateSettings,
-}, null, { withRef: true })
+@connect(
+  state => ({
+    previewSize: state.settings.get('previewSize'),
+  }),
+  {
+    setPreview,
+    openModal,
+    updateSettings,
+  },
+  null,
+  { withRef: true },
+)
 class FilesList extends Component {
-
   state = {
     isLoading: true,
     isAdding: false,
@@ -51,16 +57,16 @@ class FilesList extends Component {
     newName: '',
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this._hasFocused = false
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.refresh()
     ipcRenderer.on('browser-window-focus', this.refresh)
   }
 
-  componentDidUpdate (prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.path !== this.props.path) {
       this.refresh()
     }
@@ -75,7 +81,7 @@ class FilesList extends Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this._unmounted = true
     ipcRenderer.removeListener('browser-window-focus', this.refresh)
   }
@@ -84,7 +90,9 @@ class FilesList extends Component {
     e.preventDefault()
     const { path, onAddFile, onActiveFileChange } = this.props
     let name = this._inputName.value
-    if (!name) { return }
+    if (!name) {
+      return
+    }
     name = `${name}.mjml`
     const fileName = pathModule.join(path, name)
     onAddFile(fileName)
@@ -120,7 +128,9 @@ class FilesList extends Component {
   }
 
   handleRemoveFileFactory = f => e => {
-    if (e) { e.preventDefault() }
+    if (e) {
+      e.preventDefault()
+    }
     const p = pathModule.join(this.props.path, f.name)
     this.props.onRemoveFile(p)
   }
@@ -129,7 +139,7 @@ class FilesList extends Component {
     this.props.onPathChange(pathModule.dirname(this.props.path))
   }
 
-  handlePreviewPanelStopDrag = (size) => {
+  handlePreviewPanelStopDrag = size => {
     this.setCurrentSize(size)
     this.stopDrag()
   }
@@ -138,48 +148,41 @@ class FilesList extends Component {
     this.setState({ newName: e.target.value })
   }
 
-  handleCancelRename = () => this.setState({
-    renamedFile: null,
-    newName: '',
-  })
+  handleCancelRename = () =>
+    this.setState({
+      renamedFile: null,
+      newName: '',
+    })
 
   handleRenameInputKeyDown = async e => {
     switch (e.which) { // eslint-disable-line
-    case 27:
-      this.handleCancelRename()
-      break
-    case 13:
-      try {
-        const { path } = this.props
-        const {
-          newName,
-          renamedFile,
-          files,
-        } = this.state
-        await renameFile(
-          path,
-          renamedFile.name,
-          newName,
-          files,
-        )
-        const newFile = { name: newName, isFolder: false }
-        const newFiles = files.map(f => {
-          if (f === renamedFile) { return newFile }
-          return f
-        })
-        sortFiles(newFiles)
-        this.setState({ files: newFiles })
-        this.props.onActiveFileChange(newFile)
+      case 27:
         this.handleCancelRename()
-      } catch (e) {} // eslint-disable-line
-      break
+        break
+      case 13:
+        try {
+          const { path } = this.props
+          const { newName, renamedFile, files } = this.state
+          await renameFile(path, renamedFile.name, newName, files)
+          const newFile = { name: newName, isFolder: false }
+          const newFiles = files.map(f => {
+            if (f === renamedFile) {
+              return newFile
+            }
+            return f
+          })
+          sortFiles(newFiles)
+          this.setState({ files: newFiles })
+          this.props.onActiveFileChange(newFile)
+          this.handleCancelRename()
+        } catch (e) {} // eslint-disable-line
+        break
     }
   }
 
   setCurrentSize = size => {
     this.props.updateSettings(settings => {
-      return settings
-        .setIn(['previewSize', 'current'], size)
+      return settings.setIn(['previewSize', 'current'], size)
     })
   }
 
@@ -193,7 +196,9 @@ class FilesList extends Component {
   refresh = () => {
     const { path } = this.props
     readDir(path).then(files => {
-      if (this._unmounted) { return }
+      if (this._unmounted) {
+        return
+      }
       sortFiles(files)
       this.setState({
         isLoading: false,
@@ -203,11 +208,10 @@ class FilesList extends Component {
         if (files.length && !this._hasFocused) {
           const indexOfIndexFile = files.findIndex(f => f.name === 'index.mjml')
           const indexOfFirstMJMLFile = files.findIndex(f => f.name.endsWith('.mjml'))
-          const activeIndex = indexOfIndexFile > -1
-            ? indexOfIndexFile
-            : indexOfFirstMJMLFile > -1
-              ? indexOfFirstMJMLFile
-              : 0
+          const activeIndex =
+            indexOfIndexFile > -1
+              ? indexOfIndexFile
+              : indexOfFirstMJMLFile > -1 ? indexOfFirstMJMLFile : 0
           this.props.onActiveFileChange(files[activeIndex])
           this._hasFocused = true
         }
@@ -218,150 +222,140 @@ class FilesList extends Component {
   startDrag = () => this.setState({ isDragging: true })
   stopDrag = () => {
     this.setState({ isDragging: false })
-    if (!this._editor) { return }
+    if (!this._editor) {
+      return
+    }
     this._editor.refresh()
     this._editor.focus()
   }
 
   toggleAdding = e => {
-    if (e) { e.preventDefault() }
+    if (e) {
+      e.preventDefault()
+    }
     this.setState(s => ({ isAdding: !s.isAdding }))
   }
 
   cancelAdd = e => {
-    if (e) { e.preventDefault() }
-    this.setState(s => ({ isAdding: !s.isAdding }), () => {
-      this._addBtn.focus()
-    })
+    if (e) {
+      e.preventDefault()
+    }
+    this.setState(
+      s => ({ isAdding: !s.isAdding }),
+      () => {
+        this._addBtn.focus()
+      },
+    )
   }
 
-  render () {
+  render() {
+    const { files, isDragging, renamedFile, newName } = this.state
 
-    const {
-      files,
-      isDragging,
-      renamedFile,
-      newName,
-    } = this.state
-
-    const {
-      onRef,
-      onEditorRef,
-      activeFile,
-      path,
-      rootPath,
-      openModal,
-      previewSize,
-    } = this.props
+    const { onRef, onEditorRef, activeFile, path, rootPath, openModal, previewSize } = this.props
 
     onRef(this)
 
     const setRef = this.refsFactory()
 
     const rootPathItems = rootPath.split(pathModule.sep)
-    const pathItems = path
-      .split(pathModule.sep)
-      .slice(rootPathItems.length)
+    const pathItems = path.split(pathModule.sep).slice(rootPathItems.length)
 
     const fullActiveFile = pathModule.join(path, (activeFile && activeFile.name) || '')
 
     return (
-      <div className='fg-1 d-f fd-c'>
-
-        <div className='rel fg-1'>
+      <div className="fg-1 d-f fd-c">
+        <div className="rel fg-1">
           <SplitPane
-            split='vertical'
+            split="vertical"
             defaultSize={180}
             minSize={2}
             maxSize={250}
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
-            <div className='sticky o-y-a bg-dark'>
-              <div className='rel FilesList--list anim-enter-fade-left'>
-                {!!pathItems.length && (
+            <div className="sticky o-y-a bg-dark">
+              <div className="rel FilesList--list anim-enter-fade-left">
+                {!!pathItems.length &&
                   <button
-                    className='FilesList--file d-f ai-c'
+                    className="FilesList--file d-f ai-c"
                     tabIndex={0}
                     onClick={this.handleNavigateUp}
                   >
-                    <div className='fg-1 FilesList--item-name-container'>
-                      <div className='FilesList--item-name'>
+                    <div className="fg-1 FilesList--item-name-container">
+                      <div className="FilesList--item-name">
                         {'..'}
                       </div>
                     </div>
-                  </button>
+                  </button>}
+                {files.map(
+                  f =>
+                    renamedFile === f
+                      ? <div key={f.name} className="FilesList--file renaming active">
+                          <input
+                            ref={n => (this._renameInput = n)}
+                            autoFocus
+                            type="text"
+                            value={newName}
+                            onKeyDown={this.handleRenameInputKeyDown}
+                            onChange={this.handleChangeNewName}
+                            onBlur={this.handleCancelRename}
+                          />
+                        </div>
+                      : <button
+                          ref={setRef(f.name)}
+                          key={f.name}
+                          className={cx('FilesList--file d-f ai-c', {
+                            active: activeFile && activeFile.name === f.name,
+                          })}
+                          tabIndex={0}
+                          onClick={this.handleClickFactory(f)}
+                        >
+                          {f.isFolder &&
+                            <div className="fs-0 pr-10">
+                              <FaFolder />
+                            </div>}
+                          <div className="fg-1 FilesList--item-name-container">
+                            <div className="FilesList--item-name">
+                              {f.name}
+                            </div>
+                          </div>
+                          <div className="FilesList--item-actions">
+                            <div
+                              tabIndex={0}
+                              onClick={() =>
+                                this.setState({
+                                  renamedFile: f,
+                                  newName: f.name,
+                                })}
+                              className="action action-rename"
+                            >
+                              <IconEdit />
+                            </div>
+                            <div
+                              tabIndex={0}
+                              onClick={() => openModal('removeFile', f)}
+                              className="action action-remove"
+                            >
+                              <IconClose />
+                            </div>
+                          </div>
+                        </button>,
                 )}
-                {files.map(f => renamedFile === f ? (
-                  <div
-                    key={f.name}
-                    className='FilesList--file renaming active'
-                  >
-                    <input
-                      ref={n => this._renameInput = n}
-                      autoFocus
-                      type='text'
-                      value={newName}
-                      onKeyDown={this.handleRenameInputKeyDown}
-                      onChange={this.handleChangeNewName}
-                      onBlur={this.handleCancelRename}
-                    />
-                  </div>
-                ) : (
-                  <button
-                    ref={setRef(f.name)}
-                    key={f.name}
-                    className={cx('FilesList--file d-f ai-c', {
-                      active: activeFile && activeFile.name === f.name,
-                    })}
-                    tabIndex={0}
-                    onClick={this.handleClickFactory(f)}
-                  >
-                    {f.isFolder && (
-                      <div className='fs-0 pr-10'>
-                        <FaFolder />
-                      </div>
-                    )}
-                    <div className='fg-1 FilesList--item-name-container'>
-                      <div className='FilesList--item-name'>
-                        {f.name}
-                      </div>
-                    </div>
-                    <div className='FilesList--item-actions'>
-                      <div
-                        tabIndex={0}
-                        onClick={() => this.setState({
-                          renamedFile: f,
-                          newName: f.name,
-                        })}
-                        className='action action-rename'
-                      >
-                        <IconEdit />
-                      </div>
-                      <div
-                        tabIndex={0}
-                        onClick={() => openModal('removeFile', f)}
-                        className='action action-remove'
-                      >
-                        <IconClose />
-                      </div>
-                    </div>
-                  </button>
-                ))}
               </div>
             </div>
             <SplitPane
-              ref={n => this._previewSplitPane = n}
-              split='vertical'
+              ref={n => (this._previewSplitPane = n)}
+              split="vertical"
               size={previewSize.get('current')}
               maxSize={previewSize.get('desktop')}
               minSize={previewSize.get('mobile')}
-              primary='second'
+              primary="second"
               onDragStarted={this.startDrag}
               onDragFinished={this.handlePreviewPanelStopDrag}
             >
-              <div className='d-f fd-c sticky anim-enter-fade'>
-                {activeFile && activeFile.name.endsWith('.mjml') && (
+              <div className="d-f fd-c sticky anim-enter-fade">
+                {activeFile &&
+                  activeFile.name.endsWith('.mjml') &&
                   <FileEditor
                     onRef={n => {
                       this._editor = n
@@ -369,10 +363,9 @@ class FilesList extends Component {
                     }}
                     fileName={fullActiveFile}
                     disablePointer={isDragging}
-                  />
-                )}
+                  />}
               </div>
-              <div className='sticky fs-0 ml-5 rel FilesList--preview-container'>
+              <div className="sticky fs-0 ml-5 rel FilesList--preview-container">
                 <FilePreview
                   disablePointer={isDragging}
                   onSetSize={this.setCurrentSize}
@@ -385,7 +378,6 @@ class FilesList extends Component {
       </div>
     )
   }
-
 }
 
 export default FilesList

@@ -22,7 +22,8 @@
     background: $blue;
     font-weight: bold;
     color: white;
-    &:hover:not(:disabled), &:focus:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
       background: lighten($blue, 2);
     }
     &:active:not(:disabled) {
@@ -37,9 +38,11 @@
     z-index: 1;
   }
 
-  &.ghost, &.transparent {
+  &.ghost,
+  &.transparent {
     color: $lighterGrey;
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: #3a3a43;
       color: white;
     }
@@ -56,7 +59,8 @@
 
 .ButtonDropdown--dropdown {
   position: absolute;
-  top: 100%; right: 0;
+  top: 100%;
+  right: 0;
   margin-top: 2px;
   background: $bg-light;
   box-shadow: rgba(black, 0.2) 0 15px 100px;

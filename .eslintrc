@@ -1,7 +1,9 @@
 {
   "extends": [
     "zavatta",
-    "zavatta-react"
+    "zavatta-react",
+    "prettier",
+    "prettier/react"
   ],
   "env": {
     "browser": true,
@@ -9,6 +11,7 @@
   },
   "globals": {
     "Promise": false,
+    "dataLayer": false,
     "__MJML_APP_VERSION__": false,
     "__MJML_VERSION__": false,
   },

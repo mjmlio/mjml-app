@@ -6,7 +6,10 @@
 }
 
 .FileTree-item-label {
-  &:hover, &:active, &:focus, &.isActive {
+  &:hover,
+  &:active,
+  &:focus,
+  &.isActive {
     color: white;
   }
 }

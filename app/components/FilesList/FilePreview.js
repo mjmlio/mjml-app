@@ -8,38 +8,31 @@ import Iframe from 'components/Iframe'
 
 import { updateSettings } from 'actions/settings'
 
-@connect(state => ({
-  preview: state.preview,
-  previewSize: state.settings.get('previewSize'),
-}), {
-  updateSettings,
-})
+@connect(
+  state => ({
+    preview: state.preview,
+    previewSize: state.settings.get('previewSize'),
+  }),
+  {
+    updateSettings,
+  },
+)
 class FilePreview extends Component {
-
-  render () {
-
-    const {
-      preview,
-      disablePointer,
-      previewSize,
-      onSetSize,
-      iframeBase,
-    } = this.props
+  render() {
+    const { preview, disablePointer, previewSize, onSetSize, iframeBase } = this.props
 
     return (
-      <div className='FilesList--preview'>
-        {disablePointer && (
-          <div className='FilesList--preview-overlay abs' />
-        )}
+      <div className="FilesList--preview">
+        {disablePointer && <div className="FilesList--preview-overlay abs" />}
         <Motion
           style={{
             op: spring(preview ? 1 : 0),
           }}
         >
-          {m => (
+          {m =>
             <div style={{ opacity: m.op }}>
-              <div className='FileList--preview-actions-wrapper'>
-                <div className='FileList--preview-actions'>
+              <div className="FileList--preview-actions-wrapper">
+                <div className="FileList--preview-actions">
                   <Button
                     ghost
                     className={cx({
@@ -60,24 +53,16 @@ class FilePreview extends Component {
                   </Button>
                 </div>
               </div>
-              {preview ? (
-                preview.type === 'html' ? (
-                  <Iframe
-                    base={iframeBase}
-                    value={preview.content}
-                    openLinks
-                  />
-                ) : preview.type === 'image' ? (
-                  <img src={preview.content} />
-                ) : null
-              ) : null}
-            </div>
-          )}
+              {preview
+                ? preview.type === 'html'
+                  ? <Iframe base={iframeBase} value={preview.content} openLinks />
+                  : preview.type === 'image' ? <img src={preview.content} /> : null
+                : null}
+            </div>}
         </Motion>
       </div>
     )
   }
-
 }
 
 export default FilePreview

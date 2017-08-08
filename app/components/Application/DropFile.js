@@ -3,13 +3,8 @@ import { Motion, spring } from 'react-motion'
 import IconDrop from 'react-icons/md/file-download'
 
 class DropFile extends Component {
-
-  render () {
-
-    const {
-      isVisible,
-      ...props
-    } = this.props
+  render() {
+    const { isVisible, ...props } = this.props
 
     return (
       <Motion
@@ -19,38 +14,33 @@ class DropFile extends Component {
           scale: spring(isVisible ? 1 : 1.1),
         }}
       >
-        {m => (
+        {m =>
           <div
             {...props}
-            className='DropFile'
+            className="DropFile"
             style={{
               opacity: m.opacity,
               pointerEvents: isVisible ? 'auto' : 'none',
             }}
           >
             <div
-              className='DropFile--border'
+              className="DropFile--border"
               style={{
                 transform: `scale(${m.scale})`,
               }}
             />
-            <div className='d-f fd-c jc-c ai-c' style={{ pointerEvents: 'none' }}>
+            <div className="d-f fd-c jc-c ai-c" style={{ pointerEvents: 'none' }}>
               <div style={{ transform: `translate3d(0, ${-m.y}px, 0)` }}>
-                <IconDrop
-                  className='mb-20'
-                  size={100}
-                />
+                <IconDrop className="mb-20" size={100} />
               </div>
               <div style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>
                 {'Drop here'}
               </div>
             </div>
-          </div>
-        )}
+          </div>}
       </Motion>
     )
   }
-
 }
 
 export default DropFile

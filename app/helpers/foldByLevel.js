@@ -1,6 +1,6 @@
 import CodeMirror from 'codemirror'
 
-export default function foldByLevel (cm, foldLevel) {
+export default function foldByLevel(cm, foldLevel) {
   const mode = cm.getMode()
   for (let l = cm.firstLine(); l <= cm.lastLine(); ++l) {
     const pos = { line: l, ch: 0 }

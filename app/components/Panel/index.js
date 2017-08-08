@@ -11,15 +11,8 @@ const springConfig = {
 }
 
 class Panel extends Component {
-
-  render () {
-
-    const {
-      isOpened,
-      onClose,
-      children,
-      className,
-    } = this.props
+  render() {
+    const { isOpened, onClose, children, className } = this.props
 
     return (
       <Mortal
@@ -30,15 +23,15 @@ class Panel extends Component {
           panelOffset: spring(isVisible ? 0 : 100, springConfig),
         })}
       >
-        {(motion, isVisible) => (
+        {(motion, isVisible) =>
           <div
-            className='Panel'
+            className="Panel"
             style={{
               pointerEvents: isVisible ? 'auto' : 'none',
             }}
           >
             <div
-              className='Panel--overlay'
+              className="Panel--overlay"
               onClick={onClose}
               style={{
                 opacity: motion.opacity,
@@ -53,12 +46,10 @@ class Panel extends Component {
             >
               {children}
             </div>
-          </div>
-        )}
+          </div>}
       </Mortal>
     )
   }
-
 }
 
 export default Panel
