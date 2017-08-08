@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
 import get from 'lodash/get'
 import CodeMirror from 'codemirror'
+import beautifyJS from 'js-beautify'
 
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/closetag'
@@ -211,10 +212,14 @@ class FileEditor extends Component {
   }, 200)
 
   beautify = () => {
-    const totalLines = this._codeMirror.lineCount()
-    const totalChars = this._codeMirror.getTextArea().value.length
-    this._codeMirror.autoFormatRange({ line: 0, ch: 0 }, { line: totalLines, ch: totalChars })
-    this._codeMirror.setCursor({ line: 0, ch: 0 })
+    const value = this._codeMirror.getValue()
+    const scrollInfo = this._codeMirror.getScrollInfo()
+    const beautified = beautifyJS.html(value, {
+      indent_size: 2, // eslint-disable-line camelcase
+      wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
+    })
+    this._codeMirror.setValue(beautified)
+    this._codeMirror.scrollTo(0, scrollInfo.top)
   }
 
   debounceWrite = debounce((fileName, mjml) => {
