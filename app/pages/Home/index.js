@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import Collapse from 'react-collapse'
 import cx from 'classnames'
 import IconCreate from 'react-icons/md/create-new-folder'
 import IconOpen from 'react-icons/md/file-download'
 import FaCog from 'react-icons/fa/cog'
 import { connect } from 'react-redux'
 
-import { addProject, exportSelectedProjectsToHTML } from 'actions/projects'
+import { addProject } from 'actions/projects'
 import { openModal } from 'reducers/modals'
-import { selectAllProjects, unselectAllProjects } from 'reducers/selectedProjects'
 
 import Button from 'components/Button'
+import MassActions from 'components/MassActions'
 import ProjectsList from 'components/ProjectsList'
 import NotifBtn from 'components/Notifs/NotifBtn'
 
@@ -19,14 +18,10 @@ import './style.scss'
 @connect(
   state => ({
     projects: state.settings.get('projects'),
-    selectedProjects: state.selectedProjects,
   }),
   {
     addProject,
     openModal,
-    selectAllProjects,
-    unselectAllProjects,
-    exportSelectedProjectsToHTML,
   },
 )
 class HomePage extends Component {
@@ -44,17 +39,9 @@ class HomePage extends Component {
   focusNew = () => this._newProjectBTN.focus()
 
   render() {
-    const {
-      addProject,
-      openModal,
-      projects,
-      selectedProjects,
-      selectAllProjects,
-      unselectAllProjects,
-    } = this.props
+    const { addProject, openModal, projects } = this.props
 
     const hasProjects = !!projects.size
-    const hasSelectedProjects = !!selectedProjects.length
 
     return (
       <div
@@ -86,20 +73,7 @@ class HomePage extends Component {
 
         {hasProjects &&
           <div className="fg-1 d-f fd-c anim-enter-fade">
-            <Collapse isOpened={hasSelectedProjects} springConfig={{ stiffness: 300, damping: 30 }}>
-              <div className="p-v-20" style={{ paddingTop: 30 }}>
-                <span onClick={selectAllProjects} className="a">
-                  {'Select all'}
-                </span>
-                {' - '}
-                <span onClick={unselectAllProjects} className="a">
-                  {'Unselect all'}
-                </span>
-                <Button className="ml-10" primary onClick={this.handleExportSelected}>
-                  {`Export selected to HTML (${selectedProjects.length})`}
-                </Button>
-              </div>
-            </Collapse>
+            <MassActions />
             <div className="fg-1 r mt-20">
               <ProjectsList />
             </div>

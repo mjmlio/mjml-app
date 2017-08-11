@@ -1,0 +1,11 @@
+@import '../../styles/vars.scss';
+
+.MassActions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $bg-darker;
+  border-top: 2px solid $bg-light;
+  z-index: 1;
+}
