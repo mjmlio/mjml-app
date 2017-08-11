@@ -8,14 +8,18 @@
 .CodeEditor {
   .CodeMirror {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     height: 100%;
     .CodeMirror-scroll {
       font-family: monospace;
       font-size: 14px;
     }
   }
-  .cm-s-one-dark .CodeMirror-matchingbracket, .cm-s-one-dark .CodeMirror-matchingtag {
+  .cm-s-one-dark .CodeMirror-matchingbracket,
+  .cm-s-one-dark .CodeMirror-matchingtag {
     color: #ef8a92 !important;
     border-bottom-color: rgba($blue, 0.8) !important;
   }

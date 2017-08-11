@@ -45,28 +45,26 @@ import './styles.scss'
     lightTheme: settings.getIn(['editor', 'lightTheme']),
     // errors: get(preview, 'errors', []),
   }
-}, {
-})
+}, {})
 class CodeEditor extends Component {
-
   state = {
     isLoading: true,
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.requestIdleCallback(() => {
       this.initEditor()
       this.loadContent()
     })
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (this.props.minify !== nextProps.minify) {
       this.handleChange()
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.filePath !== this.props.filePath) {
       this.loadContent()
     }
@@ -74,11 +72,14 @@ class CodeEditor extends Component {
       this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
     }
     if (prevProps.highlightTag !== this.props.highlightTag) {
-      this._codeMirror.setOption('matchTags', this.props.highlightTag ? { bothTags: true } : undefined)
+      this._codeMirror.setOption(
+        'matchTags',
+        this.props.highlightTag ? { bothTags: true } : undefined,
+      )
     }
     if (
-      (!prevProps.autoFold && this.props.autoFold)
-      || (this.props.autoFold && (this.props.foldLevel !== prevProps.foldLevel))
+      (!prevProps.autoFold && this.props.autoFold) ||
+      (this.props.autoFold && this.props.foldLevel !== prevProps.foldLevel)
     ) {
       foldByLevel(this._codeMirror, this.props.foldLevel)
     }
@@ -87,20 +88,15 @@ class CodeEditor extends Component {
     }
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
       this._codeMirror = null
     }
   }
 
-  async loadContent () {
-
-    const {
-      filePath,
-      autoFold,
-      foldLevel,
-    } = this.props
+  async loadContent() {
+    const { filePath, autoFold, foldLevel } = this.props
 
     const { isLoading } = this.state
 
@@ -119,20 +115,15 @@ class CodeEditor extends Component {
       }
 
       this.setState({ isLoading: false })
-
     } catch (e) {} // eslint-disable-line
-
   }
 
-  initEditor () {
+  initEditor() {
+    if (!this._textarea) {
+      return
+    }
 
-    if (!this._textarea) { return }
-
-    const {
-      wrapLines,
-      highlightTag,
-      lightTheme,
-    } = this.props
+    const { wrapLines, highlightTag, lightTheme } = this.props
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
@@ -187,10 +178,10 @@ class CodeEditor extends Component {
   }
 
   handleChange = debounce(() => {
-    if (!this._codeMirror) { return }
-    const {
-      onChange,
-    } = this.props
+    if (!this._codeMirror) {
+      return
+    }
+    const { onChange } = this.props
     const content = this._codeMirror.getValue()
     onChange(content)
   }, 200)
@@ -210,34 +201,28 @@ class CodeEditor extends Component {
     this._codeMirror && this._codeMirror.focus()
   }
 
-  render () {
+  render() {
+    const { disablePointer, onRef } = this.props
 
-    const {
-      disablePointer,
-      onRef,
-    } = this.props
-
-    const {
-      isLoading,
-    } = this.state
+    const { isLoading } = this.state
 
     onRef && onRef(this)
 
     return (
       <div
-        className='CodeEditor sticky'
+        className="CodeEditor sticky"
         style={{
           pointerEvents: disablePointer ? 'none' : 'auto',
         }}
       >
-        {isLoading && (
-          <div className='sticky z CodeEditor--loader'>{'...'}</div>
-        )}
-        <textarea ref={r => this._textarea = r} />
+        {isLoading &&
+          <div className="sticky z CodeEditor--loader">
+            {'...'}
+          </div>}
+        <textarea ref={r => (this._textarea = r)} />
       </div>
     )
   }
-
 }
 
 export default CodeEditor

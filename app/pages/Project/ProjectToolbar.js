@@ -40,58 +40,42 @@ import RemoveFileModal from './RemoveFileModal'
   openModal,
 })
 class ProjectToolbar extends Component {
-
-  handleAddFile = (fileName) => {
-    fs.writeFile(fileName, defaultMJML, (err) => {
-      if (err) { return }
+  handleAddFile = fileName => {
+    fs.writeFile(fileName, defaultMJML, err => {
+      if (err) {
+        return
+      }
       this.props.onFilesRefresh()
     })
   }
 
-  render () {
-    const {
-      projectName,
-      projectPath,
-      activeFile,
-      openModal,
-    } = this.props
+  render() {
+    const { projectName, projectPath, activeFile, openModal } = this.props
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
     return (
-      <div className='d-f p-10 r' style={{ zIndex: 2 }}>
-        <div className='fg-1 flow-h-10'>
+      <div className="d-f p-10 r" style={{ zIndex: 2 }}>
+        <div className="fg-1 flow-h-10">
           <BackButton projectName={projectName} />
-          <Button
-            ghost
-            onClick={() => openModal('addFile')}
-          >
-            <IconAdd className='mr-5' />
+          <Button ghost onClick={() => openModal('addFile')}>
+            <IconAdd className="mr-5" />
             {'New file'}
           </Button>
         </div>
-        <div className='d-f flow-h-10'>
+        <div className="d-f flow-h-10">
           {isMJMLFile && [
-            <Button
-              key='beautify'
-              transparent
-              onClick={this.handleBeautify}
-            >
+            <Button key="beautify" transparent onClick={this.handleBeautify}>
               <IconBeautify style={{ marginRight: 5 }} />
               {'Beautify'}
             </Button>,
           ]}
-          <Button
-            transparent
-            onClick={this.handleOpenInBrowser}
-          >
+          <Button transparent onClick={this.handleOpenInBrowser}>
             <FaFolderOpen style={{ marginRight: 5 }} />
             {'Open'}
           </Button>
-          {false && preview && preview.type === 'html' && [
-            <Button
-              key={'send'}
-              transparent
-              onClick={this.openSendModal}
-            >
+          {false &&
+          preview &&
+          preview.type === 'html' && [
+            <Button key={'send'} transparent onClick={this.openSendModal}>
               <IconEmail style={{ marginRight: 5 }} />
               {'Send'}
             </Button>,
@@ -123,21 +107,19 @@ class ProjectToolbar extends Component {
           ]}
         </div>
         <Button
-          className='ml-10'
+          className="ml-10"
           ghost
           onClick={this.openSettingsModal}
-          ref={n => this._btnSettings = n}
+          ref={n => (this._btnSettings = n)}
         >
           <FaCog />
         </Button>
         <NotifBtn />
 
         <AddFileModal rootPath={projectPath} onAdd={this.handleAddFile} />
-
       </div>
     )
   }
-
 }
 
 export default ProjectToolbar

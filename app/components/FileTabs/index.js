@@ -9,24 +9,21 @@ import { focusTab, closeTab } from 'reducers/tabs'
 
 import './style.scss'
 
-@connect(state => ({
-  tabs: state.tabs,
-}), {
-  focusTab,
-  closeTab,
-})
+@connect(
+  state => ({
+    tabs: state.tabs,
+  }),
+  {
+    focusTab,
+    closeTab,
+  },
+)
 class FileTabs extends Component {
-
-  render () {
-
-    const {
-      tabs,
-      focusTab,
-      closeTab,
-    } = this.props
+  render() {
+    const { tabs, focusTab, closeTab } = this.props
 
     return (
-      <div className='FileTabs'>
+      <div className="FileTabs">
         {tabs.map(t => {
           const isFocused = t.get('isFocused')
           return (
@@ -37,13 +34,10 @@ class FileTabs extends Component {
               onClick={isFocused ? undefined : () => focusTab(t.get('path'))}
               key={t.get('path')}
             >
-              <div className='ellipsis'>
+              <div className="ellipsis">
                 {t.get('name')}
               </div>
-              <Tabbable
-                className='FileTab--close-icon'
-                onClick={() => closeTab(t.get('path'))}
-              >
+              <Tabbable className="FileTab--close-icon" onClick={() => closeTab(t.get('path'))}>
                 <IconClose />
               </Tabbable>
             </Tabbable>
@@ -52,7 +46,6 @@ class FileTabs extends Component {
       </div>
     )
   }
-
 }
 
 export default FileTabs
