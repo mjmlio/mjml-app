@@ -4,6 +4,10 @@ import path from 'path'
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
+import takeScreenshot from 'helpers/takeScreenshot'
+
+import { addAlert } from 'reducers/alerts'
+
 import {
   saveSettings,
   cleanBadProjects,
@@ -154,36 +158,59 @@ export function dropFile(filePath) {
   }
 }
 
+async function massExport(state, asyncJob) {
+  const projectsToExport = state.projects
+    .filter(p => state.selectedProjects.find(path => path === p.get('path')))
+    .filter(p => p.get('html'))
+  if (projectsToExport.size === 0) {
+    return
+  }
+  const targetPath = fileDialog({
+    defaultPath: state.settings.get('lastExportedFolder') || HOME_DIR,
+    properties: ['openDirectory', 'createDirectory'],
+  })
+  if (!targetPath) {
+    return
+  }
+  for (let i = 0; i < projectsToExport.size; i++) {
+    const p = projectsToExport.get(i)
+    const projBaseName = path.basename(p.get('path'))
+    const projSafeName = `${kebabCase(projBaseName)}.html`
+    const filePath = path.join(targetPath, projSafeName)
+    await asyncJob(filePath, p)
+  }
+  return targetPath
+}
+
 export function exportSelectedProjectsToHTML() {
   return (dispatch, getState) => {
-    const state = getState()
-    const projectsToExport = state.projects
-      .filter(p => state.selectedProjects.find(path => path === p.get('path')))
-      .filter(p => p.get('html'))
-    if (projectsToExport.size === 0) {
-      return
+    const targetPath = massExport(getState(), (filePath, p) => fsWriteFile(filePath, p.get('html')))
+    if (targetPath) {
+      dispatch(saveLastExportedFolder(targetPath))
     }
-
-    const targetPath = fileDialog({
-      defaultPath: state.settings.get('lastExportedFolder') || HOME_DIR,
-      properties: ['openDirectory', 'createDirectory'],
-    })
-    if (!targetPath) {
-      return
-    }
-    projectsToExport.forEach(async p => {
-      const projBaseName = path.basename(p.get('path'))
-      const projSafeName = `${kebabCase(projBaseName)}.html`
-      const filePath = path.join(targetPath, projSafeName)
-      await fsWriteFile(filePath, p.get('html'))
-    })
-    dispatch(saveLastExportedFolder(targetPath))
   }
 }
 
-if (module.hot) {
-  module.hot.accept(() => {
-    delete require.cache[require.resolve('./projects')]
-    require('./projects')
-  })
+export function exportSelectedProjectsToImages(done) {
+  return async (dispatch, getState) => {
+    const state = getState()
+    const targetPath = await massExport(state, async (filePath, p) => {
+      const html = p.get('html')
+      const previewSize = state.settings.get('previewSize')
+      const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
+      const [mobileScreenshot, desktopScreenshot] = await Promise.all([
+        takeScreenshot(html, mobileWidth),
+        takeScreenshot(html, desktopWidth),
+      ])
+      await Promise.all([
+        fsWriteFile(`${filePath}_mobile.png`, mobileScreenshot),
+        fsWriteFile(`${filePath}_desktop.png`, desktopScreenshot),
+      ])
+    })
+    if (targetPath) {
+      dispatch(addAlert('Successfully exported to images', 'success'))
+      dispatch(saveLastExportedFolder(targetPath))
+    }
+    done()
+  }
 }

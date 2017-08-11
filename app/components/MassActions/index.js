@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 import { connect } from 'react-redux'
 
-import { exportSelectedProjectsToHTML } from 'actions/projects'
+import { exportSelectedProjectsToHTML, exportSelectedProjectsToImages } from 'actions/projects'
 import { selectAllProjects, unselectAllProjects } from 'reducers/selectedProjects'
 
 import Button from 'components/Button'
@@ -18,16 +18,30 @@ import './style.scss'
     selectAllProjects,
     unselectAllProjects,
     exportSelectedProjectsToHTML,
+    exportSelectedProjectsToImages,
   },
 )
 class MassActions extends Component {
-  handleExportSelected = () => {
+  state = {
+    isLoading: false,
+  }
+
+  handleExportToHTML = () => {
     this.props.exportSelectedProjectsToHTML()
     this.props.unselectAllProjects()
   }
 
+  handleExportToImages = () => {
+    this.setState({ isLoading: true })
+    this.props.exportSelectedProjectsToImages(() => {
+      this.setState({ isLoading: false })
+      this.props.unselectAllProjects()
+    })
+  }
+
   render() {
     const { selectedProjects, selectAllProjects, unselectAllProjects } = this.props
+    const { isLoading } = this.state
     const hasSelectedProjects = !!selectedProjects.length
     return (
       <Collapse
@@ -43,8 +57,16 @@ class MassActions extends Component {
           <span onClick={unselectAllProjects} className="a">
             {'Unselect all'}
           </span>
-          <Button className="ml-10" primary onClick={this.handleExportSelected}>
-            {`Export selected to HTML (${selectedProjects.length})`}
+          <Button className="ml-10" primary onClick={this.handleExportToHTML}>
+            {`Export to HTML (${selectedProjects.length})`}
+          </Button>
+          <Button
+            disabled={isLoading}
+            className="ml-10"
+            primary
+            onClick={this.handleExportToImages}
+          >
+            {isLoading ? 'Loading...' : `Export to images (${selectedProjects.length})`}
           </Button>
         </div>
       </Collapse>
