@@ -67,7 +67,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meriadec/mjml-app.git"
+    "url": "git+https://github.com/mjmlio/mjml-app.git"
   },
   "author": {
     "name": "Meriadec Pillet",
@@ -76,13 +76,13 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/meriadec/mjml-app/issues"
+    "url": "https://github.com/mjmlio/mjml-app/issues"
   },
   "keywords": [
     "mjml",
     "app"
   ],
-  "homepage": "https://github.com/meriadec/mjml-app#readme",
+  "homepage": "https://github.com/mjmlio/mjml-app#readme",
   "devDependencies": {
     "asar": "^0.13.0",
     "babel-core": "^6.25.0",
