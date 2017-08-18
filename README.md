@@ -1,6 +1,6 @@
 <h1 align="center">
 	MJML App
-	<img src="https://travis-ci.org/mjmlio/mjml-app.svg?branch=master" />
+	<a href="https://travis-ci.org/mjmlio/mjml-app"><img src="https://travis-ci.org/mjmlio/mjml-app.svg?branch=master" /></a>
 </h1>
 
 ![os](assets/os.png)
