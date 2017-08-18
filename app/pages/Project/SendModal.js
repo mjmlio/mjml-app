@@ -71,7 +71,7 @@ class SendModal extends Component {
   handleClose = () => this.props.closeModal('send')
 
   handleChangeInfo = (key, val) => {
-    this.setState({ [key]: val })
+    this.setState({ [key]: val }) // eslint-disable-line react/no-unused-state
     this.debounceSaveInConfig()
   }
 

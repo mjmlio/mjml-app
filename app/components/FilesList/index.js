@@ -47,11 +47,8 @@ function renameFile(path, oldName, newName, files) {
 )
 class FilesList extends Component {
   state = {
-    isLoading: true,
     isAdding: false,
     files: [],
-    preview: null,
-    editingFile: null,
     isDragging: false,
     renamedFile: null,
     newName: '',
@@ -201,7 +198,6 @@ class FilesList extends Component {
       }
       sortFiles(files)
       this.setState({
-        isLoading: false,
         files,
       })
       window.requestIdleCallback(() => {

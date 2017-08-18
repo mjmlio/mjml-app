@@ -7,8 +7,8 @@ import Modal from './index'
 
 class ConfirmModal extends Component {
   static propTypes = {
-    yepCTA: PropTypes.string.isRequired,
-    nopCTA: PropTypes.string.isRequired,
+    yepCTA: PropTypes.string,
+    nopCTA: PropTypes.string,
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
   }

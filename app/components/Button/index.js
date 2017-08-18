@@ -7,7 +7,7 @@ import './style.scss'
 
 class Button extends Component {
   focus = () => {
-    const n = findDOMNode(this._wrapped)
+    const n = findDOMNode(this._wrapped) // eslint-disable-line react/no-find-dom-node
     n.focus()
   }
 
