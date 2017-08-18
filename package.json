@@ -161,9 +161,9 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0",
-    "rimraf": "^2.6.1",
     "semver": "^5.4.1",
     "source-map-support": "^0.4.16",
-    "superagent-promise": "^1.1.0"
+    "superagent-promise": "^1.1.0",
+    "trash": "^4.0.1"
   }
 }

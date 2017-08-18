@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import pathModule from 'path'
-import rimraf from 'rimraf'
+import trash from 'trash'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
 import FaFolderOpen from 'react-icons/fa/arrow-up'
@@ -92,14 +92,10 @@ class ProjectPage extends Component {
     })
   }
 
-  handleRemoveFile = fileName => {
-    rimraf(fileName, err => {
-      if (err) {
-        return
-      }
-      this._filelist.refresh()
-      this.setState({ activeFile: null })
-    })
+  handleRemoveFile = async fileName => {
+    await trash(fileName)
+    this._filelist.refresh()
+    this.setState({ activeFile: null })
   }
 
   handleOpenInBrowser = () => {

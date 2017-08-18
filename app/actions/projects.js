@@ -1,6 +1,7 @@
 import fs from 'fs'
 import os from 'os'
 import path from 'path'
+import trash from 'trash'
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
@@ -15,15 +16,7 @@ import {
   saveLastExportedFolder,
 } from 'actions/settings'
 
-import {
-  fileDialog,
-  fsReadFile,
-  fsAccess,
-  fsRename,
-  fsWriteFile,
-  isValidDir,
-  rimraf,
-} from 'helpers/fs'
+import { fileDialog, fsReadFile, fsAccess, fsRename, fsWriteFile, isValidDir } from 'helpers/fs'
 
 import mjml2html from 'helpers/mjml'
 
@@ -54,7 +47,7 @@ export function removeProject(p, shouldDeleteFolder = false) {
     dispatch({ type: 'PROJECT_REMOVE', payload: p })
     dispatch(saveSettings())
     if (shouldDeleteFolder) {
-      rimraf(p)
+      trash(p)
     }
   }
 }
