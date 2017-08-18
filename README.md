@@ -1,11 +1,13 @@
 <h1 align="center">
 	MJML App
+	<img src="https://travis-ci.org/mjmlio/mjml-app.svg?branch=master" />
 </h1>
 
 ![os](assets/os.png)
 
 <p align="center">
-	:email: The desktop app for MJML
+	:email: The desktop app for MJML -
+	<a href="https://github.com/mjmlio/mjml-app/releases">Download</a>
 </p>
 
 ![screenshot](assets/screenshot.png)
