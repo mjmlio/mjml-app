@@ -9,6 +9,7 @@
     "clean-build": "cross-env rimraf dist && rimraf app/dist && rimraf app/main.js && rimraf app/main.js.map",
     "lint": "eslint --cache --format=node_modules/eslint-formatter-pretty .",
     "prettier": "prettier --print-width 100 --single-quote --trailing-comma all --no-semi --write \"{app,webpack,site}/**/*.?(js|?(s)css|json)\"",
+    "prettier:check": "prettier --print-width 100 --single-quote --trailing-comma all --no-semi --list-different \"{app,webpack,site}/**/*.?(js|?(s)css|json)\"",
     "hot-server": "cross-env NODE_ENV=development node --max_old_space_size=2096 -r babel-register server.js",
     "build-main": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/electron.js --progress --profile --colors",
     "build-renderer": "cross-env NODE_ENV=production node -r babel-register ./node_modules/webpack/bin/webpack --config webpack/prod.js --progress --profile --colors",
