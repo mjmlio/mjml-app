@@ -1,3 +1,9 @@
+### 2.6.0 (2017-08-18)
+
+- Mass export to JPG/PNG ([#166](https://github.com/mjmlio/mjml-app/issues/166))
+- Improved beautify ([#140](https://github.com/mjmlio/mjml-app/issues/140))
+- Put in trash instead of permanently delete folders & files ([#168](https://github.com/mjmlio/mjml-app/issues/168))
+
 ### 2.5.0 (2017-07-28)
 
 - Paste multiple target emails in the send modal ([#164](https://github.com/mjmlio/mjml-app/issues/164))
