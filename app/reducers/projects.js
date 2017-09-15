@@ -3,8 +3,21 @@ import { fromJS } from 'immutable'
 
 export default handleActions(
   {
-    PROJECT_LOAD: (state, { payload }) => state.unshift(fromJS(payload)),
-    PROJECTS_LOAD: (state, { payload }) => fromJS(payload),
+    PROJECT_LOAD: (state, { payload }) => {
+      try {
+        const proj = fromJS(payload)
+        return state.unshift(proj)
+      } catch (err) {
+        return state
+      }
+    },
+    PROJECTS_LOAD: (state, { payload }) => {
+      try {
+        return fromJS(payload)
+      } catch (err) {
+        return state
+      }
+    },
     PROJECT_UPDATE_PREVIEW: (state, { payload }) => {
       if (!state) {
         return state
