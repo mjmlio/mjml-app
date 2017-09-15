@@ -3,11 +3,20 @@ import promisify from 'es6-promisify'
 import defaultsDeep from 'lodash/defaultsDeep'
 import omit from 'lodash/omit'
 
+import { setError } from 'reducers/error'
+
 const storageGet = promisify(storage.get)
 
 export function loadSettings() {
   return async dispatch => {
-    const res = await storageGet('settings')
+    let shouldResetDefaults = false
+    let res
+    try {
+      res = await storageGet('settings')
+    } catch (e) {
+      shouldResetDefaults = true
+      dispatch(setError(e))
+    }
     const settings = defaultsDeep(res, {
       lastOpenedFolder: null,
       editor: {
@@ -44,6 +53,10 @@ export function loadSettings() {
     }
 
     dispatch({ type: 'SETTINGS_LOAD_SUCCESS', payload: settings })
+
+    if (shouldResetDefaults) {
+      dispatch(saveSettings())
+    }
   }
 }
 

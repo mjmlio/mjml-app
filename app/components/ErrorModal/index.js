@@ -67,7 +67,11 @@ class ErrorModal extends Component {
           </Button>
           <pre>{stack}</pre>
         </div>
-        <div className="d-f ai-c jc-c">
+        <div className="d-f fd-c ai-c jc-c">
+          <div className="mb-10">
+            {'En error has been thrown in the application code. If you want, you can '}
+            {'report it to the source code repository, so we can help you.'}
+          </div>
           <Button
             primary
             onClick={() => shell.openExternal('https://github.com/mjmlio/mjml-app/issues')}
