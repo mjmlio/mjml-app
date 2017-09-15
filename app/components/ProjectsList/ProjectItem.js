@@ -33,9 +33,7 @@ class ProjectItem extends Component {
           </div>
         </Tabbable>
         <div className="d-f ai-b pl-5 pr-5">
-          <div className="ProjectItem--label">
-            {path.basename(p.get('path'))}
-          </div>
+          <div className="ProjectItem--label">{path.basename(p.get('path'))}</div>
           <button
             disabled={!isOver}
             className="ProjectItem--edit-btn ml-5 pl-5 pr-5"

@@ -122,13 +122,12 @@ class ProjectsList extends Component {
           onCancel={this.handleCloseDeleteModal}
           onConfirm={this.handleConfirmRemove}
         >
-          <h2 className="mb-20">
-            {'Remove project from list?'}
-          </h2>
-          {!isHome &&
+          <h2 className="mb-20">{'Remove project from list?'}</h2>
+          {!isHome && (
             <CheckBox value={shouldDeleteFolder} onChange={this.handleChangeShouldDelete}>
               {'Also remove folder and files from disk'}
-            </CheckBox>}
+            </CheckBox>
+          )}
         </ConfirmModal>
         <RenameModal
           isOpened={isRenameModalOpened}

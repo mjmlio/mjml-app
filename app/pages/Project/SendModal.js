@@ -151,7 +151,7 @@ class SendModal extends Component {
     return (
       <div className="d-f ai-c">
         {value}
-        {isRemovable &&
+        {isRemovable && (
           <div
             className="ml-auto"
             onMouseDown={e => {
@@ -161,7 +161,8 @@ class SendModal extends Component {
             }}
           >
             {'remove'}
-          </div>}
+          </div>
+        )}
       </div>
     )
   }
@@ -175,9 +176,7 @@ class SendModal extends Component {
 
     return (
       <Modal isOpened={isOpened} onClose={this.handleClose}>
-        <div className="Modal--label">
-          {'Send'}
-        </div>
+        <div className="Modal--label">{'Send'}</div>
 
         <form onSubmit={this.handleSubmit} className="flow-v-20">
           <MailjetInfos
@@ -188,9 +187,7 @@ class SendModal extends Component {
           />
 
           <div className="flow-v-10">
-            <div className="t-small">
-              {'Subject'}
-            </div>
+            <div className="t-small">{'Subject'}</div>
             <input
               style={{ width: '100%' }}
               value={Subject}
@@ -222,19 +219,21 @@ class SendModal extends Component {
                   if (!clipboard) {
                     return
                   }
-                  const pasted = clipboard.split(/[\s,;]+/).map(v => v.trim()).filter(v => v)
+                  const pasted = clipboard
+                    .split(/[\s,;]+/)
+                    .map(v => v.trim())
+                    .filter(v => v)
                   const values = uniq([...TargetEmails, ...pasted])
                   this.handleAddMultipleEmails(values)
                 },
               }}
-              promptTextCreator={e =>
+              promptTextCreator={e => (
                 <span>
                   <IconAdd className="mr-5" />
                   {'Add '}
-                  <b>
-                    {e}
-                  </b>
-                </span>}
+                  <b>{e}</b>
+                </span>
+              )}
             />
           </div>
 

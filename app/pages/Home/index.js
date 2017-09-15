@@ -71,13 +71,14 @@ class HomePage extends Component {
           </div>
         </div>
 
-        {hasProjects &&
+        {hasProjects && (
           <div className="fg-1 d-f fd-c anim-enter-fade">
             <MassActions />
             <div className="fg-1 r mt-20">
               <ProjectsList />
             </div>
-          </div>}
+          </div>
+        )}
       </div>
     )
   }

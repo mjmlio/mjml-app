@@ -55,9 +55,7 @@ class ErrorModal extends Component {
         <div className="d-f ai-c jc-c">
           <IconErr size={70} />
           <div>
-            <b style={{ fontSize: 20 }}>
-              {'Oops...'}
-            </b>
+            <b style={{ fontSize: 20 }}>{'Oops...'}</b>
             <br />
             {'Looks like something gone wrong.'}
           </div>
@@ -67,9 +65,7 @@ class ErrorModal extends Component {
             <IconCopy className="mr-5" />
             {'Copy'}
           </Button>
-          <pre>
-            {stack}
-          </pre>
+          <pre>{stack}</pre>
         </div>
         <div className="d-f ai-c jc-c">
           <Button

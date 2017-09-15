@@ -31,9 +31,7 @@ class CheckBox extends Component {
         <div className="mr-5 z">
           {value ? <IconChecked size={15} /> : <IconUnchecked size={15} />}
         </div>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </div>
     )
   }

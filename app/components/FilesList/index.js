@@ -271,71 +271,71 @@ class FilesList extends Component {
           >
             <div className="sticky o-y-a bg-dark">
               <div className="rel FilesList--list anim-enter-fade-left">
-                {!!pathItems.length &&
+                {!!pathItems.length && (
                   <button
                     className="FilesList--file d-f ai-c"
                     tabIndex={0}
                     onClick={this.handleNavigateUp}
                   >
                     <div className="fg-1 FilesList--item-name-container">
-                      <div className="FilesList--item-name">
-                        {'..'}
-                      </div>
+                      <div className="FilesList--item-name">{'..'}</div>
                     </div>
-                  </button>}
+                  </button>
+                )}
                 {files.map(
                   f =>
-                    renamedFile === f
-                      ? <div key={f.name} className="FilesList--file renaming active">
-                          <input
-                            ref={n => (this._renameInput = n)}
-                            autoFocus
-                            type="text"
-                            value={newName}
-                            onKeyDown={this.handleRenameInputKeyDown}
-                            onChange={this.handleChangeNewName}
-                            onBlur={this.handleCancelRename}
-                          />
+                    renamedFile === f ? (
+                      <div key={f.name} className="FilesList--file renaming active">
+                        <input
+                          ref={n => (this._renameInput = n)}
+                          autoFocus
+                          type="text"
+                          value={newName}
+                          onKeyDown={this.handleRenameInputKeyDown}
+                          onChange={this.handleChangeNewName}
+                          onBlur={this.handleCancelRename}
+                        />
+                      </div>
+                    ) : (
+                      <button
+                        ref={setRef(f.name)}
+                        key={f.name}
+                        className={cx('FilesList--file d-f ai-c', {
+                          active: activeFile && activeFile.name === f.name,
+                        })}
+                        tabIndex={0}
+                        onClick={this.handleClickFactory(f)}
+                      >
+                        {f.isFolder && (
+                          <div className="fs-0 pr-10">
+                            <FaFolder />
+                          </div>
+                        )}
+                        <div className="fg-1 FilesList--item-name-container">
+                          <div className="FilesList--item-name">{f.name}</div>
                         </div>
-                      : <button
-                          ref={setRef(f.name)}
-                          key={f.name}
-                          className={cx('FilesList--file d-f ai-c', {
-                            active: activeFile && activeFile.name === f.name,
-                          })}
-                          tabIndex={0}
-                          onClick={this.handleClickFactory(f)}
-                        >
-                          {f.isFolder &&
-                            <div className="fs-0 pr-10">
-                              <FaFolder />
-                            </div>}
-                          <div className="fg-1 FilesList--item-name-container">
-                            <div className="FilesList--item-name">
-                              {f.name}
-                            </div>
+                        <div className="FilesList--item-actions">
+                          <div
+                            tabIndex={0}
+                            onClick={() =>
+                              this.setState({
+                                renamedFile: f,
+                                newName: f.name,
+                              })}
+                            className="action action-rename"
+                          >
+                            <IconEdit />
                           </div>
-                          <div className="FilesList--item-actions">
-                            <div
-                              tabIndex={0}
-                              onClick={() =>
-                                this.setState({
-                                  renamedFile: f,
-                                  newName: f.name,
-                                })}
-                              className="action action-rename"
-                            >
-                              <IconEdit />
-                            </div>
-                            <div
-                              tabIndex={0}
-                              onClick={() => openModal('removeFile', f)}
-                              className="action action-remove"
-                            >
-                              <IconClose />
-                            </div>
+                          <div
+                            tabIndex={0}
+                            onClick={() => openModal('removeFile', f)}
+                            className="action action-remove"
+                          >
+                            <IconClose />
                           </div>
-                        </button>,
+                        </div>
+                      </button>
+                    ),
                 )}
               </div>
             </div>
@@ -351,15 +351,16 @@ class FilesList extends Component {
             >
               <div className="d-f fd-c sticky anim-enter-fade">
                 {activeFile &&
-                  activeFile.name.endsWith('.mjml') &&
-                  <FileEditor
-                    onRef={n => {
-                      this._editor = n
-                      onEditorRef(n)
-                    }}
-                    fileName={fullActiveFile}
-                    disablePointer={isDragging}
-                  />}
+                  activeFile.name.endsWith('.mjml') && (
+                    <FileEditor
+                      onRef={n => {
+                        this._editor = n
+                        onEditorRef(n)
+                      }}
+                      fileName={fullActiveFile}
+                      disablePointer={isDragging}
+                    />
+                  )}
               </div>
               <div className="sticky fs-0 ml-5 rel FilesList--preview-container">
                 <FilePreview

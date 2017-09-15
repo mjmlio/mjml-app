@@ -77,61 +77,59 @@ class TemplateChooser extends Component {
         </div>
 
         <Collapse isOpened springConfig={{ stiffness: 300, damping: 30 }}>
-          {source === 'basic'
-            ? <div className="d-f">
-                <TabItem
-                  onClick={() => onSelect('singleBasic')}
-                  isSelected={template === 'singleBasic'}
-                  label="Single file, basic layout"
-                >
-                  <IconSimple size={80} />
-                </TabItem>
+          {source === 'basic' ? (
+            <div className="d-f">
+              <TabItem
+                onClick={() => onSelect('singleBasic')}
+                isSelected={template === 'singleBasic'}
+                label="Single file, basic layout"
+              >
+                <IconSimple size={80} />
+              </TabItem>
 
-                <TabItem
-                  onClick={() => onSelect('headerFooter')}
-                  isSelected={template === 'headerFooter'}
-                  label="Header & Footer"
-                >
-                  <IconSeparated size={80} />
-                </TabItem>
-              </div>
-            : source === 'gallery'
-              ? <div>
-                  {isFetching
-                    ? <div className="z" style={{ height: 250 }}>
-                        <IconChecking className="rotating mb-20" size={30} />
-                        {'Fetching templates...'}
-                      </div>
-                    : isError
-                      ? <div>
-                          {'Error'}
-                        </div>
-                      : <div className="r" style={{ height: 450 }}>
-                          <div className="sticky o-y-a Gallery">
-                            {gallery.map((tpl, i) =>
-                              <Tabbable
-                                key={tpl.name}
-                                onClick={() => this.handleSelectGalleryTemplate(i)}
-                                className={cx('Gallery-Item-wrapper', {
-                                  isSelected: template.name === tpl.name,
-                                })}
-                              >
-                                <div
-                                  className="Gallery-Item"
-                                  style={{
-                                    backgroundImage: `url(${tpl.thumbnail})`,
-                                  }}
-                                >
-                                  <div className="Gallery-item-label small">
-                                    {tpl.name}
-                                  </div>
-                                </div>
-                              </Tabbable>,
-                            )}
-                          </div>
-                        </div>}
+              <TabItem
+                onClick={() => onSelect('headerFooter')}
+                isSelected={template === 'headerFooter'}
+                label="Header & Footer"
+              >
+                <IconSeparated size={80} />
+              </TabItem>
+            </div>
+          ) : source === 'gallery' ? (
+            <div>
+              {isFetching ? (
+                <div className="z" style={{ height: 250 }}>
+                  <IconChecking className="rotating mb-20" size={30} />
+                  {'Fetching templates...'}
                 </div>
-              : null}
+              ) : isError ? (
+                <div>{'Error'}</div>
+              ) : (
+                <div className="r" style={{ height: 450 }}>
+                  <div className="sticky o-y-a Gallery">
+                    {gallery.map((tpl, i) => (
+                      <Tabbable
+                        key={tpl.name}
+                        onClick={() => this.handleSelectGalleryTemplate(i)}
+                        className={cx('Gallery-Item-wrapper', {
+                          isSelected: template.name === tpl.name,
+                        })}
+                      >
+                        <div
+                          className="Gallery-Item"
+                          style={{
+                            backgroundImage: `url(${tpl.thumbnail})`,
+                          }}
+                        >
+                          <div className="Gallery-item-label small">{tpl.name}</div>
+                        </div>
+                      </Tabbable>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : null}
         </Collapse>
       </div>
     )
@@ -153,9 +151,7 @@ function TabItem({ onClick, isSelected, thumbnail, children, label }) {
         }}
       >
         {children}
-        <div className="Gallery-item-label small">
-          {label}
-        </div>
+        <div className="Gallery-item-label small">{label}</div>
       </div>
     </Tabbable>
   )

@@ -248,10 +248,7 @@ class FileEditor extends Component {
           pointerEvents: disablePointer ? 'none' : 'auto',
         }}
       >
-        {isLoading &&
-          <div className="sticky z FileEditor--loader">
-            {'...'}
-          </div>}
+        {isLoading && <div className="sticky z FileEditor--loader">{'...'}</div>}
         <textarea ref={r => (this._textarea = r)} />
       </div>
     )

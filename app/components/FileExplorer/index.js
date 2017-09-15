@@ -39,9 +39,9 @@ class FileTree extends Component {
 
     return (
       <div>
-        {files.map(file =>
-          <FileItem key={file.get('path')} file={file} onFileClick={onFileClick} />,
-        )}
+        {files.map(file => (
+          <FileItem key={file.get('path')} file={file} onFileClick={onFileClick} />
+        ))}
       </div>
     )
   }
@@ -77,18 +77,15 @@ class FileItem extends Component {
           })}
           onClick={isFolder ? this.handleToggle : this.handleSelect}
         >
-          <div className="z fs-0">
-            {isFolder && <IconFolder className="mr-5" />}
-          </div>
-          <div className="fg-1 ellipsis">
-            {fileName}
-          </div>
+          <div className="z fs-0">{isFolder && <IconFolder className="mr-5" />}</div>
+          <div className="fg-1 ellipsis">{fileName}</div>
         </Tabbable>
 
-        {isOpened &&
+        {isOpened && (
           <div className="ml-10">
             <FileTree base={filePath} onFileClick={onFileClick} />
-          </div>}
+          </div>
+        )}
       </div>
     )
   }

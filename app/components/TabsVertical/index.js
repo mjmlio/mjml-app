@@ -21,7 +21,7 @@ class TabsVertical extends PureComponent {
     return (
       <div className="TabsVertical sticky">
         <div className="TabsVertical--Tabs">
-          {childs.map(({ props: { title, icon } }, i) =>
+          {childs.map(({ props: { title, icon } }, i) => (
             <div
               key={title}
               className={cx('TabsVertical--Tab', {
@@ -34,12 +34,10 @@ class TabsVertical extends PureComponent {
                   className: 'mr-10',
                 })}
               {title}
-            </div>,
-          )}
+            </div>
+          ))}
         </div>
-        <div className="TabsVertical--View">
-          {tabToDisplay}
-        </div>
+        <div className="TabsVertical--View">{tabToDisplay}</div>
       </div>
     )
   }
@@ -49,11 +47,7 @@ export class TabItem extends PureComponent {
   render() {
     const { children, className } = this.props
 
-    return (
-      <div className={className}>
-        {children}
-      </div>
-    )
+    return <div className={className}>{children}</div>
   }
 }
 

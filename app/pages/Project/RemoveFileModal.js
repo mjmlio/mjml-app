@@ -43,9 +43,7 @@ class RemoveFileModal extends Component {
           window.requestIdleCallback(this.handleClose)
         }}
       >
-        <h2 className="mb-20">
-          {'Remove file?'}
-        </h2>
+        <h2 className="mb-20">{'Remove file?'}</h2>
         <div className="d-f ai-c t-small">
           <IconInfo className="mr-5" size={20} />
           {"This can't be undone."}

@@ -42,16 +42,12 @@ class MailjetInfos extends Component {
               <div className="mr-10 t-small" style={{ lineHeight: '18px' }}>
                 <span>
                   {'Sending from '}
-                  <b className="us-t ff-m">
-                    {SenderEmail}
-                  </b>
+                  <b className="us-t ff-m">{SenderEmail}</b>
                 </span>
                 <br />
                 <span>
                   {'Using API Key '}
-                  <b className="us-t ff-m">
-                    {APIKey}
-                  </b>
+                  <b className="us-t ff-m">{APIKey}</b>
                 </span>
                 <br />
                 <a href="" className="a c-blue t-small" onClick={this.handleOpenInfos}>
@@ -67,9 +63,7 @@ class MailjetInfos extends Component {
             <div className="mb-20 d-f ai-c">
               <LogoMailjet height={20} className="mr-20 anim-mailjet" />
               <div className="t-small" style={{ lineHeight: '18px' }}>
-                <span className="c-white">
-                  {'MJML App uses the Mailjet API to send emails. '}
-                </span>
+                <span className="c-white">{'MJML App uses the Mailjet API to send emails. '}</span>
                 <a href="" onClick={this.handleGoToMailjet} className="a white">
                   {'Create your account'}
                 </a>
@@ -78,10 +72,7 @@ class MailjetInfos extends Component {
             <div className="flow-v-20">
               <div className="d-f ai-b">
                 <div style={{ width: 150 }} className="fs-0 t-small">
-                  {!APIKey &&
-                    <span className="red-star">
-                      {'*'}
-                    </span>}
+                  {!APIKey && <span className="red-star">{'*'}</span>}
                   {'Mailjet API Key:'}
                 </div>
                 <input
@@ -96,10 +87,7 @@ class MailjetInfos extends Component {
 
               <div className="d-f ai-b">
                 <div style={{ width: 150 }} className="fs-0 t-small">
-                  {!APISecret &&
-                    <span className="red-star">
-                      {'*'}
-                    </span>}
+                  {!APISecret && <span className="red-star">{'*'}</span>}
                   {'Mailjet API Secret:'}
                 </div>
                 <input
@@ -113,10 +101,7 @@ class MailjetInfos extends Component {
 
               <div className="d-f ai-b">
                 <div style={{ width: 150 }} className="fs-0 t-small">
-                  {!SenderEmail &&
-                    <span className="red-star">
-                      {'*'}
-                    </span>}
+                  {!SenderEmail && <span className="red-star">{'*'}</span>}
                   {'Sender Email:'}
                 </div>
                 <div className="d-f fd-c fg-1">
@@ -128,9 +113,7 @@ class MailjetInfos extends Component {
                   />
                   <div className="t-small mt-10 ta-r d-f ai-c flow-h-5">
                     <IconInfo />
-                    <div>
-                      {'Must be a verified sender. '}
-                    </div>
+                    <div>{'Must be a verified sender. '}</div>
                     <div
                       className="a white"
                       onClick={() => shell.openExternal('https://app.mailjet.com/account/sender')}

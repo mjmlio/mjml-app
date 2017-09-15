@@ -29,7 +29,7 @@ class FilePreview extends Component {
             op: spring(preview ? 1 : 0),
           }}
         >
-          {m =>
+          {m => (
             <div style={{ opacity: m.op }}>
               <div className="FileList--preview-actions-wrapper">
                 <div className="FileList--preview-actions">
@@ -53,12 +53,15 @@ class FilePreview extends Component {
                   </Button>
                 </div>
               </div>
-              {preview
-                ? preview.type === 'html'
-                  ? <Iframe base={iframeBase} value={preview.content} openLinks />
-                  : preview.type === 'image' ? <img src={preview.content} /> : null
-                : null}
-            </div>}
+              {preview ? (
+                preview.type === 'html' ? (
+                  <Iframe base={iframeBase} value={preview.content} openLinks />
+                ) : preview.type === 'image' ? (
+                  <img src={preview.content} />
+                ) : null
+              ) : null}
+            </div>
+          )}
         </Motion>
       </div>
     )
