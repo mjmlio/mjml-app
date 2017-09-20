@@ -20,6 +20,7 @@ import Button from 'components/Button'
 
 @connect(
   state => {
+    const SenderName = state.settings.getIn(['api', 'SenderName'], '')
     const SenderEmail = state.settings.getIn(['api', 'SenderEmail'], '')
     const TargetEmails = state.settings.getIn(['api', 'TargetEmails'], [])
     const LastEmails = state.settings.getIn(['api', 'LastEmails'], [])
@@ -30,6 +31,7 @@ import Button from 'components/Button'
       APIKey: state.settings.getIn(['api', 'APIKey'], ''),
       APISecret: state.settings.getIn(['api', 'APISecret'], ''),
       Subject,
+      SenderName,
       SenderEmail,
       TargetEmails,
       emails: uniq([
@@ -53,6 +55,7 @@ class SendModal extends Component {
     Subject: '',
     APIKey: '',
     APISecret: '',
+    SenderName: '',
     SenderEmail: '',
     TargetEmails: [],
   }
@@ -97,7 +100,7 @@ class SendModal extends Component {
 
     const { addAlert, content } = this.props
 
-    const { Subject, APIKey, APISecret, SenderEmail, TargetEmails } = this.state
+    const { Subject, APIKey, APISecret, SenderName, SenderEmail, TargetEmails } = this.state
 
     try {
       await sendEmail({
@@ -105,6 +108,7 @@ class SendModal extends Component {
         Subject,
         APIKey,
         APISecret,
+        SenderName,
         SenderEmail,
         TargetEmails,
       })
@@ -129,6 +133,7 @@ class SendModal extends Component {
       Subject: props.Subject,
       APIKey: props.APIKey,
       APISecret: props.APISecret,
+      SenderName: props.SenderName,
       SenderEmail: props.SenderEmail,
       TargetEmails: props.TargetEmails,
     })
@@ -140,6 +145,7 @@ class SendModal extends Component {
         .setIn(['api', 'Subject'], this.state.Subject)
         .setIn(['api', 'APIKey'], this.state.APIKey)
         .setIn(['api', 'APISecret'], this.state.APISecret)
+        .setIn(['api', 'SenderName'], this.state.SenderName)
         .setIn(['api', 'SenderEmail'], this.state.SenderEmail)
         .setIn(['api', 'TargetEmails'], this.state.TargetEmails)
     })
@@ -170,9 +176,10 @@ class SendModal extends Component {
   render() {
     const { isOpened } = this.props
 
-    const { emails, Subject, APIKey, APISecret, SenderEmail, TargetEmails } = this.state
+    const { emails, Subject, APIKey, APISecret, SenderName, SenderEmail, TargetEmails } = this.state
 
-    const isValid = !!APIKey && !!APISecret && !!SenderEmail && !!TargetEmails.length && !!Subject
+    const isValid =
+      !!APIKey && !!APISecret && !!SenderName && !!SenderEmail && !!TargetEmails.length && !!Subject
 
     return (
       <Modal isOpened={isOpened} onClose={this.handleClose}>
@@ -182,6 +189,7 @@ class SendModal extends Component {
           <MailjetInfos
             APIKey={APIKey}
             APISecret={APISecret}
+            SenderName={SenderName}
             SenderEmail={SenderEmail}
             onChange={this.handleChangeInfo}
           />

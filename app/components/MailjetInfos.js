@@ -7,9 +7,8 @@ import LogoMailjet from 'components/icons/logo-mailjet'
 
 class MailjetInfos extends Component {
   state = {
-    isOpened: (({ APIKey, APISecret, SenderEmail }) => !APIKey || !APISecret || !SenderEmail)(
-      this.props,
-    ),
+    isOpened: (({ APIKey, APISecret, SenderName, SenderEmail }) =>
+      !APIKey || !APISecret || !SenderName || !SenderEmail)(this.props),
   }
 
   handleOpenInfos = e => {
@@ -29,7 +28,7 @@ class MailjetInfos extends Component {
   }
 
   render() {
-    const { SenderEmail, APIKey, APISecret } = this.props
+    const { SenderName, SenderEmail, APIKey, APISecret } = this.props
 
     const { isOpened } = this.state
 
@@ -95,6 +94,20 @@ class MailjetInfos extends Component {
                   value={APISecret}
                   onChange={this.handleChangeInput('APISecret')}
                   placeholder="Mailjet API Secret"
+                  type="text"
+                />
+              </div>
+
+              <div className="d-f ai-b">
+                <div style={{ width: 150 }} className="fs-0 t-small">
+                  {!SenderName && <span className="red-star">{'*'}</span>}
+                  {'Sender Name:'}
+                </div>
+                <input
+                  className="fg-1"
+                  value={SenderName}
+                  onChange={this.handleChangeInput('SenderName')}
+                  placeholder="SenderName"
                   type="text"
                 />
               </div>
