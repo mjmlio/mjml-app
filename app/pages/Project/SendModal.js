@@ -178,7 +178,8 @@ class SendModal extends Component {
 
     const { emails, Subject, APIKey, APISecret, SenderName, SenderEmail, TargetEmails } = this.state
 
-    const isValid = !!APIKey && !!APISecret && !!SenderName && !!SenderEmail && !!TargetEmails.length && !!Subject
+    const isValid =
+      !!APIKey && !!APISecret && !!SenderName && !!SenderEmail && !!TargetEmails.length && !!Subject
 
     return (
       <Modal isOpened={isOpened} onClose={this.handleClose}>

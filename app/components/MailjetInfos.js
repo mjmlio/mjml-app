@@ -7,9 +7,8 @@ import LogoMailjet from 'components/icons/logo-mailjet'
 
 class MailjetInfos extends Component {
   state = {
-    isOpened: (({ APIKey, APISecret, SenderName, SenderEmail }) => !APIKey || !APISecret || !SenderName || !SenderEmail)(
-      this.props,
-    ),
+    isOpened: (({ APIKey, APISecret, SenderName, SenderEmail }) =>
+      !APIKey || !APISecret || !SenderName || !SenderEmail)(this.props),
   }
 
   handleOpenInfos = e => {
