@@ -201,73 +201,76 @@ class NewProjectModal extends Component {
             {step === 'name' ? 'New project' : 'Choose a template to start with'}
           </div>
 
-          {step === 'name'
-            ? <div className="flow-v-20">
-                <div className="d-f ai-b">
-                  <div style={{ width: 150 }} className="fs-0">
-                    {'Project name:'}
-                  </div>
-                  <input
-                    ref={n => (this._inputName = n)}
-                    className="fg-1"
-                    value={projectName}
-                    onChange={this.handleChangeName}
-                    placeholder="Project name"
-                    type="text"
-                    autoFocus
-                  />
+          {step === 'name' ? (
+            <div className="flow-v-20">
+              <div className="d-f ai-b">
+                <div style={{ width: 150 }} className="fs-0">
+                  {'Project name:'}
                 </div>
+                <input
+                  ref={n => (this._inputName = n)}
+                  className="fg-1"
+                  value={projectName}
+                  onChange={this.handleChangeName}
+                  placeholder="Project name"
+                  type="text"
+                  autoFocus
+                />
+              </div>
 
-                <div className="d-f ai-b">
-                  <div style={{ width: 150 }} className="fs-0">
-                    {'Location:'}
+              <div className="d-f ai-b">
+                <div style={{ width: 150 }} className="fs-0">
+                  {'Location:'}
+                </div>
+                <div className="fg-1">
+                  <div className="d-f ai-s fg-1">
+                    <input
+                      className="fg-1"
+                      value={projectLocation}
+                      onChange={e => this.handleChangeProjectLocation(e.target.value)}
+                      placeholder="Location"
+                      type="text"
+                    />
+                    <Button ghost onClick={this.handleBrowse} type="button">
+                      {'Browse'}
+                    </Button>
                   </div>
-                  <div className="fg-1">
-                    <div className="d-f ai-s fg-1">
-                      <input
-                        className="fg-1"
-                        value={projectLocation}
-                        onChange={e => this.handleChangeProjectLocation(e.target.value)}
-                        placeholder="Location"
-                        type="text"
-                      />
-                      <Button ghost onClick={this.handleBrowse} type="button">
-                        {'Browse'}
-                      </Button>
+                  {fullPath && (
+                    <div className="mt-10 t-small">
+                      {'Project will be created at: '}
+                      <b className="c-white wb-ba">{fullPath}</b>
                     </div>
-                    {fullPath &&
-                      <div className="mt-10 t-small">
-                        {'Project will be created at: '}
-                        <b className="c-white wb-ba">
-                          {fullPath}
-                        </b>
-                      </div>}
-                    {projectLocStatus === 'checking' &&
-                      <div className="t-small mt-10">
-                        <IconChecking className="rotating mr-5" />
-                        {'Checking...'}
-                      </div>}
-                    {projectLocStatus === 'valid' &&
-                      <div className="t-small mt-10 c-green">
-                        <IconCheck className="mr-5" />
-                        {'Location is OK'}
-                      </div>}
-                    {projectLocStatus === 'parent-invalid' &&
-                      <div className="t-small mt-10 c-red">
-                        <IconError className="mr-5" />
-                        {"Parent directory does't exist"}
-                      </div>}
-                    {projectLocStatus === 'invalid' &&
-                      <div className="t-small mt-10 c-red">
-                        <IconError className="mr-5" />
-                        {'Directory exists and is not empty'}
-                      </div>}
-                  </div>
+                  )}
+                  {projectLocStatus === 'checking' && (
+                    <div className="t-small mt-10">
+                      <IconChecking className="rotating mr-5" />
+                      {'Checking...'}
+                    </div>
+                  )}
+                  {projectLocStatus === 'valid' && (
+                    <div className="t-small mt-10 c-green">
+                      <IconCheck className="mr-5" />
+                      {'Location is OK'}
+                    </div>
+                  )}
+                  {projectLocStatus === 'parent-invalid' && (
+                    <div className="t-small mt-10 c-red">
+                      <IconError className="mr-5" />
+                      {"Parent directory does't exist"}
+                    </div>
+                  )}
+                  {projectLocStatus === 'invalid' && (
+                    <div className="t-small mt-10 c-red">
+                      <IconError className="mr-5" />
+                      {'Directory exists and is not empty'}
+                    </div>
+                  )}
                 </div>
               </div>
-            : step === 'template'
-              ? <TemplateChooser template={template} onSelect={this.handleSelectTemplate} />
-              : null}
+            </div>
+          ) : step === 'template' ? (
+            <TemplateChooser template={template} onSelect={this.handleSelectTemplate} />
+          ) : null}
 
           <div className="ModalFooter">
             <Button
@@ -280,23 +283,24 @@ class NewProjectModal extends Component {
               primary
               onClick={this.handleNext}
             >
-              {step === 'name'
-                ? <div className="d-f ai-c">
-                    {'Choose template'}
-                    <IconArrowRight className="ml-10" />
-                  </div>
-                : step === 'template'
-                  ? <div className="d-f">
-                      <IconCheck className="mr-5" />
-                      {'Create'}
-                    </div>
-                  : null}
+              {step === 'name' ? (
+                <div className="d-f ai-c">
+                  {'Choose template'}
+                  <IconArrowRight className="ml-10" />
+                </div>
+              ) : step === 'template' ? (
+                <div className="d-f">
+                  <IconCheck className="mr-5" />
+                  {'Create'}
+                </div>
+              ) : null}
             </Button>
-            {step === 'template' &&
+            {step === 'template' && (
               <Button ghost onClick={this.handlePrev}>
                 <IconArrowLeft className="mr-10" />
                 {'Choose location and name'}
-              </Button>}
+              </Button>
+            )}
             <Button transparent onClick={closeModal}>
               {'Cancel'}
             </Button>

@@ -147,15 +147,11 @@ class MJMLEngine extends Component {
 
     return (
       <RadioGroup value={mjmlEngine} onChange={this.handleChangeEngine}>
-        <Radio value="auto">
-          {`Use the embedded MJML engine (v${__MJML_VERSION__})`}
-        </Radio>
+        <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__})`}</Radio>
         <Radio value="manual">
           <div className="flow-v-10">
-            <div>
-              {'Use a custom MJML engine (slower)'}
-            </div>
-            {mjmlEngine === 'manual' &&
+            <div>{'Use a custom MJML engine (slower)'}</div>
+            {mjmlEngine === 'manual' && (
               <div className="flow-v-10">
                 <div className="d-f ai-s fg-1">
                   <input
@@ -170,28 +166,29 @@ class MJMLEngine extends Component {
                     {'Browse'}
                   </Button>
                 </div>
-                {pathStatus === 'unset'
-                  ? <div className="d-f ai-c c-yellow">
-                      <IconWarning className="mr-5" />
-                      {'No engine set'}
-                    </div>
-                  : pathStatus === 'checking'
-                    ? <div className="d-f ai-c">
-                        <IconChecking className="mr-5 rotating" />
-                        {'Checking...'}
-                      </div>
-                    : pathStatus === 'valid'
-                      ? <div className="d-f ai-c c-green">
-                          <IconCheck className="mr-5" />
-                          {`MJML ${mjmlVersion} located successfully`}
-                        </div>
-                      : pathStatus === 'invalid'
-                        ? <div className="d-f ai-c c-red">
-                            <IconError className="mr-5" />
-                            {'MJML not found at this location'}
-                          </div>
-                        : null}
-              </div>}
+                {pathStatus === 'unset' ? (
+                  <div className="d-f ai-c c-yellow">
+                    <IconWarning className="mr-5" />
+                    {'No engine set'}
+                  </div>
+                ) : pathStatus === 'checking' ? (
+                  <div className="d-f ai-c">
+                    <IconChecking className="mr-5 rotating" />
+                    {'Checking...'}
+                  </div>
+                ) : pathStatus === 'valid' ? (
+                  <div className="d-f ai-c c-green">
+                    <IconCheck className="mr-5" />
+                    {`MJML ${mjmlVersion} located successfully`}
+                  </div>
+                ) : pathStatus === 'invalid' ? (
+                  <div className="d-f ai-c c-red">
+                    <IconError className="mr-5" />
+                    {'MJML not found at this location'}
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
         </Radio>
       </RadioGroup>

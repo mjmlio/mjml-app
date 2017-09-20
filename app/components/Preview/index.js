@@ -12,11 +12,13 @@ class Preview extends Component {
 
     return (
       <div className={cx('Preview abs', { scaled })}>
-        {html
-          ? <Iframe scrolling={false} value={html} base={iframeBase} />
-          : <div className="abs z">
-              <IconEmpty size={50} />
-            </div>}
+        {html ? (
+          <Iframe scrolling={false} value={html} base={iframeBase} />
+        ) : (
+          <div className="abs z">
+            <IconEmpty size={50} />
+          </div>
+        )}
       </div>
     )
   }

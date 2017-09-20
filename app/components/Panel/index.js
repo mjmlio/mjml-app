@@ -23,7 +23,7 @@ class Panel extends Component {
           panelOffset: spring(isVisible ? 0 : 100, springConfig),
         })}
       >
-        {(motion, isVisible) =>
+        {(motion, isVisible) => (
           <div
             className="Panel"
             style={{
@@ -46,7 +46,8 @@ class Panel extends Component {
             >
               {children}
             </div>
-          </div>}
+          </div>
+        )}
       </Mortal>
     )
   }

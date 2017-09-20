@@ -95,9 +95,7 @@ class RenameModal extends Component {
         isConfirmDisabled={!hasChanged || !newName || projectLocStatus !== 'valid'}
       >
         <form onSubmit={this.handleConfirm}>
-          <h2 className="mb-20">
-            {'Rename project'}
-          </h2>
+          <h2 className="mb-20">{'Rename project'}</h2>
           <div className="flow-v-20">
             <div className="d-f ai-b">
               <div style={{ width: 150 }} className="fs-0">
@@ -113,28 +111,30 @@ class RenameModal extends Component {
                   placeholder="New name"
                   type="text"
                 />
-                {fullPath &&
+                {fullPath && (
                   <div className="mt-10 t-small">
                     {'Project will be renamed to: '}
-                    <b className="c-white wb-ba">
-                      {fullPath}
-                    </b>
-                  </div>}
-                {projectLocStatus === 'checking' &&
+                    <b className="c-white wb-ba">{fullPath}</b>
+                  </div>
+                )}
+                {projectLocStatus === 'checking' && (
                   <div className="t-small mt-10">
                     <IconChecking className="rotating mr-5" />
                     {'Checking...'}
-                  </div>}
-                {projectLocStatus === 'valid' &&
+                  </div>
+                )}
+                {projectLocStatus === 'valid' && (
                   <div className="t-small mt-10 c-green">
                     <IconCheck className="mr-5" />
                     {'Location is OK'}
-                  </div>}
-                {projectLocStatus === 'invalid' &&
+                  </div>
+                )}
+                {projectLocStatus === 'invalid' && (
                   <div className="t-small mt-10 c-red">
                     <IconError className="mr-5" />
                     {'Directory exists and is not empty'}
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </div>

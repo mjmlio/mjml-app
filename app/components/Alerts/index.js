@@ -25,7 +25,7 @@ class Alerts extends Component {
       <Portal isOpened>
         <div className="Alerts">
           <Steack reverse>
-            {alerts.map(a =>
+            {alerts.map(a => (
               <div
                 key={a.id}
                 onClick={() => removeAlert(a.id)}
@@ -33,8 +33,8 @@ class Alerts extends Component {
               >
                 {a.type === 'error' && <IconError className="mr-10" size={30} />}
                 {a.message}
-              </div>,
-            )}
+              </div>
+            ))}
           </Steack>
         </div>
       </Portal>

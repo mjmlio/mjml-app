@@ -1,7 +1,7 @@
 import nodeMailjet from 'node-mailjet'
 
 export default function sendEmail(opts) {
-  const { content, Subject, APIKey, APISecret, SenderEmail, TargetEmails } = opts
+  const { content, Subject, APIKey, APISecret, SenderName, SenderEmail, TargetEmails } = opts
 
   const mj = nodeMailjet.connect(APIKey, APISecret)
   const send = mj.post('send')
@@ -9,7 +9,7 @@ export default function sendEmail(opts) {
 
   return send.request({
     FromEmail: SenderEmail,
-    FromName: 'MJML App',
+    FromName: SenderName,
     Subject,
     'Html-part': content,
     Recipients,

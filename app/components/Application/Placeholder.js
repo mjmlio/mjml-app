@@ -9,14 +9,15 @@ class AppPlaceholder extends Component {
 
     return (
       <Motion style={{ opacity: spring(show ? 1 : 0) }}>
-        {m =>
+        {m => (
           <div
             className="sticky z bg-dark"
             style={{
               opacity: m.opacity,
               pointerEvents: show ? 'auto' : 'none',
             }}
-          />}
+          />
+        )}
       </Motion>
     )
   }

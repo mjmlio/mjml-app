@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import { fromJS } from 'immutable'
 import IconFolder from 'react-icons/md/folder'
 
+import { safeFromJS } from 'helpers/immutable'
 import Tabbable from 'components/Tabbable'
 
 import { readDir, sortFiles } from 'helpers/fs'
@@ -12,12 +12,12 @@ import './style.scss'
 async function fetchDir(path) {
   const files = await readDir(path)
   sortFiles(files)
-  return fromJS(files)
+  return safeFromJS(files, [])
 }
 
 class FileTree extends Component {
   state = {
-    files: fromJS([]),
+    files: safeFromJS([]),
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class FileTree extends Component {
   refreshFiles = async () => {
     const { base } = this.props
     const files = await fetchDir(base)
-    this.safeSetState({ files: fromJS(files) })
+    this.safeSetState({ files: safeFromJS(files, []) })
   }
 
   safeSetState = (...args) => this.setState(...args)
@@ -39,9 +39,9 @@ class FileTree extends Component {
 
     return (
       <div>
-        {files.map(file =>
-          <FileItem key={file.get('path')} file={file} onFileClick={onFileClick} />,
-        )}
+        {files.map(file => (
+          <FileItem key={file.get('path')} file={file} onFileClick={onFileClick} />
+        ))}
       </div>
     )
   }
@@ -77,18 +77,15 @@ class FileItem extends Component {
           })}
           onClick={isFolder ? this.handleToggle : this.handleSelect}
         >
-          <div className="z fs-0">
-            {isFolder && <IconFolder className="mr-5" />}
-          </div>
-          <div className="fg-1 ellipsis">
-            {fileName}
-          </div>
+          <div className="z fs-0">{isFolder && <IconFolder className="mr-5" />}</div>
+          <div className="fg-1 ellipsis">{fileName}</div>
         </Tabbable>
 
-        {isOpened &&
+        {isOpened && (
           <div className="ml-10">
             <FileTree base={filePath} onFileClick={onFileClick} />
-          </div>}
+          </div>
+        )}
       </div>
     )
   }

@@ -22,9 +22,7 @@ class Radio extends Component {
         <div className="mr-5 d-f ai-c fs-0" style={{ marginTop: 1 }}>
           {isActive ? <IconRadioChecked /> : <IconRadioUnchecked />}
         </div>
-        <div className="fg-1">
-          {children}
-        </div>
+        <div className="fg-1">{children}</div>
       </div>
     )
   }

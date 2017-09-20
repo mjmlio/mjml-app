@@ -27,15 +27,11 @@ class AboutModal extends Component {
       >
         <div>
           {'MJML App v'}
-          <b className="us-t">
-            {__MJML_APP_VERSION__}
-          </b>
+          <b className="us-t">{__MJML_APP_VERSION__}</b>
         </div>
         <div>
           {'MJML v'}
-          <b className="us-t">
-            {__MJML_VERSION__}
-          </b>
+          <b className="us-t">{__MJML_VERSION__}</b>
         </div>
       </Modal>
     )

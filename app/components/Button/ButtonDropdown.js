@@ -62,9 +62,7 @@ class ButtonDropdown extends Component {
     return (
       <div className="r d-f">
         <Button {...props} className={cx('r', className)} onClick={() => choice.onClick()}>
-          <span className="mr-5">
-            {choice.icon}
-          </span>
+          <span className="mr-5">{choice.icon}</span>
           {choice.label}
         </Button>
         <Button
@@ -75,13 +73,13 @@ class ButtonDropdown extends Component {
         >
           <IconDown />
         </Button>
-        {isOpened &&
+        {isOpened && (
           <div
             className="ButtonDropdown--dropdown"
             style={{ width: dropdownWidth }}
             ref={n => (this._dropdown = n)}
           >
-            {actions.map(action =>
+            {actions.map(action => (
               <Tabbable
                 key={action.label}
                 className={cx('ButtonDropdown--dropdown-item', {
@@ -89,20 +87,15 @@ class ButtonDropdown extends Component {
                 })}
                 onClick={() => this.handleClickAction(action)}
               >
-                <div className="ButtonDropdown--dropdown-item-icon">
-                  {action.icon}
-                </div>
+                <div className="ButtonDropdown--dropdown-item-icon">{action.icon}</div>
                 <div className="fg-1">
-                  <div className="ButtonDropdown--dropdown-item-title c-white">
-                    {action.label}
-                  </div>
-                  <div className="small mt-5">
-                    {action.desc}
-                  </div>
+                  <div className="ButtonDropdown--dropdown-item-title c-white">{action.label}</div>
+                  <div className="small mt-5">{action.desc}</div>
                 </div>
-              </Tabbable>,
-            )}
-          </div>}
+              </Tabbable>
+            ))}
+          </div>
+        )}
       </div>
     )
   }

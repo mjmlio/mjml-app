@@ -109,9 +109,7 @@ class SettingsModal extends Component {
           <TabsVertical>
             <TabItem title="MJML" icon={IconMJMLEngine}>
               <MJMLEngine />
-              <div className="mt-10">
-                {'Output:'}
-              </div>
+              <div className="mt-10">{'Output:'}</div>
               <CheckBox
                 className="mt-10"
                 value={minifyOutput}
@@ -138,9 +136,7 @@ class SettingsModal extends Component {
                 {'Highlight matching tag'}
               </CheckBox>
               <CheckBox value={autoFold} onChange={this.changeEditorSetting('autoFold')}>
-                <div>
-                  {'Auto fold lines when opening file'}
-                </div>
+                <div>{'Auto fold lines when opening file'}</div>
                 <div className="mt-5">
                   {'Fold level:'}
                   <input
@@ -169,9 +165,7 @@ class SettingsModal extends Component {
                   value={sizes.mobile}
                   onChange={e => this.handleChangeSize('mobile', e.target.value)}
                 />
-                <span>
-                  {'Mobile size'}
-                </span>
+                <span>{'Mobile size'}</span>
               </div>
 
               <div className="d-f ai-c flow-h-5">
@@ -183,9 +177,7 @@ class SettingsModal extends Component {
                   value={sizes.desktop}
                   onChange={e => this.handleChangeSize('desktop', e.target.value)}
                 />
-                <span>
-                  {'Desktop size'}
-                </span>
+                <span>{'Desktop size'}</span>
               </div>
             </TabItem>
           </TabsVertical>

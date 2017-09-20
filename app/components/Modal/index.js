@@ -27,7 +27,7 @@ class Modal extends Component {
           modalOffset: spring(isVisible ? 0 : -20, springConfig),
         })}
       >
-        {(motion, isVisible) =>
+        {(motion, isVisible) => (
           <div
             className={cx('Modal', {
               withUI: !noUI,
@@ -58,7 +58,8 @@ class Modal extends Component {
                 {children}
               </div>
             </div>
-          </div>}
+          </div>
+        )}
       </Mortal>
     )
   }

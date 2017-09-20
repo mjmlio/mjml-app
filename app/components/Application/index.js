@@ -46,6 +46,9 @@ class Application extends Component {
   handleDrop = e => {
     e.preventDefault()
     this.handleDragLeave()
+    if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
+      return
+    }
     const fileName = e.dataTransfer.files[0].path
     this.props.dropFile(fileName)
   }

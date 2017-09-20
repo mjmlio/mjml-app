@@ -96,9 +96,7 @@ class AddFileModal extends Component {
 
     return (
       <Modal isOpened={isOpened} onClose={this.handleClose}>
-        <div className="Modal--label">
-          {'Create MJML file'}
-        </div>
+        <div className="Modal--label">{'Create MJML file'}</div>
 
         <form className="flow-v-20" onSubmit={this.handleSubmit}>
           <div className="d-f ai-b">
@@ -116,31 +114,28 @@ class AddFileModal extends Component {
                   type="text"
                   autoFocus
                 />
-                <div className="ml-5">
-                  {'.mjml'}
-                </div>
+                <div className="ml-5">{'.mjml'}</div>
               </div>
-              {fileStatus === 'checking' &&
+              {fileStatus === 'checking' && (
                 <div className="t-small mt-10">
                   <IconChecking className="rotating mr-5" />
                   {'Checking...'}
-                </div>}
-              {fileStatus === 'valid' &&
+                </div>
+              )}
+              {fileStatus === 'valid' && (
                 <div className="t-small mt-10">
                   <IconCheck className="mr-5 mb-5" />
                   {'Ready to create'}
-                  <b className="ml-5 wb-ba">
-                    {nameWithExt}
-                  </b>
-                </div>}
-              {fileStatus === 'invalid' &&
+                  <b className="ml-5 wb-ba">{nameWithExt}</b>
+                </div>
+              )}
+              {fileStatus === 'invalid' && (
                 <div className="t-small mt-10 c-red">
                   <IconError className="mr-5 mb-5" />
-                  <b className="mr-5">
-                    {nameWithExt}
-                  </b>
+                  <b className="mr-5">{nameWithExt}</b>
                   {'already exists'}
-                </div>}
+                </div>
+              )}
             </div>
           </div>
         </form>

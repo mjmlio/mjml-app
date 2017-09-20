@@ -14,7 +14,7 @@ class DropFile extends Component {
           scale: spring(isVisible ? 1 : 1.1),
         }}
       >
-        {m =>
+        {m => (
           <div
             {...props}
             className="DropFile"
@@ -33,11 +33,10 @@ class DropFile extends Component {
               <div style={{ transform: `translate3d(0, ${-m.y}px, 0)` }}>
                 <IconDrop className="mb-20" size={100} />
               </div>
-              <div style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>
-                {'Drop here'}
-              </div>
+              <div style={{ transform: `translate3d(0, ${m.y}px, 0)` }}>{'Drop here'}</div>
             </div>
-          </div>}
+          </div>
+        )}
       </Motion>
     )
   }

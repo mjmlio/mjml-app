@@ -72,7 +72,7 @@
 /* ...folding addon: fold/...  */
 .cm-s-one-dark .CodeMirror-foldmarker {
   font-family: 'Source Code Pro';
-  line-height: .3;
+  line-height: 0.3;
   cursor: pointer;
   color: hsl(220, 14%, 71%);
   background: rgba(204, 217, 255, 0.05);
@@ -86,7 +86,7 @@
   cursor: pointer;
 }
 .cm-s-one-dark .CodeMirror-foldgutter-open:after {
-  content: "\25BE";
+  content: '\25BE';
   color: hsl(220, 10%, 25%);
 }
 .cm-s-one-dark .CodeMirror.over-gutter,
@@ -94,7 +94,7 @@
   color: hsl(220, 10%, 40%);
 }
 .cm-s-one-dark .CodeMirror-foldgutter-folded:after {
-  content: "\25B8";
+  content: '\25B8';
   color: hsl(220, 10%, 40%);
 }
 /* ...misc */

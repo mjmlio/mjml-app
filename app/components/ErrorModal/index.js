@@ -55,9 +55,7 @@ class ErrorModal extends Component {
         <div className="d-f ai-c jc-c">
           <IconErr size={70} />
           <div>
-            <b style={{ fontSize: 20 }}>
-              {'Oops...'}
-            </b>
+            <b style={{ fontSize: 20 }}>{'Oops...'}</b>
             <br />
             {'Looks like something gone wrong.'}
           </div>
@@ -67,11 +65,13 @@ class ErrorModal extends Component {
             <IconCopy className="mr-5" />
             {'Copy'}
           </Button>
-          <pre>
-            {stack}
-          </pre>
+          <pre>{stack}</pre>
         </div>
-        <div className="d-f ai-c jc-c">
+        <div className="d-f fd-c ai-c jc-c">
+          <div className="mb-10">
+            {'En error has been thrown in the application code. If you want, you can '}
+            {'report it to the source code repository, so we can help you.'}
+          </div>
           <Button
             primary
             onClick={() => shell.openExternal('https://github.com/mjmlio/mjml-app/issues')}
