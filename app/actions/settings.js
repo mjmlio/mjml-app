@@ -35,6 +35,7 @@ export function loadSettings() {
         Subject: 'MJML App test email',
         APIKey: '',
         APISecret: '',
+        SenderName: 'MJML App',
         SenderEmail: '',
         TargetEmails: [],
         LastEmails: [],
