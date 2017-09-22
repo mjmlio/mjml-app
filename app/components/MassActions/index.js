@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 import { connect } from 'react-redux'
 
-import DuplicateProjectButton from 'components/DuplicateProjectButton'
 import { exportSelectedProjectsToHTML, exportSelectedProjectsToImages } from 'actions/projects'
 import { selectAllProjects, unselectAllProjects } from 'reducers/selectedProjects'
 
@@ -69,9 +68,6 @@ class MassActions extends Component {
           >
             {isLoading ? 'Loading...' : `Export to images (${selectedProjects.length})`}
           </Button>
-          {selectedProjects.length === 1 && (
-            <DuplicateProjectButton className="ml-10" projectPath={selectedProjects[0]} />
-          )}
         </div>
       </Collapse>
     )

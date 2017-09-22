@@ -5,6 +5,7 @@ import IconClose from 'react-icons/md/close'
 import IconEdit from 'react-icons/md/mode-edit'
 import IconUnselected from 'react-icons/md/radio-button-unchecked'
 import IconSelected from 'react-icons/md/check'
+import IconCopy from 'react-icons/md/content-copy'
 
 import Tabbable from 'components/Tabbable'
 import Preview from 'components/Preview'
@@ -17,7 +18,7 @@ class ProjectItem extends Component {
   setOver = isOver => () => this.setState({ isOver })
 
   render() {
-    const { onRemove, onOpen, onEditName, onToggleSelect, isSelected, p } = this.props
+    const { onRemove, onOpen, onDuplicate, onEditName, onToggleSelect, isSelected, p } = this.props
 
     const { isOver } = this.state
 
@@ -59,6 +60,13 @@ class ProjectItem extends Component {
           onClick={onRemove}
         >
           <IconClose color="#fff" />
+        </Tabbable>
+        <Tabbable
+          disabled={!isOver}
+          className="ProjectItem--action-btn ProjectItem--duplicate-btn"
+          onClick={onDuplicate}
+        >
+          <IconCopy color="#fff" />
         </Tabbable>
       </div>
     )

@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import "../../styles/vars.scss";
 
 .ProjectsList {
   overflow: auto;
@@ -87,4 +87,11 @@
   &:hover {
     color: white;
   }
+}
+
+.ProjectItem--duplicate-btn {
+  top: auto;
+  right: -3px;
+  bottom: 10px;
+  background: $blue;
 }

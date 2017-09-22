@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import os from 'os'
 
-import { openProject, removeProject, renameProject } from 'actions/projects'
+import { openProject, removeProject, renameProject, duplicateProject } from 'actions/projects'
 
 import { toggleSelectProject } from 'reducers/selectedProjects'
 
@@ -26,6 +26,7 @@ const HOME_DIR = os.homedir()
     removeProject,
     renameProject,
     toggleSelectProject,
+    duplicateProject,
   },
 )
 class ProjectsList extends Component {
@@ -93,7 +94,13 @@ class ProjectsList extends Component {
   }
 
   render() {
-    const { openProject, projects, selectedProjects, toggleSelectProject } = this.props
+    const {
+      openProject,
+      projects,
+      selectedProjects,
+      toggleSelectProject,
+      duplicateProject,
+    } = this.props
 
     const { isDeleteModalOpened, isRenameModalOpened, shouldDeleteFolder, activePath } = this.state
 
@@ -111,6 +118,7 @@ class ProjectsList extends Component {
               onToggleSelect={() => toggleSelectProject(projectPath)}
               onRemove={this.handleRemoveProject(projectPath)}
               onOpen={() => openProject(projectPath)}
+              onDuplicate={() => duplicateProject(projectPath)}
               onEditName={this.handleEditProjectName(projectPath)}
             />
           )
