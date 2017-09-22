@@ -33,7 +33,8 @@
     "productName": "MJML",
     "appId": "org.develar.MJML",
     "dmg": {
-      "contents": [{
+      "contents": [
+        {
           "x": 410,
           "y": 150,
           "type": "link",
