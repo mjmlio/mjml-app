@@ -16,7 +16,16 @@ import {
   saveLastExportedFolder,
 } from 'actions/settings'
 
-import { fileDialog, fsReadFile, fsAccess, fsRename, fsWriteFile, isValidDir } from 'helpers/fs'
+import {
+  fsStat,
+  recursiveCopy,
+  fileDialog,
+  fsReadFile,
+  fsAccess,
+  fsRename,
+  fsWriteFile,
+  isValidDir,
+} from 'helpers/fs'
 
 import mjml2html from 'helpers/mjml'
 
@@ -59,7 +68,7 @@ export function openProject(path) {
   }
 }
 
-function loadIfNeeded(path) {
+export function loadIfNeeded(path) {
   return async (dispatch, getState) => {
     const state = getState()
     const proj = state.projects.find(p => p.get('path') === path)
@@ -205,5 +214,33 @@ export function exportSelectedProjectsToImages(done) {
       dispatch(saveLastExportedFolder(targetPath))
     }
     done()
+  }
+}
+
+async function getDuplicatePath(projectPath, increment = 1) {
+  if (increment > 10) {
+    throw new Error('Cant determine duplicate path')
+  }
+  const duplicatePath = `${projectPath} (${increment})`
+  try {
+    await fsStat(duplicatePath)
+    return getDuplicatePath(projectPath, increment + 1)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return duplicatePath
+    }
+    throw err
+  }
+}
+
+export function duplicateProject(projectPath) {
+  return async dispatch => {
+    try {
+      const newProjectPath = await getDuplicatePath(projectPath)
+      await recursiveCopy(projectPath, newProjectPath)
+      dispatch(loadIfNeeded(newProjectPath))
+    } catch (err) {
+      console.log(err) // eslint-disable-line
+    }
   }
 }

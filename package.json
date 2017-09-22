@@ -147,6 +147,7 @@
     "immutable": "^3.8.1",
     "js-beautify": "^1.6.14",
     "mjml": "3.3.3",
+    "ncp": "^2.0.0",
     "node-mailjet": "^3.2.1",
     "react": "^15.6.1",
     "react-collapse": "^4.0.3",

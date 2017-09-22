@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { ncp } from 'ncp'
 import path from 'path'
 import promisify from 'es6-promisify'
 import { remote } from 'electron'
@@ -13,6 +14,7 @@ export const fsWriteFile = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
 export const fsMkdir = promisify(fs.mkdir)
+export const recursiveCopy = promisify(ncp)
 
 function getFileInfoFactory(p) {
   return async name => {
