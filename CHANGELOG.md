@@ -1,3 +1,9 @@
+### 2.7.0 (2017-09-22)
+
+- Ability to change the sender name when sending test email - @Mistra - [#177](https://github.com/mjmlio/mjml-app/pull/177)
+- Ability to duplicate project from projects list
+- Securize app - prevent crash ([#171](https://github.com/mjmlio/mjml-app/issues/171))
+
 ### 2.6.0 (2017-08-18)
 
 - Mass export to JPG/PNG ([#166](https://github.com/mjmlio/mjml-app/issues/166))

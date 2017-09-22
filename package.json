@@ -2,7 +2,7 @@
   "private": true,
   "name": "mjml-app",
   "productName": "MJML",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "The desktop app for MJML",
   "main": "app/main.js",
   "scripts": {
