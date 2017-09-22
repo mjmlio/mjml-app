@@ -68,7 +68,7 @@ export function openProject(path) {
   }
 }
 
-export function loadIfNeeded(path) {
+function loadIfNeeded(path) {
   return async (dispatch, getState) => {
     const state = getState()
     const proj = state.projects.find(p => p.get('path') === path)
