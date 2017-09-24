@@ -107,7 +107,7 @@ class MailjetInfos extends Component {
                   className="fg-1"
                   value={SenderName}
                   onChange={this.handleChangeInput('SenderName')}
-                  placeholder="SenderName"
+                  placeholder="Sender Name"
                   type="text"
                 />
               </div>
