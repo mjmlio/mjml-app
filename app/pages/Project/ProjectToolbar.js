@@ -73,38 +73,38 @@ class ProjectToolbar extends Component {
             {'Open'}
           </Button>
           {false &&
-          preview &&
-          preview.type === 'html' && [
-            <Button key={'send'} transparent onClick={this.openSendModal}>
-              <IconEmail style={{ marginRight: 5 }} />
-              {'Send'}
-            </Button>,
-            <ButtonDropdown
-              ghost
-              key={'export'}
-              dropdownWidth={300}
-              actions={[
-                {
-                  icon: <IconCopy />,
-                  label: 'Copy HTML',
-                  desc: 'Copy the result HTML to clipboard',
-                  onClick: this.handleCopyHTML,
-                },
-                {
-                  icon: <IconCode />,
-                  label: 'Export to HTML file',
-                  desc: 'Save the result HTML file to disk',
-                  onClick: this.handleExportToHTML,
-                },
-                {
-                  icon: <IconCamera />,
-                  label: 'Screenshot',
-                  desc: 'Save a screeshot of mobile & desktop result',
-                  onClick: this.handleScreenshot,
-                },
-              ]}
-            />,
-          ]}
+            preview &&
+            preview.type === 'html' && [
+              <Button key={'send'} transparent onClick={this.openSendModal}>
+                <IconEmail style={{ marginRight: 5 }} />
+                {'Send'}
+              </Button>,
+              <ButtonDropdown
+                ghost
+                key={'export'}
+                dropdownWidth={300}
+                actions={[
+                  {
+                    icon: <IconCopy />,
+                    label: 'Copy HTML',
+                    desc: 'Copy the result HTML to clipboard',
+                    onClick: this.handleCopyHTML,
+                  },
+                  {
+                    icon: <IconCode />,
+                    label: 'Export to HTML file',
+                    desc: 'Save the result HTML file to disk',
+                    onClick: this.handleExportToHTML,
+                  },
+                  {
+                    icon: <IconCamera />,
+                    label: 'Screenshot',
+                    desc: 'Save a screeshot of mobile & desktop result',
+                    onClick: this.handleScreenshot,
+                  },
+                ]}
+              />,
+            ]}
         </div>
         <Button
           className="ml-10"

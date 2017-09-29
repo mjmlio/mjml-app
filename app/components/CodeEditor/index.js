@@ -215,10 +215,7 @@ class CodeEditor extends Component {
           pointerEvents: disablePointer ? 'none' : 'auto',
         }}
       >
-        {isLoading &&
-          <div className="sticky z CodeEditor--loader">
-            {'...'}
-          </div>}
+        {isLoading && <div className="sticky z CodeEditor--loader">{'...'}</div>}
         <textarea ref={r => (this._textarea = r)} />
       </div>
     )

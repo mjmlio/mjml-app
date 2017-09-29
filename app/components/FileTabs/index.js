@@ -34,9 +34,7 @@ class FileTabs extends Component {
               onClick={isFocused ? undefined : () => focusTab(t.get('path'))}
               key={t.get('path')}
             >
-              <div className="ellipsis">
-                {t.get('name')}
-              </div>
+              <div className="ellipsis">{t.get('name')}</div>
               <Tabbable className="FileTab--close-icon" onClick={() => closeTab(t.get('path'))}>
                 <IconClose />
               </Tabbable>

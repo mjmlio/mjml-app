@@ -71,18 +71,18 @@ class TabContent extends Component {
 
     return (
       <div className="TabContent sticky">
-        {currentTab
-          ? this.renderTab(currentTab)
-          : <div className="sticky z TabContent-empty">
-              <div style={{ opacity: 0.5 }}>
-                {'Nothing selected.'}
-              </div>
-              <div className="mt-20">
-                <Button link to="/" primary>
-                  {'Back to home'}
-                </Button>
-              </div>
-            </div>}
+        {currentTab ? (
+          this.renderTab(currentTab)
+        ) : (
+          <div className="sticky z TabContent-empty">
+            <div style={{ opacity: 0.5 }}>{'Nothing selected.'}</div>
+            <div className="mt-20">
+              <Button link to="/" primary>
+                {'Back to home'}
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }

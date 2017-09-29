@@ -11,21 +11,17 @@ import IconImage from 'react-icons/md/photo'
 
 import Tabbable from 'components/Tabbable'
 
-import {
-  readDir,
-  sortFiles,
-} from 'helpers/fs'
+import { readDir, sortFiles } from 'helpers/fs'
 
 import './style.scss'
 
-async function fetchDir (path) {
+async function fetchDir(path) {
   const files = await readDir(path)
   sortFiles(files)
   return fromJS(files)
 }
 
 class FileTree extends Component {
-
   static propTypes = {
     nesting: PropTypes.number,
     focusedFilePath: PropTypes.string,
@@ -39,7 +35,7 @@ class FileTree extends Component {
     files: fromJS([]),
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.requestIdleCallback(this.refreshFiles)
   }
 
@@ -51,17 +47,10 @@ class FileTree extends Component {
 
   safeSetState = (...args) => this.setState(...args)
 
-  render () {
+  render() {
+    const { focusedFilePath, onFileClick, nesting } = this.props
 
-    const {
-      focusedFilePath,
-      onFileClick,
-      nesting,
-    } = this.props
-
-    const {
-      files,
-    } = this.state
+    const { files } = this.state
 
     return (
       <div>
@@ -77,25 +66,17 @@ class FileTree extends Component {
       </div>
     )
   }
-
 }
 
 class FileItem extends Component {
-
   state = {
     isOpened: false,
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
+    const { file, focusedFilePath } = nextProps
 
-    const {
-      file,
-      focusedFilePath,
-    } = nextProps
-
-    const {
-      isOpened,
-    } = this.state
+    const { isOpened } = this.state
 
     const isFolder = file.get('isFolder')
     const filePath = file.get('path')
@@ -115,32 +96,21 @@ class FileItem extends Component {
     onFileClick(file.get('path'))
   }
 
-  render () {
+  render() {
+    const { file, onFileClick, nesting, focusedFilePath, setRef } = this.props
 
-    const {
-      file,
-      onFileClick,
-      nesting,
-      focusedFilePath,
-      setRef,
-    } = this.props
-
-    const {
-      isOpened,
-    } = this.state
+    const { isOpened } = this.state
 
     const filePath = file.get('path')
     const fileName = file.get('name')
     const isFolder = file.get('isFolder')
-    const isImage = filePath.endsWith('.jpg')
-      || filePath.endsWith('.png')
-      || filePath.endsWith('.gif')
+    const isImage =
+      filePath.endsWith('.jpg') || filePath.endsWith('.png') || filePath.endsWith('.gif')
 
     setRef && setRef(this)
 
     return (
       <div>
-
         <Tabbable
           className={cx('d-f ai-c p-5 cu-d FileTree-item-label', {
             isActive: filePath === focusedFilePath,
@@ -152,60 +122,50 @@ class FileItem extends Component {
           onDoubleClick={isFolder ? undefined : this.handleSelect}
         >
           {isFolder && (
-            <div className='z fs-0' style={{ width: 15 }}>
+            <div className="z fs-0" style={{ width: 15 }}>
               {isOpened ? <IconFolderOpen /> : <IconFolderClosed />}
             </div>
           )}
-          <div className='z fs-0' style={{ width: 15, marginRight: 2 }}>
-            {isFolder && <IconFolder opacity={0.6} color='#3470df' />}
-            {!isFolder && (
-              filePath.endsWith('.mjml') ? (
-                <IconMJML color='#f06451' size={12} />
+          <div className="z fs-0" style={{ width: 15, marginRight: 2 }}>
+            {isFolder && <IconFolder opacity={0.6} color="#3470df" />}
+            {!isFolder &&
+              (filePath.endsWith('.mjml') ? (
+                <IconMJML color="#f06451" size={12} />
               ) : isImage ? (
                 <IconImage />
               ) : (
                 <IconFile />
-              )
-            )}
+              ))}
           </div>
-          <div className='fg-1 ellipsis'>
-            {fileName}
-          </div>
+          <div className="fg-1 ellipsis">{fileName}</div>
         </Tabbable>
 
-        {isFolder && isOpened && (
-          <FileTree
-            focusedFilePath={focusedFilePath}
-            nesting={nesting + 1}
-            base={filePath}
-            onFileClick={onFileClick}
-          />
-        )}
-
+        {isFolder &&
+          isOpened && (
+            <FileTree
+              focusedFilePath={focusedFilePath}
+              nesting={nesting + 1}
+              base={filePath}
+              onFileClick={onFileClick}
+            />
+          )}
       </div>
     )
   }
-
 }
 
 class FileExplorer extends Component {
-
   refresh = () => this._fileTree.refreshFiles()
 
-  render () {
-    const {
-      base,
-      onFileClick,
-      focusedFilePath,
-      setRef,
-    } = this.props
+  render() {
+    const { base, onFileClick, focusedFilePath, setRef } = this.props
 
     setRef(this)
 
     return (
-      <div className='FileExplorer sticky'>
+      <div className="FileExplorer sticky">
         <FileTree
-          setRef={n => this._fileTree = n}
+          setRef={n => (this._fileTree = n)}
           base={base}
           onFileClick={onFileClick}
           focusedFilePath={focusedFilePath}
@@ -213,7 +173,6 @@ class FileExplorer extends Component {
       </div>
     )
   }
-
 }
 
 export default FileExplorer

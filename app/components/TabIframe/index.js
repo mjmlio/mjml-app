@@ -2,11 +2,7 @@ import React, { Component } from 'react'
 
 class TabIframe extends Component {
   render() {
-    return (
-      <div className="sticky">
-        {'TabIframe'}
-      </div>
-    )
+    return <div className="sticky">{'TabIframe'}</div>
   }
 }
 
