@@ -2905,12 +2905,13 @@ ejs@~2.5.6:
   resolved "https://registry.yarnpkg.com/ejs/-/ejs-2.5.6.tgz#479636bfa3fe3b1debd52087f0acb204b4f19c88"
 
 electron-builder@^19.22.1:
-  version "19.32.0"
-  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.32.0.tgz#61a924a85195e00bb588a99b26cf6820c62df35a"
+  version "19.32.2"
+  resolved "https://registry.yarnpkg.com/electron-builder/-/electron-builder-19.32.2.tgz#282d26f069a62461da3445a01149244bd898105e"
   dependencies:
     "7zip-bin" "^2.2.4"
     app-package-builder "1.0.3"
     asar-integrity "0.2.1"
+    async-exit-hook "^2.0.1"
     bluebird-lst "^1.0.3"
     builder-util "2.0.5"
     builder-util-runtime "1.0.6"
@@ -5170,7 +5171,7 @@ macaddress@^0.2.8:
 
 mailjet-icons@meriadec/mailjet-icons:
   version "1.0.0"
-  resolved "https://codeload.github.com/meriadec/mailjet-icons/tar.gz/f45fb73bf535181cec244753a443099be25cc5e4"
+  resolved "https://codeload.github.com/meriadec/mailjet-icons/tar.gz/31c36237c0e073907b0c3179dcbb7e51f20a5ace"
   dependencies:
     react-icon-base "^2.0.8"
 

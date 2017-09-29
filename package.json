@@ -33,7 +33,8 @@
     "productName": "MJML",
     "appId": "org.develar.MJML",
     "dmg": {
-      "contents": [{
+      "contents": [
+        {
           "x": 410,
           "y": 150,
           "type": "link",
@@ -118,16 +119,10 @@
     "express": "^4.15.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
-<<<<<<< HEAD
     "html-webpack-plugin": "^2.30.1",
     "jsdom": "^11.1.0",
     "json-loader": "^0.5.7",
-=======
-    "html-webpack-plugin": "^2.28.0",
-    "jsdom": "^11.0.0",
-    "json-loader": "^0.5.4",
     "mailjet-icons": "meriadec/mailjet-icons",
->>>>>>> awesome mjml icon thanks to @Elninoooo
     "minimist": "^1.2.0",
     "node-sass": "^4.5.3",
     "prettier": "^1.5.3",
