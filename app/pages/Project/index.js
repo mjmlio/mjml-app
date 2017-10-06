@@ -222,7 +222,7 @@ class ProjectPage extends Component {
                     {
                       icon: <IconCamera />,
                       label: 'Screenshot',
-                      desc: 'Save a screeshot of mobile & desktop result',
+                      desc: 'Save a screenshot of mobile & desktop result',
                       onClick: this.handleScreenshot,
                     },
                   ]}
