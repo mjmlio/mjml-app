@@ -1,4 +1,4 @@
-import { mjml2html } from 'mjml'
+import mjml2html from 'mjml'
 import path from 'path'
 import stream from 'stream'
 
@@ -7,6 +7,7 @@ import { execFile, exec } from 'helpers/fs'
 export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
+
       try {
         if (mjmlPath) {
           if (!mjmlContent.trim().startsWith('<mjml>')) {
@@ -54,9 +55,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
 export function wrapIntoMJMLTags(content) {
   return `<mjml>
   <mj-body>
-    <mj-container>
-      ${content}
-    </mj-container>
+    ${content}
   </mj-body>
 </mjml>`
 }

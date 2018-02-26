@@ -36,11 +36,5 @@ export default {
 
   plugins: [new webpack.IgnorePlugin(/vertx/)],
 
-
-  node: {
-    __dirname: true,
-    __filename: true,
-  },
-
   externals: Object.keys(externals || {}),
 }

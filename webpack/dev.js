@@ -57,5 +57,9 @@ export default merge(baseConfig, {
   ],
 
   target: 'electron-renderer',
+  node: {
+    __dirname: true,
+    __filename: true,
+  },
   externals: ['mjml-core', 'node-mailjet'],
 })
