@@ -86,14 +86,24 @@ class ProjectPage extends Component {
   handleAddFile = fileName => {
     fs.writeFile(fileName, defaultMJML, err => {
       if (err) {
-        return
+        this.props.addAlert('Error creating file', 'error')
+        throw new Error(err)
       }
       this._filelist.refresh()
     })
   }
 
   handleRemoveFile = async fileName => {
-    await trash(fileName)
+    try {
+      if (await trash(fileName) === undefined) {
+        throw new Error('No file was deleted')
+      }
+      this.props.addAlert('File successfully removed', 'success')
+    } catch (e) {
+      this.props.addAlert('Could not delete file', 'error')
+      throw new Error(e)
+    }
+
     this._filelist.refresh()
     this.setState({ activeFile: null })
   }
@@ -168,7 +178,6 @@ class ProjectPage extends Component {
 
   render() {
     const { preview } = this.props
-
     const { path, activeFile } = this.state
 
     const rootPath = this.props.location.query.path
@@ -259,8 +268,8 @@ class ProjectPage extends Component {
         </div>
 
         <SendModal />
-        <AddFileModal rootPath={rootPath} onAdd={this.handleAddFile} />
-        <RemoveFileModal rootPath={rootPath} onRemove={this.handleRemoveFile} />
+        <AddFileModal rootPath={path} onAdd={this.handleAddFile} />
+        <RemoveFileModal rootPath={path} onRemove={this.handleRemoveFile} />
       </div>
     )
   }

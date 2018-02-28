@@ -6,6 +6,7 @@ import omit from 'lodash/omit'
 import { setError } from 'reducers/error'
 
 const storageGet = promisify(storage.get)
+const storageSet = promisify(storage.set)
 
 export function loadSettings() {
   return async dispatch => {
@@ -13,10 +14,17 @@ export function loadSettings() {
     let res
     try {
       res = await storageGet('settings')
+
+      // check for old format and reformat
+      if ((typeof res.projects === 'object') && !(res.projects instanceof Array)) {
+        res = res.projects
+        await storageSet('settings', res)
+      }
     } catch (e) {
       shouldResetDefaults = true
       dispatch(setError(e))
     }
+
     const settings = defaultsDeep(res, {
       lastOpenedFolder: null,
       editor: {
