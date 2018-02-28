@@ -61,5 +61,5 @@ export default merge(baseConfig, {
     __dirname: true,
     __filename: true,
   },
-  externals: ['mjml-core', 'node-mailjet'],
+  externals: ['mjml', 'node-mailjet'],
 })
