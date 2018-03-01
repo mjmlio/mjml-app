@@ -53,6 +53,7 @@
 }
 
 .FilesList--preview-container {
+  display: flex;
   overflow: hidden;
 }
 
@@ -79,6 +80,10 @@
       transform: translate3d(0, 0, 0);
       opacity: 1;
     }
+  }
+  .FileList--preview-image {
+    max-width: 100%;
+    max-height: calc(100vh - 60px);
   }
 }
 

@@ -12,7 +12,11 @@ let mainWindow
 let menu
 
 function createMainWindow() {
-  const w = new BrowserWindow()
+  const w = new BrowserWindow({
+    webPreferences: {
+      webSecurity: false
+    }
+  })
 
   if (isDevelopment) {
     w.webContents.openDevTools()
