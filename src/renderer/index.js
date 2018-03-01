@@ -5,10 +5,9 @@ import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { ipcRenderer } from 'electron'
 
-import routes from './routes'
-import configureStore from './store/configureStore'
-import { loadSettings } from './actions/settings'
-
+import routes from 'routes'
+import configureStore from 'store/configureStore'
+import { loadSettings } from 'actions/settings'
 import { loadProjects, addProject } from 'actions/projects'
 import queryLastVersion from 'actions/queryLastVersion'
 
@@ -25,7 +24,7 @@ render(
   <Provider store={store}>
     <Router history={history} routes={routes} />
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('app'),
 )
 
 async function boot() {

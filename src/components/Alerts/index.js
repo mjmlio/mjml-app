@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Portal from 'react-portal'
+import { Portal } from 'react-portal'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 import Steack from 'react-steack'

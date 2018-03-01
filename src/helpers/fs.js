@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { ncp } from 'ncp'
 import path from 'path'
-import promisify from 'es6-promisify'
+import { promisify } from 'es6-promisify'
 import { remote } from 'electron'
 import { exec as x, execFile as xFile } from 'child_process'
 

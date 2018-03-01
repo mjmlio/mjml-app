@@ -1,7 +1,7 @@
 /* eslint-disable */
 import CodeMirror from 'codemirror'
 
-const tags = {
+export const tags = {
   'mj-accordion': {
     attrs: {
       'css-class': null,
@@ -516,5 +516,3 @@ export function completeIfInTag(cm) {
     return inner.tagName
   })
 }
-
-exports.autocompleteTags = tags

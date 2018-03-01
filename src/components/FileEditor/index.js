@@ -5,25 +5,10 @@ import get from 'lodash/get'
 import CodeMirror from 'codemirror'
 import beautifyJS from 'js-beautify'
 
-import 'codemirror/addon/selection/active-line'
-import 'codemirror/addon/edit/closetag'
-import 'codemirror/addon/edit/matchtags'
-import 'codemirror/addon/fold/foldcode'
-import 'codemirror/addon/fold/foldgutter'
-import 'codemirror/addon/search/match-highlighter'
-import 'codemirror/addon/search/search'
-import 'codemirror/addon/search/searchcursor'
-import 'codemirror/addon/search/jump-to-line'
-import 'codemirror/addon/dialog/dialog'
-import 'codemirror/addon/scroll/annotatescrollbar'
-import 'codemirror/addon/search/matchesonscrollbar'
-import 'codemirror/mode/xml/xml'
-import 'codemirror/addon/hint/show-hint'
-import 'codemirror/addon/hint/xml-hint'
-import 'codemirror/addon/lint/lint'
 import 'helpers/codemirror-util-autoformat'
+
 import {
-  autocompleteTags,
+  tags as autocompleteTags,
   completeAfter,
   completeIfAfterLt,
   completeIfInTag,
@@ -65,6 +50,7 @@ class FileEditor extends Component {
   }
 
   componentDidMount() {
+    console.log(`nth`)
     window.requestIdleCallback(() => {
       this.initEditor()
       this.loadContent()
@@ -143,16 +129,34 @@ class FileEditor extends Component {
   }
 
   initEditor() {
+    require('codemirror/addon/selection/active-line')
+    require('codemirror/addon/edit/closetag')
+    require('codemirror/addon/edit/matchtags')
+    require('codemirror/addon/fold/foldcode')
+    require('codemirror/addon/fold/foldgutter')
+    require('codemirror/addon/search/match-highlighter')
+    require('codemirror/addon/search/search')
+    require('codemirror/addon/search/searchcursor')
+    require('codemirror/addon/search/jump-to-line')
+    require('codemirror/addon/dialog/dialog')
+    require('codemirror/addon/scroll/annotatescrollbar')
+    require('codemirror/addon/search/matchesonscrollbar')
+    require('codemirror/mode/xml/xml.js')
+    require('codemirror/addon/hint/show-hint')
+    require('codemirror/addon/hint/xml-hint')
+    require('codemirror/addon/lint/lint')
     if (!this._textarea) {
       return
     }
 
     const { wrapLines, highlightTag, lightTheme } = this.props
+    console.log(`nthnth`)
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
       this._codeMirror = null
     }
+    console.log(`nthhhnthn`)
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
       dragDrop: false,
       matchTags: highlightTag ? { bothTags: true } : undefined,
@@ -186,7 +190,10 @@ class FileEditor extends Component {
       },
       lint: this.handleValidate,
     })
+    console.log(`TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`)
     this._codeMirror.on('change', this.handleChange)
+    this._codeMirror.setOption('mode', 'xml')
+    this._codeMirror.refresh()
   }
 
   handleValidate = () => {

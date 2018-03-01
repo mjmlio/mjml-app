@@ -1,8 +1,8 @@
-@import './vars.scss';
+@import "./vars.scss";
 
 .SelectDark.Select {
   .Select-control {
-    background-color: rgba(black, 0.1);
+    background-color: rgba(black, 0.1) !important;
     border: 2px solid rgba(white, 0.1);
     border-radius: 0;
     padding: 2px 0;
