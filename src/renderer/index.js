@@ -1,15 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
 import { Router, hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import { AppContainer } from 'react-hot-loader'
 import { ipcRenderer } from 'electron'
 
-import routes from 'routes'
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
 import { loadProjects, addProject } from 'actions/projects'
 import queryLastVersion from 'actions/queryLastVersion'
+
+import Root from 'components/Root'
 
 import { openModal } from 'reducers/modals'
 
@@ -19,13 +20,18 @@ import 'styles/utils.scss'
 const store = configureStore()
 const history = syncHistoryWithStore(hashHistory, store)
 const { dispatch } = store
+const rootNode = document.getElementById('app')
 
-render(
-  <Provider store={store}>
-    <Router history={history} routes={routes} />
-  </Provider>,
-  document.getElementById('app'),
-)
+function r(Comp) {
+  render(
+    <AppContainer>
+      <Comp store={store} history={history} />
+    </AppContainer>,
+    rootNode,
+  )
+}
+
+r(Root)
 
 async function boot() {
   await dispatch(loadSettings())
@@ -47,3 +53,10 @@ ipcRenderer.on('redux-command', (event, message) => {
     store.dispatch(addProject())
   }
 })
+
+if (module.hot) {
+  module.hot.accept('../components/Root.js', () => {
+    const NewRoot = require('../components/Root').default
+    r(NewRoot)
+  })
+}
