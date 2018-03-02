@@ -4,7 +4,7 @@
       "env",
       {
         "loose": true,
-        "modules": false,
+        "modules": "commonjs",
         "targets": {
           "electron": "1.8",
           "node": "current"
