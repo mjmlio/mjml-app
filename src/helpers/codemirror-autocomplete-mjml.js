@@ -141,13 +141,6 @@ export const tags = {
       'css-class': null,
     },
   },
-  'mj-container': {
-    attrs: {
-      width: null,
-      'background-color': null,
-      'css-class': null,
-    },
-  },
   'mj-divider': {
     attrs: {
       'border-color': null,

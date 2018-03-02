@@ -8,33 +8,29 @@ export default {
 
     <mj-attributes>
       <mj-text align="center" color="#555" />
-      <mj-container background-color="#eee" />
+      <mj-body background-color="#eee" />
     </mj-attributes>
 
   </mj-head>
 
   <mj-body>
-    <mj-container>
+    <mj-include path="./header.mjml" />
 
-      <mj-include path="./header.mjml" />
+    <mj-section background-color="#fff">
 
-      <mj-section background-color="#fff">
+      <mj-column>
+        <mj-text align="center">
+          <h2>MJML Rocks!</h2>
+        </mj-text>
+      </mj-column>
 
-        <mj-column>
-          <mj-text align="center">
-            <h2>MJML Rocks!</h2>
-          </mj-text>
-        </mj-column>
+      <mj-column>
+        <mj-image width="200" src="http://placehold.it/200x200"></mj-image>
+      </mj-column>
 
-        <mj-column>
-          <mj-image width="200" src="http://placehold.it/200x200"></mj-image>
-        </mj-column>
+    </mj-section>
 
-      </mj-section>
-
-      <mj-include path="./footer.mjml" />
-
-    </mj-container>
+    <mj-include path="./footer.mjml" />
   </mj-body>
 
 </mjml>`,
