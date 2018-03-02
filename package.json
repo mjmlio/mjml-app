@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
+    "site": "webpack-dev-server --config webpack/site.js --content-base site",
+    "build:site": "NODE_ENV=production webpack --config webpack/site.js && cp -r site/assets dist",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
   },
