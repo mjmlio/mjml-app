@@ -50,7 +50,6 @@ class FileEditor extends Component {
   }
 
   componentDidMount() {
-    console.log(`nth`)
     window.requestIdleCallback(() => {
       this.initEditor()
       this.loadContent()
@@ -150,13 +149,11 @@ class FileEditor extends Component {
     }
 
     const { wrapLines, highlightTag, lightTheme } = this.props
-    console.log(`nthnth`)
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
       this._codeMirror = null
     }
-    console.log(`nthhhnthn`)
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
       dragDrop: false,
       matchTags: highlightTag ? { bothTags: true } : undefined,
@@ -190,7 +187,6 @@ class FileEditor extends Component {
       },
       lint: this.handleValidate,
     })
-    console.log(`TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT`)
     this._codeMirror.on('change', this.handleChange)
     this._codeMirror.setOption('mode', 'xml')
     this._codeMirror.refresh()
