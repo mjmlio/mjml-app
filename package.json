@@ -44,8 +44,7 @@
     "semver": "^5.5.0",
     "source-map-support": "^0.5.3",
     "superagent-promise": "^1.1.0",
-    "trash": "^4.3.0",
-    "webpack-sources": "1.1.0"
+    "trash": "^4.3.0"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.1.0",
