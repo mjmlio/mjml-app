@@ -7,7 +7,10 @@
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
-    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "lint": "eslint src webpack",
+    "prettier": "prettier --write \"{src,webpack}/**/*.js\"",
+    "prettier:check": "prettier --list-different \"{src,webpack}/**/*.js\""
   },
   "electronWebpack": {
     "title": true,
@@ -48,6 +51,7 @@
     "trash": "^4.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.2",
     "babel-plugin-module-resolver": "^3.1.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-env": "^1.6.1",
@@ -56,6 +60,14 @@
     "electron": "1.8.2",
     "electron-builder": "^20.2.0",
     "electron-webpack": "^1.13.0",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-flowtype": "^2.46.1",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
     "node-sass": "^4.7.2",
     "prettier": "^1.11.1",
     "redux-logger": "^3.0.6",

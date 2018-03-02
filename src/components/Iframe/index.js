@@ -35,7 +35,7 @@ class Iframe extends Component {
         return
       }
       const doc = this._iframe.contentDocument
-      const documentElement = doc.documentElement
+      const { documentElement } = doc
       documentElement.innerHTML = value
 
       if (openLinks) {

@@ -321,7 +321,8 @@ class FilesList extends Component {
                               this.setState({
                                 renamedFile: f,
                                 newName: f.name,
-                              })}
+                              })
+                            }
                             className="action action-rename"
                           >
                             <IconEdit />

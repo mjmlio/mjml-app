@@ -36,7 +36,7 @@ export function setPreview(fileName, content = '') {
       case '.gif':
         dispatch(setPrev({ type: 'image', content: fileName }))
         break
-      case '.mjml':
+      case '.mjml': // eslint-disable-line no-case-declarations
         if (!content) {
           content = await fsReadFile(fileName, { encoding: 'utf8' })
         }

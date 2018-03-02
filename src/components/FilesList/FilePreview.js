@@ -57,7 +57,7 @@ class FilePreview extends Component {
                 preview.type === 'html' ? (
                   <Iframe base={iframeBase} value={preview.content} openLinks />
                 ) : preview.type === 'image' ? (
-                  <img class="FileList--preview-image" src={'file://' + preview.content} />
+                  <img className="FileList--preview-image" src={`file://${preview.content}`} />
                 ) : null
               ) : null}
             </div>
