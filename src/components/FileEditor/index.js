@@ -25,7 +25,6 @@ import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
 
-
 import {
   tags as autocompleteTags,
   completeAfter,
