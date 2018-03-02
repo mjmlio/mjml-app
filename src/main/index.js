@@ -20,6 +20,19 @@ function createMainWindow() {
 
   if (isDevelopment) {
     w.webContents.openDevTools()
+
+    w.webContents.on('context-menu', (e, props) => {
+      const { x, y } = props
+
+      Menu.buildFromTemplate([
+        {
+          label: 'Inspect element',
+          click() {
+            w.inspectElement(x, y)
+          },
+        },
+      ]).popup(mainWindow)
+    })
   }
 
   const url = isDevelopment
