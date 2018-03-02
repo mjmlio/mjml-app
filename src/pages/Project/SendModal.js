@@ -34,11 +34,9 @@ import Button from 'components/Button'
       SenderName,
       SenderEmail,
       TargetEmails,
-      emails: uniq([
-        ...(SenderEmail ? [SenderEmail] : []),
-        ...TargetEmails,
-        ...LastEmails,
-      ]).map(email => ({ label: email, value: email })),
+      emails: uniq([...(SenderEmail ? [SenderEmail] : []), ...TargetEmails, ...LastEmails]).map(
+        email => ({ label: email, value: email }),
+      ),
     }
   },
   {

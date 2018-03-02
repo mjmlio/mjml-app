@@ -18,13 +18,13 @@ import { fileDialog, isEmptyOrDontExist, alreadyExists } from 'helpers/fs'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 
-import TemplateChooser from './TemplateChooser'
-
 import { isModalOpened, closeModal } from 'reducers/modals'
 
 import createFromTemplate from 'actions/createFromTemplate'
 import createFromGallery from 'actions/createFromGallery'
 import { saveLastOpenedFolder } from 'actions/settings'
+
+import TemplateChooser from './TemplateChooser'
 
 import './style.scss'
 

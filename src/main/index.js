@@ -1,5 +1,3 @@
-'use strict'
-
 import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { format as formatUrl } from 'url'
@@ -14,8 +12,8 @@ let menu
 function createMainWindow() {
   const w = new BrowserWindow({
     webPreferences: {
-      webSecurity: false
-    }
+      webSecurity: false,
+    },
   })
 
   if (isDevelopment) {

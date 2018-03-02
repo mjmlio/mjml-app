@@ -193,7 +193,6 @@ class FileEditor extends Component {
     })
 
     this._codeMirror.on('change', this.handleChange)
-    this._codeMirror.refresh()
   }
 
   handleValidate = () => {

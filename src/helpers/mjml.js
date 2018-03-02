@@ -7,7 +7,6 @@ import { execFile, exec } from 'helpers/fs'
 export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
-
       try {
         if (mjmlPath) {
           if (!mjmlContent.trim().startsWith('<mjml>')) {
