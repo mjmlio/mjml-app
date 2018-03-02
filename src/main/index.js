@@ -1,10 +1,12 @@
 import { app, BrowserWindow, Menu } from 'electron'
 import * as path from 'path'
 import { format as formatUrl } from 'url'
+import { autoUpdater } from 'electron-updater'
 
 import buildMenu from 'menu'
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isProduction = process.env.NODE_ENV === 'production'
+const isDevelopment = !isProduction
 
 let mainWindow
 let menu
@@ -77,4 +79,7 @@ app.on('activate', () => {
 
 app.on('ready', () => {
   mainWindow = createMainWindow()
+  if (isProduction) {
+    autoUpdater.checkForUpdatesAndNotify()
+  }
 })
