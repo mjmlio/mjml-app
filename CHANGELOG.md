@@ -1,3 +1,11 @@
+### 2.8.0 (2018-03-06)
+
+- [MJML](https://github.com/mjmlio/mjml) 4 ([#213](https://github.com/mjmlio/mjml-app/issues/213)), update of default templates for MJML 4
+- Setup auto-updates
+- Crashes fixes ([#188](https://github.com/mjmlio/mjml-app/issues/188)) - @kmcb777
+- Handle subfolders when create/delete file ([#192](https://github.com/mjmlio/mjml-app/issues/192)) - @kmcb777
+- Fix path resolution in node_modules ([#174](https://github.com/mjmlio/mjml-app/issues/174)) - @kmcb777
+
 ### 2.7.0 (2017-09-22)
 
 - Ability to change the sender name when sending test email - @Mistra - [#177](https://github.com/mjmlio/mjml-app/pull/177)
