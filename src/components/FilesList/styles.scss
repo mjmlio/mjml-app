@@ -1,0 +1,156 @@
+@import '../../styles/vars.scss';
+
+.FilesList--list {
+  flex: 1;
+}
+
+.FilesList--file {
+  height: 40px;
+  padding: 0 10px 0 15px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  color: $almostWhite;
+
+  &.renaming {
+    padding: 0 0 0 5px;
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+  &.active {
+    color: $blue;
+    background-color: rgba($blue, 0.1) !important;
+    box-shadow: inset $blue 2px 0;
+    .FilesList--file-actions {
+      display: block;
+    }
+    .FilesList--item-actions {
+      display: flex;
+    }
+  }
+
+  &:hover:not(.active),
+  &:focus:not(.active) {
+    color: lighten($almostWhite, 20);
+  }
+}
+
+.FilesList--file-actions {
+  display: none;
+}
+
+.FilesList--ariane {
+  display: flex;
+}
+
+.FilesList--preview-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.FilesList--preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  iframe {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .FileList--preview-actions-wrapper {
+    transform: translate3d(0, 5px, 0);
+    opacity: 0;
+  }
+  &:hover {
+    .FileList--preview-actions-wrapper {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+  .FileList--preview-image {
+    max-width: 100%;
+    max-height: calc(100vh - 60px);
+  }
+}
+
+.FileList--preview-actions-wrapper {
+  transition: 100ms ease-in;
+  transition-property: opacity, transform;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.FileList--preview-actions {
+  background: $bg;
+  box-shadow: rgba(black, 0.6) 0 3px 20px;
+  border-radius: 3px;
+  .Button:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  .Button:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+  .Button.isActive {
+    background: $blue;
+    color: white;
+  }
+}
+
+.FilesList--preview-overlay {
+  z-index: 999;
+}
+
+.rel {
+  position: relative;
+}
+
+.FilesList--item-name-container {
+  min-width: 0;
+}
+
+.FilesList--item-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.FilesList--item-actions {
+  display: none;
+  .action {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .action-remove {
+    &:hover {
+      color: $red;
+    }
+  }
+}

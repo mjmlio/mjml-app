@@ -1,0 +1,88 @@
+@import "./vars.scss";
+
+.SelectDark.Select {
+  .Select-control {
+    background-color: rgba(black, 0.1) !important;
+    border: 2px solid rgba(white, 0.1);
+    border-radius: 0;
+    padding: 2px 0;
+  }
+
+  .Select-placeholder {
+    line-height: 38px;
+    color: rgba(white, 0.2);
+  }
+
+  .Select-input {
+    color: $evenLighterGrey;
+  }
+
+  .Select-value {
+    color: $evenLighterGrey;
+    border-radius: 0;
+    background-color: rgba(white, 0.05);
+    border-color: rgba(white, 0.1);
+    .Select-value-icon {
+      border-right-color: rgba(white, 0.1);
+      &:hover {
+        color: $blue;
+        background-color: rgba($blue, 0.1);
+      }
+    }
+  }
+
+  .Select-clear-zone:hover {
+    color: $red;
+  }
+
+  &.is-open .Select-arrow-zone {
+    .Select-arrow {
+      border-color: transparent transparent rgba(white, 0.7);
+    }
+    &:hover {
+      .Select-arrow {
+        border-color: transparent transparent rgba(white, 0.7);
+      }
+    }
+  }
+
+  .Select-arrow-zone {
+    .Select-arrow {
+      border-color: rgba(white, 0.5) transparent transparent;
+    }
+    &:hover {
+      .Select-arrow {
+        border-color: rgba(white, 0.7) transparent transparent;
+      }
+    }
+  }
+
+  .Select-menu-outer {
+    background: $bg-light;
+    border: 2px solid rgba(white, 0.1);
+    border-top: 1px solid $blue;
+    box-shadow: rgba(black, 0.1) 0 3px 10px;
+    border-radius: 0;
+
+    .Select-option {
+      font-size: 13px;
+      background: $bg;
+      color: $evenLighterGrey;
+      &.is-focused {
+        background: #2f2f3a;
+        color: white;
+      }
+    }
+
+    .Select-create-option-placeholder {
+      font-size: 13px;
+    }
+  }
+
+  &.is-focused {
+    .Select-control {
+      box-shadow: none;
+      border-color: rgba($blue, 0.6);
+    }
+  }
+}

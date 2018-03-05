@@ -1,0 +1,40 @@
+appId: com.mjmlio.mjmlapp
+
+protocols:
+  name: MJML
+  schemes:
+    - mjmlio
+
+mac:
+  artifactName: ${name}-${version}-${os}.${ext}
+  category: public.app-category.utility
+  target:
+    - dmg
+    - zip
+
+linux:
+  artifactName: ${name}-${version}-${os}-${arch}.${ext}
+  target:
+    - target: AppImage
+      arch:
+        - x64
+    - target: tar.gz
+      arch:
+        - x64
+
+win:
+  artifactName: ${name}-${version}-${os}-${arch}.${ext}
+  target:
+    - target: nsis
+      arch:
+        - x64
+        - ia32
+    - target: zip
+      arch:
+        - x64
+        - ia32
+
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true

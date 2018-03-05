@@ -25,7 +25,7 @@ Visit the [website](http://mjmlio.github.io/mjml-app/) to download the version t
 yarn
 
 # build for your platform
-yarn package
+yarn dist
 
 # the binary can be found in the release/ folder
 ```
@@ -37,4 +37,4 @@ yarn package
 yarn dev
 ```
 
-For contributing, make sure that your commit passes the `yarn lint` command :smile:.
+For contributing, make sure that your commit passes the `yarn lint` and `yarn prettier` command :smile:.

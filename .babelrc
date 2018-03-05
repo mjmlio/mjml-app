@@ -1,35 +1,20 @@
 {
   "presets": [
-    ["env", { "targets": { "node": 6 }, "useBuiltIns": true }],
-    "es2015",
-    "stage-0",
-    "react"
-  ],
-  "plugins": [
-    "add-module-exports",
-    "transform-decorators-legacy",
     [
-      "module-resolver",
+      "env",
       {
-        "root": [
-          "app"
-        ]
+        "loose": true,
+        "modules": "commonjs",
+        "targets": {
+          "electron": "1.8",
+          "node": "current"
+        }
       }
     ],
+    "react",
+    "stage-0"
   ],
-  "env": {
-    "production": {
-      "presets": ["react-optimize"],
-      "plugins": ["babel-plugin-dev-expression"]
-    },
-    "development": {
-      "plugins": [],
-      "presets": ["react-hmre"]
-    },
-    "test": {
-      "plugins": [
-        ["webpack-loaders", { "config": "webpack.config.test.js", "verbose": false }]
-      ]
-    }
-  }
+  "plugins": [
+    ["module-resolver", { "root": ["src"] }]
+  ]
 }
