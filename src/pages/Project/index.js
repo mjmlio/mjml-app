@@ -25,7 +25,6 @@ import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 import FilesList from 'components/FilesList'
-import NotifBtn from 'components/Notifs/NotifBtn'
 
 import BackButton from './BackButton'
 import SendModal from './SendModal'
@@ -246,7 +245,6 @@ class ProjectPage extends Component {
           >
             <FaCog />
           </Button>
-          <NotifBtn />
         </div>
 
         <div className="fg-1 d-f fd-c r" style={{ zIndex: 1 }}>

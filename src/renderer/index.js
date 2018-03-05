@@ -8,7 +8,6 @@ import { ipcRenderer } from 'electron'
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
 import { loadProjects, addProject } from 'actions/projects'
-import queryLastVersion from 'actions/queryLastVersion'
 
 import Root from 'components/Root'
 
@@ -36,7 +35,6 @@ r(Root)
 async function boot() {
   await dispatch(loadSettings())
   await dispatch(loadProjects())
-  dispatch(queryLastVersion())
 }
 
 boot()

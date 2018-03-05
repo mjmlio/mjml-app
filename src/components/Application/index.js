@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { dropFile } from 'actions/projects'
 
 import Alerts from 'components/Alerts'
-import NotifsPanel from 'components/Notifs/NotifsPanel'
 import NewProjectModal from 'components/NewProjectModal'
 import SettingsModal from 'components/SettingsModal'
 import ErrorModal from 'components/ErrorModal'
@@ -89,7 +88,6 @@ class Application extends Component {
         {settings && <SettingsModal />}
         {settings && <NewProjectModal />}
 
-        <NotifsPanel />
         <ErrorModal />
         <AboutModal />
         <Alerts />

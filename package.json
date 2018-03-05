@@ -51,7 +51,6 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0",
-    "semver": "^5.5.0",
     "source-map-support": "^0.5.3",
     "superagent-promise": "^1.1.0",
     "trash": "^4.3.0"
