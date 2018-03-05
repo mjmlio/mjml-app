@@ -391,7 +391,7 @@ export const tags = {
       target: null,
       'text-decoration': null,
       'css-class': null,
-    }
+    },
   },
   'mj-spacer': {
     attrs: {

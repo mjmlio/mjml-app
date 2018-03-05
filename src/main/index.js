@@ -15,7 +15,7 @@ function createMainWindow() {
       webSecurity: false,
     },
     backgroundColor: '#2A2A35',
-    show: false
+    show: false,
   })
 
   w.once('ready-to-show', () => {
