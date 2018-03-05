@@ -8,12 +8,11 @@ export default {
 
     <mj-attributes>
       <mj-text align="center" color="#555" />
-      <mj-body background-color="#eee" />
     </mj-attributes>
 
   </mj-head>
 
-  <mj-body>
+  <mj-body background-color="#eee">
 
     <mj-include path="./header.mjml" />
 

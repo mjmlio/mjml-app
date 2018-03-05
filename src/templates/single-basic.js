@@ -8,13 +8,12 @@ export default {
 
     <mj-attributes>
       <mj-text align="center" color="#555" />
-      <mj-body background-color="#eee" />
       <mj-section background-color="#fff" />
     </mj-attributes>
 
   </mj-head>
 
-  <mj-body>
+  <mj-body background-color="#eee">
     <mj-section>
 
       <mj-column>
