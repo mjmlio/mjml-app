@@ -14,6 +14,12 @@ function createMainWindow() {
     webPreferences: {
       webSecurity: false,
     },
+    backgroundColor: '#2A2A35',
+    show: false
+  })
+
+  w.once('ready-to-show', () => {
+    w.show()
   })
 
   if (isDevelopment) {
