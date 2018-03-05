@@ -178,10 +178,10 @@ class FileEditor extends Component {
       lineWrapping: wrapLines,
       extraKeys: {
         /* eslint-disable quotes */
-        "'<'": completeAfter,
-        "'/'": completeIfAfterLt,
-        "' '": completeIfInTag,
-        "'='": completeIfInTag,
+        "'<'": (cm, pred) => completeAfter(CodeMirror, cm, pred),
+        "'/'": cm => completeIfAfterLt(CodeMirror, cm),
+        "' '": cm => completeIfInTag(CodeMirror, cm),
+        "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
         /* eslint-enable quotes */
       },

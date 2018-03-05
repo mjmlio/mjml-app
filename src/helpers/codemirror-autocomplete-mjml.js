@@ -1,5 +1,4 @@
 /* eslint-disable */
-import CodeMirror from 'codemirror'
 
 export const tags = {
   'mj-accordion': {
@@ -393,7 +392,7 @@ export const tags = {
       'text-decoration': null,
       'css-class': null,
     }
-  }
+  },
   'mj-spacer': {
     attrs: {
       height: null,
@@ -468,7 +467,7 @@ export const tags = {
   },
 }
 
-export function completeAfter(cm, pred) {
+export function completeAfter(CodeMirror, cm, pred) {
   var cur = cm.getCursor()
   if (!pred || pred())
     setTimeout(function() {
@@ -476,14 +475,14 @@ export function completeAfter(cm, pred) {
     }, 100)
   return CodeMirror.Pass
 }
-export function completeIfAfterLt(cm) {
-  return completeAfter(cm, function() {
+export function completeIfAfterLt(CodeMirror, cm) {
+  return completeAfter(CodeMirror, cm, function() {
     var cur = cm.getCursor()
     return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == '<'
   })
 }
-export function completeIfInTag(cm) {
-  return completeAfter(cm, function() {
+export function completeIfInTag(CodeMirror, cm) {
+  return completeAfter(CodeMirror, cm, function() {
     var tok = cm.getTokenAt(cm.getCursor())
     if (
       tok.type == 'string' &&
