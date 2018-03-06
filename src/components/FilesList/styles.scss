@@ -88,6 +88,7 @@
 }
 
 .FileList--preview-actions-wrapper {
+  pointer-events: none;
   transition: 100ms ease-in;
   transition-property: opacity, transform;
   position: absolute;
@@ -100,6 +101,7 @@
 }
 
 .FileList--preview-actions {
+  pointer-events: auto;
   background: $bg;
   box-shadow: rgba(black, 0.6) 0 3px 20px;
   border-radius: 3px;
