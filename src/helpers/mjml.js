@@ -33,7 +33,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             resolve({ html: res.stdout, errors: [] })
           }
         } else {
-          if (!mjmlContent.trim().startsWith('<mjml>')) {
+          if (!mjmlContent.trim().startsWith('<mjml')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
           const mjmlOptions = {
