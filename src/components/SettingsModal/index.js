@@ -85,9 +85,6 @@ class SettingsModal extends Component {
     this.setState({
       snippetName: value,
     })
-    if (value) {
-      this.debounceCheckName()
-    }
   }
 
   handleChangeTrigger = e => {
@@ -95,9 +92,6 @@ class SettingsModal extends Component {
     this.setState({
       snippetTrigger: value,
     })
-    if (value) {
-      this.debounceCheckName()
-    }
   }
 
   handleChangeContent = e => {
@@ -105,9 +99,23 @@ class SettingsModal extends Component {
     this.setState({
       snippetContent: value,
     })
-    if (value) {
-      this.debounceCheckName()
-    }
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+  }
+
+  handleSnippetCreation = () => {
+    const { 
+      snippetName,
+      snippetTrigger,
+      snippetContent,
+    } = this.state
+
+    this.props.updateSettings(settings => {
+      return settings
+        .setIn(['snippet', snippetName], {'trigger':snippetTrigger, 'content': snippetContent})
+    })
   }
 
   render() {
@@ -217,10 +225,10 @@ class SettingsModal extends Component {
               </div>
             </TabItem>
 
-            <TabItem  title="Snippets" className="flow-v-10" icon={IconCode}>
+            <TabItem title="Snippets" className="flow-v-10" icon={IconCode}>
             <div className="d-b ai-c flow-h-5">
               <h1 className="c-white">{'Create and manage code snippets'}</h1>
-                <form className="mt-20" onSubmit="this.handleSubmit">
+                <form className="mt-20" onSubmit={this.handleSubmit}>
                   <div className="flow-v-20" style={{width:350}}>
                     <div className="d-f ai-b">
                       <div style={{ width: 120 }} className="fs-0">
@@ -265,7 +273,7 @@ class SettingsModal extends Component {
                 disabled={
                   (!snippetName || !snippetTrigger || !snippetContent)}
                 primary
-                onClick={() => openModal('Create New')}
+                onClick={this.handleSnippetCreation}
               >
               {'Create New'}
             </Button>
