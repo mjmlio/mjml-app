@@ -25,6 +25,7 @@ import {
   fsAccess,
   fsRename,
   fsWriteFile,
+  fileExists,
   isValidDir,
 } from 'helpers/fs'
 
@@ -264,10 +265,17 @@ async function waitUntilLoaded(getState, timeout = 5e3) {
 
 export function openExternalFile(filePath) {
   return async (dispatch, getState) => {
+    const exists = await fileExists(filePath)
+    if (!exists) {
+      return
+    }
     dispatch(openExternalFileOverlay(filePath))
     try {
       const dirName = path.dirname(filePath)
-      await isValidDir(dirName)
+      const validDir = await isValidDir(dirName)
+      if (!validDir) {
+        throw new Error('Cant open that.')
+      }
       await waitUntilLoaded(getState)
       dispatch(openProject(dirName))
     } catch (err) {
