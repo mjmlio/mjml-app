@@ -11,6 +11,7 @@ import { openModal } from 'reducers/modals'
 import Button from 'components/Button'
 import MassActions from 'components/MassActions'
 import ProjectsList from 'components/ProjectsList'
+import GlobalSearch from 'components/GlobalSearch'
 
 import './style.scss'
 
@@ -50,6 +51,7 @@ class HomePage extends Component {
         })}
       >
         <div className="flow-h-10 d-f ai-c">
+          {hasProjects && <GlobalSearch className="fg-1" />}
           <Button
             ref={n => (this._newProjectBTN = n)}
             primary
@@ -62,11 +64,9 @@ class HomePage extends Component {
             <IconOpen size={20} className="mr-5" />
             {'Open project'}
           </Button>
-          <div className={cx('d-f', { 'ml-auto': hasProjects })}>
-            <Button ghost onClick={() => openModal('settings')}>
-              <FaCog />
-            </Button>
-          </div>
+          <Button ghost onClick={() => openModal('settings')}>
+            <FaCog />
+          </Button>
         </div>
 
         {hasProjects && (

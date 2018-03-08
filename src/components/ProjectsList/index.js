@@ -20,6 +20,7 @@ const HOME_DIR = os.homedir()
   state => ({
     projects: state.projects,
     selectedProjects: state.selectedProjects,
+    search: state.search,
   }),
   {
     openProject,
@@ -100,15 +101,21 @@ class ProjectsList extends Component {
       selectedProjects,
       toggleSelectProject,
       duplicateProject,
+      search,
     } = this.props
 
     const { isDeleteModalOpened, isRenameModalOpened, shouldDeleteFolder, activePath } = this.state
 
     const isHome = activePath === HOME_DIR
 
+    const { text, results } = search
+    const filteredProjects = text
+      ? projects.reverse().filter(p => results.has(p.get('path')))
+      : projects.reverse()
+
     return (
       <div className="ProjectsList abs o-n">
-        {projects.reverse().map(p => {
+        {filteredProjects.map(p => {
           const projectPath = p.get('path')
           return (
             <ProjectItem
@@ -123,6 +130,10 @@ class ProjectsList extends Component {
             />
           )
         })}
+        {!!text &&
+          !results.size && (
+            <div className="pl-10">{`No projects matched the word \`${text}\``}</div>
+          )}
         <ConfirmModal
           isOpened={isDeleteModalOpened}
           yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}

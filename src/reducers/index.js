@@ -10,6 +10,7 @@ import notifs from './notifs'
 import error from './error'
 import selectedProjects from './selectedProjects'
 import externalFileOverlay from './externalFileOverlay'
+import search from './search'
 
 const rootReducer = combineReducers({
   routing,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   error,
   selectedProjects,
   externalFileOverlay,
+  search,
 })
 
 export default rootReducer

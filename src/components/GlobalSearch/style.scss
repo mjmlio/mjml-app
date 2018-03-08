@@ -1,0 +1,32 @@
+@import '../../styles/vars.scss';
+
+.GlobalSearch {
+  position: relative;
+
+  &.isFocused .GlobalSearch--icon-container,
+  &:hover .GlobalSearch--icon-container {
+    color: unset;
+  }
+}
+
+.GlobalSearch--input {
+  width: 100%;
+  height: 40px;
+  background: rgba(black, 0.2);
+  border-radius: 25px;
+  padding-left: 35px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3px 0 $blue;
+  }
+}
+
+.GlobalSearch--icon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 45px;
+  color: rgba(white, 0.2);
+}
