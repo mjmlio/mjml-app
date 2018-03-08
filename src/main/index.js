@@ -13,6 +13,15 @@ let menu
 
 const [, openPath] = process.argv
 
+const installExtensions = async () => {
+  const installer = require('electron-devtools-installer')
+  const forceDownload = !!process.env.UPGRADE_EXTENSIONS
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS']
+  return Promise.all(
+    extensions.map(name => installer.default(installer[name], forceDownload)),
+  ).catch(console.log) // eslint-disable-line
+}
+
 function createMainWindow() {
   const w = new BrowserWindow({
     webPreferences: {
@@ -84,7 +93,10 @@ app.on('activate', () => {
   }
 })
 
-app.on('ready', () => {
+app.on('ready', async () => {
+  if (isDevelopment) {
+    await installExtensions()
+  }
   mainWindow = createMainWindow()
   if (isProduction) {
     autoUpdater.checkForUpdatesAndNotify()
