@@ -1,0 +1,15 @@
+@import '../../styles/vars.scss';
+
+.SnippetsList {
+    border-left: 1px solid $almostWhite;
+    min-width: 50%;
+    margin-left: 20px;
+    padding: 0 20px;
+    min-height: 350px;
+}
+
+.SnippetItem {
+    margin: 10px 0;
+    padding: 20px 10px;
+    border: 1px solid $almostWhite;
+}

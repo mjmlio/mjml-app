@@ -2,37 +2,33 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 
-import { updateSettings } from 'actions/settings'
+import './style.scss'
+
+import SnippetItem from './SnippetItem'
 
 @connect(
   state => ({
-    snippets: state.settings.getIn(['snippets', '']),
-  }),
-  {
-    updateSettings,
-  },
-  null,
-  { withRef: true },
+    settings: state.settings
+  })
 )
 
 class SnippetsList extends Component {
-  state = {
-    snippets: [],
-  }
 
   render() {
-    const { snippets } = this.state
+    const { settings } = this.props
+    const snippets = settings.get('snippets')
 
     return (
-      <div className="fg-1 d-b fd-c">
-        {snippets.map(s => {
-          <div key={s.name}>
-            <div>
-              <div>{s.name}</div>
-            </div>
-          </div>
-        }
-        )}
+      <div className="fg-1 d-b">
+          {snippets.map(s => {
+            return (
+              <SnippetItem
+                key={s.name}
+                className="SnippetItem"
+                name={s.name}
+                trigger={s.trigger}
+                content={s.content} />)
+          })}
       </div>
     )
   }
