@@ -12,10 +12,13 @@ import IconCode from 'react-icons/md/code'
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
 
+import { addSnippet } from 'actions/projects'
+
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
 import TabsVertical, { TabItem } from 'components/TabsVertical'
+import SnippetsList from 'components/SnippetsList'
 
 import MJMLEngine from 'components/MJMLEngine'
 
@@ -31,6 +34,7 @@ import './style.scss'
   {
     closeModal,
     updateSettings,
+    addSnippet
   },
 )
 class SettingsModal extends Component {
@@ -105,21 +109,8 @@ class SettingsModal extends Component {
     e.preventDefault()
   }
 
-  handleSnippetCreation = () => {
-    const { 
-      snippetName,
-      snippetTrigger,
-      snippetContent,
-    } = this.state
-
-    this.props.updateSettings(settings => {
-      return settings
-        .setIn(['snippet', snippetName], {'trigger':snippetTrigger, 'content': snippetContent})
-    })
-  }
-
   render() {
-    const { isOpened, settings } = this.props
+    const { isOpened, settings, addSnippet } = this.props
 
     const { 
       sizes,
@@ -238,6 +229,7 @@ class SettingsModal extends Component {
                         className="fg-1"
                         onChange={this.handleChangeName}
                         placeholder="Name"
+                        value={snippetName ? snippetName : ""}
                         type="text"
                         autoFocus
                       />
@@ -251,6 +243,7 @@ class SettingsModal extends Component {
                         className="fg-1"
                         onChange={this.handleChangeTrigger}
                         placeholder="Trigger"
+                        value={snippetTrigger ? snippetTrigger : ""}
                         type="text"
                       />
                     </div>
@@ -263,6 +256,7 @@ class SettingsModal extends Component {
                         <textarea
                           onChange={this.handleChangeContent}
                           placeholder="Content"
+                          value={snippetContent ? snippetContent : ""}
                           type="text"
                         />
                       </div>
@@ -273,10 +267,11 @@ class SettingsModal extends Component {
                 disabled={
                   (!snippetName || !snippetTrigger || !snippetContent)}
                 primary
-                onClick={this.handleSnippetCreation}
+                onClick={() => addSnippet(snippetName, snippetTrigger, snippetContent)}
               >
               {'Create New'}
             </Button>
+            <SnippetsList />
             </div>
             </TabItem>
           </TabsVertical>

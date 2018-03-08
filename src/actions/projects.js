@@ -244,3 +244,18 @@ export function duplicateProject(projectPath) {
     }
   }
 }
+
+export function addSnippet(s, t, c) {
+  return async dispatch => {
+      dispatch({
+        type: 'SNIPPET_ADD',
+        payload: {
+          snippetName: s,
+          snippetTrigger: t,
+          snippetContent: c
+        },
+      })
+    dispatch(saveSettings())
+    dispatch(addAlert('Created a snippet', 'success'))
+  }
+}

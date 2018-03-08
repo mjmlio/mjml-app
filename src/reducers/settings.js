@@ -14,6 +14,7 @@ export default handleActions(
         api: Map(payload.api),
         mjml: Map(payload.mjml),
         previewSize: Map(payload.previewSize),
+        snippets: Map(payload.snippets),
       })
     },
 
@@ -55,6 +56,12 @@ export default handleActions(
 
     PROJECTS_REMOVE: (state, { payload: paths }) =>
       state.update('projects', projects => projects.filter(p => paths.indexOf(p) === -1)),
+
+    SNIPPET_ADD: (state, { payload: { snippetName, snippetTrigger, snippetContent } }) =>  
+      state.setIn(['snippets', snippetName], {
+        trigger: snippetTrigger,
+        content: snippetContent
+      }),
   },
   state,
 )
