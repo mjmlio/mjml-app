@@ -9,6 +9,7 @@ import NewProjectModal from 'components/NewProjectModal'
 import SettingsModal from 'components/SettingsModal'
 import ErrorModal from 'components/ErrorModal'
 import AboutModal from 'components/AboutModal'
+import ExternalFileOverlay from 'components/ExternalFileOverlay'
 
 import Placeholder from './Placeholder'
 import DropFile from './DropFile'
@@ -81,6 +82,8 @@ class Application extends Component {
           onDrop={this.handleDrop}
           isVisible={isOver}
         />
+
+        <ExternalFileOverlay />
 
         <Placeholder show={!projects} />
         {projects && this.props.children}

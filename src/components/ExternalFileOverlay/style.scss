@@ -1,0 +1,16 @@
+@import '../../styles/vars.scss';
+
+.ExternalFileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $bg;
+  z-index: 42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 20px;
+}

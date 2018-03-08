@@ -5,6 +5,10 @@ protocols:
   schemes:
     - mjmlio
 
+fileAssociations:
+  ext: mjml
+  icon: icon.ico
+
 mac:
   artifactName: ${name}-${version}-${os}.${ext}
   category: public.app-category.utility

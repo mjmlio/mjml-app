@@ -11,6 +11,8 @@ const isDevelopment = !isProduction
 let mainWindow
 let menu
 
+const [, openPath] = process.argv
+
 function createMainWindow() {
   const w = new BrowserWindow({
     webPreferences: {
@@ -21,6 +23,11 @@ function createMainWindow() {
   })
 
   w.once('ready-to-show', () => {
+    // if we double clicked on mjml file (or launched app with argument)
+    // we send path to renderer, to directly open/create project
+    if (openPath) {
+      mainWindow.webContents.send('openPath', openPath)
+    }
     w.show()
   })
 
