@@ -92,7 +92,7 @@ async function loadProject(p, mjmlPath) {
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
       const { html: htmlContent } = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
-    } catch (e) {} // eslint-disable-line
+    } catch (e) { } // eslint-disable-line
   }
   return res
 }
@@ -242,20 +242,5 @@ export function duplicateProject(projectPath) {
     } catch (err) {
       console.log(err) // eslint-disable-line
     }
-  }
-}
-
-export function addSnippet(s, t, c) {
-  return async dispatch => {
-      dispatch({
-        type: 'SNIPPET_ADD',
-        payload: {
-          snippetName: s,
-          snippetTrigger: t,
-          snippetContent: c
-        },
-      })
-    dispatch(saveSettings())
-    dispatch(addAlert('Created a snippet', 'success'))
   }
 }

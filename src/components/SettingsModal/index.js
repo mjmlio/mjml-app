@@ -12,8 +12,7 @@ import IconError from 'react-icons/md/error'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
-
-import { addSnippet } from 'actions/projects'
+import { addSnippet, updateSnippet } from 'actions/snippets'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
@@ -30,14 +29,16 @@ import './style.scss'
     isOpened: isModalOpened(state, 'settings'),
     mobileSize: state.settings.getIn(['previewSize', 'mobile']),
     desktopSize: state.settings.getIn(['previewSize', 'desktop']),
-    settings: state.settings,
+    settings: state.settings
   }),
   {
     closeModal,
     updateSettings,
-    addSnippet
+    addSnippet, 
+    updateSnippet,
   },
 )
+
 class SettingsModal extends Component {
   state = {
     sizes: {
@@ -90,7 +91,6 @@ class SettingsModal extends Component {
   handleChangeName = e => {
     const { value } = e.target
     const { settings } = this.props
-
     const snippets = settings.get('snippets')
 
     if (snippets.find(s => s.name === value)) {
@@ -138,8 +138,23 @@ class SettingsModal extends Component {
     e.preventDefault()
   }
 
+  handleSnippet = (s, t, c) => {
+    const { snippetNameIsAvailable } = this.state
+    this.setState({
+      snippetName: '',
+      snippetTrigger: '',
+      snippetContent: '',
+    })
+    if (snippetNameIsAvailable) {
+      this.props.addSnippet(s, t, c)
+    }
+    else {
+      this.props.updateSnippet(s, t, c)
+    }
+  }
+
   render() {
-    const { isOpened, settings, addSnippet } = this.props
+    const { isOpened, settings } = this.props
 
     const {
       sizes,
@@ -150,8 +165,6 @@ class SettingsModal extends Component {
       snippetTriggerIsAvailable,
     } = this.state
 
-    console.log(snippetNameIsAvailable)
-
     const editorWrapLines = settings.getIn(['editor', 'wrapLines'], true)
     const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
     const autoFold = settings.getIn(['editor', 'autoFold'], false)
@@ -159,7 +172,6 @@ class SettingsModal extends Component {
     const editorLightTheme = settings.getIn(['editor', 'lightTheme'], false)
     const minifyOutput = settings.getIn(['mjml', 'minify'], false)
     const beautifyOutput = settings.getIn(['mjml', 'beautify'], false)
-    const snippets = settings.get('snippets')
 
     return (
       <Modal
@@ -264,7 +276,7 @@ class SettingsModal extends Component {
                           className="fg-1"
                           onChange={this.handleChangeName}
                           placeholder="Name"
-                          value={snippetName ? snippetName : ""}
+                          value={snippetName}
                           type="text"
                           autoFocus
                         />
@@ -278,7 +290,7 @@ class SettingsModal extends Component {
                           className="fg-1"
                           onChange={this.handleChangeTrigger}
                           placeholder="Trigger"
-                          value={snippetTrigger ? snippetTrigger : ""}
+                          value={snippetTrigger}
                           type="text"
                         />
                       </div>
@@ -297,7 +309,7 @@ class SettingsModal extends Component {
                           <textarea
                             onChange={this.handleChangeContent}
                             placeholder="Content"
-                            value={snippetContent ? snippetContent : ""}
+                            value={snippetContent}
                             type="text"
                           />
                         </div>
@@ -307,7 +319,7 @@ class SettingsModal extends Component {
                   <Button
                     disabled={(!snippetName || !snippetTrigger || !snippetContent || !snippetTriggerIsAvailable)}
                     primary
-                    onClick={() => addSnippet(snippetName, snippetTrigger, snippetContent)}
+                    onClick={() => this.handleSnippet(snippetName, snippetTrigger, snippetContent)}
                   >
                     {!snippetNameIsAvailable && (
                       'Update Snippet'

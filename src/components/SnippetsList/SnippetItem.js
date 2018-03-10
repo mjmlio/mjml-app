@@ -1,13 +1,17 @@
-import React, { Component, createElement } from 'react'
-import cx from 'classnames'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import Tabbable from 'components/Tabbable'
-import Preview from 'components/Preview'
+@connect(
+  state => ({
+    settings: state.settings,
+  }),
+  {}
+)
 
 class SnippetItem extends Component {
 
   render() {
-    const { name, trigger, content } = this.props
+    const { name } = this.props
 
     return (
       <div className="SnippetItem">
