@@ -24,13 +24,19 @@ import 'codemirror/addon/hint/xml-hint'
 import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
+import { registerAnyHint } from 'helpers/codemirror-snippets-hint'
+
+/* eslint-disable */
+CodeMirror.registerHelper('hint', 'anyword', registerAnyHint)
+/* es-lint-enable */
 
 import {
-  tags as autocompleteTags,
   completeAfter,
   completeIfAfterLt,
   completeIfInTag,
 } from 'helpers/codemirror-autocomplete-mjml'
+
+import { completeAfterSnippet } from 'helpers/codemirror-autocomplete-snippets'
 
 import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
@@ -183,10 +189,8 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
+        "'+'": cm => completeAfterSnippet(CodeMirror, cm),
         /* eslint-enable quotes */
-      },
-      hintOptions: {
-        schemaInfo: autocompleteTags,
       },
       lint: this.handleValidate,
     })

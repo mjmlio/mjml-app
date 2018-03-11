@@ -14,6 +14,7 @@ export default handleActions(
         api: Map(payload.api),
         mjml: Map(payload.mjml),
         previewSize: Map(payload.previewSize),
+        snippets: List(payload.snippets),
       })
     },
 
@@ -55,6 +56,31 @@ export default handleActions(
 
     PROJECTS_REMOVE: (state, { payload: paths }) =>
       state.update('projects', projects => projects.filter(p => paths.indexOf(p) === -1)),
+
+    SNIPPET_ADD: (state, { payload: { snippetName, snippetTrigger, snippetContent } }) =>
+      state.update('snippets', snippets =>
+        snippets.unshift({
+          name: snippetName,
+          trigger: snippetTrigger,
+          content: snippetContent,
+        }),
+      ),
+
+    SNIPPET_UPDATE: (state, { payload: { oldName, newName, newTrigger, newContent } }) =>
+      state.update('snippets', snippets => {
+        const index = snippets.findIndex(s => s.name === oldName)
+        return snippets.set(index, {
+          name: newName,
+          trigger: newTrigger,
+          content: newContent,
+        })
+      }),
+
+    SNIPPET_DELETE: (state, { payload: { snippetName } }) =>
+      state.update('snippets', snippets => {
+        const index = snippets.findIndex(s => s.name === snippetName)
+        return snippets.delete(index)
+      }),
   },
   state,
 )

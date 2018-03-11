@@ -471,7 +471,11 @@ export function completeAfter(CodeMirror, cm, pred) {
   var cur = cm.getCursor()
   if (!pred || pred())
     setTimeout(function() {
-      if (!cm.state.completionActive) cm.showHint({ completeSingle: false })
+      if (!cm.state.completionActive)
+        cm.showHint({
+          completeSingle: false,
+          schemaInfo: tags,
+        })
     }, 100)
   return CodeMirror.Pass
 }
