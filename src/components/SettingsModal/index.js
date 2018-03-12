@@ -39,7 +39,6 @@ import './style.scss'
     updateSnippet,
   },
 )
-
 class SettingsModal extends Component {
   state = {
     sizes: {
@@ -94,7 +93,7 @@ class SettingsModal extends Component {
     const { settings } = this.props
     const snippets = settings.get('snippets')
 
-    if (snippets.find(s => s.name === value)) {
+    if (snippets.find(s => s.name === value.trim())) {
       this.setState({
         snippetNameIsAvailable: false,
         snippetName: value,
@@ -113,7 +112,7 @@ class SettingsModal extends Component {
 
     const snippets = settings.get('snippets')
 
-    if (snippets.find(s => s.trigger === value)) {
+    if (snippets.find(s => s.trigger === value.trim())) {
       this.setState({
         snippetTriggerIsAvailable: false,
         snippetTrigger: value,
@@ -145,9 +144,9 @@ class SettingsModal extends Component {
       snippetContent: '',
     })
     if (snippetNameIsAvailable) {
-      this.props.addSnippet(snippetName, snippetTrigger, snippetContent)
+      this.props.addSnippet(snippetName.trim(), snippetTrigger.trim(), snippetContent)
     } else {
-      this.props.updateSnippet(snippetName, snippetTrigger, snippetContent)
+      this.props.updateSnippet(snippetName.trim(), snippetTrigger.trim(), snippetContent)
     }
   }
 
@@ -306,7 +305,7 @@ class SettingsModal extends Component {
                       {!snippetTriggerIsAvailable && (
                         <div className="t-small mt-10 c-red">
                           <IconError className="mr-5 mb-5" />
-                          <b className="mr-5">{snippetTrigger}</b>
+                          <b className="mr-5">{snippetTrigger.trim()}</b>
                           {'is already taken'}
                         </div>
                       )}
@@ -339,7 +338,10 @@ class SettingsModal extends Component {
                     {snippetNameIsAvailable && 'Create Snippet'}
                   </Button>
                 </div>
-                <div className="SnippetsList d-f ai-b flow-h-5 fg-1" onClick={() => this.handleSnippetLoad()}>
+                <div
+                  className="SnippetsList d-f ai-b flow-h-5 fg-1"
+                  onClick={() => this.handleSnippetLoad()}
+                >
                   <SnippetsList />
                 </div>
               </div>

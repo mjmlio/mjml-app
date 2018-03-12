@@ -6,7 +6,7 @@ export default handleActions(
   {
     SNIPPET_LOAD: (state, { payload: { snippetName, snippetTrigger, snippetContent } }) => {
       return { snippetName, snippetTrigger, snippetContent }
-    }
+    },
   },
   state,
 )

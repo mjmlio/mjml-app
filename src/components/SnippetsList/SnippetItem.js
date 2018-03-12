@@ -12,11 +12,10 @@ import { loadSnippet, deleteSnippet } from 'actions/snippets'
   }),
   {
     loadSnippet,
-    deleteSnippet
+    deleteSnippet,
   },
 )
 class SnippetItem extends Component {
-
   handleLoad = (name, trigger, content) => {
     this.props.loadSnippet(name, trigger, content)
   }
@@ -41,10 +40,7 @@ class SnippetItem extends Component {
           >
             <IconEdit />
           </div>
-          <div
-            onClick={() => this.handleDelete(name)}
-            className="action action-remove"
-          >
+          <div onClick={() => this.handleDelete(name)} className="action action-remove">
             <IconClose />
           </div>
         </div>
