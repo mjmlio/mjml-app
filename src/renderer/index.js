@@ -7,7 +7,7 @@ import { ipcRenderer } from 'electron'
 
 import configureStore from 'store/configureStore'
 import { loadSettings } from 'actions/settings'
-import { loadProjects, addProject } from 'actions/projects'
+import { loadProjects, addProject, openExternalFile } from 'actions/projects'
 
 import Root from 'components/Root'
 
@@ -50,6 +50,10 @@ ipcRenderer.on('redux-command', (event, message) => {
   if (message === 'open-project') {
     store.dispatch(addProject())
   }
+})
+
+ipcRenderer.on('openPath', (event, openPath) => {
+  store.dispatch(openExternalFile(openPath))
 })
 
 if (module.hot) {

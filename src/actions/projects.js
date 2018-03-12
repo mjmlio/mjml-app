@@ -8,6 +8,7 @@ import kebabCase from 'lodash/kebabCase'
 import takeScreenshot from 'helpers/takeScreenshot'
 
 import { addAlert } from 'reducers/alerts'
+import { openExternalFileOverlay, closeExternalFileOverlay } from 'reducers/externalFileOverlay'
 
 import {
   saveSettings,
@@ -24,6 +25,7 @@ import {
   fsAccess,
   fsRename,
   fsWriteFile,
+  fileExists,
   isValidDir,
 } from 'helpers/fs'
 
@@ -242,5 +244,43 @@ export function duplicateProject(projectPath) {
     } catch (err) {
       console.log(err) // eslint-disable-line
     }
+  }
+}
+
+/**
+ * As opening external file will trigger an instant app load + project load
+ * we need to wait for the reducers to be ready
+ */
+async function waitUntilLoaded(getState, timeout = 5e3) {
+  const { settings, projects } = getState()
+  if (settings && projects) {
+    return true
+  }
+  if (timeout <= 0) {
+    throw new Error('Loading settings took too long')
+  }
+  await new Promise(resolve => setTimeout(resolve, 500))
+  return waitUntilLoaded(getState, timeout - 500)
+}
+
+export function openExternalFile(filePath) {
+  return async (dispatch, getState) => {
+    const exists = await fileExists(filePath)
+    if (!exists) {
+      return
+    }
+    dispatch(openExternalFileOverlay(filePath))
+    try {
+      const dirName = path.dirname(filePath)
+      const validDir = await isValidDir(dirName)
+      if (!validDir) {
+        throw new Error('Cant open that.')
+      }
+      await waitUntilLoaded(getState)
+      dispatch(openProject(dirName))
+    } catch (err) {
+      console.log(err) // eslint-disable-line no-console
+    }
+    dispatch(closeExternalFileOverlay())
   }
 }
