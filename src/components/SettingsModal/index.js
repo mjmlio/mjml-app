@@ -29,12 +29,13 @@ import './style.scss'
     isOpened: isModalOpened(state, 'settings'),
     mobileSize: state.settings.getIn(['previewSize', 'mobile']),
     desktopSize: state.settings.getIn(['previewSize', 'desktop']),
-    settings: state.settings
+    settings: state.settings,
+    snippetToLoad: state.snippets.loadedSnippetName
   }),
   {
     closeModal,
     updateSettings,
-    addSnippet, 
+    addSnippet,
     updateSnippet,
   },
 )
@@ -47,6 +48,7 @@ class SettingsModal extends Component {
     },
     snippetNameIsAvailable: true,
     snippetTriggerIsAvailable: true,
+    snippetToLoad: this.props.snippetToLoad,
   }
 
   handleClose = () => this.props.closeModal('settings')
@@ -98,8 +100,7 @@ class SettingsModal extends Component {
         snippetNameIsAvailable: false,
         snippetName: value,
       })
-    }
-    else {
+    } else {
       this.setState({
         snippetNameIsAvailable: true,
         snippetName: value,
@@ -118,8 +119,7 @@ class SettingsModal extends Component {
         snippetTriggerIsAvailable: false,
         snippetTrigger: value,
       })
-    }
-    else {
+    } else {
       this.setState({
         snippetTriggerIsAvailable: true,
         snippetTrigger: value,
@@ -147,14 +147,20 @@ class SettingsModal extends Component {
     })
     if (snippetNameIsAvailable) {
       this.props.addSnippet(s, t, c)
-    }
-    else {
+    } else {
       this.props.updateSnippet(s, t, c)
     }
   }
 
+  handleSnippetLoad = (s, t, c) => {
+    const { snippetToLoad } = this.props
+    this.setState({
+      snippetName: snippetToLoad
+    })
+  }
+
   render() {
-    const { isOpened, settings } = this.props
+    const { isOpened, settings, snippetToLoad } = this.props
 
     const {
       sizes,
@@ -317,19 +323,20 @@ class SettingsModal extends Component {
                     </div>
                   </form>
                   <Button
-                    disabled={(!snippetName || !snippetTrigger || !snippetContent || !snippetTriggerIsAvailable)}
+                    disabled={
+                      !snippetName ||
+                      !snippetTrigger ||
+                      !snippetContent ||
+                      !snippetTriggerIsAvailable
+                    }
                     primary
                     onClick={() => this.handleSnippet(snippetName, snippetTrigger, snippetContent)}
                   >
-                    {!snippetNameIsAvailable && (
-                      'Update Snippet'
-                    )}
-                    {snippetNameIsAvailable && (
-                      'Create Snippet'
-                    )}
+                    {!snippetNameIsAvailable && 'Update Snippet'}
+                    {snippetNameIsAvailable && 'Create Snippet'}
                   </Button>
                 </div>
-                <div className="SnippetsList d-f ai-b flow-h-5 fg-1">
+                <div className="SnippetsList d-f ai-b flow-h-5 fg-1" onClick={() => this.handleSnippetLoad()}>
                   <SnippetsList />
                 </div>
               </div>

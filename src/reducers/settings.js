@@ -62,8 +62,8 @@ export default handleActions(
         snippets.unshift({
           name: snippetName,
           trigger: snippetTrigger,
-          content: snippetContent
-        })
+          content: snippetContent,
+        }),
       ),
 
     SNIPPET_UPDATE: (state, { payload: { snippetName, snippetTrigger, snippetContent } }) =>
@@ -72,7 +72,7 @@ export default handleActions(
         return snippets.set(index, {
           name: snippetName,
           trigger: snippetTrigger,
-          content: snippetContent
+          content: snippetContent,
         })
       }),
   },

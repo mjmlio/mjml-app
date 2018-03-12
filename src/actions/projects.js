@@ -92,7 +92,7 @@ async function loadProject(p, mjmlPath) {
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
       const { html: htmlContent } = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
-    } catch (e) { } // eslint-disable-line
+    } catch (e) {} // eslint-disable-line
   }
   return res
 }

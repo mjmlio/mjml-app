@@ -1,8 +1,6 @@
 import { addAlert } from 'reducers/alerts'
 
-import {
-  saveSettings,
-} from 'actions/settings'
+import { saveSettings } from 'actions/settings'
 
 export function addSnippet(s, t, c) {
   return dispatch => {
@@ -11,7 +9,7 @@ export function addSnippet(s, t, c) {
       payload: {
         snippetName: s,
         snippetTrigger: t,
-        snippetContent: c
+        snippetContent: c,
       },
     })
     dispatch(saveSettings())
@@ -26,10 +24,25 @@ export function updateSnippet(s, t, c) {
       payload: {
         snippetName: s,
         snippetTrigger: t,
-        snippetContent: c
+        snippetContent: c,
       },
     })
     dispatch(saveSettings())
     dispatch(addAlert('Updated a snippet', 'success'))
+  }
+}
+
+export function loadSnippet(s, t, c) {
+  return dispatch => {
+    dispatch({
+      type: 'SNIPPET_LOAD',
+      payload: {
+        snippetName: s,
+        snippetTrigger: t,
+        snippetContent: c,
+      },
+    })
+    dispatch(saveSettings())
+    dispatch(addAlert(`Loaded snippet ${s}`, 'success'))
   }
 }
