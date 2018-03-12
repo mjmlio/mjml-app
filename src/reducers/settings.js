@@ -75,6 +75,12 @@ export default handleActions(
           content: snippetContent,
         })
       }),
+
+    SNIPPET_DELETE: (state, { payload: { snippetName } }) =>
+      state.update('snippets', snippets => {
+        const index = snippets.findIndex(s => s.name === snippetName)
+        return snippets.delete(index)
+      }),
   },
   state,
 )

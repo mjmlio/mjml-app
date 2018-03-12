@@ -30,7 +30,7 @@ import './style.scss'
     mobileSize: state.settings.getIn(['previewSize', 'mobile']),
     desktopSize: state.settings.getIn(['previewSize', 'desktop']),
     settings: state.settings,
-    snippetToLoad: state.snippets.loadedSnippetName
+    snippets: state.snippets,
   }),
   {
     closeModal,
@@ -48,7 +48,6 @@ class SettingsModal extends Component {
     },
     snippetNameIsAvailable: true,
     snippetTriggerIsAvailable: true,
-    snippetToLoad: this.props.snippetToLoad,
   }
 
   handleClose = () => this.props.closeModal('settings')
@@ -138,7 +137,7 @@ class SettingsModal extends Component {
     e.preventDefault()
   }
 
-  handleSnippet = (s, t, c) => {
+  handleSnippet = (snippetName, snippetTrigger, snippetContent) => {
     const { snippetNameIsAvailable } = this.state
     this.setState({
       snippetName: '',
@@ -146,21 +145,25 @@ class SettingsModal extends Component {
       snippetContent: '',
     })
     if (snippetNameIsAvailable) {
-      this.props.addSnippet(s, t, c)
+      this.props.addSnippet(snippetName, snippetTrigger, snippetContent)
     } else {
-      this.props.updateSnippet(s, t, c)
+      this.props.updateSnippet(snippetName, snippetTrigger, snippetContent)
     }
   }
 
-  handleSnippetLoad = (s, t, c) => {
-    const { snippetToLoad } = this.props
+  handleSnippetLoad = () => {
+    const { snippets } = this.props
+
     this.setState({
-      snippetName: snippetToLoad
+      snippetName: snippets.snippetName,
+      snippetTrigger: snippets.snippetTrigger,
+      snippetContent: snippets.snippetContent,
+      snippetNameIsAvailable: false,
     })
   }
 
   render() {
-    const { isOpened, settings, snippetToLoad } = this.props
+    const { isOpened, settings } = this.props
 
     const {
       sizes,
@@ -270,7 +273,7 @@ class SettingsModal extends Component {
 
             <TabItem title="Snippets" className="d-b" icon={IconCode}>
               <h1 className="c-white">{'Create and manage code snippets'}</h1>
-              <div className="d-f ai-b">
+              <div className="d-f ai-c">
                 <div className="ai-b fg-1">
                   <form className="mt-20" onSubmit={this.handleSubmit}>
                     <div className="flow-v-20">

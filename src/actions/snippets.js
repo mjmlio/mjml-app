@@ -2,47 +2,57 @@ import { addAlert } from 'reducers/alerts'
 
 import { saveSettings } from 'actions/settings'
 
-export function addSnippet(s, t, c) {
+export function addSnippet(snippetName, snippetTrigger, snippetContent) {
   return dispatch => {
     dispatch({
       type: 'SNIPPET_ADD',
       payload: {
-        snippetName: s,
-        snippetTrigger: t,
-        snippetContent: c,
+        snippetName,
+        snippetTrigger,
+        snippetContent,
       },
     })
     dispatch(saveSettings())
-    dispatch(addAlert('Created a snippet', 'success'))
+    dispatch(addAlert(`Created ${snippetName}`, 'success'))
   }
 }
 
-export function updateSnippet(s, t, c) {
+export function updateSnippet(snippetName, snippetTrigger, snippetContent) {
   return dispatch => {
     dispatch({
       type: 'SNIPPET_UPDATE',
       payload: {
-        snippetName: s,
-        snippetTrigger: t,
-        snippetContent: c,
+        snippetName,
+        snippetTrigger,
+        snippetContent,
       },
     })
     dispatch(saveSettings())
-    dispatch(addAlert('Updated a snippet', 'success'))
+    dispatch(addAlert(`Updated ${snippetName}`, 'success'))
   }
 }
 
-export function loadSnippet(s, t, c) {
+export function deleteSnippet(snippetName) {
+  return dispatch => {
+    dispatch({
+      type: 'SNIPPET_DELETE',
+      payload: { snippetName },
+    })
+    dispatch(saveSettings())
+    dispatch(addAlert(`Deleted ${snippetName}`, 'success'))
+  }
+}
+
+export function loadSnippet(snippetName, snippetTrigger, snippetContent) {
   return dispatch => {
     dispatch({
       type: 'SNIPPET_LOAD',
       payload: {
-        snippetName: s,
-        snippetTrigger: t,
-        snippetContent: c,
+        snippetName,
+        snippetTrigger,
+        snippetContent,
       },
     })
     dispatch(saveSettings())
-    dispatch(addAlert(`Loaded snippet ${s}`, 'success'))
   }
 }
