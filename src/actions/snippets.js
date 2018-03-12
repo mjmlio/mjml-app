@@ -17,18 +17,19 @@ export function addSnippet(snippetName, snippetTrigger, snippetContent) {
   }
 }
 
-export function updateSnippet(snippetName, snippetTrigger, snippetContent) {
+export function updateSnippet(oldName, newName, newTrigger, newContent) {
   return dispatch => {
     dispatch({
       type: 'SNIPPET_UPDATE',
       payload: {
-        snippetName,
-        snippetTrigger,
-        snippetContent,
+        oldName,
+        newName,
+        newTrigger,
+        newContent,
       },
     })
     dispatch(saveSettings())
-    dispatch(addAlert(`Updated ${snippetName}`, 'success'))
+    dispatch(addAlert(`Updated ${oldName}`, 'success'))
   }
 }
 

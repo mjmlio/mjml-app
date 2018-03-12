@@ -6,6 +6,8 @@ import IconClose from 'react-icons/md/close'
 
 import { loadSnippet, deleteSnippet } from 'actions/snippets'
 
+import SnippetForm from '../SnippetForm'
+
 @connect(
   state => ({
     settings: state.settings,
@@ -16,8 +18,16 @@ import { loadSnippet, deleteSnippet } from 'actions/snippets'
   },
 )
 class SnippetItem extends Component {
-  handleLoad = (name, trigger, content) => {
-    this.props.loadSnippet(name, trigger, content)
+  state = {
+    snippetIsEdited: false,
+  }
+
+  handleLoad = () => {
+    const { snippetIsEdited } = this.state
+
+    this.setState({
+      snippetIsEdited: !snippetIsEdited,
+    })
   }
 
   handleDelete = name => {
@@ -27,23 +37,31 @@ class SnippetItem extends Component {
   render() {
     const { name, trigger, content } = this.props
 
+    const { snippetIsEdited } = this.state
+
     return (
       <div className="SnippetItem">
-        <div>
-          <b>{name}</b>
-        </div>
-        <div className="SnippetItem--item-actions">
-          <div
-            tabIndex={0}
-            onClick={() => this.handleLoad(name, trigger, content)}
-            className="action action-rename"
-          >
-            <IconEdit />
+        <div className="SnippetItem--title">
+          <div>
+            <b>{name}</b>
           </div>
-          <div onClick={() => this.handleDelete(name)} className="action action-remove">
-            <IconClose />
+          <div className="SnippetItem--item-actions">
+            <div onClick={this.handleLoad} className="action action-rename">
+              <IconEdit />
+            </div>
+            <div onClick={() => this.handleDelete(name)} className="action action-remove">
+              <IconClose />
+            </div>
           </div>
         </div>
+        {snippetIsEdited && (
+          <SnippetForm
+            name={name}
+            trigger={trigger}
+            content={content}
+            snippetIsEdited={snippetIsEdited}
+          />
+        )}
       </div>
     )
   }

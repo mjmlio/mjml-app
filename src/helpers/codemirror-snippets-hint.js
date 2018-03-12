@@ -38,5 +38,4 @@ export function registerAnyHint(editor, options) {
   }
   return { list: list, from: CodeMirror.Pos(cur.line, start), to: CodeMirror.Pos(cur.line, end) }
 }
-
 /* es-lint-enable */

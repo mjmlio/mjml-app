@@ -66,13 +66,13 @@ export default handleActions(
         }),
       ),
 
-    SNIPPET_UPDATE: (state, { payload: { snippetName, snippetTrigger, snippetContent } }) =>
+    SNIPPET_UPDATE: (state, { payload: { oldName, newName, newTrigger, newContent } }) =>
       state.update('snippets', snippets => {
-        const index = snippets.findIndex(s => s.name === snippetName)
+        const index = snippets.findIndex(s => s.name === oldName)
         return snippets.set(index, {
-          name: snippetName,
-          trigger: snippetTrigger,
-          content: snippetContent,
+          name: newName,
+          trigger: newTrigger,
+          content: newContent,
         })
       }),
 

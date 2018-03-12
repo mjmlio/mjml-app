@@ -8,16 +8,15 @@ import IconMJMLEngine from 'react-icons/md/settings-applications'
 import IconEditor from 'react-icons/md/format-align-left'
 import IconPreview from 'react-icons/md/important-devices'
 import IconCode from 'react-icons/md/code'
-import IconError from 'react-icons/md/error'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
-import { addSnippet, updateSnippet } from 'actions/snippets'
 
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
 import TabsVertical, { TabItem } from 'components/TabsVertical'
+import SnippetForm from 'components/SnippetForm'
 import SnippetsList from 'components/SnippetsList'
 
 import MJMLEngine from 'components/MJMLEngine'
@@ -30,13 +29,10 @@ import './style.scss'
     mobileSize: state.settings.getIn(['previewSize', 'mobile']),
     desktopSize: state.settings.getIn(['previewSize', 'desktop']),
     settings: state.settings,
-    snippets: state.snippets,
   }),
   {
     closeModal,
     updateSettings,
-    addSnippet,
-    updateSnippet,
   },
 )
 class SettingsModal extends Component {
@@ -45,8 +41,6 @@ class SettingsModal extends Component {
       mobile: this.props.mobileSize,
       desktop: this.props.desktopSize,
     },
-    snippetNameIsAvailable: true,
-    snippetTriggerIsAvailable: true,
   }
 
   handleClose = () => this.props.closeModal('settings')
@@ -88,90 +82,10 @@ class SettingsModal extends Component {
     })
   }
 
-  handleChangeName = e => {
-    const { value } = e.target
-    const { settings } = this.props
-    const snippets = settings.get('snippets')
-
-    if (snippets.find(s => s.name === value.trim())) {
-      this.setState({
-        snippetNameIsAvailable: false,
-        snippetName: value,
-      })
-    } else {
-      this.setState({
-        snippetNameIsAvailable: true,
-        snippetName: value,
-      })
-    }
-  }
-
-  handleChangeTrigger = e => {
-    const { value } = e.target
-    const { settings } = this.props
-
-    const snippets = settings.get('snippets')
-
-    if (snippets.find(s => s.trigger === value.trim())) {
-      this.setState({
-        snippetTriggerIsAvailable: false,
-        snippetTrigger: value,
-      })
-    } else {
-      this.setState({
-        snippetTriggerIsAvailable: true,
-        snippetTrigger: value,
-      })
-    }
-  }
-
-  handleChangeContent = e => {
-    const { value } = e.target
-    this.setState({
-      snippetContent: value,
-    })
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
-  }
-
-  handleSnippet = (snippetName, snippetTrigger, snippetContent) => {
-    const { snippetNameIsAvailable } = this.state
-    this.setState({
-      snippetName: '',
-      snippetTrigger: '',
-      snippetContent: '',
-    })
-    if (snippetNameIsAvailable) {
-      this.props.addSnippet(snippetName.trim(), snippetTrigger.trim(), snippetContent)
-    } else {
-      this.props.updateSnippet(snippetName.trim(), snippetTrigger.trim(), snippetContent)
-    }
-  }
-
-  handleSnippetLoad = () => {
-    const { snippets } = this.props
-
-    this.setState({
-      snippetName: snippets.snippetName,
-      snippetTrigger: snippets.snippetTrigger,
-      snippetContent: snippets.snippetContent,
-      snippetNameIsAvailable: false,
-    })
-  }
-
   render() {
     const { isOpened, settings } = this.props
 
-    const {
-      sizes,
-      snippetName,
-      snippetTrigger,
-      snippetContent,
-      snippetNameIsAvailable,
-      snippetTriggerIsAvailable,
-    } = this.state
+    const { sizes } = this.state
 
     const editorWrapLines = settings.getIn(['editor', 'wrapLines'], true)
     const editorHightlightTag = settings.getIn(['editor', 'highlightTag'], false)
@@ -272,76 +186,11 @@ class SettingsModal extends Component {
 
             <TabItem title="Snippets" className="d-b" icon={IconCode}>
               <h1 className="c-white">{'Create and manage code snippets'}</h1>
-              <div className="d-f ai-c">
-                <div className="ai-b fg-1">
-                  <form className="mt-20" onSubmit={this.handleSubmit}>
-                    <div className="flow-v-20">
-                      <div className="d-f ai-b">
-                        <div style={{ width: 120 }} className="fs-0">
-                          {'Snippet Name:'}
-                        </div>
-                        <input
-                          className="fg-1"
-                          onChange={this.handleChangeName}
-                          placeholder="Name"
-                          value={snippetName}
-                          type="text"
-                          autoFocus
-                        />
-                      </div>
-
-                      <div className="d-f ai-b">
-                        <div style={{ width: 120 }} className="fs-0">
-                          {'Snippet Trigger:'}
-                        </div>
-                        <input
-                          className="fg-1"
-                          onChange={this.handleChangeTrigger}
-                          placeholder="Trigger"
-                          value={snippetTrigger}
-                          type="text"
-                        />
-                      </div>
-                      {!snippetTriggerIsAvailable && (
-                        <div className="t-small mt-10 c-red">
-                          <IconError className="mr-5 mb-5" />
-                          <b className="mr-5">{snippetTrigger.trim()}</b>
-                          {'is already taken'}
-                        </div>
-                      )}
-                      <div className="d-b">
-                        <div style={{ width: 120 }} className="fs-0">
-                          {'Snippet Content:'}
-                        </div>
-                        <div className="fg-1 mt-20 mb-20">
-                          <textarea
-                            onChange={this.handleChangeContent}
-                            placeholder="Content"
-                            value={snippetContent}
-                            type="text"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <Button
-                    disabled={
-                      !snippetName ||
-                      !snippetTrigger ||
-                      !snippetContent ||
-                      !snippetTriggerIsAvailable
-                    }
-                    primary
-                    onClick={() => this.handleSnippet(snippetName, snippetTrigger, snippetContent)}
-                  >
-                    {!snippetNameIsAvailable && 'Update Snippet'}
-                    {snippetNameIsAvailable && 'Create Snippet'}
-                  </Button>
+              <div className="Snippets d-f">
+                <div className="fg-1">
+                  <SnippetForm />
                 </div>
-                <div
-                  className="SnippetsList d-f ai-b flow-h-5 fg-1"
-                  onClick={() => this.handleSnippetLoad()}
-                >
+                <div className="SnippetsList d-f flow-h-5 fg-1">
                   <SnippetsList />
                 </div>
               </div>

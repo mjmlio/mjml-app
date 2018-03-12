@@ -2,16 +2,22 @@
 
 .SnippetsList {
   border-left: 1px solid $almostWhite;
-  min-width: 50%;
+  width: 50%;
   margin-left: 20px;
-  padding: 0 20px;
-  min-height: 350px;
+  padding: 0 20px 40px 20px;
+  height: 600px;
+  overflow-y: auto;
 }
 
 .SnippetItem {
   margin: 10px 0;
   padding: 20px 10px;
   border: 1px solid $almostWhite;
+  justify-content: space-between;
+  display: block;
+}
+
+.SnippetItem--title {
   display: flex;
   justify-content: space-between;
 }
@@ -22,6 +28,9 @@
     width: 20px;
     height: 20px;
     opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       opacity: 1;
     }
