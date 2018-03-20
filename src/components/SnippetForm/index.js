@@ -52,21 +52,30 @@ class SnippetForm extends Component {
 
     const snippets = settings.get('snippets')
 
-    if (snippets.find(s => s.trigger === value.trim())) {
+    if (/\s/g.test(value)) {
+      this.setState({
+        snippetTriggerIsAvailable: true,
+        snippetTriggerIsInvalid: true,
+        snippetTrigger: value,
+      })
+    } else if (snippets.find(s => s.trigger === value.trim())) {
       if (snippets.find(s => s.trigger === value.trim()).name !== originalName) {
         this.setState({
           snippetTriggerIsAvailable: false,
+          snippetTriggerIsInvalid: false,
           snippetTrigger: value,
         })
       } else {
         this.setState({
           snippetTriggerIsAvailable: true,
+          snippetTriggerIsInvalid: false,
           snippetTrigger: value,
         })
       }
     } else {
       this.setState({
         snippetTriggerIsAvailable: true,
+        snippetTriggerIsInvalid: false,
         snippetTrigger: value,
       })
     }
@@ -109,6 +118,7 @@ class SnippetForm extends Component {
       snippetTrigger,
       snippetNameIsAvailable,
       snippetTriggerIsAvailable,
+      snippetTriggerIsInvalid,
     } = this.state
 
     const { name, trigger, content, snippetIsEdited } = this.props
@@ -150,6 +160,12 @@ class SnippetForm extends Component {
                 type="text"
               />
             </div>
+            {snippetTriggerIsInvalid && (
+              <div className="t-small mt-10 c-red">
+                <IconError className="mr-5 mb-5" />
+                {'Spaces are not allowed in triggers'}
+              </div>
+            )}
             {!snippetTriggerIsAvailable && (
               <div className="t-small mt-10 c-red">
                 <IconError className="mr-5 mb-5" />
@@ -179,6 +195,7 @@ class SnippetForm extends Component {
               !snippetTrigger ||
               !snippetContent ||
               !snippetNameIsAvailable ||
+              !snippetTriggerIsAvailable ||
               !snippetTriggerIsAvailable
             }
             primary
