@@ -109,6 +109,9 @@ class FileEditor extends Component {
     if (prevProps.lightTheme !== this.props.lightTheme) {
       this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
     }
+    if (prevProps.snippets !== this.props.snippets) {
+      this.initEditor()
+    }
   }
 
   componentWillUnmount() {
