@@ -7,6 +7,7 @@ import IconClose from 'react-icons/md/close'
 import IconMJMLEngine from 'react-icons/md/settings-applications'
 import IconEditor from 'react-icons/md/format-align-left'
 import IconPreview from 'react-icons/md/important-devices'
+import IconCode from 'react-icons/md/code'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'
@@ -15,6 +16,8 @@ import Modal from 'components/Modal'
 import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
 import TabsVertical, { TabItem } from 'components/TabsVertical'
+import SnippetForm from 'components/SnippetForm'
+import SnippetsList from 'components/SnippetsList'
 
 import MJMLEngine from 'components/MJMLEngine'
 
@@ -178,6 +181,19 @@ class SettingsModal extends Component {
                   onChange={e => this.handleChangeSize('desktop', e.target.value)}
                 />
                 <span>{'Desktop size'}</span>
+              </div>
+            </TabItem>
+
+            <TabItem title="Snippets" className="d-b" icon={IconCode}>
+              <h1 className="c-white">{'Create and manage code snippets'}</h1>
+              <p className="mt-10">{'Trigger snippets by typing "+" in the text editor'}</p>
+              <div className="Snippets d-f">
+                <div className="fg-1">
+                  <SnippetForm />
+                </div>
+                <div className="SnippetsList d-f flow-h-5 fg-1">
+                  <SnippetsList />
+                </div>
               </div>
             </TabItem>
           </TabsVertical>

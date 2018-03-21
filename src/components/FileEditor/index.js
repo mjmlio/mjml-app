@@ -19,18 +19,19 @@ import 'codemirror/addon/dialog/dialog'
 import 'codemirror/addon/scroll/annotatescrollbar'
 import 'codemirror/addon/search/matchesonscrollbar'
 import 'codemirror/mode/xml/xml'
-import 'codemirror/addon/hint/show-hint'
-import 'codemirror/addon/hint/xml-hint'
 import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
+import 'helpers/codemirror-util-xml-hint'
+import 'helpers/codemirror-util-show-hint'
 
 import {
-  tags as autocompleteTags,
   completeAfter,
   completeIfAfterLt,
   completeIfInTag,
 } from 'helpers/codemirror-autocomplete-mjml'
+
+import { completeAfterSnippet } from 'helpers/codemirror-autocomplete-snippets'
 
 import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
@@ -50,6 +51,7 @@ import './styles.scss'
       highlightTag: settings.getIn(['editor', 'highlightTag']),
       lightTheme: settings.getIn(['editor', 'lightTheme'], false),
       errors: get(preview, 'errors', []),
+      snippets: settings.get('snippets'),
     }
   },
   {
@@ -107,6 +109,9 @@ class FileEditor extends Component {
     if (prevProps.lightTheme !== this.props.lightTheme) {
       this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
     }
+    if (prevProps.snippets !== this.props.snippets) {
+      this.initEditor()
+    }
   }
 
   componentWillUnmount() {
@@ -150,7 +155,7 @@ class FileEditor extends Component {
       return
     }
 
-    const { wrapLines, highlightTag, lightTheme } = this.props
+    const { wrapLines, highlightTag, lightTheme, snippets } = this.props
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
@@ -183,10 +188,8 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
+        "'+'": cm => completeAfterSnippet(CodeMirror, cm, snippets),
         /* eslint-enable quotes */
-      },
-      hintOptions: {
-        schemaInfo: autocompleteTags,
       },
       lint: this.handleValidate,
     })

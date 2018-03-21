@@ -53,6 +53,7 @@ export function loadSettings() {
         mobile: 320,
         desktop: 650,
       },
+      snippets: [],
     })
 
     // clean old format for TargetEmails

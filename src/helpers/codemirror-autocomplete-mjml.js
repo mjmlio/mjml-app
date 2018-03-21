@@ -126,6 +126,11 @@ export const tags = {
       'css-class': null,
     },
   },
+  'mj-class': {
+    attrs: {
+      name: null,
+    },
+  },
   'mj-column': {
     attrs: {
       'background-color': null,
@@ -471,16 +476,23 @@ export function completeAfter(CodeMirror, cm, pred) {
   var cur = cm.getCursor()
   if (!pred || pred())
     setTimeout(function() {
-      if (!cm.state.completionActive) cm.showHint({ completeSingle: false })
+      if (!cm.state.completionActive)
+        cm.showHint({
+          completeSingle: false,
+          schemaInfo: tags,
+          tags: 'mjml',
+        })
     }, 100)
   return CodeMirror.Pass
 }
+
 export function completeIfAfterLt(CodeMirror, cm) {
   return completeAfter(CodeMirror, cm, function() {
     var cur = cm.getCursor()
     return cm.getRange(CodeMirror.Pos(cur.line, cur.ch - 1), cur) == '<'
   })
 }
+
 export function completeIfInTag(CodeMirror, cm) {
   return completeAfter(CodeMirror, cm, function() {
     var tok = cm.getTokenAt(cm.getCursor())
