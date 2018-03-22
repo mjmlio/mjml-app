@@ -19,6 +19,7 @@ class SnippetForm extends Component {
   state = {
     snippetNameIsAvailable: true,
     snippetTriggerIsAvailable: true,
+    snippetWasEdited: false,
   }
 
   handleChangeName = (e, originalName) => {
@@ -26,22 +27,24 @@ class SnippetForm extends Component {
     const { settings } = this.props
     const snippets = settings.get('snippets')
 
+    this.setState({
+      snippetWasEdited: true,
+      snippetName: value,
+    })
+
     if (snippets.find(s => s.name === value.trim())) {
       if (snippets.find(s => s.name === value.trim()).name !== originalName) {
         this.setState({
           snippetNameIsAvailable: false,
-          snippetName: value,
         })
       } else {
         this.setState({
           snippetNameIsAvailable: true,
-          snippetName: value,
         })
       }
     } else {
       this.setState({
         snippetNameIsAvailable: true,
-        snippetName: value,
       })
     }
   }
@@ -52,31 +55,32 @@ class SnippetForm extends Component {
 
     const snippets = settings.get('snippets')
 
+    this.setState({
+      snippetWasEdited: true,
+      snippetTrigger: value,
+    })
+
     if (/\s/g.test(value)) {
       this.setState({
         snippetTriggerIsAvailable: true,
         snippetTriggerIsInvalid: true,
-        snippetTrigger: value,
       })
     } else if (snippets.find(s => s.trigger === value.trim())) {
       if (snippets.find(s => s.trigger === value.trim()).name !== originalName) {
         this.setState({
           snippetTriggerIsAvailable: false,
           snippetTriggerIsInvalid: false,
-          snippetTrigger: value,
         })
       } else {
         this.setState({
           snippetTriggerIsAvailable: true,
           snippetTriggerIsInvalid: false,
-          snippetTrigger: value,
         })
       }
     } else {
       this.setState({
         snippetTriggerIsAvailable: true,
         snippetTriggerIsInvalid: false,
-        snippetTrigger: value,
       })
     }
   }
@@ -84,6 +88,7 @@ class SnippetForm extends Component {
   handleChangeContent = e => {
     const { value } = e.target
     this.setState({
+      snippetWasEdited: true,
       snippetContent: value,
     })
   }
@@ -119,6 +124,7 @@ class SnippetForm extends Component {
       snippetNameIsAvailable,
       snippetTriggerIsAvailable,
       snippetTriggerIsInvalid,
+      snippetWasEdited,
     } = this.state
 
     const { name, trigger, content, snippetIsEdited } = this.props
@@ -135,7 +141,7 @@ class SnippetForm extends Component {
                 className="fg-1"
                 onChange={e => this.handleChangeName(e, name)}
                 placeholder="Name"
-                value={snippetName || name}
+                value={snippetWasEdited ? snippetName : name}
                 type="text"
                 autoFocus
               />
@@ -156,7 +162,7 @@ class SnippetForm extends Component {
                 className="fg-1"
                 onChange={e => this.handleChangeTrigger(e, name)}
                 placeholder="Trigger"
-                value={snippetTrigger || trigger}
+                value={snippetWasEdited ? snippetTrigger : trigger}
                 type="text"
               />
             </div>
@@ -181,7 +187,7 @@ class SnippetForm extends Component {
                 <textarea
                   onChange={this.handleChangeContent}
                   placeholder="Content"
-                  value={snippetContent || content}
+                  value={snippetWasEdited ? snippetContent : content}
                   type="text"
                 />
               </div>
