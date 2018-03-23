@@ -16,7 +16,14 @@ import { addSnippet, updateSnippet } from 'actions/snippets'
   },
 )
 class SnippetForm extends Component {
+  static defaultProps = {
+      name: '',
+      trigger: '',
+    }
+
   state = {
+    snippetName: '',
+    snippetTrigger: '',
     snippetNameIsAvailable: true,
     snippetTriggerIsAvailable: true,
     snippetWasEdited: false,
