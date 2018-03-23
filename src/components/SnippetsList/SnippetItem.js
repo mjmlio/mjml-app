@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import IconEdit from 'react-icons/md/mode-edit'
-import IconClose from 'react-icons/md/close'
+import IconExpandMore from 'react-icons/md/expand-more'
+import IconExpandLess from 'react-icons/md/expand-less'
+import IconDelete from 'react-icons/md/delete'
 
 import { loadSnippet, deleteSnippet } from 'actions/snippets'
 
@@ -47,10 +48,15 @@ class SnippetItem extends Component {
           </div>
           <div className="SnippetItem--item-actions">
             <div onClick={this.handleLoad} className="action action-rename">
-              <IconEdit />
+              {snippetIsEdited && (
+                <IconExpandLess />)
+              }
+              {!snippetIsEdited && (
+                <IconExpandMore />)
+              }
             </div>
             <div onClick={() => this.handleDelete(name)} className="action action-remove">
-              <IconClose />
+              <IconDelete />
             </div>
           </div>
         </div>
