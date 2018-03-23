@@ -22,8 +22,6 @@ import 'codemirror/mode/xml/xml'
 import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
-import 'helpers/codemirror-util-xml-hint'
-import 'helpers/codemirror-util-show-hint'
 
 import {
   completeAfter,
@@ -188,7 +186,7 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
-        "'+'": cm => completeAfterSnippet(CodeMirror, cm, snippets),
+        Tab: cm => completeAfterSnippet(CodeMirror, cm, snippets),
         /* eslint-enable quotes */
       },
       lint: this.handleValidate,
