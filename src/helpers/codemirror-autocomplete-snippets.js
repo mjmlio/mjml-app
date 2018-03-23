@@ -19,6 +19,11 @@ export function completeAfterSnippet(CodeMirror, cm, snippets) {
         line: trigger.head.line,
       },
     )
+  } else {
+    cm.replaceRange('\t', {
+      ch: trigger.head.ch,
+      line: trigger.head.line,
+    })
   }
 
   return CodeMirror.Pass
