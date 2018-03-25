@@ -16,6 +16,7 @@ import { updateSettings } from 'actions/settings'
 
 import FileEditor from 'components/FileEditor'
 import FilePreview from './FilePreview'
+import OldSyntaxDetected from './OldSyntaxDetected'
 
 import './styles.scss'
 
@@ -52,6 +53,7 @@ class FilesList extends Component {
     isDragging: false,
     renamedFile: null,
     newName: '',
+    isOldSyntaxDetected: false,
   }
 
   componentWillMount() {
@@ -82,6 +84,8 @@ class FilesList extends Component {
     this._unmounted = true
     ipcRenderer.removeListener('browser-window-focus', this.refresh)
   }
+
+  handleDetectOldSyntax = () => this.setState({ isOldSyntaxDetected: true })
 
   handleSubmit = e => {
     e.preventDefault()
@@ -177,6 +181,8 @@ class FilesList extends Component {
     }
   }
 
+  handleMigrate = () => this._editor.migrateToMJML4()
+
   setCurrentSize = size => {
     this.props.updateSettings(settings => {
       return settings.setIn(['previewSize', 'current'], size)
@@ -245,7 +251,7 @@ class FilesList extends Component {
   }
 
   render() {
-    const { files, isDragging, renamedFile, newName } = this.state
+    const { files, isDragging, renamedFile, newName, isOldSyntaxDetected } = this.state
 
     const { onRef, onEditorRef, activeFile, path, rootPath, openModal, previewSize } = this.props
 
@@ -351,6 +357,7 @@ class FilesList extends Component {
               onDragFinished={this.handlePreviewPanelStopDrag}
             >
               <div className="d-f fd-c sticky anim-enter-fade">
+                {isOldSyntaxDetected && <OldSyntaxDetected onMigrate={this.handleMigrate} />}
                 {activeFile &&
                   activeFile.name.endsWith('.mjml') && (
                     <FileEditor
@@ -360,6 +367,7 @@ class FilesList extends Component {
                       }}
                       fileName={fullActiveFile}
                       disablePointer={isDragging}
+                      onDetectOldSyntax={this.handleDetectOldSyntax}
                     />
                   )}
               </div>

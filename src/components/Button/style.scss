@@ -38,6 +38,14 @@
     z-index: 1;
   }
 
+  &.warn {
+    background: rgba(white, 0.03);
+    &:hover {
+      cursor: pointer;
+      background: rgba(white, 0.05);
+    }
+  }
+
   &.ghost,
   &.transparent {
     color: $lighterGrey;

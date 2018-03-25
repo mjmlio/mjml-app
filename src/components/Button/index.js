@@ -16,6 +16,7 @@ class Button extends Component {
       link,
       primary,
       ghost,
+      warn,
       transparent,
       unclickable,
       className,
@@ -28,6 +29,7 @@ class Button extends Component {
     const cn = cx('Button', className, {
       primary,
       ghost,
+      warn,
       unclickable,
       transparent,
       small,

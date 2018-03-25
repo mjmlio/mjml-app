@@ -156,3 +156,10 @@
     }
   }
 }
+
+.OldSyntaxDetected {
+  background: rgba($yellow, 0.15);
+  border: 1px solid rgba(white, 0.1);
+  color: $yellow;
+  padding: 20px;
+}

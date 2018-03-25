@@ -1,4 +1,5 @@
 import mjml2html from 'mjml'
+import migrate from 'mjml-migrate'
 import path from 'path'
 import stream from 'stream'
 
@@ -57,4 +58,8 @@ export function wrapIntoMJMLTags(content) {
     ${content}
   </mj-body>
 </mjml>`
+}
+
+export function migrateToMJML4(content) {
+  return migrate(content)
 }

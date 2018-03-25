@@ -25,6 +25,8 @@ import 'helpers/codemirror-util-autoformat'
 import 'helpers/codemirror-util-xml-hint'
 import 'helpers/codemirror-util-show-hint'
 
+import isOldSyntax from 'helpers/detectOldMJMLSyntax'
+
 import {
   completeAfter,
   completeIfAfterLt,
@@ -33,11 +35,19 @@ import {
 
 import { completeAfterSnippet } from 'helpers/codemirror-autocomplete-snippets'
 
+import { migrateToMJML4 } from 'helpers/mjml'
 import foldByLevel from 'helpers/foldByLevel'
 import { fsReadFile, fsWriteFile } from 'helpers/fs'
 import { setPreview } from 'actions/preview'
 
 import './styles.scss'
+
+function beautify(content) {
+  return beautifyJS.html(content, {
+    indent_size: 2, // eslint-disable-line camelcase
+    wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
+  })
+}
 
 @connect(
   state => {
@@ -73,6 +83,7 @@ class FileEditor extends Component {
     window.requestIdleCallback(() => {
       this.initEditor()
       this.loadContent()
+      window.requestIdleCallback(this.detecteOldSyntax)
     })
   }
 
@@ -118,6 +129,13 @@ class FileEditor extends Component {
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
       this._codeMirror = null
+    }
+  }
+
+  detecteOldSyntax = () => {
+    const content = this.getContent()
+    if (isOldSyntax(content)) {
+      this.props.onDetectOldSyntax()
     }
   }
 
@@ -219,15 +237,31 @@ class FileEditor extends Component {
     }
   }, 200)
 
-  beautify = () => {
-    const value = this._codeMirror.getValue()
+  getContent = () => {
+    return this._codeMirror.getValue()
+  }
+
+  setContent = content => {
     const scrollInfo = this._codeMirror.getScrollInfo()
-    const beautified = beautifyJS.html(value, {
-      indent_size: 2, // eslint-disable-line camelcase
-      wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
-    })
-    this._codeMirror.setValue(beautified)
+    this._codeMirror.setValue(content)
     this._codeMirror.scrollTo(0, scrollInfo.top)
+  }
+
+  beautify = () => {
+    const value = this.getContent()
+    const beautified = beautify(value)
+    this.setContent(beautified)
+  }
+
+  migrateToMJML4 = () => {
+    try {
+      const content = this.getContent()
+      const migratedContent = migrateToMJML4(content)
+      const beautified = beautify(migratedContent)
+      this.setContent(beautified)
+    } catch (err) {
+      console.error(err) // eslint-disable-line no-console
+    }
   }
 
   debounceWrite = debounce((fileName, mjml) => {
