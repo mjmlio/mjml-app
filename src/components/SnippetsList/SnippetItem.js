@@ -48,12 +48,8 @@ class SnippetItem extends Component {
           </div>
           <div className="SnippetItem--item-actions">
             <div onClick={this.handleLoad} className="action action-rename">
-              {snippetIsEdited && (
-                <IconExpandLess />)
-              }
-              {!snippetIsEdited && (
-                <IconExpandMore />)
-              }
+              {snippetIsEdited && <IconExpandLess />}
+              {!snippetIsEdited && <IconExpandMore />}
             </div>
             <div onClick={() => this.handleDelete(name)} className="action action-remove">
               <IconDelete />
