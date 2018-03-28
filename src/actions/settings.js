@@ -33,6 +33,9 @@ export function loadSettings() {
         foldLevel: 1,
         highlightTag: false,
         lightTheme: false,
+        useTab: false,
+        tabSize: 2,
+        indentSize: 2,
       },
       mjml: {
         minify: false,
