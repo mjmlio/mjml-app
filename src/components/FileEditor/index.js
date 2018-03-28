@@ -62,6 +62,9 @@ function beautify(content) {
       lightTheme: settings.getIn(['editor', 'lightTheme'], false),
       errors: get(preview, 'errors', []),
       snippets: settings.get('snippets'),
+      useTab: settings.getIn(['editor', 'useTab'], false),
+      tabSize: settings.getIn(['editor', 'tabSize'], 2),
+      indentSize: settings.getIn(['editor', 'indentSize'], 2),
     }
   },
   {
@@ -123,6 +126,15 @@ class FileEditor extends Component {
     if (prevProps.snippets !== this.props.snippets) {
       this.initEditor()
     }
+    if (prevProps.useTab !== this.props.useTab) {
+      this._codeMirror.setOption('indentWithTabs', this.props.useTab)
+    }
+    if (prevProps.tabSize !== this.props.tabSize) {
+      this._codeMirror.setOption('tabSize', this.props.tabSize)
+    }
+    if (prevProps.indentSize !== this.props.indentSize) {
+      this._codeMirror.setOption('indentUnit', this.props.indentSize)
+    }
   }
 
   componentWillUnmount() {
@@ -173,7 +185,15 @@ class FileEditor extends Component {
       return
     }
 
-    const { wrapLines, highlightTag, lightTheme, snippets } = this.props
+    const {
+      wrapLines,
+      highlightTag,
+      lightTheme,
+      snippets,
+      useTab,
+      tabSize,
+      indentSize,
+    } = this.props
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
@@ -183,9 +203,9 @@ class FileEditor extends Component {
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
       dragDrop: false,
       matchTags: highlightTag ? { bothTags: true } : undefined,
-      indentUnit: 2,
-      tabSize: 2,
-      indentWithTabs: false,
+      indentUnit: indentSize,
+      tabSize: tabSize,
+      indentWithTabs: useTab,
       mode: 'xml',
       lineNumbers: true,
       theme: lightTheme ? 'neo' : 'one-dark',

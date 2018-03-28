@@ -94,6 +94,9 @@ class SettingsModal extends Component {
     const editorLightTheme = settings.getIn(['editor', 'lightTheme'], false)
     const minifyOutput = settings.getIn(['mjml', 'minify'], false)
     const beautifyOutput = settings.getIn(['mjml', 'beautify'], false)
+    const editorUseTab = settings.getIn(['editor', 'useTab'], false)
+    const editorTabSize = settings.getIn(['editor', 'tabSize'], 2)
+    const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
 
     return (
       <Modal
@@ -156,6 +159,39 @@ class SettingsModal extends Component {
                   />
                 </div>
               </CheckBox>
+              <CheckBox value={editorUseTab} onChange={this.changeEditorSetting('useTab')}>
+                <div>{'User tab character'}</div>
+                <div className="mt-5">
+                  {'Tab size:'}
+                  <input
+                    className="ml-5"
+                    type="number"
+                    min={1}
+                    style={{ width: 80 }}
+                    value={editorTabSize}
+                    onClick={e => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                    }}
+                    onChange={e => this.changeEditorSetting('tabSize')(Number(e.target.value))}
+                  />
+                </div>
+              </CheckBox>
+              <div className="mt-5">
+                {'Indent size:'}
+                <input
+                  className="ml-5"
+                  type="number"
+                  min={1}
+                  style={{ width: 80 }}
+                  value={editorIndentSize}
+                  onClick={e => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                  }}
+                  onChange={e => this.changeEditorSetting('indentSize')(Number(e.target.value))}
+                />
+              </div>
             </TabItem>
 
             <TabItem title="Preview" className="flow-v-10" icon={IconPreview}>
