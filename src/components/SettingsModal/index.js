@@ -186,7 +186,7 @@ class SettingsModal extends Component {
 
             <TabItem title="Snippets" className="d-b" icon={IconCode}>
               <h1 className="c-white">{'Create and manage code snippets'}</h1>
-              <p className="mt-10">{'Trigger snippets by typing "+" in the text editor'}</p>
+              <p className="mt-10">{'Type a trigger and hit tab to expand it in the editor'}</p>
               <div className="Snippets d-f">
                 <div className="fg-1">
                   <SnippetForm />
