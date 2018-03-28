@@ -201,10 +201,10 @@ class FileEditor extends Component {
     }
 
     this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
+      tabSize,
       dragDrop: false,
       matchTags: highlightTag ? { bothTags: true } : undefined,
       indentUnit: indentSize,
-      tabSize: tabSize,
       indentWithTabs: useTab,
       mode: 'xml',
       lineNumbers: true,
