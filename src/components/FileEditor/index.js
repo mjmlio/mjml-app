@@ -18,12 +18,12 @@ import 'codemirror/addon/search/jump-to-line'
 import 'codemirror/addon/dialog/dialog'
 import 'codemirror/addon/scroll/annotatescrollbar'
 import 'codemirror/addon/search/matchesonscrollbar'
+import 'codemirror/addon/hint/show-hint'
+import 'codemirror/addon/hint/xml-hint'
 import 'codemirror/mode/xml/xml'
 import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
-import 'helpers/codemirror-util-xml-hint'
-import 'helpers/codemirror-util-show-hint'
 
 import isOldSyntax from 'helpers/detectOldMJMLSyntax'
 
@@ -123,9 +123,6 @@ class FileEditor extends Component {
     if (prevProps.lightTheme !== this.props.lightTheme) {
       this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
     }
-    if (prevProps.snippets !== this.props.snippets) {
-      this.initEditor()
-    }
     if (prevProps.useTab !== this.props.useTab) {
       this._codeMirror.setOption('indentWithTabs', this.props.useTab)
     }
@@ -189,7 +186,6 @@ class FileEditor extends Component {
       wrapLines,
       highlightTag,
       lightTheme,
-      snippets,
       useTab,
       tabSize,
       indentSize,
@@ -226,11 +222,12 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
-        "'+'": cm => completeAfterSnippet(CodeMirror, cm, snippets),
         /* eslint-enable quotes */
       },
       lint: this.handleValidate,
     })
+
+    this._codeMirror.on('keydown', (cm, e) => this.handleKey(cm, e))
 
     this._codeMirror.on('change', this.handleChange)
   }
@@ -243,6 +240,14 @@ class FileEditor extends Component {
       from: CodeMirror.Pos(err.line - 1, 1),
       to: CodeMirror.Pos(err.line - 1, 1),
     }))
+  }
+
+  handleKey = (cm, e) => {
+    const { snippets } = this.props
+    if (e.key === 'Tab') {
+      e.preventDefault()
+      return completeAfterSnippet(CodeMirror, cm, snippets)
+    }
   }
 
   handleChange = debounce(async () => {

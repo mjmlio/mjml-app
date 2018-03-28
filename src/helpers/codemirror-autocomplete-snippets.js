@@ -1,19 +1,30 @@
-/* eslint-disable */
-
 export function completeAfterSnippet(CodeMirror, cm, snippets) {
   const triggers = {}
   snippets.map(e => {
-    return (triggers['+' + e.trigger] = e.content)
+    return (triggers[e.trigger] = e.content)
   })
 
-  setTimeout(function() {
-    if (!cm.state.completionActive)
-      cm.showHint({
-        completeSingle: false,
-        schemaInfo: triggers,
-        tags: 'snippets',
-      })
-  }, 100)
+  const trigger = cm.findWordAt(cm.getCursor())
+  const range = cm.getRange(trigger.anchor, trigger.head)
+
+  if (triggers[range]) {
+    cm.replaceRange(
+      triggers[range],
+      {
+        ch: trigger.anchor.ch,
+        line: trigger.anchor.line,
+      },
+      {
+        ch: trigger.head.ch,
+        line: trigger.head.line,
+      },
+    )
+  } else {
+    cm.replaceRange('\t', {
+      ch: trigger.head.ch,
+      line: trigger.head.line,
+    })
+  }
 
   return CodeMirror.Pass
 }
