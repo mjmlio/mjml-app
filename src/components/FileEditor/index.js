@@ -182,14 +182,7 @@ class FileEditor extends Component {
       return
     }
 
-    const {
-      wrapLines,
-      highlightTag,
-      lightTheme,
-      useTab,
-      tabSize,
-      indentSize,
-    } = this.props
+    const { wrapLines, highlightTag, lightTheme, useTab, tabSize, indentSize } = this.props
 
     if (this._codeMirror) {
       this._codeMirror.toTextArea()
