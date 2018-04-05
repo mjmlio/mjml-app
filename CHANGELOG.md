@@ -1,3 +1,11 @@
+### 2.9.0 (2018-04-05)
+
+- Ability to create and update code snippets ([#227](https://github.com/mjmlio/mjml-app/pull/227)) - @ngarnier
+- [MJML](https://github.com/mjmlio/mjml) 4.0.3
+- Ability to search projects from dashboard ([#220](https://github.com/mjmlio/mjml-app/issues/220))
+- Associate .MJML extension with MJML app ([#144](https://github.com/mjmlio/mjml-app/issues/144))
+- Fix click on links behind mobile/desktop switch ([#191](https://github.com/mjmlio/mjml-app/issues/191))
+
 ### 2.8.0 (2018-03-06)
 
 - [MJML](https://github.com/mjmlio/mjml) 4 ([#213](https://github.com/mjmlio/mjml-app/issues/213)), update of default templates for MJML 4
