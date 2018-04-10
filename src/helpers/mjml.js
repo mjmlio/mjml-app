@@ -10,7 +10,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
     window.requestIdleCallback(async () => {
       try {
         if (mjmlPath) {
-          if (!mjmlContent.trim().startsWith('<mjml>')) {
+          if (!mjmlContent.trim().startsWith('<mjml')) {
             const stdinStream = new stream.Readable()
             stdinStream.push(wrapIntoMJMLTags(mjmlContent))
             stdinStream.push(null)
@@ -34,7 +34,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             resolve({ html: res.stdout, errors: [] })
           }
         } else {
-          if (!mjmlContent.trim().startsWith('<mjml>')) {
+          if (!mjmlContent.trim().startsWith('<mjml')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
           const mjmlOptions = {
@@ -43,6 +43,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             minify: !!options.minify,
           }
           const res = mjml2html(mjmlContent, mjmlOptions)
+
           resolve({ html: res.html || '', errors: res.errors || [] })
         }
       } catch (e) {
