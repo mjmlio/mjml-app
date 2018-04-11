@@ -181,7 +181,10 @@ class FilesList extends Component {
     }
   }
 
-  handleMigrate = () => this._editor.migrateToMJML4()
+  handleMigrate = () => {
+    this._editor.migrateToMJML4()
+    this.setState({ isOldSyntaxDetected: false })
+  }
 
   setCurrentSize = size => {
     this.props.updateSettings(settings => {
