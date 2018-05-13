@@ -1,6 +1,5 @@
 import { remote } from 'electron'
 import path from 'path'
-import os from 'os'
 
 import { fsWriteFile, fsUnlink } from 'helpers/fs'
 
