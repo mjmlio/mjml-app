@@ -124,6 +124,7 @@ class ProjectPage extends Component {
   }
 
   handleExportToHTML = async () => {
+    this.checkForRelativePaths();
     const p = saveDialog({
       title: 'Export to HTML file',
       defaultPath: this.props.location.query.path,
@@ -169,6 +170,14 @@ class ProjectPage extends Component {
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
+
+  checkForRelativePaths(){
+    const { preview, beautifyOutput } = this.props
+    const relativePathsRegex = new RegExp(/(?:href|src)=(["'])(?!mailto|https|http|data:).*?\1/g);
+    let matches = preview.content.match(relativePathsRegex);
+    matches = matches.map(match=>'->'+match);
+    this.props.addAlert(['Found possible non-absolute paths:',...matches], 'error',false);
+  }
 
   getHTMLOutput() {
     const { preview, beautifyOutput } = this.props
