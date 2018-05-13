@@ -126,7 +126,7 @@ class ProjectPage extends Component {
   handleExportToHTML = async () => {
     const p = saveDialog({
       title: 'Export to HTML file',
-      defaultPath: this.props.location.query.path,
+      defaultPath: this.state.path,
       filters: [{ name: 'All Files', extensions: ['html'] }],
     })
     if (!p) {
