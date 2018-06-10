@@ -31,7 +31,7 @@ import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
-import takeScreenshot from 'helpers/takeScreenshot'
+import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
 
 @connect(
   state => ({
@@ -126,7 +126,7 @@ class ProjectPage extends Component {
   handleExportToHTML = async () => {
     const p = saveDialog({
       title: 'Export to HTML file',
-      defaultPath: this.props.location.query.path,
+      defaultPath: this.state.path,
       filters: [{ name: 'All Files', extensions: ['html'] }],
     })
     if (!p) {
@@ -150,9 +150,11 @@ class ProjectPage extends Component {
     const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
 
     const [mobileScreenshot, desktopScreenshot] = await Promise.all([
-      takeScreenshot(preview.content, mobileWidth),
-      takeScreenshot(preview.content, desktopWidth),
+      takeScreenshot(preview.content, mobileWidth, this.state.path),
+      takeScreenshot(preview.content, desktopWidth, this.state.path),
     ])
+
+    await cleanUp(this.state.path)
 
     await Promise.all([
       fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
