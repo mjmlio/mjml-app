@@ -180,6 +180,8 @@ class FilesList extends Component {
           this.handleCancelRename()
         } catch (e) {} // eslint-disable-line
         break
+      default:
+        break;
     }
   }
 
