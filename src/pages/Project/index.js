@@ -173,10 +173,10 @@ class ProjectPage extends Component {
   openAddFileModal = () => this.props.openModal('addFile')
 
   checkForRelativePaths(){
-    const { preview, beautifyOutput } = this.props
+    const { preview } = this.props
     const relativePathsRegex = new RegExp(/(?:href|src)=(["'])(?!mailto|https|http|data:).*?\1/g);
     let matches = preview.content.match(relativePathsRegex);
-    matches = matches.map(match=>'■ '+match);
+    matches = matches.map(match=>`■ ${match}`);
     this.props.addAlert(['Found possible non-absolute paths:',...matches], 'error', {autoHide:false});
   }
 
