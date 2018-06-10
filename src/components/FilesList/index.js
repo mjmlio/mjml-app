@@ -181,7 +181,7 @@ class FilesList extends Component {
         } catch (e) {} // eslint-disable-line
         break
       default:
-        break;
+        break
     }
   }
 
