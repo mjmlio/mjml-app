@@ -270,3 +270,32 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.tooltip-trigger:hover {
+  .tooltip {
+    display: block;
+  }
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background: rgba(32, 32, 32, 0.9);
+  padding: 8px;
+  margin-top:8px;
+  line-height: 1.5;
+  pointer-events: none;
+  &.tooltip-up {
+    &::before {
+      content: "";
+      position: absolute;
+      top:-8px;
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid rgba(32, 32, 32, 0.9);
+    }
+  }
+}

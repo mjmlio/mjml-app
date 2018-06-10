@@ -12,7 +12,8 @@ export default handleActions(
 
 let __ID__ = 0
 
-export function addAlert(message, type = 'info', autoHide = true) {
+export function addAlert(message, type = 'info', {autoHide=true}) {
+  // opts.autoHide = opts.autoHide || true;
   return dispatch => {
     const alert = { id: __ID__++, message, type }
     dispatch({ type: 'ALERT_ADD', payload: alert })

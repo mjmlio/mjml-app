@@ -35,11 +35,12 @@ export function loadSettings() {
         lightTheme: false,
         useTab: false,
         tabSize: 2,
-        indentSize: 2,
+        indentSize: 2
       },
       mjml: {
         minify: false,
         beautify: false,
+        checkForRelativePaths:false
       },
       projects: [],
       api: {
