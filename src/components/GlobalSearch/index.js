@@ -8,9 +8,12 @@ import { searchText } from 'reducers/search'
 
 import './style.scss'
 
-@connect(({ search }) => ({ search }), {
-  searchText,
-})
+@connect(
+  ({ search }) => ({ search }),
+  {
+    searchText,
+  },
+)
 class GlobalSearch extends PureComponent {
   state = {
     isFocused: false,

@@ -127,9 +127,16 @@ class SettingsModal extends Component {
               <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
               </CheckBox>
-              <CheckBox className="tooltip-trigger" value={checkForRelativePaths} onChange={this.changeMJMLSetting('checkForRelativePaths')}>
+              <CheckBox
+                className="tooltip-trigger"
+                value={checkForRelativePaths}
+                onChange={this.changeMJMLSetting('checkForRelativePaths')}
+              >
                 {'Warn for relative paths on HTML export'}
-                <small className="tooltip tooltip-up">Relative Paths like /image.jpg are usually not supported in Email Clients. This setting warns you if such are found in the code.</small>
+                <small className="tooltip tooltip-up">
+                  Relative Paths like /image.jpg are usually not supported in Email Clients. This
+                  setting warns you if such are found in the code.
+                </small>
               </CheckBox>
             </TabItem>
 

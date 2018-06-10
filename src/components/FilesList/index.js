@@ -156,7 +156,9 @@ class FilesList extends Component {
     })
 
   handleRenameInputKeyDown = async e => {
-    switch (e.which) { // eslint-disable-line
+    switch (
+      e.which // eslint-disable-line
+    ) {
       case 27:
         this.handleCancelRename()
         break
@@ -216,7 +218,9 @@ class FilesList extends Component {
           const activeIndex =
             indexOfIndexFile > -1
               ? indexOfIndexFile
-              : indexOfFirstMJMLFile > -1 ? indexOfFirstMJMLFile : 0
+              : indexOfFirstMJMLFile > -1
+                ? indexOfFirstMJMLFile
+                : 0
           this.props.onActiveFileChange(files[activeIndex])
           this._hasFocused = true
         }

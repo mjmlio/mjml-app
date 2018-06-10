@@ -12,11 +12,11 @@ export default handleActions(
 
 let __ID__ = 0
 
-export function addAlert(message, type = 'info', {autoHide=true}) {
+export function addAlert(message, type = 'info', { autoHide = true }) {
   return dispatch => {
     const alert = { id: __ID__++, message, type }
     dispatch({ type: 'ALERT_ADD', payload: alert })
-    if(autoHide) setTimeout(() => dispatch(removeAlert(alert.id)), 2e3)
+    if (autoHide) setTimeout(() => dispatch(removeAlert(alert.id)), 2e3)
   }
 }
 

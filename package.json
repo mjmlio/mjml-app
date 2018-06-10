@@ -77,7 +77,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "node-sass": "^4.8.3",
-    "prettier": "^1.11.1",
+    "prettier": "^1.13.5",
     "redux-logger": "^3.0.6",
     "sass-loader": "^6.0.7",
     "webpack": "3.11.0"

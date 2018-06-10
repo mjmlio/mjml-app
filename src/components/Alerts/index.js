@@ -32,9 +32,7 @@ class Alerts extends Component {
                 className={cx('Alerts--item', a.type)}
               >
                 {a.type === 'error' && <IconError className="mr-10" size={30} />}
-                {Array.isArray(a.message) ? a.message.map(line => (
-                  <div>{line}</div>
-                  )) : a.message}
+                {Array.isArray(a.message) ? a.message.map(line => <div>{line}</div>) : a.message}
               </div>
             ))}
           </Steack>
