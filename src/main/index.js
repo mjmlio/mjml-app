@@ -10,6 +10,7 @@ const isDevelopment = !isProduction
 
 // allows app to find node when launched from GUI
 const fixPath = require('fix-path')
+
 fixPath()
 
 let mainWindow
