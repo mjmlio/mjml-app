@@ -15,7 +15,12 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             stdinStream.push(wrapIntoMJMLTags(mjmlContent))
             stdinStream.push(null)
 
-            const args = ['-i', '-s', '--config.validationLevel=skip', ...(options.minify ? ['-m'] : [])]
+            const args = [
+              '-i',
+              '-s',
+              '--config.validationLevel=skip',
+              ...(options.minify ? ['-m'] : []),
+            ]
 
             const res = await execFile(mjmlPath, args, stdinStream)
             if (res.err) {
@@ -24,7 +29,11 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
 
             resolve({ html: res.stdout, errors: [] })
           } else {
-            const args = ['-s', ' --config.validationLevel="skip"', ...(options.minify ? ['-m'] : [])]
+            const args = [
+              '-s',
+              ' --config.validationLevel="skip"',
+              ...(options.minify ? ['-m'] : []),
+            ]
 
             const res = await exec(`${mjmlPath} "${filePath}" ${args.join(' ')}`)
             if (res.err) {
