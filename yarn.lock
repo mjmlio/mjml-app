@@ -2148,6 +2148,13 @@ crocket@^0.9.11:
   dependencies:
     xpipe "*"
 
+cross-env@^5.1.4:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.2.0.tgz#6ecd4c015d5773e614039ee529076669b9d126f2"
+  dependencies:
+    cross-spawn "^6.0.5"
+    is-windows "^1.0.0"
+
 cross-spawn-async@^2.1.1:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/cross-spawn-async/-/cross-spawn-async-2.2.5.tgz#845ff0c0834a3ded9d160daca6d390906bb288cc"
@@ -2174,6 +2181,16 @@ cross-spawn@^5.0.1, cross-spawn@^5.1.0:
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
   dependencies:
     lru-cache "^4.0.1"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
+cross-spawn@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
+  dependencies:
+    nice-try "^1.0.4"
+    path-key "^2.0.1"
+    semver "^5.5.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
 
@@ -4759,7 +4776,7 @@ is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
 
-is-windows@^1.0.2:
+is-windows@^1.0.0, is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
 
@@ -5426,257 +5443,288 @@ mixin-object@^2.0.1:
     for-in "^0.1.3"
     is-extendable "^0.1.1"
 
-mjml-accordion@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-accordion/-/mjml-accordion-4.0.2.tgz#48b4ea6078a08f246c70609e260215033a8733f5"
+mjml-accordion@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-accordion/-/mjml-accordion-4.1.0.tgz#d4097ea7d220e72bcb10e88df13f0a5647e98a7d"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-body@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-body/-/mjml-body-4.0.2.tgz#4291823936a92cb48743c807147286a01fbe43cd"
+mjml-body@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-body/-/mjml-body-4.1.0.tgz#4868f0e4092ffe0a01eb39abbc8d4a6a695a1081"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-button@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-button/-/mjml-button-4.0.1.tgz#1e91ad5f066daadc3f13d4c3910ccf70cfbc14eb"
+mjml-button@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-button/-/mjml-button-4.1.0.tgz#001ae47edc3f09d95bae5883a86efbcc0a2cb875"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-carousel@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-carousel/-/mjml-carousel-4.0.2.tgz#425b0acd6775ca65bb0fa8d31b9f50761dfc702c"
+mjml-carousel@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-carousel/-/mjml-carousel-4.1.0.tgz#395227eacc39a44abcbaec13164f96cb5c808877"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-cli@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml-cli/-/mjml-cli-4.0.3.tgz#5bf43c558bdb613391abda91e1a763c87a9f9335"
+mjml-cli@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-cli/-/mjml-cli-4.1.0.tgz#8bb53b219e27898d320d18e21ee422f9440ac063"
   dependencies:
     babel-runtime "^6.26.0"
     chokidar "^1.6.1"
+    cross-env "^5.1.4"
     glob "^7.1.1"
     js-beautify "^1.6.14"
     lodash "^4.17.4"
-    mjml-core "^4.0.1"
-    mjml-migrate "^4.0.1"
-    mjml-parser-xml "^4.0.1"
-    mjml-validator "^4.0.1"
+    mjml-core "^4.1.0"
+    mjml-migrate "^4.1.0"
+    mjml-parser-xml "^4.1.0"
+    mjml-validator "^4.1.0"
     yargs "^8.0.2"
 
-mjml-column@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml-column/-/mjml-column-4.0.3.tgz#b517b5c28140b5932c6dce8087b7c3dd9dc74314"
+mjml-column@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-column/-/mjml-column-4.1.0.tgz#fee998b633bc301c3217fda7c6393be5936f9cde"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-core@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-core/-/mjml-core-4.0.1.tgz#1eb4a9d989138f7d780a121f600500b455275715"
+mjml-core@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-core/-/mjml-core-4.1.0.tgz#027377330eab27411a6236a5309697f636c15b84"
   dependencies:
+    cross-env "^5.1.4"
     html-minifier "^3.5.3"
     js-beautify "^1.6.14"
     juice "^4.1.0"
-    lodash "^4.17.3"
-    mjml-migrate "^4.0.1"
-    mjml-parser-xml "^4.0.1"
-    mjml-validator "^4.0.1"
-
-mjml-divider@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-divider/-/mjml-divider-4.0.1.tgz#c35859522df0084961fbaf39cae2e8a337133c71"
-  dependencies:
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-migrate "^4.1.0"
+    mjml-parser-xml "^4.1.0"
+    mjml-validator "^4.1.0"
 
-mjml-group@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-group/-/mjml-group-4.0.2.tgz#e3d884c8deb79149e924909c9ecb334303ab5ddf"
+mjml-divider@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-divider/-/mjml-divider-4.1.0.tgz#9fe7dcbc62add506edebda9627dc8ab581cbf3fa"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-attributes@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head-attributes/-/mjml-head-attributes-4.0.1.tgz#5f45db52ea8c08aeb0fc6c8de4427a7b631fb98c"
+mjml-group@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-group/-/mjml-group-4.1.0.tgz#67bba95e3d420b905290e094c1122751e18744e8"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-breakpoint@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head-breakpoint/-/mjml-head-breakpoint-4.0.1.tgz#aa196d6e721039ab740287b60e2f7835eb5e4c11"
+mjml-head-attributes@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-attributes/-/mjml-head-attributes-4.1.0.tgz#ba298f3afa83f2d039d7f87322e197aa868f66a9"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-font@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-head-font/-/mjml-head-font-4.0.2.tgz#329647f4c60cde4620a75d348a79cf0d55ea9271"
+mjml-head-breakpoint@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-breakpoint/-/mjml-head-breakpoint-4.1.0.tgz#2a2901f4e37a03e2d560665f910fe02000058b25"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-preview@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head-preview/-/mjml-head-preview-4.0.1.tgz#88bd1f2f8b196d28361e28bfaa62b82b132b7b67"
+mjml-head-font@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-font/-/mjml-head-font-4.1.0.tgz#32a487275e48d6b9b77d0990692b23e2f0d9044d"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-style@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head-style/-/mjml-head-style-4.0.1.tgz#44b3082c3d373afe11319c9f9e511532bc082ff4"
+mjml-head-preview@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-preview/-/mjml-head-preview-4.1.0.tgz#bc0a29441badb1e5edc7612861f79afe1e7bfe25"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head-title@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head-title/-/mjml-head-title-4.0.1.tgz#7ef0dbfd90e0b3be6ca43d844015b7ed9f7d7012"
+mjml-head-style@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-style/-/mjml-head-style-4.1.0.tgz#a773923a0ebc363d06dc5ad6ac5a82b825893332"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-head@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-head/-/mjml-head-4.0.1.tgz#96cfc6a38ae285c908b6af601123f713c15780e6"
+mjml-head-title@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head-title/-/mjml-head-title-4.1.0.tgz#dc1c92b49e42cd4a92dc4dfaabad06fa9dcb65c1"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-hero@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-hero/-/mjml-hero-4.0.1.tgz#5b41286e980e7da72e4a9a6a796e15448032f104"
+mjml-head@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-head/-/mjml-head-4.1.0.tgz#be6684a9ba4038f560c6c3b28ecadc5ae8ed41c3"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-image@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml-image/-/mjml-image-4.0.3.tgz#eaa9385af992a81ad9c809247ae5524783cf797c"
+mjml-hero@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-hero/-/mjml-hero-4.1.0.tgz#a42fbd577e22edfefc573249e0e330c7e5a9af11"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-migrate@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-migrate/-/mjml-migrate-4.0.1.tgz#d830bee7a0ed0e4fbc9a27d78a779d50eb6ddfaa"
+mjml-image@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-image/-/mjml-image-4.1.0.tgz#1ff2e00857892d6cd4521bf2d6e8f5f7fe44b0b8"
+  dependencies:
+    cross-env "^5.1.4"
+    lodash "^4.17.2"
+    mjml-core "^4.1.0"
+
+mjml-migrate@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-migrate/-/mjml-migrate-4.1.0.tgz#f46d3f34c42282aac69529535670d3dc28ff545e"
   dependencies:
     commander "^2.11.0"
-    mjml-core "^4.0.1"
-    mjml-parser-xml "^4.0.1"
-
-mjml-navbar@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml-navbar/-/mjml-navbar-4.0.3.tgz#17ed8c2daca5bc9b04a653c040ab23bb30f2f0dc"
-  dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
+    mjml-parser-xml "^4.1.0"
 
-mjml-parser-xml@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-parser-xml/-/mjml-parser-xml-4.0.1.tgz#30f319fb840871ca2939f66ef1172d37909a1308"
+mjml-navbar@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-navbar/-/mjml-navbar-4.1.0.tgz#6b6d2bc7e835e4c18c989b950ad495fbb542ae10"
   dependencies:
+    cross-env "^5.1.4"
+    lodash "^4.17.2"
+    mjml-core "^4.1.0"
+
+mjml-parser-xml@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-parser-xml/-/mjml-parser-xml-4.1.0.tgz#a55510a7f68e67235d62d78b7171a1bd3e68f05e"
+  dependencies:
+    cross-env "^5.1.4"
     htmlparser2 "^3.9.2"
     lodash "^4.17.2"
 
-mjml-raw@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-raw/-/mjml-raw-4.0.2.tgz#9e44fcaae2546cfba7885ae61ed5ed70e791b0fb"
+mjml-raw@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-raw/-/mjml-raw-4.1.0.tgz#be7860449e1c5bdf3851ee411fc8578bce37ff29"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-section@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-section/-/mjml-section-4.0.1.tgz#eff71e8df5244e3f91f7364753cfe14a89b61b85"
+mjml-section@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-section/-/mjml-section-4.1.0.tgz#46af68f6e8916fff40df0795088d3662cd62fe4a"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-social@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/mjml-social/-/mjml-social-4.0.2.tgz#97ca20ead3661f1d7c8449e3ae68bdf4190e336c"
+mjml-social@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-social/-/mjml-social-4.1.0.tgz#88a38fd1d94a680d70a625c6836f6b9a9c04dd62"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-spacer@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-spacer/-/mjml-spacer-4.0.1.tgz#c8e224db80486e74f705a4517fa5a6ac92b27290"
+mjml-spacer@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-spacer/-/mjml-spacer-4.1.0.tgz#9f3bd87223bd8fce74f3e0b2611fb49ee726dad8"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-table@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-table/-/mjml-table-4.0.1.tgz#ca7dd8cf8ad6ee9ff277afcbad1e669ef953556c"
+mjml-table@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-table/-/mjml-table-4.1.0.tgz#08f7e5f563f4f0fdae64d4ef34b9a867a5e82eff"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-text@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml-text/-/mjml-text-4.0.3.tgz#3fd40df02d9db3ef3b8bf7d6432fe50e9ba42cab"
+mjml-text@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-text/-/mjml-text-4.1.0.tgz#121a4c3939d5f35586c1ab572828ea05d0d0bbe7"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
+    mjml-core "^4.1.0"
 
-mjml-validator@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-validator/-/mjml-validator-4.0.1.tgz#959c4653940046292695b06da7eabe78c3a3f467"
+mjml-validator@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-validator/-/mjml-validator-4.1.0.tgz#b35000f24a6d4ccdb8fb8bc6b7ac9ea9ade460e0"
   dependencies:
-    lodash "^4.17.4"
-    mjml-core "^4.0.1"
+    cross-env "^5.1.4"
+    lodash "^4.17.2"
+    mjml-core "^4.1.0"
     warning "^3.0.0"
 
-mjml-wrapper@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/mjml-wrapper/-/mjml-wrapper-4.0.1.tgz#749fa5532d859b39d552ee0ba8d673047f21a42b"
+mjml-wrapper@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml-wrapper/-/mjml-wrapper-4.1.0.tgz#33dd2d906e18a9497cae03c640578c0a18e6d2dd"
   dependencies:
+    cross-env "^5.1.4"
     lodash "^4.17.2"
-    mjml-core "^4.0.1"
-    mjml-section "^4.0.1"
+    mjml-core "^4.1.0"
+    mjml-section "^4.1.0"
 
-mjml@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/mjml/-/mjml-4.0.3.tgz#9b9a3bdf5ac94e8464c11b0149a1f5deea16c95e"
+mjml@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/mjml/-/mjml-4.1.0.tgz#ebc4a64d2fb7c255c20cbb320c4ed1e300eb4675"
   dependencies:
-    mjml-accordion "^4.0.2"
-    mjml-body "^4.0.2"
-    mjml-button "^4.0.1"
-    mjml-carousel "^4.0.2"
-    mjml-cli "^4.0.3"
-    mjml-column "^4.0.3"
-    mjml-core "^4.0.1"
-    mjml-divider "^4.0.1"
-    mjml-group "^4.0.2"
-    mjml-head "^4.0.1"
-    mjml-head-attributes "^4.0.1"
-    mjml-head-breakpoint "^4.0.1"
-    mjml-head-font "^4.0.2"
-    mjml-head-preview "^4.0.1"
-    mjml-head-style "^4.0.1"
-    mjml-head-title "^4.0.1"
-    mjml-hero "^4.0.1"
-    mjml-image "^4.0.3"
-    mjml-migrate "^4.0.1"
-    mjml-navbar "^4.0.3"
-    mjml-raw "^4.0.2"
-    mjml-section "^4.0.1"
-    mjml-social "^4.0.2"
-    mjml-spacer "^4.0.1"
-    mjml-table "^4.0.1"
-    mjml-text "^4.0.3"
-    mjml-validator "^4.0.1"
-    mjml-wrapper "^4.0.1"
+    cross-env "^5.1.4"
+    mjml-accordion "^4.1.0"
+    mjml-body "^4.1.0"
+    mjml-button "^4.1.0"
+    mjml-carousel "^4.1.0"
+    mjml-cli "^4.1.0"
+    mjml-column "^4.1.0"
+    mjml-core "^4.1.0"
+    mjml-divider "^4.1.0"
+    mjml-group "^4.1.0"
+    mjml-head "^4.1.0"
+    mjml-head-attributes "^4.1.0"
+    mjml-head-breakpoint "^4.1.0"
+    mjml-head-font "^4.1.0"
+    mjml-head-preview "^4.1.0"
+    mjml-head-style "^4.1.0"
+    mjml-head-title "^4.1.0"
+    mjml-hero "^4.1.0"
+    mjml-image "^4.1.0"
+    mjml-migrate "^4.1.0"
+    mjml-navbar "^4.1.0"
+    mjml-raw "^4.1.0"
+    mjml-section "^4.1.0"
+    mjml-social "^4.1.0"
+    mjml-spacer "^4.1.0"
+    mjml-table "^4.1.0"
+    mjml-text "^4.1.0"
+    mjml-validator "^4.1.0"
+    mjml-wrapper "^4.1.0"
 
 mkdirp@0.5.0:
   version "0.5.0"
@@ -5782,6 +5830,10 @@ netmask@^1.0.6:
 next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
+
+nice-try@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
 
 no-case@^2.2.0:
   version "2.3.2"
@@ -6256,7 +6308,7 @@ path-key@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-1.0.0.tgz#5d53d578019646c0d68800db4e146e6bdc2ac7af"
 
-path-key@^2.0.0:
+path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
 
