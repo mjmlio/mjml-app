@@ -128,10 +128,10 @@ export async function createOrEmpty(location) {
   }
 }
 
-export function exec(cmd) {
+export function exec(cmd, opts = {}) {
   return new Promise(resolve => {
     try {
-      x(cmd, (err, stdout, stderr) => {
+      x(cmd, opts, (err, stdout, stderr) => {
         resolve({
           err,
           stdout,
@@ -144,10 +144,10 @@ export function exec(cmd) {
   })
 }
 
-export function execFile(cmd, opts, stdinStream) {
+export function execFile(cmd, args, opts = {}, stdinStream) {
   return new Promise(resolve => {
     try {
-      const child = xFile(cmd, opts, (err, stdout, stderr) => {
+      const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
         resolve({
           err,
           stdout,
