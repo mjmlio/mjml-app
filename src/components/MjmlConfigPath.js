@@ -31,9 +31,9 @@ import Button from 'components/Button'
 class MjmlConfigPath extends Component {
   state = {
     mjmlConfigPath: '',
-    // unset / checking / valid / invalid
+    // unset / checking / valid / invalid / warning
     pathStatus: 'unset',
-    testResult: {},
+    message: {},
   }
 
   componentWillMount() {
@@ -82,6 +82,38 @@ class MjmlConfigPath extends Component {
     this.handleChangePath(p)
   }
 
+  formatTestResult(result) {
+    const { error, success, failures } = result
+
+    if (success) {
+      const formattedFailures = failures.map(f => {
+        if (f.error.code === 'ENOENT' || f.error.code === 'MODULE_NOT_FOUND') {
+          return `File not found or unreadable : ${f.compPath}`
+        }
+        return `Error when registering component "${f.compPath}" - ${f.error}`
+      })
+
+      return {
+        pathStatus: failures.length ? 'warning' : 'valid',
+        message: [
+          `${success.length} component(s) successfully registered:`,
+          ...(success.length ? success : ['none']),
+          failures.length ? `${failures.length} error(s):` : 'No errors during registration',
+          ...formattedFailures
+        ].join('<br/>'),
+      }
+    }
+
+    if (error) return {
+      pathStatus: 'invalid',
+      message: error.code === 'ENOENT' ?
+        'File not found' :
+        `Error while reading .mjmlconfig: ${error}`,
+    }
+
+    return { pathStatus: 'invalid', message: 'Couldn’t test mjmlconfig file' }
+  }
+
   checkMjmlConfig = (p) => {
     if (!p) {
       return this.setState({ pathStatus: 'unset' })
@@ -106,14 +138,9 @@ class MjmlConfigPath extends Component {
       return
     }
 
-    const { error, result } = handleMjmlConfig(mjmlConfigPath)
-    const message = result
-      || (error === 'ENOENT' ? 'File not found' : 'Error when registering custom components')
+    const result = handleMjmlConfig(mjmlConfigPath)
 
-    this.setState({
-      pathStatus: error ? 'invalid' : 'valid',
-      testResult: message,
-    })
+    this.setState(this.formatTestResult(result))
   }, 250)
 
   debounceSaveSettings = debounce(() => {
@@ -126,7 +153,7 @@ class MjmlConfigPath extends Component {
 
   render() {
     const { settings } = this.props
-    const { mjmlConfigPath, pathStatus, testResult } = this.state
+    const { mjmlConfigPath, pathStatus, message } = this.state
 
     return (
       <div className="flow-v-10">
@@ -157,12 +184,17 @@ class MjmlConfigPath extends Component {
         ) : pathStatus === 'valid' ? (
           <div className="d-f ai-c c-green">
             <IconCheck className="mr-5" />
-            { testResult }
+            <span dangerouslySetInnerHTML={{__html: message}}/>
+          </div>
+        ) : pathStatus === 'warning' ? (
+          <div className="d-f ai-c c-yellow">
+            <IconWarning className="mr-5" />
+            <span dangerouslySetInnerHTML={{__html: message}}/>
           </div>
         ) : pathStatus === 'invalid' ? (
           <div className="d-f ai-c c-red">
             <IconError className="mr-5" />
-            { testResult }
+            <span dangerouslySetInnerHTML={{__html: message}}/>
           </div>
         ) : null}
       </div>
