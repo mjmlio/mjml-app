@@ -35,7 +35,7 @@
     "fuse.js": "^3.2.0",
     "immutable": "^3.8.2",
     "js-beautify": "^1.7.5",
-    "mjml": "^4.1.0",
+    "mjml": "^4.1.2",
     "mjml-migrate": "^4.1.0",
     "ncp": "^2.0.0",
     "node-mailjet": "^3.2.1",
