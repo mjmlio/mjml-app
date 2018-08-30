@@ -83,3 +83,5 @@ export function wrapIntoMJMLTags(content) {
 export function migrateToMJML4(content) {
   return migrate(content)
 }
+
+export { handleMjmlConfig }

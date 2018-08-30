@@ -29,7 +29,7 @@ import {
   isValidDir,
 } from 'helpers/fs'
 
-import mjml2html from 'helpers/mjml'
+import mjml2html, { handleMjmlConfig } from 'helpers/mjml'
 
 const HOME_DIR = os.homedir()
 
@@ -63,10 +63,27 @@ export function removeProject(p, shouldDeleteFolder = false) {
   }
 }
 
-export function openProject(path) {
+export function openProject(projectPath) {
   return dispatch => {
-    dispatch(replace(`/project?path=${path}`))
-    dispatch(loadIfNeeded(path))
+    dispatch(replace(`/project?path=${projectPath}`))
+    dispatch(loadIfNeeded(projectPath))
+    loadProjectMjmlConfig(projectPath, dispatch)
+  }
+}
+
+function loadProjectMjmlConfig(projectPath, dispatch) {
+  if (!handleMjmlConfig) return
+
+  const mjmlConfigResult = handleMjmlConfig(path.resolve(projectPath, '.mjmlconfig'))
+
+  const { error, success, failures } = mjmlConfigResult
+  if (error) return
+
+  if (success.length) {
+    dispatch(addAlert(`Successfully imported ${success.length} custom component(s)`, 'success'))
+  }
+  if (failures.length) {
+    dispatch(addAlert(`${failures.length} custom component(s) could not be imported`, 'error'))
   }
 }
 
