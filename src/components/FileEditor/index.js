@@ -143,9 +143,7 @@ class FileEditor extends Component {
 
   detecteOldSyntax = () => {
     const content = this.getContent()
-    if (isOldSyntax(content)) {
-      this.props.onDetectOldSyntax()
-    }
+    this.props.onDetectOldSyntax(isOldSyntax(content))
   }
 
   async loadContent() {
@@ -253,6 +251,8 @@ class FileEditor extends Component {
       await fsWriteFile(fileName, mjml)
       setPreview(fileName, mjml)
     }
+
+    window.requestIdleCallback(this.detecteOldSyntax)
   }, 200)
 
   getContent = () => {
