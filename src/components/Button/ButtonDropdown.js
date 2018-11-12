@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
+import { findIndex } from 'lodash'
 import PropTypes from 'prop-types'
 import IconDown from 'react-icons/md/keyboard-arrow-down'
 
@@ -18,7 +19,10 @@ class ButtonDropdown extends Component {
 
   componentWillMount() {
     const { actions } = this.props
-    this.setState({ choice: actions[0] })
+
+    let choice = findIndex(actions, 'choice')
+    choice = choice !== -1 ? choice : 0
+    this.setState({ choice: actions[choice] })
   }
 
   componentDidUpdate(prevProps, prevState) {

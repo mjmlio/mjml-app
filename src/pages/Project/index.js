@@ -19,10 +19,10 @@ import defaultMJML from 'data/defaultMJML'
 
 import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
-import { setPreview } from 'actions/preview'
+import { setPreview, getPreview } from 'actions/preview'
 import { switchLocale } from 'reducers/l10n'
 
-import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
+import { fileDialog, saveDialog, fsWriteFile, asyncForEach } from 'helpers/fs'
 
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
@@ -40,14 +40,16 @@ import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
     preview: state.preview,
     previewSize: state.settings.get('previewSize'),
     beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
-    locales: keys(state.l10n.l10n)
+    locales: keys(state.l10n.l10n),
+    activeLocale: state.l10n.activeLocale
   }),
   {
     openModal,
     addAlert,
+    getPreview,
     setPreview,
-    switchLocale
-  },
+    switchLocale,
+  }
 )
 class ProjectPage extends Component {
   state = {
@@ -146,6 +148,31 @@ class ProjectPage extends Component {
     this._filelist.refresh()
   }
 
+  handleExportAllToHTML = async () => {
+    const { addAlert, getPreview, locales } = this.props
+
+    const p = saveDialog({
+      title: 'Export to HTML file',
+      defaultPath: pathModule.basename(this.state.activeFile.path, '.mjml'),
+      filters: [{ name: 'All Files', extensions: ['html'] }],
+    })
+    if (!p) {
+      return
+    }
+
+    const folder = pathModule.dirname(p)
+    const fileName = pathModule.basename(p)
+
+    await asyncForEach(locales, async locale => {
+      const { preview } = await getPreview(this.state.activeFile.path, '', locale)
+      await fsWriteFile(pathModule.join(folder, `${locale}_${fileName}`), preview)
+      addAlert('Successfully exported HTML', 'success')
+
+    })
+
+    this._filelist.refresh()
+  }
+
   handleScreenshot = async () => {
     const { preview, previewSize, addAlert, location } = this.props
 
@@ -184,7 +211,7 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { preview, locales } = this.props
+    const { preview, locales, activeLocale } = this.props
     const { path, activeFile } = this.state
 
     const rootPath = this.props.location.query.path
@@ -210,6 +237,7 @@ class ProjectPage extends Component {
                   return {
                     label: locale,
                     onClick: () => this.handleSwitchLocale(locale),
+                    choice: locale === activeLocale
                   }
                 })}
               />,
@@ -244,6 +272,12 @@ class ProjectPage extends Component {
                       label: 'Export to HTML file',
                       desc: 'Save the result HTML file to disk',
                       onClick: this.handleExportToHTML,
+                    },
+                    {
+                      icon: <IconCode />,
+                      label: 'Export all locales to HTML file',
+                      desc: 'Save all locales result HTML files to disk',
+                      onClick: this.handleExportAllToHTML,
                     },
                     {
                       icon: <IconCamera />,

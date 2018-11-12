@@ -28,6 +28,7 @@ import {
   fileExists,
   isValidDir,
   fsReadDir,
+  asyncForEach
 } from 'helpers/fs'
 
 import mjml2html from 'helpers/mjml'
@@ -83,12 +84,6 @@ function loadIfNeeded(path) {
 
     const l10n = await loadTranslations(`${path}/locale`)
     dispatch({ type: 'LOCALE_LOAD', payload: l10n })
-  }
-}
-
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
   }
 }
 
