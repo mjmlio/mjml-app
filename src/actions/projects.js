@@ -27,6 +27,7 @@ import {
   fsWriteFile,
   fileExists,
   isValidDir,
+  fsReadDir,
 } from 'helpers/fs'
 
 import mjml2html from 'helpers/mjml'
@@ -79,7 +80,44 @@ function loadIfNeeded(path) {
       dispatch({ type: 'PROJECT_LOAD', payload: enriched })
       dispatch(saveSettings())
     }
+
+    const l10n = await loadTranslations(`${path}/locale`)
+    dispatch({ type: 'LOCALE_LOAD', payload: l10n })
   }
+}
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array)
+  }
+}
+
+async function readFiles(dirname) {
+  try {
+    const dir = await fsReadDir(dirname)
+    const res = {}
+
+    await asyncForEach(dir, async filename => {
+      const filePath = path.join(dirname, filename)
+      const fileContent = await fsReadFile(filePath, { encoding: 'utf8' })
+      const locale = filename.split('.').slice(0, -1).join('.')
+
+      res[locale] = JSON.parse(fileContent)
+    })
+    return res
+  } catch (e) {} // eslint-disable-line
+}
+
+// read the project locale files
+async function loadTranslations(p) {
+  const res = {}
+  res.isOK = await isValidDir(p)
+  if (res.isOK) {
+    try {
+      res.l10n = await readFiles(p)
+    } catch (e) {} // eslint-disable-line
+  }
+  return res
 }
 
 // read the project directory

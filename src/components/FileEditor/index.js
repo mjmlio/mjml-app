@@ -51,7 +51,7 @@ function beautify(content) {
 
 @connect(
   state => {
-    const { settings, preview } = state
+    const { settings, preview, l10n } = state
     return {
       mjmlEngine: settings.getIn(['mjml', 'engine'], 'auto'),
       minify: settings.getIn(['mjml', 'minify'], false),
@@ -65,6 +65,7 @@ function beautify(content) {
       useTab: settings.getIn(['editor', 'useTab'], false),
       tabSize: settings.getIn(['editor', 'tabSize'], 2),
       indentSize: settings.getIn(['editor', 'indentSize'], 2),
+      locale: l10n.activeLocale,
     }
   },
   {
@@ -95,6 +96,9 @@ class FileEditor extends Component {
       this.handleChange()
     }
     if (this.props.minify !== nextProps.minify) {
+      this.handleChange()
+    }
+    if (this.props.locale !== nextProps.locale) {
       this.handleChange()
     }
   }

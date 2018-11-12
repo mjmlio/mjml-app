@@ -2,6 +2,7 @@ import path from 'path'
 import { createAction } from 'redux-actions'
 
 import mjml2html from 'helpers/mjml'
+import lokalise from 'helpers/lokalise'
 import { fsReadFile } from 'helpers/fs'
 import { updateProjectPreview } from 'actions/projects'
 
@@ -18,7 +19,7 @@ export function setPreview(fileName, content = '') {
     const ext = path.extname(fileName)
 
     const state = getState()
-    const { settings } = state
+    const { settings, l10n: { l10n, activeLocale} } = state
 
     // eventually get the custom mjml path set in settings
     const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'
@@ -45,7 +46,10 @@ export function setPreview(fileName, content = '') {
         }
 
         const { html, errors } = await mjml2html(content, fileName, mjmlPath, renderOpts)
-        dispatch(setPrev({ type: 'html', content: html, errors }))
+
+        const lokalisedHtml = lokalise(html, l10n[activeLocale])
+
+        dispatch(setPrev({ type: 'html', content: lokalisedHtml, errors }))
         // update the preview in project
         if (bName === 'index.mjml') {
           dispatch(updateProjectPreview(fName, html))

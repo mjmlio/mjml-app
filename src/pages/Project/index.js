@@ -13,12 +13,14 @@ import IconBeautify from 'react-icons/md/autorenew'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 import beautifyJS from 'js-beautify'
+import { keys } from 'lodash'
 
 import defaultMJML from 'data/defaultMJML'
 
 import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
 import { setPreview } from 'actions/preview'
+import { switchLocale } from 'reducers/l10n'
 
 import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
@@ -38,11 +40,13 @@ import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
     preview: state.preview,
     previewSize: state.settings.get('previewSize'),
     beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+    locales: keys(state.l10n.l10n)
   }),
   {
     openModal,
     addAlert,
     setPreview,
+    switchLocale
   },
 )
 class ProjectPage extends Component {
@@ -168,6 +172,8 @@ class ProjectPage extends Component {
     this._filelist.refresh()
   }
 
+  handleSwitchLocale = (locale) => this.props.switchLocale(locale)
+
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
@@ -178,7 +184,7 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { preview } = this.props
+    const { preview, locales } = this.props
     const { path, activeFile } = this.state
 
     const rootPath = this.props.location.query.path
@@ -197,6 +203,16 @@ class ProjectPage extends Component {
           </div>
           <div className="d-f flow-h-10">
             {isMJMLFile && [
+              locales && <ButtonDropdown
+                key={'locales'}
+                dropdownWidth={100}
+                actions={locales.map(locale => {
+                  return {
+                    label: locale,
+                    onClick: () => this.handleSwitchLocale(locale),
+                  }
+                })}
+              />,
               <Button key="beautify" transparent onClick={this.handleBeautify}>
                 <IconBeautify style={{ marginRight: 5 }} />
                 {'Beautify'}

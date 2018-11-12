@@ -12,6 +12,7 @@ import selectedProjects from './selectedProjects'
 import externalFileOverlay from './externalFileOverlay'
 import search from './search'
 import snippets from './snippets'
+import l10n from './l10n'
 
 const rootReducer = combineReducers({
   routing,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   externalFileOverlay,
   search,
   snippets,
+  l10n,
 })
 
 export default rootReducer
