@@ -45,11 +45,14 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           if (!mjmlContent.trim().startsWith('<mjml')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
+
           const mjmlOptions = {
-            filePath,
+            filePath: options.filePath || filePath,
             cwd: path.dirname(filePath),
             minify: !!options.minify,
+            mjmlConfigPath: options.mjmlConfigPath
           }
+
           const res = mjml2html(mjmlContent, mjmlOptions)
 
           resolve({ html: res.html || '', errors: res.errors || [] })

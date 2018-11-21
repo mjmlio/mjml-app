@@ -8,7 +8,7 @@ import { updateProjectPreview } from 'actions/projects'
 
 const setPrev = createAction('SET_PREVIEW')
 
-export function getPreview(fileName, content = '', locale) {
+export function getPreview(fileName, content = '', locale, minify = false) {
   return async (dispatch, getState) => {
     const state = getState()
     const { settings, l10n: { l10n, activeLocale } } = state
@@ -16,13 +16,16 @@ export function getPreview(fileName, content = '', locale) {
     // eventually get the custom mjml path set in settings
     const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'
     const mjmlPath = mjmlManual ? settings.getIn(['mjml', 'path']) : undefined
+    const projectPath = settings.getIn(['lastOpenedFolder'])
 
     if (!content) {
       content = await fsReadFile(fileName, { encoding: 'utf8' })
     }
 
     const renderOpts = {
-      minify: settings.getIn(['mjml', 'minify']),
+      minify: minify || settings.getIn(['mjml', 'minify']),
+      filePath: path.join(projectPath, 'components'),
+      mjmlConfigPath: path.join(projectPath, 'components'),
     }
 
     const { html, errors } = await mjml2html(content, fileName, mjmlPath, renderOpts)

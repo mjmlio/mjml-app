@@ -164,10 +164,9 @@ class ProjectPage extends Component {
     const fileName = pathModule.basename(p)
 
     await asyncForEach(locales, async locale => {
-      const { preview } = await getPreview(this.state.activeFile.path, '', locale)
+      const { preview } = await getPreview(this.state.activeFile.path, '', locale, true)
       await fsWriteFile(pathModule.join(folder, `${locale}_${fileName}`), preview)
-      addAlert('Successfully exported HTML', 'success')
-
+      addAlert(`Successfully exported HTML for ${locale} locale`, 'success')
     })
 
     this._filelist.refresh()
