@@ -46,8 +46,11 @@ function beautify(content) {
   return beautifyJS.html(content, {
     indent_size: 2, // eslint-disable-line camelcase
     wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
+    max_preserve_newline: 0, // eslint-disable-line camelcase
+    preserve_newlines: false, // eslint-disable-line camelcase
   })
 }
+
 
 @connect(
   state => {
