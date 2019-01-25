@@ -51,7 +51,6 @@ function beautify(content) {
   })
 }
 
-
 @connect(
   state => {
     const { settings, preview } = state
