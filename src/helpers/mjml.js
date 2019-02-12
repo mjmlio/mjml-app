@@ -1,4 +1,4 @@
-import mjml2html, { handleMjmlConfig } from 'mjml'
+import mjml2html from 'mjml'
 import { get } from 'lodash'
 import migrate from 'mjml-migrate'
 import path from 'path'
@@ -11,19 +11,15 @@ import { promisify } from 'es6-promisify'
 
 const storageGet = promisify(storage.get)
 
-storage.get('settings', (err, settings) => {
-  if (handleMjmlConfig && settings.mjml.mjmlConfigPath)
-    handleMjmlConfig(settings.mjml.mjmlConfigPath)
-})
 
 export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
       try {
-        if (mjmlPath) {
-          const settings = await storageGet('settings')
-          const mjmlConfigPath = get(settings, 'mjml.mjmlConfigPath')
+        const settings = await storageGet('settings')
+        const mjmlConfigPath = get(settings, 'mjml.mjmlConfigPath')
 
+        if (mjmlPath) {
           const args = [
             '-s',
             '--config.validationLevel=skip',
@@ -56,10 +52,12 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           if (!mjmlContent.trim().startsWith('<mjml')) {
             mjmlContent = wrapIntoMJMLTags(mjmlContent)
           }
+
           const mjmlOptions = {
             filePath,
             cwd: path.dirname(filePath),
             minify: !!options.minify,
+            mjmlConfigPath: settings.mjml.mjmlConfigPath || null
           }
           const res = mjml2html(mjmlContent, mjmlOptions)
 
@@ -83,5 +81,3 @@ export function wrapIntoMJMLTags(content) {
 export function migrateToMJML4(content) {
   return migrate(content)
 }
-
-export { handleMjmlConfig }
