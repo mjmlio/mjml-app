@@ -1,18 +1,11 @@
-import fs from 'fs'
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
-
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
-import IconWarning from 'react-icons/md/warning'
 
 import { updateSettings } from 'actions/settings'
 import { fileDialog } from 'helpers/fs'
 
 import Button from 'components/Button'
-
 
 @connect(
   state => {
@@ -28,9 +21,6 @@ import Button from 'components/Button'
 class MjmlConfigPath extends Component {
   state = {
     mjmlConfigPath: '',
-    // unset / checking / valid / invalid / warning
-    pathStatus: 'unset',
-    message: {},
   }
 
   componentWillMount() {
@@ -69,8 +59,7 @@ class MjmlConfigPath extends Component {
   }, 500)
 
   render() {
-    const { settings } = this.props
-    const { mjmlConfigPath, pathStatus, message } = this.state
+    const { mjmlConfigPath } = this.state
 
     return (
       <div className="flow-v-10">

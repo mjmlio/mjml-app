@@ -11,7 +11,6 @@ import { promisify } from 'es6-promisify'
 
 const storageGet = promisify(storage.get)
 
-
 export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
   return new Promise(resolve => {
     window.requestIdleCallback(async () => {
@@ -24,7 +23,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             '-s',
             '--config.validationLevel=skip',
             ...(options.minify ? ['-m'] : []),
-            ...(mjmlConfigPath ? [`--config.mjmlConfigPath=${settings.mjml.mjmlConfigPath}`] : [])
+            ...(mjmlConfigPath ? [`--config.mjmlConfigPath=${settings.mjml.mjmlConfigPath}`] : []),
           ]
 
           if (!mjmlContent.trim().startsWith('<mjml')) {
@@ -40,7 +39,9 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
 
             resolve({ html: res.stdout, errors: [] })
           } else {
-            const res = await exec(`${mjmlPath} "${filePath}" ${args.join(' ')}`, { maxBuffer: 500 * 1024 })
+            const res = await exec(`${mjmlPath} "${filePath}" ${args.join(' ')}`, {
+              maxBuffer: 500 * 1024,
+            })
 
             if (res.err) {
               return resolve({ html: '', errors: [] })
@@ -57,7 +58,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             filePath,
             cwd: path.dirname(filePath),
             minify: !!options.minify,
-            mjmlConfigPath: settings.mjml.mjmlConfigPath || null
+            mjmlConfigPath: settings.mjml.mjmlConfigPath || null,
           }
           const res = mjml2html(mjmlContent, mjmlOptions)
 
