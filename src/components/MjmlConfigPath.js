@@ -6,12 +6,14 @@ import { updateSettings } from 'actions/settings'
 import { fileDialog } from 'helpers/fs'
 
 import Button from 'components/Button'
+import CheckBox from 'components/CheckBox'
 
 @connect(
   state => {
     const { settings } = state
     return {
       mjmlConfigPath: settings.getIn(['mjml', 'mjmlConfigPath'], ''),
+      useMjmlConfig: settings.getIn(['mjml', 'useMjmlConfig'], false),
     }
   },
   {
@@ -59,11 +61,16 @@ class MjmlConfigPath extends Component {
   }, 500)
 
   render() {
+    const { useMjmlConfig, updateSettings } = this.props
     const { mjmlConfigPath } = this.state
 
     return (
       <div className="flow-v-10">
-        <div className="mt-10">{'Path of .mjmlconfig file for custom components (slower) :'}</div>
+        <div className="mt-10">{'Custom components:'}</div>
+        <CheckBox value={useMjmlConfig} onChange={val => updateSettings(settings => settings.setIn(['mjml', 'useMjmlConfig'], val))}>
+          {'Use custom components (slightly slower preview refresh)'}
+        </CheckBox>
+        <div className="mt-10">{'Path of .mjmlconfig file (leave blank to use project root as default path) :'}</div>
         <div className="d-f ai-s fg-1">
           <input
             autoFocus

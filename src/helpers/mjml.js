@@ -16,9 +16,19 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
     window.requestIdleCallback(async () => {
       try {
         const settings = await storageGet('settings')
+        const useMjmlConfig = get(settings, 'mjml.useMjmlConfig')
         const mjmlConfigPath = get(settings, 'mjml.mjmlConfigPath')
 
         if (mjmlPath) {
+          let mjmlConfigOption = []
+          if (useMjmlConfig) {
+            if (mjmlConfigPath) {
+              mjmlConfigOption = [`--config.mjmlConfigPath=${settings.mjml.mjmlConfigPath}`]
+            } else {
+              mjmlConfigOption = [`--config.mjmlConfigPath=${path.dirname(filePath)}`]
+            }
+          }
+
           const args = [
             '-s',
             '--config.validationLevel=skip',
@@ -56,10 +66,10 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
 
           const mjmlOptions = {
             filePath,
-            cwd: path.dirname(filePath),
             minify: !!options.minify,
-            mjmlConfigPath: settings.mjml.mjmlConfigPath || null,
+            mjmlConfigPath: useMjmlConfig ? (settings.mjml.mjmlConfigPath || path.dirname(filePath)) : null,
           }
+
           const res = mjml2html(mjmlContent, mjmlOptions)
 
           resolve({ html: res.html || '', errors: res.errors || [] })
