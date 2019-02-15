@@ -33,7 +33,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             '-s',
             '--config.validationLevel=skip',
             ...(options.minify ? ['-m'] : []),
-            ...(mjmlConfigPath ? [`--config.mjmlConfigPath=${settings.mjml.mjmlConfigPath}`] : []),
+            ...mjmlConfigOption,
           ]
 
           if (!mjmlContent.trim().startsWith('<mjml')) {
@@ -67,7 +67,9 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           const mjmlOptions = {
             filePath,
             minify: !!options.minify,
-            mjmlConfigPath: useMjmlConfig ? (settings.mjml.mjmlConfigPath || path.dirname(filePath)) : null,
+            mjmlConfigPath: useMjmlConfig
+              ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
+              : null,
           }
 
           const res = mjml2html(mjmlContent, mjmlOptions)

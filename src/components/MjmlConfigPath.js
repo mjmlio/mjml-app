@@ -67,10 +67,19 @@ class MjmlConfigPath extends Component {
     return (
       <div className="flow-v-10">
         <div className="mt-10">{'Custom components:'}</div>
-        <CheckBox value={useMjmlConfig} onChange={val => updateSettings(settings => settings.setIn(['mjml', 'useMjmlConfig'], val))}>
+        <CheckBox
+          value={useMjmlConfig}
+          onChange={val =>
+            updateSettings(settings => settings.setIn(['mjml', 'useMjmlConfig'], val))
+          }
+        >
           {'Use custom components (slightly slower preview refresh)'}
         </CheckBox>
-        <div className="mt-10">{'Path of .mjmlconfig file (leave blank for default, will search for .mjmlconfig in the same folder as the mjml file) :'}</div>
+        <div className="mt-10">
+          {
+            'Path of .mjmlconfig file (leave blank for default, will search for .mjmlconfig in the same folder as the mjml file) :'
+          }
+        </div>
         <div className="d-f ai-s fg-1">
           <input
             autoFocus
