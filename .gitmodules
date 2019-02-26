@@ -1,0 +1,3 @@
+[submodule "mail-templates"]
+	path = src/mail-templates
+	url = git@bitbucket.org:revolut/revolut-mail-templates.git

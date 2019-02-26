@@ -15,7 +15,8 @@
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
     "lint": "eslint src webpack",
     "prettier": "prettier --write \"{src,webpack}/**/*.js\"",
-    "prettier:check": "prettier --list-different \"{src,webpack}/**/*.js\""
+    "prettier:check": "prettier --list-different \"{src,webpack}/**/*.js\"",
+    "sync-templates": "git submodule update"
   },
   "electronWebpack": {
     "title": true,

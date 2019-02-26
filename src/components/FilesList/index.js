@@ -362,7 +362,7 @@ class FilesList extends Component {
               <div className="d-f fd-c sticky anim-enter-fade">
                 {isOldSyntaxDetected && <OldSyntaxDetected onMigrate={this.handleMigrate} />}
                 {activeFile &&
-                  activeFile.name.endsWith('.mjml') && (
+                  (activeFile.name.endsWith('.mjml') || activeFile.name.endsWith('.json')) && (
                     <FileEditor
                       onRef={n => {
                         this._editor = n
