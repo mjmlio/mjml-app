@@ -150,7 +150,7 @@ class MJMLEngine extends Component {
         <Radio value="auto">{`Use the embedded MJML engine (v${__MJML_VERSION__})`}</Radio>
         <Radio value="manual">
           <div className="flow-v-10">
-            <div>{'Use a custom MJML engine (slower)'}</div>
+            <div>{'Use a custom MJML engine (slower and disables validation)'}</div>
             {mjmlEngine === 'manual' && (
               <div className="flow-v-10">
                 <div className="d-f ai-s fg-1">

@@ -20,6 +20,7 @@ import SnippetForm from 'components/SnippetForm'
 import SnippetsList from 'components/SnippetsList'
 
 import MJMLEngine from 'components/MJMLEngine'
+import MjmlConfigPath from 'components/MjmlConfigPath'
 
 import './style.scss'
 
@@ -126,6 +127,7 @@ class SettingsModal extends Component {
               <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
               </CheckBox>
+              <MjmlConfigPath />
             </TabItem>
 
             <TabItem title="Editor" icon={IconEditor}>

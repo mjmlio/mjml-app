@@ -63,10 +63,10 @@ export function removeProject(p, shouldDeleteFolder = false) {
   }
 }
 
-export function openProject(path) {
+export function openProject(projectPath) {
   return dispatch => {
-    dispatch(replace(`/project?path=${path}`))
-    dispatch(loadIfNeeded(path))
+    dispatch(replace(`/project?path=${projectPath}`))
+    dispatch(loadIfNeeded(projectPath))
   }
 }
 
