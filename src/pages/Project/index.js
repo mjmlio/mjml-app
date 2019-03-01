@@ -3,11 +3,9 @@ import pathModule from 'path'
 import trash from 'trash'
 import { connect } from 'react-redux'
 import FaCog from 'react-icons/fa/cog'
-import FaFolderOpen from 'react-icons/fa/arrow-up'
 import IconCopy from 'react-icons/md/content-copy'
 import IconCode from 'react-icons/md/code'
 import IconCamera from 'react-icons/md/camera-alt'
-import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
 import fs from 'fs'
@@ -22,7 +20,7 @@ import { addAlert } from 'reducers/alerts'
 import { setPreview, getPreview } from 'actions/preview'
 import { switchLocale } from 'reducers/l10n'
 
-import { fileDialog, saveDialog, fsWriteFile, asyncForEach } from 'helpers/fs'
+import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
 
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
@@ -69,25 +67,6 @@ class ProjectPage extends Component {
 
   handlePathChange = path => this.setState({ path, activeFile: null })
 
-  handleClickImport = () => {
-    const p = fileDialog({
-      defaultPath: this.props.location.query.path,
-      properties: ['openFile'],
-      filters: [{ name: 'All Files', extensions: ['mjml'] }],
-    })
-
-    if (!p) {
-      return
-    }
-
-    fs.readFile(p, { encoding: 'utf8' }, (err, res) => {
-      if (err) {
-        return
-      }
-      this._content = res
-    })
-  }
-
   handleAddFile = fileName => {
     fs.writeFile(fileName, defaultMJML, err => {
       if (err) {
@@ -111,14 +90,6 @@ class ProjectPage extends Component {
 
     this._filelist.refresh()
     this.setState({ activeFile: null })
-  }
-
-  handleOpenInBrowser = () => {
-    if (process.platform === 'darwin') {
-      shell.showItemInFolder(this.state.path)
-    } else {
-      shell.openItem(this.state.path)
-    }
   }
 
   handleActiveFileChange = activeFile => this.setState({ activeFile })
@@ -145,30 +116,6 @@ class ProjectPage extends Component {
 
     await fsWriteFile(p, htmlContent)
     addAlert('Successfully exported HTML', 'success')
-    this._filelist.refresh()
-  }
-
-  handleExportAllToHTML = async () => {
-    const { addAlert, getPreview, locales } = this.props
-
-    const p = saveDialog({
-      title: 'Export to HTML file',
-      defaultPath: pathModule.basename(this.state.activeFile.path, '.mjml'),
-      filters: [{ name: 'All Files', extensions: ['html'] }],
-    })
-    if (!p) {
-      return
-    }
-
-    const folder = pathModule.dirname(p)
-    const fileName = pathModule.basename(p)
-
-    await asyncForEach(locales, async locale => {
-      const { preview } = await getPreview(this.state.activeFile.path, '', locale, true)
-      await fsWriteFile(pathModule.join(folder, `${locale}_${fileName}`), preview)
-      addAlert(`Successfully exported HTML for ${locale} locale`, 'success')
-    })
-
     this._filelist.refresh()
   }
 
@@ -201,7 +148,6 @@ class ProjectPage extends Component {
   handleSwitchLocale = (locale) => this.props.switchLocale(locale)
 
   openSettingsModal = () => this.props.openModal('settings')
-  openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
 
   getHTMLOutput() {
@@ -217,6 +163,7 @@ class ProjectPage extends Component {
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
     const isJSONFile = activeFile && activeFile.name.endsWith('.json')
+    const hasLocalisation = isMJMLFile || isJSONFile
 
     return (
       <div className="fg-1 d-f fd-c o-n" tabIndex={0} ref={n => (this._page = n)}>
@@ -229,7 +176,7 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className="d-f flow-h-10">
-            {isMJMLFile || isJSONFile && [
+            {hasLocalisation && [
               locales && <ButtonDropdown
                 key={'locales'}
                 dropdownWidth={100}
@@ -248,16 +195,8 @@ class ProjectPage extends Component {
                 {'Beautify'}
               </Button>
             )}
-            <Button transparent onClick={this.handleOpenInBrowser}>
-              <FaFolderOpen style={{ marginRight: 5 }} />
-              {'Open'}
-            </Button>
             {preview &&
               preview.type === 'html' && [
-                <Button key={'send'} transparent onClick={this.openSendModal}>
-                  <IconEmail style={{ marginRight: 5 }} />
-                  {'Send'}
-                </Button>,
                 <ButtonDropdown
                   ghost
                   key={'export'}
@@ -274,12 +213,6 @@ class ProjectPage extends Component {
                       label: 'Export to HTML file',
                       desc: 'Save the result HTML file to disk',
                       onClick: this.handleExportToHTML,
-                    },
-                    {
-                      icon: <IconCode />,
-                      label: 'Export all locales to HTML file',
-                      desc: 'Save all locales result HTML files to disk',
-                      onClick: this.handleExportAllToHTML,
                     },
                     {
                       icon: <IconCamera />,
