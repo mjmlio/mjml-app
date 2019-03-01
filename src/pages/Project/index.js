@@ -216,6 +216,7 @@ class ProjectPage extends Component {
     const rootPath = this.props.location.query.path
     const projectName = pathModule.basename(rootPath)
     const isMJMLFile = activeFile && activeFile.name.endsWith('.mjml')
+    const isJSONFile = activeFile && activeFile.name.endsWith('.json')
 
     return (
       <div className="fg-1 d-f fd-c o-n" tabIndex={0} ref={n => (this._page = n)}>
@@ -228,7 +229,7 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className="d-f flow-h-10">
-            {isMJMLFile && [
+            {isMJMLFile || isJSONFile && [
               locales && <ButtonDropdown
                 key={'locales'}
                 dropdownWidth={100}
@@ -239,12 +240,14 @@ class ProjectPage extends Component {
                     choice: locale === activeLocale
                   }
                 })}
-              />,
+              />
+            ]}
+            {isMJMLFile && (
               <Button key="beautify" transparent onClick={this.handleBeautify}>
                 <IconBeautify style={{ marginRight: 5 }} />
                 {'Beautify'}
-              </Button>,
-            ]}
+              </Button>
+            )}
             <Button transparent onClick={this.handleOpenInBrowser}>
               <FaFolderOpen style={{ marginRight: 5 }} />
               {'Open'}
