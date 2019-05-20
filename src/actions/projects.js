@@ -5,7 +5,7 @@ import trash from 'trash'
 import { replace } from 'react-router-redux'
 import kebabCase from 'lodash/kebabCase'
 
-import takeScreenshot from 'helpers/takeScreenshot'
+import { takeScreenshot } from 'helpers/takeScreenshot'
 
 import { addAlert } from 'reducers/alerts'
 import { openExternalFileOverlay, closeExternalFileOverlay } from 'reducers/externalFileOverlay'
@@ -181,14 +181,14 @@ async function massExport(state, asyncJob) {
     const projBaseName = path.basename(p.get('path'))
     const projSafeName = `${kebabCase(projBaseName)}.html`
     const filePath = path.join(targetPath, projSafeName)
-    await asyncJob(filePath, p)
+    await asyncJob(filePath, p, targetPath)
   }
   return targetPath
 }
 
 export function exportSelectedProjectsToHTML() {
-  return (dispatch, getState) => {
-    const targetPath = massExport(getState(), (filePath, p) => fsWriteFile(filePath, p.get('html')))
+  return async (dispatch, getState) => {
+    const targetPath = await massExport(getState(), (filePath, p) => fsWriteFile(filePath, p.get('html')))
     if (targetPath) {
       dispatch(saveLastExportedFolder(targetPath))
     }
@@ -198,17 +198,18 @@ export function exportSelectedProjectsToHTML() {
 export function exportSelectedProjectsToImages(done) {
   return async (dispatch, getState) => {
     const state = getState()
-    const targetPath = await massExport(state, async (filePath, p) => {
+    
+    const targetPath = await massExport(state, async (filePath, p, targetDir) => {
       const html = p.get('html')
       const previewSize = state.settings.get('previewSize')
       const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
       const [mobileScreenshot, desktopScreenshot] = await Promise.all([
-        takeScreenshot(html, mobileWidth),
-        takeScreenshot(html, desktopWidth),
+        takeScreenshot(html, mobileWidth, targetDir),
+        takeScreenshot(html, desktopWidth, targetDir),
       ])
       await Promise.all([
-        fsWriteFile(`${filePath}_mobile.png`, mobileScreenshot),
-        fsWriteFile(`${filePath}_desktop.png`, desktopScreenshot),
+        fsWriteFile(`${filePath.replace(/.html$/, '')}_mobile.png`, mobileScreenshot),
+        fsWriteFile(`${filePath.replace(/.html$/, '')}_desktop.png`, desktopScreenshot),
       ])
     })
     if (targetPath) {
