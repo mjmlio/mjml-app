@@ -69,7 +69,7 @@ function beautify(content) {
       useTab: settings.getIn(['editor', 'useTab'], false),
       tabSize: settings.getIn(['editor', 'tabSize'], 2),
       indentSize: settings.getIn(['editor', 'indentSize'], 2),
-      preventAutoSave: settings.getIn(['editor', 'preventAutoSave'], 2),
+      preventAutoSave: settings.getIn(['editor', 'preventAutoSave'], false),
     }
   },
   {
