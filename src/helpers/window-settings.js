@@ -1,6 +1,6 @@
 import storage from 'electron-json-storage'
 import { promisify } from 'es6-promisify'
-import { get, set } from 'lodash'
+import { set } from 'lodash'
 
 const storageGet = promisify(storage.get)
 const storageSet = promisify(storage.set)
@@ -29,7 +29,7 @@ export const getWindowSettings = async () => {
     const settings = await storageGet('settings')
     return settings.windowParams || {}
   } catch (e) {
-    console.log(e)
+    console.log(e) // eslint-disable-line no-console
     return {}
   }
 }
