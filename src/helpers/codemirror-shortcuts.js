@@ -9,7 +9,7 @@ export const codeMirrorCtrlD = (cm, doc) => {
     let found = false
     let match
 
-    while (!found && (match = reg.exec(lineContent))) {
+    while (!found && (match = reg.exec(lineContent))) { // eslint-disable-line no-cond-assign
       if (ch >= match.index && ch <= reg.lastIndex) {
         found = true
 
@@ -45,7 +45,7 @@ export const codeMirrorCtrlD = (cm, doc) => {
         if (lineNb === lastPos.line) {
           index = text.substring(lastPos.ch).indexOf(selectionValue)
 
-          if (index !== -1) index = index + lastPos.ch
+          if (index !== -1) index += lastPos.ch
         } else {
           index = text.indexOf(selectionValue)
         }
@@ -86,7 +86,7 @@ export const codeMirrorCtrlD = (cm, doc) => {
 export const codeMirrorDuplicate = (cm, doc) => {
   if (!cm.somethingSelected()) {
     // If nothing selected, duplicate current line
-    const { ch, line } = cm.getCursor()
+    const { line } = cm.getCursor()
     const lineContent = cm.getLine(line)
 
     doc.replaceRange(`${lineContent}\n`, { line, ch: 0 })
@@ -101,7 +101,7 @@ export const codeMirrorDuplicate = (cm, doc) => {
 
     // if single line, duplicate line
     if (select.anchor.line === select.head.line) {
-      const line = select.head.line
+      const { line } = select.head
       const lineContent = cm.getLine(line)
 
       doc.replaceRange(`${lineContent}\n`, { line, ch: 0 })

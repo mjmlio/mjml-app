@@ -178,7 +178,7 @@ class FileEditor extends Component {
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line
   }
-  
+
   handleCtrlD(cm) {
     codeMirrorCtrlD(cm, this._codeMirror)
   }
