@@ -9,7 +9,8 @@ export const codeMirrorCtrlD = (cm, doc) => {
     let found = false
     let match
 
-    while (!found && (match = reg.exec(lineContent))) { // eslint-disable-line no-cond-assign
+    // eslint-disable-next-line no-cond-assign
+    while (!found && (match = reg.exec(lineContent))) {
       if (ch >= match.index && ch <= reg.lastIndex) {
         found = true
 
