@@ -61,10 +61,6 @@ class ProjectPage extends Component {
     this.props.setPreview(null)
   }
 
-  handleSave() {
-    this._editor.handleSave()
-  }
-
   handleBeautify = () => this._editor.beautify()
 
   handlePathChange = path => this.setState({ path, activeFile: null })
@@ -210,7 +206,7 @@ class ProjectPage extends Component {
           </div>
           <div className="d-f flow-h-10">
             {preventAutoSave && [
-              <Button key="save" transparent onClick={this.handleSave.bind(this)}>
+              <Button key="save" transparent onClick={() => this._editor.handleSave()}>
                 <IconSave style={{ marginRight: 5 }} />
                 {'Save'}
               </Button>,

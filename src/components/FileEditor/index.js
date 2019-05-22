@@ -256,7 +256,7 @@ class FileEditor extends Component {
       addAlert('File successfully saved', 'success')
     } catch (e) {
       addAlert('Could not save file', 'error')
-      console.log(e)
+      console.log(e) // eslint-disable-line no-console
     }
   }
 
