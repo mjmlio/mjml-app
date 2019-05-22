@@ -27,6 +27,8 @@ import 'helpers/codemirror-util-autoformat'
 
 import isOldSyntax from 'helpers/detectOldMJMLSyntax'
 
+import { codeMirrorCtrlD, codeMirrorDuplicate } from 'helpers/codemirror-shortcuts'
+
 import {
   completeAfter,
   completeIfAfterLt,
@@ -176,6 +178,14 @@ class FileEditor extends Component {
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line
   }
+  
+  handleCtrlD(cm) {
+    codeMirrorCtrlD(cm, this._codeMirror)
+  }
+
+  handleCtrlShiftD(cm) {
+    codeMirrorDuplicate(cm, this._codeMirror)
+  }
 
   initEditor() {
     if (!this._textarea) {
@@ -215,6 +225,10 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
+        'Ctrl-D': cm => this.handleCtrlD(cm),
+        'Cmd-D': cm => this.handleCtrlD(cm),
+        'Shift-Ctrl-D': cm => this.handleCtrlShiftD(cm),
+        'Shift-Cmd-D': cm => this.handleCtrlShiftD(cm),
         /* eslint-enable quotes */
       },
       lint: this.handleValidate,
