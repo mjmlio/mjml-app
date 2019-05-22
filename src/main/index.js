@@ -3,6 +3,7 @@ import * as path from 'path'
 import { format as formatUrl } from 'url'
 import { autoUpdater } from 'electron-updater'
 
+import { saveWindowSettings, getWindowSettings } from 'helpers/window-settings'
 import buildMenu from 'menu'
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -27,13 +28,16 @@ const installExtensions = async () => {
   ).catch(console.log) // eslint-disable-line
 }
 
-function createMainWindow() {
+async function createMainWindow() {
+  const windowParams = await getWindowSettings()
+
   const w = new BrowserWindow({
     webPreferences: {
       webSecurity: false,
     },
     backgroundColor: '#2A2A35',
     show: false,
+    ...windowParams,
   })
 
   w.once('ready-to-show', () => {
@@ -86,15 +90,25 @@ function createMainWindow() {
   return w
 }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+let beforeQuitDone = false
+
+app.on('before-quit', async event => {
+  if (!beforeQuitDone) {
+    event.preventDefault()
+    await saveWindowSettings(mainWindow)
+
+    beforeQuitDone = true
     app.quit()
   }
 })
 
-app.on('activate', () => {
+app.on('window-all-closed', async () => {
+  app.quit()
+})
+
+app.on('activate', async () => {
   if (mainWindow === null) {
-    mainWindow = createMainWindow()
+    mainWindow = await createMainWindow()
   }
 })
 
@@ -102,7 +116,7 @@ app.on('ready', async () => {
   if (isDevelopment) {
     await installExtensions()
   }
-  mainWindow = createMainWindow()
+  mainWindow = await createMainWindow()
   if (isProduction) {
     autoUpdater.checkForUpdatesAndNotify()
   }
