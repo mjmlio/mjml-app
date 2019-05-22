@@ -97,10 +97,10 @@ async function loadProject(p, mjmlPath) {
       if (!indexExists) {
         const dir = await fsReadDir(p)
         const fallback = find(dir, name => endsWith(name, '.mjml'))
-        
+
         if (fallback) indexFilePath = path.join(p, fallback)
       }
-      
+
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
       const { html: htmlContent } = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
