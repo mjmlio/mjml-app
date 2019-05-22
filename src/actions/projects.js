@@ -188,7 +188,9 @@ async function massExport(state, asyncJob) {
 
 export function exportSelectedProjectsToHTML() {
   return async (dispatch, getState) => {
-    const targetPath = await massExport(getState(), (filePath, p) => fsWriteFile(filePath, p.get('html')))
+    const targetPath = await massExport(getState(), (filePath, p) =>
+      fsWriteFile(filePath, p.get('html')),
+    )
     if (targetPath) {
       dispatch(saveLastExportedFolder(targetPath))
     }
@@ -198,7 +200,7 @@ export function exportSelectedProjectsToHTML() {
 export function exportSelectedProjectsToImages(done) {
   return async (dispatch, getState) => {
     const state = getState()
-    
+
     const targetPath = await massExport(state, async (filePath, p, targetDir) => {
       const html = p.get('html')
       const previewSize = state.settings.get('previewSize')
