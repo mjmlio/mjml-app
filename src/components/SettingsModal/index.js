@@ -98,6 +98,7 @@ class SettingsModal extends Component {
     const editorUseTab = settings.getIn(['editor', 'useTab'], false)
     const editorTabSize = settings.getIn(['editor', 'tabSize'], 2)
     const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
+    const preventAutoSave = settings.getIn(['editor', 'preventAutoSave'], false)
 
     return (
       <Modal
@@ -194,6 +195,12 @@ class SettingsModal extends Component {
                   onChange={e => this.changeEditorSetting('indentSize')(Number(e.target.value))}
                 />
               </div>
+              <CheckBox
+                value={preventAutoSave}
+                onChange={this.changeEditorSetting('preventAutoSave')}
+              >
+                {'Don’t auto-save on change'}
+              </CheckBox>
             </TabItem>
 
             <TabItem title="Preview" className="flow-v-10" icon={IconPreview}>

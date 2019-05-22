@@ -19,7 +19,6 @@ class ProjectItem extends Component {
 
   render() {
     const { onRemove, onOpen, onDuplicate, onEditName, onToggleSelect, isSelected, p } = this.props
-
     const { isOver } = this.state
 
     return (
