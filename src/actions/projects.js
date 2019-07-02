@@ -3,7 +3,7 @@ import os from 'os'
 import path from 'path'
 import trash from 'trash'
 import { replace } from 'react-router-redux'
-import kebabCase from 'lodash/kebabCase'
+import { kebabCase, find, endsWith } from 'lodash'
 
 import takeScreenshot from 'helpers/takeScreenshot'
 
@@ -22,6 +22,7 @@ import {
   recursiveCopy,
   fileDialog,
   fsReadFile,
+  fsReadDir,
   fsAccess,
   fsRename,
   fsWriteFile,
@@ -90,7 +91,16 @@ async function loadProject(p, mjmlPath) {
   res.isOK = await isValidDir(p)
   if (res.isOK) {
     try {
-      const indexFilePath = path.join(p, 'index.mjml')
+      let indexFilePath = path.join(p, 'index.mjml')
+      const indexExists = await fileExists(indexFilePath)
+
+      if (!indexExists) {
+        const dir = await fsReadDir(p)
+        const fallback = find(dir, name => endsWith(name, '.mjml'))
+
+        if (fallback) indexFilePath = path.join(p, fallback)
+      }
+
       const mjmlContent = await fsReadFile(indexFilePath, { encoding: 'utf8' })
       const { html: htmlContent } = await mjml2html(mjmlContent, indexFilePath, mjmlPath)
       res.html = htmlContent
