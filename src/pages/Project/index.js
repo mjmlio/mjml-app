@@ -10,6 +10,7 @@ import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
+import IconSave from 'react-icons/md/save'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 import beautifyJS from 'js-beautify'
@@ -38,6 +39,7 @@ import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
     preview: state.preview,
     previewSize: state.settings.get('previewSize'),
     beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+    preventAutoSave: state.settings.getIn(['editor', 'preventAutoSave']),
   }),
   {
     openModal,
@@ -185,7 +187,7 @@ class ProjectPage extends Component {
   }
 
   render() {
-    const { preview } = this.props
+    const { preview, preventAutoSave } = this.props
     const { path, activeFile } = this.state
 
     const rootPath = this.props.location.query.path
@@ -203,6 +205,12 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className="d-f flow-h-10">
+            {preventAutoSave && [
+              <Button key="save" transparent onClick={() => this._editor.handleSave()}>
+                <IconSave style={{ marginRight: 5 }} />
+                {'Save'}
+              </Button>,
+            ]}
             {isMJMLFile && [
               <Button key="beautify" transparent onClick={this.handleBeautify}>
                 <IconBeautify style={{ marginRight: 5 }} />

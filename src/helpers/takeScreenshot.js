@@ -13,6 +13,7 @@ export function takeScreenshot(html, deviceWidth, workingDirectory) {
     })
 
     const tmpFileName = path.join(workingDirectory, TMP_FILE)
+
     await fsWriteFile(tmpFileName, html)
 
     win.loadURL(`file://${tmpFileName}`)

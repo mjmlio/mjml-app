@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import get from 'lodash/get'
+import { get } from 'lodash'
 
 import beautifyJS from 'js-beautify'
 
@@ -24,6 +24,8 @@ import 'codemirror/mode/xml/xml'
 import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
+
+import { addAlert } from 'reducers/alerts'
 
 import isOldSyntax from 'helpers/detectOldMJMLSyntax'
 
@@ -69,10 +71,12 @@ function beautify(content) {
       useTab: settings.getIn(['editor', 'useTab'], false),
       tabSize: settings.getIn(['editor', 'tabSize'], 2),
       indentSize: settings.getIn(['editor', 'indentSize'], 2),
+      preventAutoSave: settings.getIn(['editor', 'preventAutoSave'], false),
     }
   },
   {
     setPreview,
+    addAlert,
   },
 )
 class FileEditor extends Component {
@@ -257,14 +261,31 @@ class FileEditor extends Component {
     }
   }
 
+  async handleSave() {
+    const { fileName, addAlert } = this.props
+    const mjml = this._codeMirror.getValue()
+
+    try {
+      await fsWriteFile(fileName, mjml)
+      addAlert('File successfully saved', 'success')
+    } catch (e) {
+      addAlert('Could not save file', 'error')
+      console.log(e) // eslint-disable-line no-console
+    }
+  }
+
   handleChange = debounce(async () => {
-    const { setPreview, fileName, mjmlEngine } = this.props
+    const { setPreview, fileName, mjmlEngine, preventAutoSave } = this.props
     const mjml = this._codeMirror.getValue()
     if (mjmlEngine === 'auto') {
       setPreview(fileName, mjml)
-      this.debounceWrite(fileName, mjml)
+
+      if (!preventAutoSave) this.debounceWrite(fileName, mjml)
     } else {
-      await fsWriteFile(fileName, mjml)
+      if (!preventAutoSave) {
+        await fsWriteFile(fileName, mjml)
+      }
+
       setPreview(fileName, mjml)
     }
 
