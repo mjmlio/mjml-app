@@ -1,3 +1,12 @@
+### 2.10.0 (2018-08-30)
+
+- [MJML](https://github.com/mjmlio/mjml) 4.1.2
+- Allow to use custom v4 engine again ([#255](https://github.com/mjmlio/mjml-app/pull/255)) - @kmcb777
+- Change path of tmp file for screenshots to respect relative paths ([#246](https://github.com/mjmlio/mjml-app/pull/246)) - @eikaramba
+- Change default path of html export ([#245](https://github.com/mjmlio/mjml-app/pull/245)) - @eikaramba
+- Stop displaying migrate button after migrating ([44c8137](https://github.com/mjmlio/mjml-app/commit/44c8137ba941a8e816e355e223541f1d96e5841c)) - @kmcb777
+- Allow attributes in mjml tag ([5defeae](https://github.com/mjmlio/mjml-app/commit/5defeaec0f9364dfb3973bb818aa2116a97a7e03)) - @kmcb777
+
 ### 2.9.0 (2018-04-05)
 
 - Ability to create and update code snippets ([#227](https://github.com/mjmlio/mjml-app/pull/227)) - @ngarnier

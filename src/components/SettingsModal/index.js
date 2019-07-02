@@ -20,6 +20,7 @@ import SnippetForm from 'components/SnippetForm'
 import SnippetsList from 'components/SnippetsList'
 
 import MJMLEngine from 'components/MJMLEngine'
+import MjmlConfigPath from 'components/MjmlConfigPath'
 
 import './style.scss'
 
@@ -98,6 +99,7 @@ class SettingsModal extends Component {
     const editorTabSize = settings.getIn(['editor', 'tabSize'], 2)
     const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
     const checkForRelativePaths = settings.getIn(['mjml', 'checkForRelativePaths'], false)
+    const preventAutoSave = settings.getIn(['editor', 'preventAutoSave'], false)
 
     return (
       <Modal
@@ -138,6 +140,7 @@ class SettingsModal extends Component {
                   setting warns you if such are found in the code.
                 </small>
               </CheckBox>
+              <MjmlConfigPath />
             </TabItem>
 
             <TabItem title="Editor" icon={IconEditor}>
@@ -204,6 +207,12 @@ class SettingsModal extends Component {
                   onChange={e => this.changeEditorSetting('indentSize')(Number(e.target.value))}
                 />
               </div>
+              <CheckBox
+                value={preventAutoSave}
+                onChange={this.changeEditorSetting('preventAutoSave')}
+              >
+                {'Don’t auto-save on change'}
+              </CheckBox>
             </TabItem>
 
             <TabItem title="Preview" className="flow-v-10" icon={IconPreview}>

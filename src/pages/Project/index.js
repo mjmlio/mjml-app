@@ -10,6 +10,7 @@ import IconCamera from 'react-icons/md/camera-alt'
 import IconEmail from 'react-icons/md/email'
 import IconAdd from 'react-icons/md/note-add'
 import IconBeautify from 'react-icons/md/autorenew'
+import IconSave from 'react-icons/md/save'
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 import beautifyJS from 'js-beautify'
@@ -31,7 +32,7 @@ import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
-import takeScreenshot from 'helpers/takeScreenshot'
+import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
 
 @connect(
   state => ({
@@ -39,6 +40,7 @@ import takeScreenshot from 'helpers/takeScreenshot'
     previewSize: state.settings.get('previewSize'),
     beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
     checkForRelativePaths: state.settings.getIn(['mjml', 'checkForRelativePaths']),
+    preventAutoSave: state.settings.getIn(['editor', 'preventAutoSave']),
   }),
   {
     openModal,
@@ -128,7 +130,7 @@ class ProjectPage extends Component {
     if (this.props.checkForRelativePaths) this.checkForRelativePaths()
     const p = saveDialog({
       title: 'Export to HTML file',
-      defaultPath: this.props.location.query.path,
+      defaultPath: this.state.path,
       filters: [{ name: 'All Files', extensions: ['html'] }],
     })
     if (!p) {
@@ -152,9 +154,11 @@ class ProjectPage extends Component {
     const [mobileWidth, desktopWidth] = [previewSize.get('mobile'), previewSize.get('desktop')]
 
     const [mobileScreenshot, desktopScreenshot] = await Promise.all([
-      takeScreenshot(preview.content, mobileWidth),
-      takeScreenshot(preview.content, desktopWidth),
+      takeScreenshot(preview.content, mobileWidth, this.state.path),
+      takeScreenshot(preview.content, desktopWidth, this.state.path),
     ])
+
+    await cleanUp(this.state.path)
 
     await Promise.all([
       fsWriteFile(pathModule.join(location.query.path, `${filename}-mobile.png`), mobileScreenshot),
@@ -184,11 +188,18 @@ class ProjectPage extends Component {
 
   getHTMLOutput() {
     const { preview, beautifyOutput } = this.props
-    return beautifyOutput ? beautifyJS.html(preview.content) : preview.content
+    return beautifyOutput
+      ? beautifyJS.html(preview.content, {
+          indent_size: 2, // eslint-disable-line camelcase
+          wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
+          max_preserve_newline: 0, // eslint-disable-line camelcase
+          preserve_newlines: false, // eslint-disable-line camelcase
+        })
+      : preview.content
   }
 
   render() {
-    const { preview } = this.props
+    const { preview, preventAutoSave } = this.props
     const { path, activeFile } = this.state
 
     const rootPath = this.props.location.query.path
@@ -206,6 +217,12 @@ class ProjectPage extends Component {
             </Button>
           </div>
           <div className="d-f flow-h-10">
+            {preventAutoSave && [
+              <Button key="save" transparent onClick={() => this._editor.handleSave()}>
+                <IconSave style={{ marginRight: 5 }} />
+                {'Save'}
+              </Button>,
+            ]}
             {isMJMLFile && [
               <Button key="beautify" transparent onClick={this.handleBeautify}>
                 <IconBeautify style={{ marginRight: 5 }} />

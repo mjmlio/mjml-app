@@ -1,19 +1,19 @@
 import { remote } from 'electron'
 import path from 'path'
-import os from 'os'
 
-import { fsWriteFile } from 'helpers/fs'
+import { fsWriteFile, fsUnlink } from 'helpers/fs'
 
-const TMP_DIR = os.tmpdir()
+const TMP_FILE = 'tpm-mjml-preview.html'
 
-export default function takeScreenshot(html, deviceWidth) {
+export function takeScreenshot(html, deviceWidth, workingDirectory) {
   return new Promise(async resolve => {
     const win = new remote.BrowserWindow({
       width: deviceWidth,
       show: false,
     })
 
-    const tmpFileName = path.join(TMP_DIR, 'tpm-mjml-preview.html')
+    const tmpFileName = path.join(workingDirectory, TMP_FILE)
+
     await fsWriteFile(tmpFileName, html)
 
     win.loadURL(`file://${tmpFileName}`)
@@ -36,4 +36,9 @@ export default function takeScreenshot(html, deviceWidth) {
       )
     })
   })
+}
+
+export async function cleanUp(workingDirectory) {
+  const tmpFileName = path.join(workingDirectory, TMP_FILE)
+  await fsUnlink(tmpFileName)
 }

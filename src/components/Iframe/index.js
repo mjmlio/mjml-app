@@ -55,7 +55,7 @@ class Iframe extends Component {
         const images = [...documentElement.querySelectorAll('img')]
         images.forEach(img => {
           const imgSrc = img.getAttribute('src')
-          if (!imgSrc.startsWith('http')) {
+          if (!imgSrc.startsWith('http') && !imgSrc.startsWith('data')) {
             img.setAttribute('src', `file://${base}/${imgSrc}`)
           }
         })

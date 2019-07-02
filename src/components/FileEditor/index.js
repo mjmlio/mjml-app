@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import get from 'lodash/get'
+import { get } from 'lodash'
 
 import beautifyJS from 'js-beautify'
 
@@ -25,7 +25,11 @@ import 'codemirror/addon/lint/lint'
 
 import 'helpers/codemirror-util-autoformat'
 
+import { addAlert } from 'reducers/alerts'
+
 import isOldSyntax from 'helpers/detectOldMJMLSyntax'
+
+import { codeMirrorCtrlD, codeMirrorDuplicate } from 'helpers/codemirror-shortcuts'
 
 import {
   completeAfter,
@@ -46,6 +50,8 @@ function beautify(content) {
   return beautifyJS.html(content, {
     indent_size: 2, // eslint-disable-line camelcase
     wrap_attributes_indent_size: 2, // eslint-disable-line camelcase
+    max_preserve_newline: 0, // eslint-disable-line camelcase
+    preserve_newlines: false, // eslint-disable-line camelcase
   })
 }
 
@@ -65,10 +71,12 @@ function beautify(content) {
       useTab: settings.getIn(['editor', 'useTab'], false),
       tabSize: settings.getIn(['editor', 'tabSize'], 2),
       indentSize: settings.getIn(['editor', 'indentSize'], 2),
+      preventAutoSave: settings.getIn(['editor', 'preventAutoSave'], false),
     }
   },
   {
     setPreview,
+    addAlert,
   },
 )
 class FileEditor extends Component {
@@ -143,9 +151,7 @@ class FileEditor extends Component {
 
   detecteOldSyntax = () => {
     const content = this.getContent()
-    if (isOldSyntax(content)) {
-      this.props.onDetectOldSyntax()
-    }
+    this.props.onDetectOldSyntax(isOldSyntax(content))
   }
 
   async loadContent() {
@@ -175,6 +181,14 @@ class FileEditor extends Component {
       }
       this.setState({ isLoading: false })
     } catch (e) {} // eslint-disable-line
+  }
+
+  handleCtrlD(cm) {
+    codeMirrorCtrlD(cm, this._codeMirror)
+  }
+
+  handleCtrlShiftD(cm) {
+    codeMirrorDuplicate(cm, this._codeMirror)
   }
 
   initEditor() {
@@ -215,6 +229,10 @@ class FileEditor extends Component {
         "' '": cm => completeIfInTag(CodeMirror, cm),
         "'='": cm => completeIfInTag(CodeMirror, cm),
         'Ctrl-Space': 'autocomplete',
+        'Ctrl-D': cm => this.handleCtrlD(cm),
+        'Cmd-D': cm => this.handleCtrlD(cm),
+        'Shift-Ctrl-D': cm => this.handleCtrlShiftD(cm),
+        'Shift-Cmd-D': cm => this.handleCtrlShiftD(cm),
         /* eslint-enable quotes */
       },
       lint: this.handleValidate,
@@ -243,16 +261,35 @@ class FileEditor extends Component {
     }
   }
 
+  async handleSave() {
+    const { fileName, addAlert } = this.props
+    const mjml = this._codeMirror.getValue()
+
+    try {
+      await fsWriteFile(fileName, mjml)
+      addAlert('File successfully saved', 'success')
+    } catch (e) {
+      addAlert('Could not save file', 'error')
+      console.log(e) // eslint-disable-line no-console
+    }
+  }
+
   handleChange = debounce(async () => {
-    const { setPreview, fileName, mjmlEngine } = this.props
+    const { setPreview, fileName, mjmlEngine, preventAutoSave } = this.props
     const mjml = this._codeMirror.getValue()
     if (mjmlEngine === 'auto') {
       setPreview(fileName, mjml)
-      this.debounceWrite(fileName, mjml)
+
+      if (!preventAutoSave) this.debounceWrite(fileName, mjml)
     } else {
-      await fsWriteFile(fileName, mjml)
+      if (!preventAutoSave) {
+        await fsWriteFile(fileName, mjml)
+      }
+
       setPreview(fileName, mjml)
     }
+
+    window.requestIdleCallback(this.detecteOldSyntax)
   }, 200)
 
   getContent = () => {

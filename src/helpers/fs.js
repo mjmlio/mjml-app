@@ -14,6 +14,7 @@ export const fsWriteFile = promisify(fs.writeFile)
 export const fsAccess = promisify(fs.access)
 export const fsStat = promisify(fs.stat)
 export const fsMkdir = promisify(fs.mkdir)
+export const fsUnlink = promisify(fs.unlink)
 export const recursiveCopy = promisify(ncp)
 
 function getFileInfoFactory(p) {
@@ -127,10 +128,10 @@ export async function createOrEmpty(location) {
   }
 }
 
-export function exec(cmd) {
+export function exec(cmd, opts = {}) {
   return new Promise(resolve => {
     try {
-      x(cmd, (err, stdout, stderr) => {
+      x(cmd, opts, (err, stdout, stderr) => {
         resolve({
           err,
           stdout,
@@ -143,10 +144,10 @@ export function exec(cmd) {
   })
 }
 
-export function execFile(cmd, opts, stdinStream) {
+export function execFile(cmd, args, opts = {}, stdinStream) {
   return new Promise(resolve => {
     try {
-      const child = xFile(cmd, opts, (err, stdout, stderr) => {
+      const child = xFile(cmd, args, opts, (err, stdout, stderr) => {
         resolve({
           err,
           stdout,

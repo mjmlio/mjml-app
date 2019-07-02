@@ -85,7 +85,7 @@ class FilesList extends Component {
     ipcRenderer.removeListener('browser-window-focus', this.refresh)
   }
 
-  handleDetectOldSyntax = () => this.setState({ isOldSyntaxDetected: true })
+  handleDetectOldSyntax = val => this.setState({ isOldSyntaxDetected: val })
 
   handleSubmit = e => {
     e.preventDefault()
