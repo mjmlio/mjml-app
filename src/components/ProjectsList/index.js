@@ -130,10 +130,9 @@ class ProjectsList extends Component {
             />
           )
         })}
-        {!!text &&
-          !results.size && (
-            <div className="pl-10">{`No projects matched the word \`${text}\``}</div>
-          )}
+        {!!text && !results.size && (
+          <div className="pl-10">{`No projects matched the word \`${text}\``}</div>
+        )}
         <ConfirmModal
           isOpened={isDeleteModalOpened}
           yepCTA={shouldDeleteFolder ? 'Remove from list and from disk' : 'Remove from list'}
