@@ -39,6 +39,7 @@ import { takeScreenshot, cleanUp } from 'helpers/takeScreenshot'
     preview: state.preview,
     previewSize: state.settings.get('previewSize'),
     beautifyOutput: state.settings.getIn(['mjml', 'beautify']),
+    checkForRelativePaths: state.settings.getIn(['mjml', 'checkForRelativePaths']),
     preventAutoSave: state.settings.getIn(['editor', 'preventAutoSave']),
   }),
   {
@@ -126,6 +127,7 @@ class ProjectPage extends Component {
   }
 
   handleExportToHTML = async () => {
+    if (this.props.checkForRelativePaths) this.checkForRelativePaths()
     const p = saveDialog({
       title: 'Export to HTML file',
       defaultPath: this.state.path,
@@ -173,6 +175,16 @@ class ProjectPage extends Component {
   openSettingsModal = () => this.props.openModal('settings')
   openSendModal = () => this.props.openModal('send')
   openAddFileModal = () => this.props.openModal('addFile')
+
+  checkForRelativePaths() {
+    const { preview } = this.props
+    const relativePathsRegex = new RegExp(/(?:href|src)=(["'])(?!mailto|https|http|data:).*?\1/g)
+    let matches = preview.content.match(relativePathsRegex)
+    matches = matches.map(match => `■ ${match}`)
+    this.props.addAlert(['Found possible non-absolute paths:', ...matches], 'error', {
+      autoHide: false,
+    })
+  }
 
   getHTMLOutput() {
     const { preview, beautifyOutput } = this.props

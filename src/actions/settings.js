@@ -40,6 +40,7 @@ export function loadSettings() {
       mjml: {
         minify: false,
         beautify: false,
+        checkForRelativePaths: false,
       },
       projects: [],
       api: {

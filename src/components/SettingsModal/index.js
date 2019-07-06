@@ -98,6 +98,7 @@ class SettingsModal extends Component {
     const editorUseTab = settings.getIn(['editor', 'useTab'], false)
     const editorTabSize = settings.getIn(['editor', 'tabSize'], 2)
     const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
+    const checkForRelativePaths = settings.getIn(['mjml', 'checkForRelativePaths'], false)
     const preventAutoSave = settings.getIn(['editor', 'preventAutoSave'], false)
 
     return (
@@ -127,6 +128,17 @@ class SettingsModal extends Component {
               </CheckBox>
               <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
+              </CheckBox>
+              <CheckBox
+                className="tooltip-trigger"
+                value={checkForRelativePaths}
+                onChange={this.changeMJMLSetting('checkForRelativePaths')}
+              >
+                {'Warn for relative paths on HTML export'}
+                <small className="tooltip tooltip-up">
+                  Relative Paths like /image.jpg are usually not supported in Email Clients. This
+                  setting warns you if such are found in the code.
+                </small>
               </CheckBox>
               <MjmlConfigPath />
             </TabItem>
