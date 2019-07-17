@@ -280,7 +280,7 @@ class FilesList extends Component {
             split="vertical"
             defaultSize={180}
             minSize={2}
-            maxSize={250}
+            maxSize={350}
             onDragStarted={this.startDrag}
             onDragFinished={this.stopDrag}
           >
