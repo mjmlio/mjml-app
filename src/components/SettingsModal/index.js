@@ -95,6 +95,7 @@ class SettingsModal extends Component {
     const editorLightTheme = settings.getIn(['editor', 'lightTheme'], false)
     const minifyOutput = settings.getIn(['mjml', 'minify'], false)
     const beautifyOutput = settings.getIn(['mjml', 'beautify'], false)
+    const keepCommentsOutput = settings.getIn(['mjml', 'keepComments'], true)
     const editorUseTab = settings.getIn(['editor', 'useTab'], false)
     const editorTabSize = settings.getIn(['editor', 'tabSize'], 2)
     const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
@@ -128,6 +129,9 @@ class SettingsModal extends Component {
               </CheckBox>
               <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
+              </CheckBox>
+              <CheckBox value={keepCommentsOutput} onChange={this.changeMJMLSetting('keepComments')}>
+                {'Preserve HTML comments in output'}
               </CheckBox>
               <CheckBox
                 className="tooltip-trigger"
