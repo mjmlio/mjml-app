@@ -33,6 +33,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             '-s',
             '--config.validationLevel=skip',
             ...(options.minify ? ['-m'] : []),
+            ...(options.keepComments ? [] : ['--config.keepComments=0']),
             ...mjmlConfigOption,
           ]
 
