@@ -130,7 +130,10 @@ class SettingsModal extends Component {
               <CheckBox value={beautifyOutput} onChange={this.changeMJMLSetting('beautify')}>
                 {'Beautify HTML output'}
               </CheckBox>
-              <CheckBox value={keepCommentsOutput} onChange={this.changeMJMLSetting('keepComments')}>
+              <CheckBox
+                value={keepCommentsOutput}
+                onChange={this.changeMJMLSetting('keepComments')}
+              >
                 {'Preserve HTML comments in output'}
               </CheckBox>
               <CheckBox
