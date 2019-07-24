@@ -68,6 +68,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           const mjmlOptions = {
             filePath,
             minify: !!options.minify,
+            keepComments: !!options.keepComments,
             mjmlConfigPath: useMjmlConfig
               ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
               : null,
