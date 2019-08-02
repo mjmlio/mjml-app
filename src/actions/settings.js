@@ -40,6 +40,7 @@ export function loadSettings() {
       mjml: {
         minify: false,
         beautify: false,
+        keepComments: true,
         checkForRelativePaths: false,
       },
       projects: [],

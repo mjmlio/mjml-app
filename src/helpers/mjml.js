@@ -33,6 +33,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             '-s',
             '--config.validationLevel=skip',
             ...(options.minify ? ['-m'] : []),
+            ...(options.keepComments ? [] : ['--config.keepComments=0']),
             ...mjmlConfigOption,
           ]
 
@@ -67,6 +68,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           const mjmlOptions = {
             filePath,
             minify: !!options.minify,
+            keepComments: !!options.keepComments,
             mjmlConfigPath: useMjmlConfig
               ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
               : null,
