@@ -18,6 +18,8 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
         const settings = await storageGet('settings')
         const useMjmlConfig = get(settings, 'mjml.useMjmlConfig')
         const mjmlConfigPath = get(settings, 'mjml.mjmlConfigPath')
+        const keepComments = get(settings, 'mjml.keepComments', true)
+        const preventAutoSave = get(settings, 'editor.preventAutoSave', false)
 
         if (mjmlPath) {
           let mjmlConfigOption = []
@@ -33,13 +35,19 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
             '-s',
             '--config.validationLevel=skip',
             ...(options.minify ? ['-m'] : []),
-            ...(options.keepComments ? [] : ['--config.keepComments=0']),
+            ...(keepComments ? [] : ['--config.keepComments=0']),
             ...mjmlConfigOption,
           ]
 
-          if (!mjmlContent.trim().startsWith('<mjml')) {
+          if (!mjmlContent.trim().startsWith('<mjml') || preventAutoSave) {
             const stdinStream = new stream.Readable()
-            stdinStream.push(wrapIntoMJMLTags(mjmlContent))
+            
+            if (!mjmlContent.trim().startsWith('<mjml')) {
+              stdinStream.push(wrapIntoMJMLTags(mjmlContent))
+            } else {
+              stdinStream.push(mjmlContent)
+            }
+            
             stdinStream.push(null)
             args.push('-i')
 
@@ -68,7 +76,7 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
           const mjmlOptions = {
             filePath,
             minify: !!options.minify,
-            keepComments: !!options.keepComments,
+            keepComments,
             mjmlConfigPath: useMjmlConfig
               ? settings.mjml.mjmlConfigPath || path.dirname(filePath)
               : null,

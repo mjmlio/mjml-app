@@ -36,6 +36,7 @@ export function loadSettings() {
         useTab: false,
         tabSize: 2,
         indentSize: 2,
+        preventAutoSave: false,
       },
       mjml: {
         minify: false,
