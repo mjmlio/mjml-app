@@ -7,19 +7,12 @@ const storageSet = promisify(storage.set)
 
 export const saveWindowSettings = async window => {
   if (!window) return
-
-  const [width, height] = window.getSize()
-  const [x, y] = window.getPosition()
+  const bounds = window.getContentBounds()
   const settings = await storageGet('settings')
 
   if (!settings) return
 
-  set(settings, 'windowParams', {
-    width,
-    height,
-    x,
-    y,
-  })
+  set(settings, 'windowParams', bounds)
 
   return storageSet('settings', settings)
 }
