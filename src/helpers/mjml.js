@@ -41,13 +41,13 @@ export default function(mjmlContent, filePath, mjmlPath = null, options = {}) {
 
           if (!mjmlContent.trim().startsWith('<mjml') || preventAutoSave) {
             const stdinStream = new stream.Readable()
-            
+
             if (!mjmlContent.trim().startsWith('<mjml')) {
               stdinStream.push(wrapIntoMJMLTags(mjmlContent))
             } else {
               stdinStream.push(mjmlContent)
             }
-            
+
             stdinStream.push(null)
             args.push('-i')
 
