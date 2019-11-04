@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import IconRadioChecked from 'react-icons/md/radio-button-checked'
-import IconRadioUnchecked from 'react-icons/md/radio-button-unchecked'
+
+import {
+  MdRadioButtonChecked as IconRadioChecked,
+  MdRadioButtonUnchecked as IconRadioUnchecked,
+} from 'react-icons/md'
 
 class Radio extends Component {
   handleKeyDown = e => {

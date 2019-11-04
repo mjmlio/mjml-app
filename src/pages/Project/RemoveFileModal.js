@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import path from 'path'
 import { connect } from 'react-redux'
-import IconInfo from 'react-icons/md/info'
+import { MdInfo as IconInfo } from 'react-icons/md'
 
 import { isModalOpened, getModalProps, closeModal } from 'reducers/modals'
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FaHome from 'react-icons/md/arrow-back'
+import { MdArrowBack as FaHome } from 'react-icons/md'
 import { Motion, spring } from 'react-motion'
 
 import Button from 'components/Button'

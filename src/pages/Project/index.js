@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import pathModule from 'path'
 import trash from 'trash'
 import { connect } from 'react-redux'
-import FaCog from 'react-icons/fa/cog'
-import FaFolderOpen from 'react-icons/fa/arrow-up'
-import IconCopy from 'react-icons/md/content-copy'
-import IconCode from 'react-icons/md/code'
-import IconCamera from 'react-icons/md/camera-alt'
-import IconEmail from 'react-icons/md/email'
-import IconAdd from 'react-icons/md/note-add'
-import IconBeautify from 'react-icons/md/autorenew'
-import IconSave from 'react-icons/md/save'
+
+import { FaCog, FaFolderOpen } from 'react-icons/fa'
+import {
+  MdContentCopy as IconCopy,
+  MdCode as IconCode,
+  MdCameraAlt as IconCamera,
+  MdEmail as IconEmail,
+  MdNoteAdd as IconAdd,
+  MdAutorenew as IconBeautify,
+  MdSave as IconSave,
+} from 'react-icons/md'
+
 import fs from 'fs'
 import { shell, clipboard } from 'electron'
 import beautifyJS from 'js-beautify'

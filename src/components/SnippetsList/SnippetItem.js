@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import IconExpandMore from 'react-icons/md/expand-more'
-import IconExpandLess from 'react-icons/md/expand-less'
-import IconDelete from 'react-icons/md/delete'
+import {
+  MdExpandMore as IconExpandMore,
+  MdExpandLess as IconExpandLess,
+  MdDelete as IconDelete,
+} from 'react-icons/md'
 
 import { loadSnippet, deleteSnippet } from 'actions/snippets'
 

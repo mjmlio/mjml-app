@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import path from 'path'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
+
+import {
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError,
+} from 'react-icons/md'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { fileExists } from 'helpers/fs'

@@ -6,7 +6,7 @@ import { Creatable as Select } from 'react-select'
 import uniq from 'lodash/uniq'
 import uniqBy from 'lodash/uniqBy'
 
-import IconAdd from 'react-icons/md/add'
+import { MdAdd as IconAdd } from 'react-icons/md'
 
 import sendEmail from 'helpers/sendEmail'
 

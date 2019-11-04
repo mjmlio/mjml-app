@@ -1,11 +1,14 @@
 import React, { Component, createElement } from 'react'
 import cx from 'classnames'
 import path from 'path'
-import IconClose from 'react-icons/md/close'
-import IconEdit from 'react-icons/md/mode-edit'
-import IconUnselected from 'react-icons/md/radio-button-unchecked'
-import IconSelected from 'react-icons/md/check'
-import IconCopy from 'react-icons/md/content-copy'
+
+import {
+  MdClose as IconClose,
+  MdModeEdit as IconEdit,
+  MdRadioButtonUnchecked as IconUnselected,
+  MdCheck as IconSelected,
+  MdContentCopy as IconCopy,
+} from 'react-icons/md'
 
 import Tabbable from 'components/Tabbable'
 import Preview from 'components/Preview'

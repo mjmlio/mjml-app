@@ -5,11 +5,14 @@ import { bindActionCreators } from 'redux'
 import os from 'os'
 import path from 'path'
 import { connect } from 'react-redux'
-import IconArrowRight from 'react-icons/md/arrow-forward'
-import IconArrowLeft from 'react-icons/md/arrow-back'
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
+
+import {
+  MdArrowBack as IconArrowLeft,
+  MdArrowForward as IconArrowRight,
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError,
+} from 'react-icons/md'
 
 import * as templates from 'templates'
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import IconCreate from 'react-icons/md/create-new-folder'
-import IconOpen from 'react-icons/md/file-download'
-import FaCog from 'react-icons/fa/cog'
+
+import { FaCog } from 'react-icons/fa'
+import { MdCreateNewFolder as IconCreate, MdFileDownload as IconOpen } from 'react-icons/md'
+
 import { connect } from 'react-redux'
 
 import { addProject } from 'actions/projects'

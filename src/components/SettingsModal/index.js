@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
 import {
   MdPhoneAndroid as IconMobile,
-  MdDesktopWindow as IconDesktop,
+  MdDesktopWindows as IconDesktop,
   MdClose as IconClose,
   MdSettingsApplications as IconMJMLEngine,
   MdFormatAlignLeft as IconEditor,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { shell, clipboard } from 'electron'
 import { connect } from 'react-redux'
-import { IoAndroidSad as IconErr } from 'react-icons/io'
+import { IoIosSad as IconErr } from 'react-icons/io'
 import { MdContentCopy as IconCopy, MdOpenInNew as IconOpen } from 'react-icons/md'
 
 import { setError } from 'reducers/error'

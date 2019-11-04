@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import pathModule from 'path'
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
+
+import {
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError,
+} from 'react-icons/md'
 
 import { alreadyExists } from 'helpers/fs'
 

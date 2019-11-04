@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Button from 'components/Button'
-import IconError from 'react-icons/md/error'
+import { MdError as IconError } from 'react-icons/md'
 
 import { addSnippet, updateSnippet } from 'actions/snippets'
 
