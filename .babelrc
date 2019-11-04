@@ -1,20 +1,20 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-react",
       {
         "loose": true,
         "modules": "commonjs",
         "targets": {
-          "electron": "1.8",
+          "electron": "7.0",
           "node": "current"
         }
       }
     ],
-    "react",
-    "stage-0"
   ],
   "plugins": [
-    ["module-resolver", { "root": ["src"] }]
+    ["module-resolver", {
+      "root": ["src"]
+    }]
   ]
 }
