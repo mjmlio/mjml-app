@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import cx from 'classnames'
 import pathModule from 'path'
 import SplitPane from 'react-split-pane'
-import FaFolder from 'react-icons/fa/folder'
-import IconClose from 'react-icons/md/close'
-import IconEdit from 'react-icons/md/mode-edit'
+import { FaFolder } from 'react-icons/fa'
+import { MdModeEdit as IconEdit, MdClose as IconClose } from 'react-icons/md'
 
 import { openModal } from 'reducers/modals'
 

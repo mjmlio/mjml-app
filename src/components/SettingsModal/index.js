@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
-import IconMobile from 'react-icons/md/phone-android'
-import IconDesktop from 'react-icons/md/desktop-windows'
-import IconClose from 'react-icons/md/close'
-import IconMJMLEngine from 'react-icons/md/settings-applications'
-import IconEditor from 'react-icons/md/format-align-left'
-import IconPreview from 'react-icons/md/important-devices'
-import IconCode from 'react-icons/md/code'
+import {
+  MdPhoneAndroid as IconMobile,
+  MdDesktopWindow as IconDesktop,
+  MdClose as IconClose,
+  MdSettingsApplications as IconMJMLEngine,
+  MdFormatAlignLeft as IconEditor,
+  MdImportantDevices as IconPreview,
+  MdCode as IconCode,
+} from 'react-icons/md'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { updateSettings } from 'actions/settings'

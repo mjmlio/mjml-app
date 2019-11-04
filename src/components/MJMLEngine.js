@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
 
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
-import IconWarning from 'react-icons/md/warning'
+import {
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError,
+  MdWarning as IconWarning,
+} from 'react-icons/md'
 
 import { exec, fileDialog, fsAccess } from 'helpers/fs'
 

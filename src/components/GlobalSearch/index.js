@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 import debounce from 'lodash/debounce'
-import IconSearch from 'react-icons/lib/md/search'
+import { MdSearch as IconSearch } from 'react-icons/md'
 
 import { searchText } from 'reducers/search'
 

@@ -3,7 +3,7 @@ import { Portal } from 'react-portal'
 import cx from 'classnames'
 import { connect } from 'react-redux'
 import Steack from 'react-steack'
-import IconError from 'react-icons/md/error'
+import { MdError as IconError } from 'react-icons/md'
 
 import { removeAlert } from 'reducers/alerts'
 

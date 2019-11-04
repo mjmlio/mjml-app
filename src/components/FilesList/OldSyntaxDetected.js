@@ -1,5 +1,5 @@
 import React from 'react'
-import IconWarning from 'react-icons/md/warning'
+import { MdWarning as IconWarning } from 'react-icons/md'
 
 import Button from 'components/Button'
 

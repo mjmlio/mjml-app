@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Motion, spring } from 'react-motion'
-import IconDrop from 'react-icons/md/file-download'
+import { MdFileDownload as IconDrop } from 'react-icons/md'
 
 class DropFile extends Component {
   render() {

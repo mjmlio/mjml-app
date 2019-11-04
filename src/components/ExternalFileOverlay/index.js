@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import IconLoad from 'react-icons/lib/ti/starburst'
+import { TiStarburst as IconLoad } from 'react-icons/ti'
 
 import './style.scss'
 
