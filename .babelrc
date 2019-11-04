@@ -16,6 +16,7 @@
     ["@babel/plugin-proposal-decorators", {
       "decoratorsBeforeExport": true
     }],
+    "@babel/plugin-syntax-export-default-from",
     "@babel/plugin-proposal-class-properties",
     ["module-resolver", {
       "root": ["src"]
