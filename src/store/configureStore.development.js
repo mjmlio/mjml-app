@@ -16,8 +16,6 @@ const logger = createLogger({
   collapsed: true,
 })
 
-console.log(hashHistory)
-
 const router = routerMiddleware(hashHistory)
 
 // If Redux DevTools Extension is installed use it, otherwise use Redux compose

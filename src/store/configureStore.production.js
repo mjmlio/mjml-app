@@ -6,8 +6,6 @@ import { routerMiddleware } from 'react-router-redux'
 import rootReducer from 'reducers'
 import catchErrorsMiddleware from 'middlewares/catch-errors'
 
-console.log(hashHistory)
-
 const router = routerMiddleware(hashHistory)
 
 const middlewares = [catchErrorsMiddleware, thunk, router]
