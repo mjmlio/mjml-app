@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { hashHistory } from 'react-router'
+import { hashRouter } from 'react-router-dom'
 import { routerMiddleware } from 'react-router-redux'
 
 import rootReducer from 'reducers'
 import catchErrorsMiddleware from 'middlewares/catch-errors'
 
-const router = routerMiddleware(hashHistory)
+const router = routerMiddleware(hashRouter)
 
 const middlewares = [catchErrorsMiddleware, thunk, router]
 

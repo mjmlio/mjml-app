@@ -42,8 +42,6 @@ function renameFile(path, oldName, newName, files) {
     openModal,
     updateSettings,
   },
-  null,
-  { withRef: true },
 )
 class FilesList extends Component {
   state = {

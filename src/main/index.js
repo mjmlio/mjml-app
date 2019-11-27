@@ -34,6 +34,7 @@ async function createMainWindow() {
   const w = new BrowserWindow({
     webPreferences: {
       webSecurity: false,
+      nodeIntegration: true,
     },
     backgroundColor: '#2A2A35',
     show: false,
