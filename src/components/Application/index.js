@@ -16,7 +16,7 @@ import DropFile from './DropFile'
 
 import './style.scss'
 
-@connect(
+export default connect(
   state => ({
     projects: state.projects,
     settings: state.settings,
@@ -24,79 +24,78 @@ import './style.scss'
   {
     dropFile,
   },
-)
-class Application extends Component {
-  state = {
-    isOver: false,
-  }
-
-  componentDidMount() {
-    // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
-    // window.addEventListener('keydown', () => {
-    //   setTimeout(() => {
-    //     console.log(document.activeElement)
-    //   }, 100)
-    // })
-  }
-
-  handleDragLeave = () => {
-    this.setState({ isOver: false })
-  }
-
-  handleDrop = e => {
-    e.preventDefault()
-    this.handleDragLeave()
-    if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
-      return
+)(
+  class Application extends Component {
+    state = {
+      isOver: false,
     }
-    const fileName = e.dataTransfer.files[0].path
-    this.props.dropFile(fileName)
-  }
 
-  handleDragOver = e => {
-    e.preventDefault()
-    if (!this.state.isOver) {
-      this.setState({ isOver: true })
+    componentDidMount() {
+      // USEFUL TO DEBUG CURRENT ACTIVE ELEMENT
+      // window.addEventListener('keydown', () => {
+      //   setTimeout(() => {
+      //     console.log(document.activeElement)
+      //   }, 100)
+      // })
     }
-  }
 
-  render() {
-    const { projects, settings, location } = this.props
+    handleDragLeave = () => {
+      this.setState({ isOver: false })
+    }
 
-    const { isOver } = this.state
+    handleDrop = e => {
+      e.preventDefault()
+      this.handleDragLeave()
+      if (!e.dataTransfer.files || !e.dataTransfer.files.length) {
+        return
+      }
+      const fileName = e.dataTransfer.files[0].path
+      this.props.dropFile(fileName)
+    }
 
-    const { pathname } = location
+    handleDragOver = e => {
+      e.preventDefault()
+      if (!this.state.isOver) {
+        this.setState({ isOver: true })
+      }
+    }
 
-    return (
-      <div
-        className={cx('Application', {
-          'bg-dark': pathname === '/',
-          'bg-darker': pathname === '/project',
-          isOver,
-        })}
-        onDragOver={this.handleDragOver}
-      >
-        <DropFile
+    render() {
+      const { projects, settings, location } = this.props
+
+      const { isOver } = this.state
+
+      const { pathname } = location
+
+      return (
+        <div
+          className={cx('Application', {
+            'bg-dark': pathname === '/',
+            'bg-darker': pathname === '/project',
+            isOver,
+          })}
           onDragOver={this.handleDragOver}
-          onDragLeave={this.handleDragLeave}
-          onDrop={this.handleDrop}
-          isVisible={isOver}
-        />
+        >
+          <DropFile
+            onDragOver={this.handleDragOver}
+            onDragLeave={this.handleDragLeave}
+            onDrop={this.handleDrop}
+            isVisible={isOver}
+          />
 
-        <ExternalFileOverlay />
+          <ExternalFileOverlay />
 
-        <Placeholder show={!projects} />
-        {projects && this.props.children}
+          <Placeholder show={!projects} />
+          {projects && this.props.children}
 
-        {settings && <SettingsModal />}
-        {settings && <NewProjectModal />}
+          {settings && <SettingsModal />}
+          {settings && <NewProjectModal />}
 
-        <ErrorModal />
-        <AboutModal />
-        <Alerts />
-      </div>
-    )
-  }
-}
-
-export default Application
+          <ErrorModal />
+          <AboutModal />
+          <Alerts />
+        </div>
+      )
+    }
+  },
+)
