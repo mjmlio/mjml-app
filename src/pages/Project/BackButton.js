@@ -12,6 +12,7 @@ class BackButton extends Component {
   }
 
   handleMouseEnter = () => this.setState({ isOver: true })
+
   handleMouseLeave = () => this.setState({ isOver: false })
 
   render() {

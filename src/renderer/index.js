@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { hashRouter } from 'react-router-dom'
+import { hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { AppContainer } from 'react-hot-loader'
 import { ipcRenderer } from 'electron'
@@ -17,7 +17,7 @@ import 'styles/global.scss'
 import 'styles/utils.scss'
 
 const store = configureStore()
-const history = syncHistoryWithStore(hashRouter, store)
+export const history = syncHistoryWithStore(hashHistory, store)
 const { dispatch } = store
 const rootNode = document.getElementById('app')
 
