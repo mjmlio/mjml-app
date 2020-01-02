@@ -31,11 +31,8 @@
 .cm-s-one-dark .CodeMirror,
 .cm-s-one-dark .CodeMirror-scroll {
   font-family: 'Source Code Pro';
-  font-weight: 300;
-  font-size: 13px;
-
   background-color: $bg;
-  color: hsl(220, 14%, 71%);
+  color: #edf2f2;
 }
 .cm-s-one-dark div.CodeMirror-selected {
   background: #3e4451;
@@ -45,6 +42,9 @@
 }
 .cm-s-one-dark .CodeMirror-lines {
   padding: 4px 0; /* Vertical padding around content */
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 400;
 }
 .cm-s-one-dark .CodeMirror pre {
   padding: 0 4px; /* Horizontal padding of content */
@@ -129,7 +129,7 @@
 }
 
 .cm-s-one-dark .CodeMirror-activeline-gutter .CodeMirror-linenumber {
-  color: #abb2bf;
+  color: #edf2f2;
 }
 
 .cm-s-one-dark .cm-matchhighlight {
@@ -141,7 +141,7 @@
 
 /* markdown */
 .cm-s-one-dark .cm-header {
-  color: #e06c75;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-quote {
   color: #5c6370;
@@ -149,10 +149,10 @@
 }
 
 .cm-s-one-dark .cm-negative {
-  color: #e06c75;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-positive {
-  color: #e06c75;
+  color: #ff5370;
 }
 
 .cm-s-one-dark .cm-strong {
@@ -175,19 +175,19 @@
 
 /* xml, html, ... */
 .cm-s-one-dark .cm-tag {
-  color: #e06c75;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-attribute {
   color: #d19a66;
 }
 .cm-s-one-dark .cm-link {
-  color: #98c379;
-  border-bottom: solid 1px #98c379;
+  color: #c3e88D;
+  border-bottom: solid 1px #c3e88D;
 }
 
 /* other ... (for example javascript) */
 .cm-s-one-dark .cm-builtin {
-  color: #e06c75;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-keyword {
   color: #c678dd;
@@ -204,39 +204,39 @@
 }
 .cm-s-one-dark .cm-property {
   color: #61afef;
-} /* original: #abb2bf */
+} /* original: #ff5370 */
 .cm-s-one-dark .cm-qualifier {
   color: #d19a66;
 }
 
 .cm-s-one-dark .cm-variable {
-  color: #e06c75;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-variable-2 {
-  color: #abb2bf;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-variable-3 {
   color: #e5c07b;
 }
 
 .cm-s-one-dark .cm-string {
-  color: #98c379;
+  color: #c3e88D;
 }
 .cm-s-one-dark .cm-string-2 {
-  color: #98c379;
+  color: #c3e88D;
 }
 
 .cm-s-one-dark .cm-punctuation {
-  color: #abb2bf;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-operator {
-  color: #abb2bf;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-meta {
-  color: #abb2bf;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-bracket {
-  color: #abb2bf;
+  color: #ff5370;
 }
 .cm-s-one-dark .cm-comment {
   color: #5c6370;
