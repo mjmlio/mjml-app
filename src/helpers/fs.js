@@ -66,11 +66,11 @@ export async function readDir(p) {
 }
 
 export function fileDialog(options) {
-  const res = dialog.showOpenDialog(options)
-  if (!res || !res.length) {
+  const filePaths = dialog.showOpenDialogSync(options)
+  if (!filePaths || !filePaths.length) {
     return null
   }
-  const p = res[0]
+  const p = filePaths[0]
   return p || null
 }
 
