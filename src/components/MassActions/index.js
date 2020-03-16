@@ -9,7 +9,7 @@ import Button from 'components/Button'
 
 import './style.scss'
 
-@connect(
+export default connect(
   state => ({
     projects: state.settings.get('projects'),
     selectedProjects: state.selectedProjects,
@@ -20,58 +20,57 @@ import './style.scss'
     exportSelectedProjectsToHTML,
     exportSelectedProjectsToImages,
   },
-)
-class MassActions extends Component {
-  state = {
-    isLoading: false,
-  }
+)(
+  class MassActions extends Component {
+    state = {
+      isLoading: false,
+    }
 
-  handleExportToHTML = () => {
-    this.props.exportSelectedProjectsToHTML()
-    this.props.unselectAllProjects()
-  }
-
-  handleExportToImages = () => {
-    this.setState({ isLoading: true })
-    this.props.exportSelectedProjectsToImages(() => {
-      this.setState({ isLoading: false })
+    handleExportToHTML = () => {
+      this.props.exportSelectedProjectsToHTML()
       this.props.unselectAllProjects()
-    })
-  }
+    }
 
-  render() {
-    const { selectedProjects, selectAllProjects, unselectAllProjects } = this.props
-    const { isLoading } = this.state
-    const hasSelectedProjects = !!selectedProjects.length
-    return (
-      <Collapse
-        className="MassActions"
-        isOpened={hasSelectedProjects}
-        springConfig={{ stiffness: 300, damping: 30 }}
-      >
-        <div className="p-20">
-          <span onClick={selectAllProjects} className="a">
-            {'Select all'}
-          </span>
-          {' - '}
-          <span onClick={unselectAllProjects} className="a">
-            {'Unselect all'}
-          </span>
-          <Button className="ml-10" primary onClick={this.handleExportToHTML}>
-            {`Export to HTML (${selectedProjects.length})`}
-          </Button>
-          <Button
-            disabled={isLoading}
-            className="ml-10"
-            primary
-            onClick={this.handleExportToImages}
-          >
-            {isLoading ? 'Loading...' : `Export to images (${selectedProjects.length})`}
-          </Button>
-        </div>
-      </Collapse>
-    )
-  }
-}
+    handleExportToImages = () => {
+      this.setState({ isLoading: true })
+      this.props.exportSelectedProjectsToImages(() => {
+        this.setState({ isLoading: false })
+        this.props.unselectAllProjects()
+      })
+    }
 
-export default MassActions
+    render() {
+      const { selectedProjects, selectAllProjects, unselectAllProjects } = this.props
+      const { isLoading } = this.state
+      const hasSelectedProjects = !!selectedProjects.length
+      return (
+        <Collapse
+          className="MassActions"
+          isOpened={hasSelectedProjects}
+          springConfig={{ stiffness: 300, damping: 30 }}
+        >
+          <div className="p-20">
+            <span onClick={selectAllProjects} className="a">
+              {'Select all'}
+            </span>
+            {' - '}
+            <span onClick={unselectAllProjects} className="a">
+              {'Unselect all'}
+            </span>
+            <Button className="ml-10" primary onClick={this.handleExportToHTML}>
+              {`Export to HTML (${selectedProjects.length})`}
+            </Button>
+            <Button
+              disabled={isLoading}
+              className="ml-10"
+              primary
+              onClick={this.handleExportToImages}
+            >
+              {isLoading ? 'Loading...' : `Export to images (${selectedProjects.length})`}
+            </Button>
+          </div>
+        </Collapse>
+      )
+    }
+  },
+)

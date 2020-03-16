@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import IconCreate from 'react-icons/md/create-new-folder'
-import IconOpen from 'react-icons/md/file-download'
-import FaCog from 'react-icons/fa/cog'
+
+import { FaCog } from 'react-icons/fa'
+import { MdCreateNewFolder as IconCreate, MdFileDownload as IconOpen } from 'react-icons/md'
+
 import { connect } from 'react-redux'
 
 import { addProject } from 'actions/projects'
@@ -15,7 +16,7 @@ import GlobalSearch from 'components/GlobalSearch'
 
 import './style.scss'
 
-@connect(
+export default connect(
   state => ({
     projects: state.settings.get('projects'),
   }),
@@ -23,63 +24,62 @@ import './style.scss'
     addProject,
     openModal,
   },
-)
-class HomePage extends Component {
-  componentDidMount() {
-    if (this.props.projects.size === 0) {
-      this._newProjectBTN.focus()
+)(
+  class HomePage extends Component {
+    componentDidMount() {
+      if (this.props.projects.size === 0) {
+        this._newProjectBTN.focus()
+      }
     }
-  }
 
-  handleExportSelected = () => {
-    this.props.exportSelectedProjectsToHTML()
-    this.props.unselectAllProjects()
-  }
+    handleExportSelected = () => {
+      this.props.exportSelectedProjectsToHTML()
+      this.props.unselectAllProjects()
+    }
 
-  focusNew = () => this._newProjectBTN.focus()
+    focusNew = () => this._newProjectBTN.focus()
 
-  render() {
-    const { addProject, openModal, projects } = this.props
+    render() {
+      const { addProject, openModal, projects } = this.props
 
-    const hasProjects = !!projects.size
+      const hasProjects = !!projects.size
 
-    return (
-      <div
-        className={cx({
-          'fg-1 d-f fd-c p-10': hasProjects,
-          'fg-1 z': !hasProjects,
-        })}
-      >
-        <div className="flow-h-10 d-f ai-c">
-          {hasProjects && <GlobalSearch className="fg-1" />}
-          <Button
-            ref={n => (this._newProjectBTN = n)}
-            primary
-            onClick={() => openModal('newProject')}
-          >
-            <IconCreate size={20} className="mr-5" />
-            {'New project'}
-          </Button>
-          <Button ghost onClick={() => addProject()}>
-            <IconOpen size={20} className="mr-5" />
-            {'Open project'}
-          </Button>
-          <Button ghost onClick={() => openModal('settings')}>
-            <FaCog />
-          </Button>
-        </div>
-
-        {hasProjects && (
-          <div className="fg-1 d-f fd-c anim-enter-fade">
-            <MassActions />
-            <div className="fg-1 r mt-20">
-              <ProjectsList />
-            </div>
+      return (
+        <div
+          className={cx({
+            'fg-1 d-f fd-c p-10': hasProjects,
+            'fg-1 z': !hasProjects,
+          })}
+        >
+          <div className="flow-h-10 d-f ai-c">
+            {hasProjects && <GlobalSearch className="fg-1" />}
+            <Button
+              ref={n => (this._newProjectBTN = n)}
+              primary
+              onClick={() => openModal('newProject')}
+            >
+              <IconCreate size={20} className="mr-5" />
+              {'New project'}
+            </Button>
+            <Button ghost onClick={() => addProject()}>
+              <IconOpen size={20} className="mr-5" />
+              {'Open project'}
+            </Button>
+            <Button ghost onClick={() => openModal('settings')}>
+              <FaCog />
+            </Button>
           </div>
-        )}
-      </div>
-    )
-  }
-}
 
-export default HomePage
+          {hasProjects && (
+            <div className="fg-1 d-f fd-c anim-enter-fade">
+              <MassActions />
+              <div className="fg-1 r mt-20">
+                <ProjectsList />
+              </div>
+            </div>
+          )}
+        </div>
+      )
+    }
+  },
+)

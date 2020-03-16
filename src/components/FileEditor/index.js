@@ -55,7 +55,7 @@ function beautify(content) {
   })
 }
 
-@connect(
+export default connect(
   state => {
     const { settings, preview } = state
     return {
@@ -78,278 +78,277 @@ function beautify(content) {
     setPreview,
     addAlert,
   },
-)
-class FileEditor extends Component {
-  state = {
-    isLoading: true,
-  }
-
-  componentWillMount() {
-    // used to store different histories, for ability to restore
-    // it when switching to another file then switching back
-    this._historyCache = {}
-  }
-
-  componentDidMount() {
-    window.requestIdleCallback(() => {
-      this.initEditor()
-      this.loadContent()
-      window.requestIdleCallback(this.detecteOldSyntax)
-    })
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.mjmlEngine !== nextProps.mjmlEngine) {
-      this.handleChange()
-    }
-    if (this.props.minify !== nextProps.minify) {
-      this.handleChange()
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.fileName !== this.props.fileName) {
-      // backup history
-      this._historyCache[prevProps.fileName] = this._codeMirror.getHistory()
-      this.loadContent()
-    }
-    if (prevProps.wrapLines !== this.props.wrapLines) {
-      this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
-    }
-    if (prevProps.highlightTag !== this.props.highlightTag) {
-      this._codeMirror.setOption(
-        'matchTags',
-        this.props.highlightTag ? { bothTags: true } : undefined,
-      )
-    }
-    if (
-      (!prevProps.autoFold && this.props.autoFold) ||
-      (this.props.autoFold && this.props.foldLevel !== prevProps.foldLevel)
-    ) {
-      foldByLevel(this._codeMirror, this.props.foldLevel)
-    }
-    if (prevProps.lightTheme !== this.props.lightTheme) {
-      this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
-    }
-    if (prevProps.useTab !== this.props.useTab) {
-      this._codeMirror.setOption('indentWithTabs', this.props.useTab)
-    }
-    if (prevProps.tabSize !== this.props.tabSize) {
-      this._codeMirror.setOption('tabSize', this.props.tabSize)
-    }
-    if (prevProps.indentSize !== this.props.indentSize) {
-      this._codeMirror.setOption('indentUnit', this.props.indentSize)
-    }
-  }
-
-  componentWillUnmount() {
-    if (this._codeMirror) {
-      this._codeMirror.toTextArea()
-      this._codeMirror = null
-    }
-  }
-
-  detecteOldSyntax = () => {
-    const content = this.getContent()
-    this.props.onDetectOldSyntax(isOldSyntax(content))
-  }
-
-  async loadContent() {
-    const { fileName, autoFold, foldLevel } = this.props
-
-    const { isLoading } = this.state
-
-    if (!isLoading) {
-      this.setState({ isLoading: true })
+)(
+  class FileEditor extends Component {
+    state = {
+      isLoading: true,
     }
 
-    try {
-      const content = await fsReadFile(fileName, { encoding: 'utf8' })
-      if (!this._codeMirror) {
+    componentWillMount() {
+      // used to store different histories, for ability to restore
+      // it when switching to another file then switching back
+      this._historyCache = {}
+    }
+
+    componentDidMount() {
+      window.requestIdleCallback(() => {
+        this.initEditor()
+        this.loadContent()
+        window.requestIdleCallback(this.detecteOldSyntax)
+      })
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (this.props.mjmlEngine !== nextProps.mjmlEngine) {
+        this.handleChange()
+      }
+      if (this.props.minify !== nextProps.minify) {
+        this.handleChange()
+      }
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.fileName !== this.props.fileName) {
+        // backup history
+        this._historyCache[prevProps.fileName] = this._codeMirror.getHistory()
+        this.loadContent()
+      }
+      if (prevProps.wrapLines !== this.props.wrapLines) {
+        this._codeMirror.setOption('lineWrapping', this.props.wrapLines)
+      }
+      if (prevProps.highlightTag !== this.props.highlightTag) {
+        this._codeMirror.setOption(
+          'matchTags',
+          this.props.highlightTag ? { bothTags: true } : undefined,
+        )
+      }
+      if (
+        (!prevProps.autoFold && this.props.autoFold) ||
+        (this.props.autoFold && this.props.foldLevel !== prevProps.foldLevel)
+      ) {
+        foldByLevel(this._codeMirror, this.props.foldLevel)
+      }
+      if (prevProps.lightTheme !== this.props.lightTheme) {
+        this._codeMirror.setOption('theme', this.props.lightTheme ? 'neo' : 'one-dark')
+      }
+      if (prevProps.useTab !== this.props.useTab) {
+        this._codeMirror.setOption('indentWithTabs', this.props.useTab)
+      }
+      if (prevProps.tabSize !== this.props.tabSize) {
+        this._codeMirror.setOption('tabSize', this.props.tabSize)
+      }
+      if (prevProps.indentSize !== this.props.indentSize) {
+        this._codeMirror.setOption('indentUnit', this.props.indentSize)
+      }
+    }
+
+    componentWillUnmount() {
+      if (this._codeMirror) {
+        this._codeMirror.toTextArea()
+        this._codeMirror = null
+      }
+    }
+
+    detecteOldSyntax = () => {
+      const content = this.getContent()
+      this.props.onDetectOldSyntax(isOldSyntax(content))
+    }
+
+    async loadContent() {
+      const { fileName, autoFold, foldLevel } = this.props
+
+      const { isLoading } = this.state
+
+      if (!isLoading) {
+        this.setState({ isLoading: true })
+      }
+
+      try {
+        const content = await fsReadFile(fileName, { encoding: 'utf8' })
+        if (!this._codeMirror) {
+          return
+        }
+        this._codeMirror.setValue(content)
+        // load history if exists, else, clear it.
+        if (this._historyCache[fileName]) {
+          this._codeMirror.setHistory(this._historyCache[fileName])
+        } else {
+          this._codeMirror.clearHistory()
+        }
+        // fold lines on mjml files, based on settings
+        if (autoFold && fileName.endsWith('.mjml')) {
+          foldByLevel(this._codeMirror, foldLevel)
+        }
+        this.setState({ isLoading: false })
+      } catch (e) {} // eslint-disable-line
+    }
+
+    handleCtrlD(cm) {
+      codeMirrorCtrlD(cm, this._codeMirror)
+    }
+
+    handleCtrlShiftD(cm) {
+      codeMirrorDuplicate(cm, this._codeMirror)
+    }
+
+    initEditor() {
+      if (!this._textarea) {
         return
       }
-      this._codeMirror.setValue(content)
-      // load history if exists, else, clear it.
-      if (this._historyCache[fileName]) {
-        this._codeMirror.setHistory(this._historyCache[fileName])
-      } else {
-        this._codeMirror.clearHistory()
+
+      const { wrapLines, highlightTag, lightTheme, useTab, tabSize, indentSize } = this.props
+
+      if (this._codeMirror) {
+        this._codeMirror.toTextArea()
+        this._codeMirror = null
       }
-      // fold lines on mjml files, based on settings
-      if (autoFold && fileName.endsWith('.mjml')) {
-        foldByLevel(this._codeMirror, foldLevel)
+
+      this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
+        tabSize,
+        dragDrop: false,
+        matchTags: highlightTag ? { bothTags: true } : undefined,
+        indentUnit: indentSize,
+        indentWithTabs: useTab,
+        mode: 'xml',
+        lineNumbers: true,
+        theme: lightTheme ? 'neo' : 'one-dark',
+        autoCloseTags: true,
+        foldGutter: true,
+        gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+        styleActiveLine: {
+          nonEmpty: true,
+        },
+        highlightSelectionMatches: {
+          wordsOnly: true,
+        },
+        lineWrapping: wrapLines,
+        extraKeys: {
+          /* eslint-disable quotes */
+          "'<'": (cm, pred) => completeAfter(CodeMirror, cm, pred),
+          "'/'": cm => completeIfAfterLt(CodeMirror, cm),
+          "' '": cm => completeIfInTag(CodeMirror, cm),
+          "'='": cm => completeIfInTag(CodeMirror, cm),
+          'Ctrl-Space': 'autocomplete',
+          'Ctrl-D': cm => this.handleCtrlD(cm),
+          'Cmd-D': cm => this.handleCtrlD(cm),
+          'Shift-Ctrl-D': cm => this.handleCtrlShiftD(cm),
+          'Shift-Cmd-D': cm => this.handleCtrlShiftD(cm),
+          /* eslint-enable quotes */
+        },
+        lint: this.handleValidate,
+      })
+
+      this._codeMirror.on('keydown', (cm, e) => this.handleKey(cm, e))
+
+      this._codeMirror.on('change', this.handleChange)
+    }
+
+    handleValidate = () => {
+      const { errors } = this.props
+      return errors.map(err => ({
+        message: err.message,
+        severity: 'error',
+        from: CodeMirror.Pos(err.line - 1, 1),
+        to: CodeMirror.Pos(err.line - 1, 1),
+      }))
+    }
+
+    handleKey = (cm, e) => {
+      const { snippets } = this.props
+      if (e.key === 'Tab') {
+        e.preventDefault()
+        return completeAfterSnippet(CodeMirror, cm, snippets)
       }
-      this.setState({ isLoading: false })
-    } catch (e) {} // eslint-disable-line
-  }
-
-  handleCtrlD(cm) {
-    codeMirrorCtrlD(cm, this._codeMirror)
-  }
-
-  handleCtrlShiftD(cm) {
-    codeMirrorDuplicate(cm, this._codeMirror)
-  }
-
-  initEditor() {
-    if (!this._textarea) {
-      return
     }
 
-    const { wrapLines, highlightTag, lightTheme, useTab, tabSize, indentSize } = this.props
+    async handleSave() {
+      const { fileName, addAlert } = this.props
+      const mjml = this._codeMirror.getValue()
 
-    if (this._codeMirror) {
-      this._codeMirror.toTextArea()
-      this._codeMirror = null
-    }
-
-    this._codeMirror = CodeMirror.fromTextArea(this._textarea, {
-      tabSize,
-      dragDrop: false,
-      matchTags: highlightTag ? { bothTags: true } : undefined,
-      indentUnit: indentSize,
-      indentWithTabs: useTab,
-      mode: 'xml',
-      lineNumbers: true,
-      theme: lightTheme ? 'neo' : 'one-dark',
-      autoCloseTags: true,
-      foldGutter: true,
-      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
-      styleActiveLine: {
-        nonEmpty: true,
-      },
-      highlightSelectionMatches: {
-        wordsOnly: true,
-      },
-      lineWrapping: wrapLines,
-      extraKeys: {
-        /* eslint-disable quotes */
-        "'<'": (cm, pred) => completeAfter(CodeMirror, cm, pred),
-        "'/'": cm => completeIfAfterLt(CodeMirror, cm),
-        "' '": cm => completeIfInTag(CodeMirror, cm),
-        "'='": cm => completeIfInTag(CodeMirror, cm),
-        'Ctrl-Space': 'autocomplete',
-        'Ctrl-D': cm => this.handleCtrlD(cm),
-        'Cmd-D': cm => this.handleCtrlD(cm),
-        'Shift-Ctrl-D': cm => this.handleCtrlShiftD(cm),
-        'Shift-Cmd-D': cm => this.handleCtrlShiftD(cm),
-        /* eslint-enable quotes */
-      },
-      lint: this.handleValidate,
-    })
-
-    this._codeMirror.on('keydown', (cm, e) => this.handleKey(cm, e))
-
-    this._codeMirror.on('change', this.handleChange)
-  }
-
-  handleValidate = () => {
-    const { errors } = this.props
-    return errors.map(err => ({
-      message: err.message,
-      severity: 'error',
-      from: CodeMirror.Pos(err.line - 1, 1),
-      to: CodeMirror.Pos(err.line - 1, 1),
-    }))
-  }
-
-  handleKey = (cm, e) => {
-    const { snippets } = this.props
-    if (e.key === 'Tab') {
-      e.preventDefault()
-      return completeAfterSnippet(CodeMirror, cm, snippets)
-    }
-  }
-
-  async handleSave() {
-    const { fileName, addAlert } = this.props
-    const mjml = this._codeMirror.getValue()
-
-    try {
-      await fsWriteFile(fileName, mjml)
-      addAlert('File successfully saved', 'success')
-    } catch (e) {
-      addAlert('Could not save file', 'error')
-      console.log(e) // eslint-disable-line no-console
-    }
-  }
-
-  handleChange = debounce(async () => {
-    const { setPreview, fileName, mjmlEngine, preventAutoSave } = this.props
-    const mjml = this._codeMirror.getValue()
-    if (mjmlEngine === 'auto') {
-      setPreview(fileName, mjml)
-
-      if (!preventAutoSave) this.debounceWrite(fileName, mjml)
-    } else {
-      if (!preventAutoSave) {
+      try {
         await fsWriteFile(fileName, mjml)
+        addAlert('File successfully saved', 'success')
+      } catch (e) {
+        addAlert('Could not save file', 'error')
+        console.log(e) // eslint-disable-line no-console
+      }
+    }
+
+    handleChange = debounce(async () => {
+      const { setPreview, fileName, mjmlEngine, preventAutoSave } = this.props
+      const mjml = this._codeMirror.getValue()
+      if (mjmlEngine === 'auto') {
+        setPreview(fileName, mjml)
+
+        if (!preventAutoSave) this.debounceWrite(fileName, mjml)
+      } else {
+        if (!preventAutoSave) {
+          await fsWriteFile(fileName, mjml)
+        }
+
+        setPreview(fileName, mjml)
       }
 
-      setPreview(fileName, mjml)
+      window.requestIdleCallback(this.detecteOldSyntax)
+    }, 200)
+
+    getContent = () => {
+      return this._codeMirror.getValue()
     }
 
-    window.requestIdleCallback(this.detecteOldSyntax)
-  }, 200)
+    setContent = content => {
+      const scrollInfo = this._codeMirror.getScrollInfo()
+      this._codeMirror.setValue(content)
+      this._codeMirror.scrollTo(0, scrollInfo.top)
+    }
 
-  getContent = () => {
-    return this._codeMirror.getValue()
-  }
-
-  setContent = content => {
-    const scrollInfo = this._codeMirror.getScrollInfo()
-    this._codeMirror.setValue(content)
-    this._codeMirror.scrollTo(0, scrollInfo.top)
-  }
-
-  beautify = () => {
-    const value = this.getContent()
-    const beautified = beautify(value)
-    this.setContent(beautified)
-  }
-
-  migrateToMJML4 = () => {
-    try {
-      const content = this.getContent()
-      const migratedContent = migrateToMJML4(content)
-      const beautified = beautify(migratedContent)
+    beautify = () => {
+      const value = this.getContent()
+      const beautified = beautify(value)
       this.setContent(beautified)
-    } catch (err) {
-      console.error(err) // eslint-disable-line no-console
     }
-  }
 
-  debounceWrite = debounce((fileName, mjml) => {
-    fsWriteFile(fileName, mjml)
-  }, 500)
+    migrateToMJML4 = () => {
+      try {
+        const content = this.getContent()
+        const migratedContent = migrateToMJML4(content)
+        const beautified = beautify(migratedContent)
+        this.setContent(beautified)
+      } catch (err) {
+        console.error(err) // eslint-disable-line no-console
+      }
+    }
 
-  refresh = () => {
-    this._codeMirror && this._codeMirror.refresh()
-  }
+    debounceWrite = debounce((fileName, mjml) => {
+      fsWriteFile(fileName, mjml)
+    }, 500)
 
-  focus = () => {
-    this._codeMirror && this._codeMirror.focus()
-  }
+    refresh = () => {
+      this._codeMirror && this._codeMirror.refresh()
+    }
 
-  render() {
-    const { disablePointer, onRef } = this.props
+    focus = () => {
+      this._codeMirror && this._codeMirror.focus()
+    }
 
-    const { isLoading } = this.state
+    render() {
+      const { disablePointer, onRef } = this.props
 
-    onRef(this)
+      const { isLoading } = this.state
 
-    return (
-      <div
-        className="FileEditor"
-        style={{
-          pointerEvents: disablePointer ? 'none' : 'auto',
-        }}
-      >
-        {isLoading && <div className="sticky z FileEditor--loader">{'...'}</div>}
-        <textarea ref={r => (this._textarea = r)} />
-      </div>
-    )
-  }
-}
+      onRef(this)
 
-export default FileEditor
+      return (
+        <div
+          className="FileEditor"
+          style={{
+            pointerEvents: disablePointer ? 'none' : 'auto',
+          }}
+        >
+          {isLoading && <div className="sticky z FileEditor--loader">{'...'}</div>}
+          <textarea ref={r => (this._textarea = r)} />
+        </div>
+      )
+    }
+  },
+)

@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import path from 'path'
 import debounce from 'lodash/debounce'
 import { connect } from 'react-redux'
-import IconCheck from 'react-icons/md/check-circle'
-import IconChecking from 'react-icons/md/autorenew'
-import IconError from 'react-icons/md/error'
+
+import {
+  MdCheckCircle as IconCheck,
+  MdAutorenew as IconChecking,
+  MdError as IconError,
+} from 'react-icons/md'
 
 import { isModalOpened, closeModal } from 'reducers/modals'
 import { fileExists } from 'helpers/fs'
@@ -13,7 +16,7 @@ import { fileExists } from 'helpers/fs'
 import Modal from 'components/Modal'
 import Button from 'components/Button'
 
-@connect(
+export default connect(
   state => {
     return {
       isOpened: isModalOpened(state, 'addFile'),
@@ -22,135 +25,134 @@ import Button from 'components/Button'
   {
     closeModal,
   },
-)
-class AddFileModal extends Component {
-  static propTypes = {
-    rootPath: PropTypes.string.isRequired,
-    onAdd: PropTypes.func.isRequired,
-  }
-
-  state = {
-    fileName: '',
-    // unset / checking / valid / invalid
-    fileStatus: 'unset',
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isOpened && !nextProps.isOpened) {
-      window.requestIdleCallback(() => this.setState({ fileName: '', fileStatus: 'unset' }))
+)(
+  class AddFileModal extends Component {
+    static propTypes = {
+      rootPath: PropTypes.string.isRequired,
+      onAdd: PropTypes.func.isRequired,
     }
-  }
 
-  componentDidUpdate(prevProps) {
-    if (!prevProps.isOpened && this.props.isOpened) {
-      this._inputFileName.focus()
+    state = {
+      fileName: '',
+      // unset / checking / valid / invalid
+      fileStatus: 'unset',
     }
-  }
 
-  handleClose = () => this.props.closeModal('addFile')
-
-  handleChangeName = e => {
-    const { value } = e.target
-    this.setState({
-      fileName: value,
-      fileStatus: value ? 'checking' : 'unset',
-    })
-    if (value) {
-      this.debounceCheckName()
+    componentWillReceiveProps(nextProps) {
+      if (this.props.isOpened && !nextProps.isOpened) {
+        window.requestIdleCallback(() => this.setState({ fileName: '', fileStatus: 'unset' }))
+      }
     }
-  }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    e.stopPropagation()
-    const { fileStatus, fileName } = this.state
-    if (fileStatus !== 'valid') {
-      return
+    componentDidUpdate(prevProps) {
+      if (!prevProps.isOpened && this.props.isOpened) {
+        this._inputFileName.focus()
+      }
     }
-    const { rootPath, onAdd } = this.props
-    const full = path.join(rootPath, `${fileName}.mjml`)
-    onAdd(full)
-    window.requestIdleCallback(this.handleClose)
-  }
 
-  debounceCheckName = debounce(async () => {
-    const { fileName } = this.state
-    if (!fileName) {
-      return this.setState({ fileStatus: 'unset' })
+    handleClose = () => this.props.closeModal('addFile')
+
+    handleChangeName = e => {
+      const { value } = e.target
+      this.setState({
+        fileName: value,
+        fileStatus: value ? 'checking' : 'unset',
+      })
+      if (value) {
+        this.debounceCheckName()
+      }
     }
-    const { rootPath } = this.props
-    const full = path.join(rootPath, `${fileName}.mjml`)
-    const exists = await fileExists(full)
-    this.setState({
-      fileStatus: exists ? 'invalid' : 'valid',
-    })
-  }, 250)
 
-  render() {
-    const { isOpened } = this.props
+    handleSubmit = e => {
+      e.preventDefault()
+      e.stopPropagation()
+      const { fileStatus, fileName } = this.state
+      if (fileStatus !== 'valid') {
+        return
+      }
+      const { rootPath, onAdd } = this.props
+      const full = path.join(rootPath, `${fileName}.mjml`)
+      onAdd(full)
+      window.requestIdleCallback(this.handleClose)
+    }
 
-    const { fileName, fileStatus } = this.state
+    debounceCheckName = debounce(async () => {
+      const { fileName } = this.state
+      if (!fileName) {
+        return this.setState({ fileStatus: 'unset' })
+      }
+      const { rootPath } = this.props
+      const full = path.join(rootPath, `${fileName}.mjml`)
+      const exists = await fileExists(full)
+      this.setState({
+        fileStatus: exists ? 'invalid' : 'valid',
+      })
+    }, 250)
 
-    const isValid = fileStatus === 'valid'
-    const nameWithExt = `${fileName}.mjml`
+    render() {
+      const { isOpened } = this.props
 
-    return (
-      <Modal isOpened={isOpened} onClose={this.handleClose}>
-        <div className="Modal--label">{'Create MJML file'}</div>
+      const { fileName, fileStatus } = this.state
 
-        <form className="flow-v-20" onSubmit={this.handleSubmit}>
-          <div className="d-f ai-b">
-            <div style={{ width: 150 }} className="fs-0">
-              {'File name:'}
-            </div>
-            <div className="fg-1">
-              <div className="d-f ai-c">
-                <input
-                  ref={n => (this._inputFileName = n)}
-                  className="fg-1"
-                  value={fileName}
-                  onChange={this.handleChangeName}
-                  placeholder="Name"
-                  type="text"
-                  autoFocus
-                />
-                <div className="ml-5">{'.mjml'}</div>
+      const isValid = fileStatus === 'valid'
+      const nameWithExt = `${fileName}.mjml`
+
+      return (
+        <Modal isOpened={isOpened} onClose={this.handleClose}>
+          <div className="Modal--label">{'Create MJML file'}</div>
+
+          <form className="flow-v-20" onSubmit={this.handleSubmit}>
+            <div className="d-f ai-b">
+              <div style={{ width: 150 }} className="fs-0">
+                {'File name:'}
               </div>
-              {fileStatus === 'checking' && (
-                <div className="t-small mt-10">
-                  <IconChecking className="rotating mr-5" />
-                  {'Checking...'}
+              <div className="fg-1">
+                <div className="d-f ai-c">
+                  <input
+                    ref={n => (this._inputFileName = n)}
+                    className="fg-1"
+                    value={fileName}
+                    onChange={this.handleChangeName}
+                    placeholder="Name"
+                    type="text"
+                    autoFocus
+                  />
+                  <div className="ml-5">{'.mjml'}</div>
                 </div>
-              )}
-              {fileStatus === 'valid' && (
-                <div className="t-small mt-10">
-                  <IconCheck className="mr-5 mb-5" />
-                  {'Ready to create'}
-                  <b className="ml-5 wb-ba">{nameWithExt}</b>
-                </div>
-              )}
-              {fileStatus === 'invalid' && (
-                <div className="t-small mt-10 c-red">
-                  <IconError className="mr-5 mb-5" />
-                  <b className="mr-5">{nameWithExt}</b>
-                  {'already exists'}
-                </div>
-              )}
+                {fileStatus === 'checking' && (
+                  <div className="t-small mt-10">
+                    <IconChecking className="rotating mr-5" />
+                    {'Checking...'}
+                  </div>
+                )}
+                {fileStatus === 'valid' && (
+                  <div className="t-small mt-10">
+                    <IconCheck className="mr-5 mb-5" />
+                    {'Ready to create'}
+                    <b className="ml-5 wb-ba">{nameWithExt}</b>
+                  </div>
+                )}
+                {fileStatus === 'invalid' && (
+                  <div className="t-small mt-10 c-red">
+                    <IconError className="mr-5 mb-5" />
+                    <b className="mr-5">{nameWithExt}</b>
+                    {'already exists'}
+                  </div>
+                )}
+              </div>
             </div>
+          </form>
+
+          <div className="ModalFooter">
+            <Button primary onClick={this.handleSubmit} disabled={!isValid}>
+              {'Create file'}
+            </Button>
+            <Button transparent onClick={this.handleClose}>
+              {'Cancel'}
+            </Button>
           </div>
-        </form>
-
-        <div className="ModalFooter">
-          <Button primary onClick={this.handleSubmit} disabled={!isValid}>
-            {'Create file'}
-          </Button>
-          <Button transparent onClick={this.handleClose}>
-            {'Cancel'}
-          </Button>
-        </div>
-      </Modal>
-    )
-  }
-}
-
-export default AddFileModal
+        </Modal>
+      )
+    }
+  },
+)

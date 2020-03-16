@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 import { shell } from 'electron'
 
-import IconInfo from 'react-icons/md/info'
+import { MdInfo as IconInfo } from 'react-icons/md'
 import LogoMailjet from 'components/icons/logo-mailjet'
 
 class MailjetInfos extends Component {

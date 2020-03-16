@@ -1,20 +1,27 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-react",
       {
         "loose": true,
         "modules": "commonjs",
         "targets": {
-          "electron": "1.8",
+          "electron": "7.0",
           "node": "current"
         }
       }
-    ],
-    "react",
-    "stage-0"
+    ]
   ],
   "plugins": [
-    ["module-resolver", { "root": ["src"] }]
+    ["@babel/plugin-proposal-decorators", {
+      "legacy": true,
+    }],
+    ["@babel/plugin-proposal-class-properties", {
+      "loose": true
+    }],
+    "@babel/plugin-proposal-export-default-from",
+    ["module-resolver", {
+      "root": ["src"]
+    }]
   ]
 }

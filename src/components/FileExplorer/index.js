@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import IconFolder from 'react-icons/md/folder'
+import { MdFolder as IconFolder } from 'react-icons/md'
 
 import { safeFromJS } from 'helpers/immutable'
 import Tabbable from 'components/Tabbable'

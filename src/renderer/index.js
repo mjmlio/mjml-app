@@ -17,7 +17,7 @@ import 'styles/global.scss'
 import 'styles/utils.scss'
 
 const store = configureStore()
-const history = syncHistoryWithStore(hashHistory, store)
+export const history = syncHistoryWithStore(hashHistory, store)
 const { dispatch } = store
 const rootNode = document.getElementById('app')
 

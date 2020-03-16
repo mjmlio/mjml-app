@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
-import IconEmpty from 'react-icons/md/email'
+import { MdEmail as IconEmpty } from 'react-icons/md'
 
 import Iframe from 'components/Iframe'
 

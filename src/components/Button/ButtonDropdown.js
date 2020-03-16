@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
-import IconDown from 'react-icons/md/keyboard-arrow-down'
+import { MdKeyboardArrowDown as IconDown } from 'react-icons/md'
 
 import Tabbable from 'components/Tabbable'
 import Button from './index'

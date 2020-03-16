@@ -45,10 +45,13 @@
 
 body {
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     width: 0;
   }
-  font-family: Lato, sans-serif;
+
+  font-family: Lato,
+  sans-serif;
   font-size: 14px;
   color: $evenLighterGrey;
 
@@ -107,10 +110,12 @@ a {
 .a {
   text-decoration: underline;
   cursor: pointer;
+
   &.white {
     &:hover {
       color: rgba(white, 0.7);
     }
+
     &:focus,
     &:active {
       color: white;
@@ -121,9 +126,11 @@ a {
 .Resizer {
   position: relative;
   z-index: 4000;
+
   &:hover {
     background: #34343f;
   }
+
   &:active {
     background: #42424f;
   }
@@ -146,6 +153,7 @@ a {
   0% {
     transform: rotate(0);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -157,6 +165,7 @@ a {
   border: 1px dashed transparent;
   border-radius: 3px;
   padding: 5px;
+
   &:focus {
     border: 1px dashed rgba(white, 0.2);
   }

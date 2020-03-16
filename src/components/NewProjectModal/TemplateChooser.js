@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import cx from 'classnames'
 import Collapse from 'react-collapse'
-import IconChecking from 'react-icons/md/autorenew'
-import IconSimple from 'react-icons/md/note'
-import IconSeparated from 'react-icons/md/view-day'
+
+import {
+  MdAutorenew as IconChecking,
+  MdNote as IconSimple,
+  MdViewDay as IconSeparated,
+} from 'react-icons/md'
 
 import fetchGallery from 'helpers/fetchGallery'
 
