@@ -36,7 +36,6 @@ import SendModal from './SendModal'
 import AddFileModal from './AddFileModal'
 import RemoveFileModal from './RemoveFileModal'
 
-
 export default connect(
   state => ({
     preview: state.preview,
