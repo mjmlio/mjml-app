@@ -11,28 +11,34 @@ module.exports = {
     filename: 'bundle-[hash].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel-loader'],
+        use: [{ loader: 'babel-loader' }],
         exclude: /node_modules/,
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+        use: { loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
       },
       { test: /\.mp4$/, loader: 'file-loader' },
       isProd
         ? {
             test: /\.scss$/,
-            loader: ExtractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: 'css-loader!sass-loader',
-            }),
+            use: {
+              loader: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: 'css-loader!sass-loader',
+              }),
+            },
           }
         : {
             test: /\.scss$/,
-            loaders: ['style-loader', 'css-loader', 'sass-loader'],
+            use: [
+              { loader: 'style-loader' },
+              { loader: 'css-loader' },
+              { loader: 'sass-loader' },
+            ],
           },
     ],
   },

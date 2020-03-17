@@ -27,7 +27,7 @@ fetch(REL_URL)
     const { name, assets } = lastVersion
 
     const linuxName = `mjml-app-${name}-linux-x64.tar.gz`
-    const winName = `mjml-app-win-x64_${name}.exe`
+    const winName = `mjml-app-${name}-win.exe`
     const osxName = `mjml-app-${name}-mac.dmg`
     
     let linuxUrl, winUrl, osxUrl
