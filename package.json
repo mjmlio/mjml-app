@@ -1,7 +1,7 @@
 {
   "name": "mjml-app",
   "productName": "MJML",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "MIT",
   "description": "The desktop app for MJML",
   "repository": "https://github.com/mjmlio/mjml-app",
