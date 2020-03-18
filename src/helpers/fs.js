@@ -75,7 +75,7 @@ export function fileDialog(options) {
 }
 
 export function saveDialog(options) {
-  const res = dialog.showSaveDialog(options)
+  const res = dialog.showSaveDialogSync(options)
   return res
 }
 
