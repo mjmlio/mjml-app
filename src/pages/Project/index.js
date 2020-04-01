@@ -24,7 +24,7 @@ import { openModal } from 'reducers/modals'
 import { addAlert } from 'reducers/alerts'
 import { setPreview } from 'actions/preview'
 
-import { fileDialog, saveDialog, fsWriteFile } from 'helpers/fs'
+import { fileDialog, saveDialog, fsWriteFile, fileExists } from 'helpers/fs'
 
 import Button from 'components/Button'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
@@ -99,9 +99,13 @@ export default connect(
 
     handleRemoveFile = async fileName => {
       try {
-        if ((await trash(fileName)) === undefined) {
-          throw new Error('No file was deleted')
+        const trashed = await trash(fileName)
+        const stillExists = await fileExists(fileName)
+        
+        if (stillExists) {
+          throw new Error('File still exists')
         }
+        
         this.props.addAlert('File successfully removed', 'success')
       } catch (e) {
         this.props.addAlert('Could not delete file', 'error')
