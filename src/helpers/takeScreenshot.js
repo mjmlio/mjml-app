@@ -21,19 +21,18 @@ export function takeScreenshot(html, deviceWidth, workingDirectory) {
     win.webContents.on('did-finish-load', () => {
       // Window is not fully loaded after this event, hence setTimeout()...
       win.webContents.executeJavaScript(
-        "document.querySelector('body').getBoundingClientRect().height",
-        height => {
-          win.setSize(deviceWidth, height + 50)
-          const takeShot = () => {
-            win.webContents.capturePage(img => {
-              // eslint-disable-line
-              win.close()
-              resolve(img.toPng())
-            })
-          }
-          setTimeout(takeShot, 500)
-        },
-      )
+        "document.querySelector('body').getBoundingClientRect().height"
+      ).then(height => {
+        win.setSize(deviceWidth, height + 50)
+        const takeShot = () => {
+          win.webContents.capturePage().then(img => {
+            // eslint-disable-line
+            win.close()
+            resolve(img.toPNG())
+          })
+        }
+        setTimeout(takeShot, 500)
+      })
     })
   })
 }
