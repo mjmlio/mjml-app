@@ -191,10 +191,12 @@ export default connect(
       const { preview } = this.props
       const relativePathsRegex = new RegExp(/(?:href|src)=(["'])(?!mailto|https|http|data:).*?\1/g)
       let matches = preview.content.match(relativePathsRegex)
-      matches = matches.map(match => `■ ${match}`)
-      this.props.addAlert(['Found possible non-absolute paths:', ...matches], 'error', {
-        autoHide: false,
-      })
+      if (matches) {
+        matches = matches.map(match => `■ ${match}`)
+        this.props.addAlert(['Found possible non-absolute paths:', ...matches], 'error', {
+          autoHide: false,
+        })
+      }
     }
 
     getHTMLOutput() {
