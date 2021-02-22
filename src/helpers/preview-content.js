@@ -1,4 +1,5 @@
 import erb from 'erb'
+import Handlebars from 'handlebars'
 
 export const compile = async ({ raw, engine, variables = {} }) => {
   if (engine === 'erb') {
@@ -8,6 +9,10 @@ export const compile = async ({ raw, engine, variables = {} }) => {
       template: raw,
     })
 
+    return res
+  }
+  if (engine === 'handlebars') {
+    const res = Handlebars.compile(raw)(variables)
     return res
   }
 

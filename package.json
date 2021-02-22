@@ -45,6 +45,7 @@
     "es6-promisify": "^6.0.2",
     "fix-path": "^2.1.0",
     "fuse.js": "^3.4.5",
+    "handlebars": "4.7.7",
     "immutable": "^4.0.0-rc.12",
     "js-beautify": "^1.10.2",
     "js-yaml": "^3.14.0",
