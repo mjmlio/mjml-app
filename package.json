@@ -1,7 +1,7 @@
 {
   "name": "mjml-app",
   "productName": "MJML",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
   "description": "The desktop app for MJML",
   "repository": "https://github.com/mjmlio/mjml-app",
@@ -49,7 +49,7 @@
     "immutable": "^4.0.0-rc.12",
     "js-beautify": "^1.10.2",
     "js-yaml": "^3.14.0",
-    "mjml": "^4.6.2",
+    "mjml": "^4.8.1",
     "mjml-migrate": "^4.6.0",
     "ncp": "^2.0.0",
     "node-mailjet": "^3.3.1",
