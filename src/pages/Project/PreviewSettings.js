@@ -40,18 +40,12 @@ export default connect(
     componentDidUpdate(prevProps) {
       if (!prevProps.isOpened && this.props.isOpened) {
         this.initEditor()
-        this.setState({
-          ...defaultTemplatingSettings(this.props.currentProjectPath),
-          ...this.currentProjectTemplating(),
-        })
       }
 
-      if (prevProps.templating !== this.props.templating) {
-        console.log('REACH init templ')
-        console.log({
-          ...defaultTemplatingSettings(this.props.currentProjectPath),
-          ...this.currentProjectTemplating(),
-        })
+      if (
+        prevProps.templating !== this.props.templating ||
+        (!prevProps.isOpened && this.props.isOpened)
+      ) {
         this.setState({
           ...defaultTemplatingSettings(this.props.currentProjectPath),
           ...this.currentProjectTemplating(),
@@ -62,7 +56,7 @@ export default connect(
     currentProjectTemplating() {
       const { currentProjectPath, templating } = this.props
       const projectTemplating = find(templating, { projectPath: currentProjectPath })
-      
+
       return projectTemplating || defaultTemplatingSettings(currentProjectPath)
     }
 
