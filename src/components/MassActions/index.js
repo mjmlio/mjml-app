@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Collapse from 'react-collapse'
 import { connect } from 'react-redux'
 
-import { exportSelectedProjectsToHTML, exportSelectedProjectsToImages } from 'actions/projects'
+import { exportSelectedProjectsToHTML, exportSelectedProjectsAllFilesToHTML, exportSelectedProjectsToImages } from 'actions/projects'
 import { selectAllProjects, unselectAllProjects } from 'reducers/selectedProjects'
 
 import Button from 'components/Button'
@@ -18,6 +18,7 @@ export default connect(
     selectAllProjects,
     unselectAllProjects,
     exportSelectedProjectsToHTML,
+    exportSelectedProjectsAllFilesToHTML,
     exportSelectedProjectsToImages,
   },
 )(
@@ -28,6 +29,11 @@ export default connect(
 
     handleExportToHTML = () => {
       this.props.exportSelectedProjectsToHTML()
+      this.props.unselectAllProjects()
+    }
+
+    handleExportAllToHTML = () => {
+      this.props.exportSelectedProjectsAllFilesToHTML()
       this.props.unselectAllProjects()
     }
 
@@ -58,7 +64,10 @@ export default connect(
               {'Unselect all'}
             </span>
             <Button className="ml-10" primary onClick={this.handleExportToHTML}>
-              {`Export to HTML (${selectedProjects.length})`}
+              {`Export project index to HTML (${selectedProjects.length})`}
+            </Button>
+            <Button className="ml-10" primary onClick={this.handleExportAllToHTML}>
+              {`Export all files of project to HTML (${selectedProjects.length})`}
             </Button>
             <Button
               disabled={isLoading}
