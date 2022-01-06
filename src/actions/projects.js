@@ -66,7 +66,7 @@ export function removeProject(p, shouldDeleteFolder = false) {
 
 export function openProject(projectPath) {
   return dispatch => {
-    dispatch(replace(`/project?path=${projectPath}`))
+    dispatch(replace(`/project?path=${encodeURIComponent(projectPath)}`))
     dispatch(loadIfNeeded(projectPath))
   }
 }
