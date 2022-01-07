@@ -73,6 +73,10 @@
   background: $bg-light;
   box-shadow: rgba(black, 0.2) 0 15px 100px;
   z-index: 1;
+  
+  &.position-auto {
+    right: auto;
+  }
 }
 
 .ButtonDropdown--dropdown-item {

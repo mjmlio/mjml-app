@@ -54,6 +54,7 @@ class ButtonDropdown extends Component {
       actions, // eslint-disable-line
       className,
       dropdownWidth,
+      dropdownClassName,
       ...props
     } = this.props
 
@@ -75,7 +76,7 @@ class ButtonDropdown extends Component {
         </Button>
         {isOpened && (
           <div
-            className="ButtonDropdown--dropdown"
+            className={cx('ButtonDropdown--dropdown', dropdownClassName)}
             style={{ width: dropdownWidth }}
             ref={n => (this._dropdown = n)}
           >
