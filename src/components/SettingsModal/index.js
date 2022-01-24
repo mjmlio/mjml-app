@@ -19,6 +19,7 @@ import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
 import TabsVertical, { TabItem } from 'components/TabsVertical'
 import SnippetForm from 'components/SnippetForm'
+import SnippetImports from 'components/SnippetImports'
 import SnippetsList from 'components/SnippetsList'
 import ButtonDropdown from 'components/Button/ButtonDropdown'
 
@@ -275,6 +276,7 @@ export default connect(
                 <div className="Snippets d-f">
                   <div className="fg-1">
                     <SnippetForm />
+                    <SnippetImports />
                   </div>
                   <div className="SnippetsList d-f flow-h-5 fg-1">
                     <SnippetsList />
