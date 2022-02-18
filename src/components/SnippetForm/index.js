@@ -137,7 +137,7 @@ export default connect(
       const { name, trigger, content, snippetIsEdited } = this.props
 
       return (
-        <div>
+        <div className="mb-20">
           <form className="mt-20" onSubmit={this.handleSubmit}>
             <div className="flow-v-20">
               <div className="d-f ai-b">

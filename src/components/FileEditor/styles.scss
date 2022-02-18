@@ -25,6 +25,32 @@
     color: #ef8a92 !important;
     border-bottom-color: rgba($blue, 0.8) !important;
   }
+  
+  &.fontSize-12 {
+    .CodeMirror-lines {
+      font-size: 12px
+    }
+  }
+  &.fontSize-14 {
+    .CodeMirror-lines {
+      font-size: 14px
+    }
+  }
+  &.fontSize-15 {
+    .CodeMirror-lines {
+      font-size: 15px
+    }
+  }
+  &.fontSize-16 {
+    .CodeMirror-lines {
+      font-size: 16px
+    }
+  }
+  &.fontSize-18 {
+    .CodeMirror-lines {
+      font-size: 18px
+    }
+  }
 }
 
 .CodeMirror-hints {

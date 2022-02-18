@@ -6,6 +6,7 @@ import { replace } from 'react-router-redux'
 import { kebabCase, find, endsWith } from 'lodash'
 
 import { takeScreenshot } from 'helpers/takeScreenshot'
+import mjml2html from 'helpers/mjml'
 
 import { addAlert } from 'reducers/alerts'
 import { openExternalFileOverlay, closeExternalFileOverlay } from 'reducers/externalFileOverlay'
@@ -26,11 +27,10 @@ import {
   fsAccess,
   fsRename,
   fsWriteFile,
+  fsMkdir,
   fileExists,
   isValidDir,
 } from 'helpers/fs'
-
-import mjml2html from 'helpers/mjml'
 
 const HOME_DIR = os.homedir()
 
@@ -66,7 +66,7 @@ export function removeProject(p, shouldDeleteFolder = false) {
 
 export function openProject(projectPath) {
   return dispatch => {
-    dispatch(replace(`/project?path=${projectPath}`))
+    dispatch(replace(`/project?path=${encodeURIComponent(projectPath)}`))
     dispatch(loadIfNeeded(projectPath))
   }
 }
@@ -172,10 +172,11 @@ export function dropFile(filePath) {
   }
 }
 
-async function massExport(state, asyncJob) {
+async function massExport(state, asyncJob, allFiles = false) {
   const projectsToExport = state.projects
     .filter(p => state.selectedProjects.find(path => path === p.get('path')))
     .filter(p => p.get('html'))
+
   if (projectsToExport.size === 0) {
     return
   }
@@ -188,10 +189,37 @@ async function massExport(state, asyncJob) {
   }
   for (let i = 0; i < projectsToExport.size; i++) {
     const p = projectsToExport.get(i)
-    const projBaseName = path.basename(p.get('path'))
-    const projSafeName = `${kebabCase(projBaseName)}.html`
-    const filePath = path.join(targetPath, projSafeName)
-    await asyncJob(filePath, p, targetPath)
+    const projPath = p.get('path')
+    const projBaseName = path.basename(projPath)
+    
+    if (allFiles) {
+      // eventually get the custom mjml path set in settings
+      const { settings } = state
+      const projectsPaths = settings.get('projects')
+      const mjmlManual = settings.getIn(['mjml', 'engine']) === 'manual'
+      const mjmlPath = mjmlManual ? settings.getIn(['mjml', 'path']) : undefined
+      
+      const files = await fsReadDir(projPath)
+      const mjmlFiles = files.filter(name => name.includes('.mjml'))
+      if (!mjmlFiles.length) return
+      
+      const targetDir = path.join(targetPath, kebabCase(projBaseName))
+      if (!fs.existsSync(targetDir)) await fsMkdir(targetDir)
+      
+      for (const file of mjmlFiles) {
+        const mjml = await fsReadFile(path.join(projPath, file), 'utf8')
+        const result = await mjml2html(mjml, projPath, mjmlPath)
+        
+        const targetName = file.replace('.mjml', '.html')
+        const targetPath = path.join(targetDir, targetName)
+        
+        await asyncJob(targetPath, result.html)
+      }
+    } else {
+      const projSafeName = `${kebabCase(projBaseName)}.html`
+      const filePath = path.join(targetPath, projSafeName)
+      await asyncJob(filePath, p, targetPath)
+    }
   }
   return targetPath
 }
@@ -200,6 +228,18 @@ export function exportSelectedProjectsToHTML() {
   return async (dispatch, getState) => {
     const targetPath = await massExport(getState(), (filePath, p) =>
       fsWriteFile(filePath, p.get('html')),
+    )
+    if (targetPath) {
+      dispatch(saveLastExportedFolder(targetPath))
+    }
+  }
+}
+
+export function exportSelectedProjectsAllFilesToHTML() {
+  return async (dispatch, getState) => {
+    const targetPath = await massExport(getState(), (filePath, html) =>
+      fsWriteFile(filePath, html, { flag: 'w' }),
+      true
     )
     if (targetPath) {
       dispatch(saveLastExportedFolder(targetPath))

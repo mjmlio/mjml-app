@@ -71,6 +71,7 @@ export default connect(
       useTab: settings.getIn(['editor', 'useTab'], false),
       tabSize: settings.getIn(['editor', 'tabSize'], 2),
       indentSize: settings.getIn(['editor', 'indentSize'], 2),
+      fontSize: settings.getIn(['editor', 'fontSize'], null),
       preventAutoSave: settings.getIn(['editor', 'preventAutoSave'], false),
     }
   },
@@ -332,15 +333,16 @@ export default connect(
     }
 
     render() {
-      const { disablePointer, onRef } = this.props
-
+      const { disablePointer, onRef, fontSize } = this.props
       const { isLoading } = this.state
+      
+      const fontSizeClass = fontSize ? ` fontSize-${fontSize}` : ''
 
       onRef(this)
 
       return (
         <div
-          className="FileEditor"
+          className={`FileEditor${fontSizeClass}`}
           style={{
             pointerEvents: disablePointer ? 'none' : 'auto',
           }}

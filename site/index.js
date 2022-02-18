@@ -17,10 +17,14 @@ const dlLinux = document.getElementById('dl-linux')
 const dlWin = document.getElementById('dl-win')
 const dlOSX = document.getElementById('dl-osx')
 
+const isNotBeta = version =>
+  !version.html_url.includes('beta') &&
+  !version.html_url.includes('alpha')
+
 fetch(REL_URL)
   .then(res => res.json())
   .then(res => {
-    const lastVersion = res[0]
+    const lastVersion = res.filter(isNotBeta)[0]
     document.getElementById('dl-btn-label').innerHTML = `&nbsp;- ${lastVersion.tag_name}`
     document.getElementById('dl-dl-dl').innerHTML = `Download for ${osLabel}`
     

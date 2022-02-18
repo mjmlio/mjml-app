@@ -19,7 +19,9 @@ import Button from 'components/Button'
 import CheckBox from 'components/CheckBox'
 import TabsVertical, { TabItem } from 'components/TabsVertical'
 import SnippetForm from 'components/SnippetForm'
+import SnippetImports from 'components/SnippetImports'
 import SnippetsList from 'components/SnippetsList'
+import ButtonDropdown from 'components/Button/ButtonDropdown'
 
 import MJMLEngine from 'components/MJMLEngine'
 import MjmlConfigPath from 'components/MjmlConfigPath'
@@ -103,6 +105,7 @@ export default connect(
       const editorIndentSize = settings.getIn(['editor', 'indentSize'], 2)
       const checkForRelativePaths = settings.getIn(['mjml', 'checkForRelativePaths'], false)
       const preventAutoSave = settings.getIn(['editor', 'preventAutoSave'], false)
+      const fontSize = settings.getIn(['editor', 'fontSize'], '')
 
       return (
         <Modal
@@ -219,6 +222,20 @@ export default connect(
                     onChange={e => this.changeEditorSetting('indentSize')(Number(e.target.value))}
                   />
                 </div>
+                <div className="mt-5">
+                  {'Font size:'}
+                  <ButtonDropdown
+                    dropdownClassName="position-auto"
+                    ghost
+                    dropdownWidth={200}
+                    actions={[12, 14, 15, 16, 18].map(size => ({
+                      icon: null,
+                      label: `${size}px`,
+                      desc: '',
+                      onClick: () => this.changeEditorSetting('fontSize')(size)
+                    }))}
+                  />
+                </div>
                 <CheckBox
                   value={preventAutoSave}
                   onChange={this.changeEditorSetting('preventAutoSave')}
@@ -259,6 +276,7 @@ export default connect(
                 <div className="Snippets d-f">
                   <div className="fg-1">
                     <SnippetForm />
+                    <SnippetImports />
                   </div>
                   <div className="SnippetsList d-f flow-h-5 fg-1">
                     <SnippetsList />
