@@ -78,7 +78,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "11.0.0-beta.0",
-    "electron": "7.2.4",
+    "electron": "13.6.6",
     "electron-builder": "~22.10.5",
     "electron-devtools-installer": "^2.2.4",
     "electron-webpack": "^2.7.4",
